@@ -1,0 +1,110 @@
+﻿<%@ CodeTemplate Language="C#" TargetLanguage="C#" Debug="False" CompilerVersion="v3.5"  ResponseEncoding="UTF-8" Description="生成实体对象" %>
+<%@ Assembly Name="System.Data" %>
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="SchemaExplorer" %>
+<%@ Map Name="CSharpAlias" Src="DbType-CSharp.csmap" Reverse="False"%>
+<%@ Property Name="NameSpace" Type="String" Category="参数" Description="命名空间" Default="Zeniths.Web" %>
+<%@ Property Name="Area" Type="String" Category="参数" Description="区域" Default="Hr" %>
+<%@ Property Name="Table" Type="SchemaExplorer.TableSchema" Category="参数" Description="表名" Optional="False" %>
+<%
+string TableRemark = Table.Description.Replace("\n","").Replace("\r","").Replace(" ","");
+string TableName = Table.Name.Replace("\n","").Replace("\r","").Replace(" ","");
+string pkName = "Id";
+string pkType = "int";
+if(Table.HasPrimaryKey)
+{
+    pkName = Table.PrimaryKey.MemberColumns[0].Name;
+    pkType = CSharpAlias[Table.PrimaryKey.MemberColumns[0].SystemType.Name];
+}
+%>
+// ===============================================================================
+// DotNet.Platform 开发框架 2016 版权所有
+// ===============================================================================
+
+using System;
+using System.Web.Mvc;
+using <%= NameSpace %>.Entity;
+using <%= NameSpace %>.Service;
+using <%= NameSpace %>.Utility;
+using DotNet.Extensions;
+using DotNet.Helper;
+using DotNet.Utility;
+
+namespace <%= NameSpace %>.Controllers
+{
+    public class <%= TableName %>Controller : <%= Area %>Controller
+    {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult Grid(string name, string category, string enabled)
+        {
+            var list = <%= Area %>Service.<%= TableName %>.GetPageList(PageInfo(), name, category, enabled.ToBoolOrNull());
+            return View(list);
+        }
+
+        public ActionResult Create()
+        {
+            MarkCreate();
+            return EditCore(new <%= TableName %>
+            {
+                Id = StringHelper.Guid(),
+                RowIndex = <%= Area %>Service.<%= TableName %>.GetNewRowIndex()
+            });
+        }
+
+        public ActionResult Edit(string id)
+        {
+            var entity = <%= Area %>Service.<%= TableName %>.Get(id);
+            if (entity == null) return NotFound(id);
+            return EditCore(entity);
+        }
+
+        private ActionResult EditCore(<%= TableName %> entity)
+        {
+            return View("Edit", entity);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(<%= TableName %> entity)
+        {
+            var hasResult = <%= Area %>Service.<%= TableName %>.ExistsByName(entity.<%=pkName%>, entity.Name);
+            if (hasResult.Failure)
+            {
+                return Json(hasResult);
+            }
+            entity.Spell = entity.Name.Spell();
+            AuthHelper.SetEntityUserInfo(entity, IsCreate);
+            var result = <%= Area %>Service.<%= TableName %>.Save(entity, IsCreate);
+            return Json(result);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(string id)
+        {
+            <%= Area %>Service.<%= TableName %>.Delete(id.SplitToArray());
+            return Json(BoolMessage.True);
+        }
+
+        public ActionResult Details(string id)
+        {
+            var entity = <%= Area %>Service.<%= TableName %>.Get(id);
+            if (entity == null) return NotFound(id);
+            return View(entity);
+        }
+
+        public ActionResult Export()
+        {
+            return Export(<%= Area %>Service.<%= TableName %>.GetList());
+        }
+
+        private ActionResult NotFound(string id)
+        {
+            return NotFound("获取 <%= TableRemark %>信息 错误", $"无法找到 主键 = {id} 的<%= TableRemark %>信息");
+        }
+    }
+}

@@ -1,0 +1,21 @@
+﻿@model PageList<StudentLog>
+<table class="table table-striped table-bordered table-hover table-manage">
+    <thead>
+        <tr>
+            <th class="text-center w70px" data-order="@nameof(StudentLog.StudentName)">姓名</th>
+            <th class="text-center w160px" data-order="@nameof(StudentLog.CreateDateTime)">操作日期</th>
+            <th class="" data-order="@nameof(StudentLog.Message)">消息</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in Model)
+        {
+            <tr>
+                <td class="text-center">@record.StudentName</td>
+                <td class="text-center">@DateTimeHelper.FormatDateHasSecond(record.CreateDateTime)</td>
+                <td class="">@record.Message</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.RenderPages(Model)

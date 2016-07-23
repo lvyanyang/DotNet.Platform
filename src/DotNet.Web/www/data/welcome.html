@@ -1,0 +1,384 @@
+﻿
+<div class="search-panel">
+    <form class="form-inline search-form">
+         
+        <button class="btn btn-primary" type="submit">
+            <i class="fa fa-search"></i> 查询
+        </button>
+        <a class="btn purple btn-outline uimodal" id="btnCreate" data-url="/www/data/edit.html">
+            <i class="fa fa-plus"></i> 申请
+        </a>
+        <a class="btn purple btn-outline uimodal" data-size="lg" data-url="/www/data/formlayout.html">
+            <i class="fa fa-plus"></i> 布局
+        </a>
+        <a class="btn btn-default uimodal" data-url="/www/data/validation.html">
+            <i class="fa fa-plus"></i> 验证
+        </a>
+
+
+    </form>
+</div>
+<div class="datagrid" data-url="/HR/EmployeeLeave/Grid" data-query-form=".search-form">
+
+    <table class="table table-zeniths table-striped table-bordered table-hover table-condensed" style="table-layout:fixed">
+
+        <thead>
+            <tr>
+                <th style="width: 120px">姓名</th>
+                <th style="width: 120px; cursor: pointer;" data-order="LeaveCategory">类别</th>
+                <th style="width: 130px; cursor: pointer;" data-order="ApplyDateTime">申请时间</th>
+                <th style="width: 180px">开始时间</th>
+                <th style="width: 180px">结束时间</th>
+                <th style="width: 100px">小时</th>
+                <th>请假事由</th>
+
+
+
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr class="cursor-pointer " data-url="/HR/EmployeeLeave/Details?businessId=334">
+                <td>
+                    <span class="label label-success">审批中</span>
+                    <a class="btnRecordView" data-url="/HR/EmployeeLeave/Details?businessId=334">
+                        秦秀花
+                    </a>
+                </td>
+                <td>调休</td>
+                <td>2016-04-28 15:24</td>
+                <td class="text-center">
+                    2016-04-29 08:30 &nbsp;<span class="label label-warning">预休</span>
+                </td>
+                <td class="text-center">
+                    2016-05-05 17:30 &nbsp;<span class="label label-warning">预休</span>
+                </td>
+                <td>
+                    24.00 &nbsp;<span class="label label-warning">预休</span>
+                </td>
+                <td>家中有事</td>
+
+            </tr>
+
+            <tr class="cursor-pointer " data-url="/HR/EmployeeLeave/Details?businessId=332">
+                <td>
+                    <span class="label label-success">审批中</span>
+                    <a class="btnRecordView" data-url="/HR/EmployeeLeave/Details?businessId=332">
+                        李洋
+                    </a>
+                </td>
+                <td>调休</td>
+                <td>2016-04-28 10:31</td>
+                <td class="text-center">
+                    2016-04-28 15:30 &nbsp;<span class="label label-warning">预休</span>
+                </td>
+                <td class="text-center">
+                    2016-04-28 17:30 &nbsp;<span class="label label-warning">预休</span>
+                </td>
+                <td>
+                    2.00 &nbsp;<span class="label label-warning">预休</span>
+                </td>
+                <td>因家中临时有事，需调休两小时，望领导批准。</td>
+
+            </tr>
+            <tr class="cursor-pointer " data-url="/HR/EmployeeLeave/Details?businessId=331">
+                <td>
+                    <span class="label label-success">审批中</span>
+                    <a class="btnRecordView" data-url="/HR/EmployeeLeave/Details?businessId=331">
+                        李武涛
+                    </a>
+                </td>
+                <td>调休</td>
+                <td>2016-04-28 10:24</td>
+                <td class="text-center">
+                    2016-04-29 08:30 &nbsp;<span class="label label-warning">预休</span>
+                </td>
+                <td class="text-center">
+                    2016-04-29 17:30 &nbsp;<span class="label label-warning">预休</span>
+                </td>
+                <td>
+                    8.00 &nbsp;<span class="label label-warning">预休</span>
+                </td>
+                <td>有事</td>
+
+            </tr>
+            <tr class="cursor-pointer zeniths_color_red" data-url="/HR/EmployeeLeave/Details?businessId=330">
+                <td>
+                    <span class="label label-danger">已作废</span>
+                    <a class="btnRecordView" data-url="/HR/EmployeeLeave/Details?businessId=330">
+                        李武涛
+                    </a>
+                </td>
+                <td>调休</td>
+                <td>2016-04-28 08:54</td>
+                <td class="text-center">
+                    2016-04-29 08:30 &nbsp;<span class="label label-danger">预休</span>
+                </td>
+                <td class="text-center">
+                    2016-04-29 17:30 &nbsp;<span class="label label-danger">预休</span>
+                </td>
+                <td>
+                    8.00 &nbsp;<span class="label label-danger">预休</span>
+                </td>
+                <td>有事</td>
+
+            </tr>
+            <tr class="cursor-pointer " data-url="/HR/EmployeeLeave/Details?businessId=329">
+                <td>
+                    <span class="label label-success">审批中</span>
+                    <a class="btnRecordView" data-url="/HR/EmployeeLeave/Details?businessId=329">
+                        何虎虎
+                    </a>
+                </td>
+                <td>调休</td>
+                <td>2016-04-27 16:57</td>
+                <td class="text-center">
+                    2016-04-28 08:00 &nbsp;<span class="label label-warning">预休</span>
+                </td>
+                <td class="text-center">
+                    2016-04-29 17:30 &nbsp;<span class="label label-warning">预休</span>
+                </td>
+                <td>
+                    16.00 &nbsp;<span class="label label-warning">预休</span>
+                </td>
+                <td>处理个人事务</td>
+
+            </tr>
+            <tr class="cursor-pointer " data-url="/HR/EmployeeLeave/Details?businessId=328">
+                <td>
+                    <span class="label label-success">审批中</span>
+                    <a class="btnRecordView" data-url="/HR/EmployeeLeave/Details?businessId=328">
+                        马刚强
+                    </a>
+                </td>
+                <td>事假</td>
+                <td>2016-04-27 14:46</td>
+                <td class="text-center">
+                    2016-04-28 08:30 &nbsp;<span class="label label-warning">预休</span>
+                </td>
+                <td class="text-center">
+                    2016-04-29 17:30 &nbsp;<span class="label label-warning">预休</span>
+                </td>
+                <td>
+                    16.00 &nbsp;<span class="label label-warning">预休</span>
+                </td>
+                <td>因回老家给孩子办满月 需请假2日 请领导批示 </td>
+
+            </tr>
+            <tr class="cursor-pointer " data-url="/HR/EmployeeLeave/Details?businessId=327">
+                <td>
+                    <span class="label label-primary">已完成</span>
+                    <a class="btnRecordView" data-url="/HR/EmployeeLeave/Details?businessId=327">
+                        李耀宗
+                    </a>
+                </td>
+                <td>事假</td>
+                <td>2016-04-27 14:34</td>
+                <td class="text-center">
+                    2016-04-14 08:30 &nbsp;<span class="label label-success">实休</span>
+                </td>
+                <td class="text-center">
+                    2016-04-14 12:00 &nbsp;<span class="label label-success">实休</span>
+                </td>
+                <td>
+                    3.50 &nbsp;<span class="label label-success">实休</span>
+                </td>
+                <td>去医院做入职体检</td>
+
+            </tr>
+            <tr class="cursor-pointer " data-url="/HR/EmployeeLeave/Details?businessId=326">
+                <td>
+                    <span class="label label-success">审批中</span>
+                    <a class="btnRecordView" data-url="/HR/EmployeeLeave/Details?businessId=326">
+                        马刚强
+                    </a>
+                </td>
+                <td>事假</td>
+                <td>2016-04-27 14:32</td>
+                <td class="text-center">
+                    2016-04-28 08:30 &nbsp;<span class="label label-warning">预休</span>
+                </td>
+                <td class="text-center">
+                    2016-04-29 17:30 &nbsp;<span class="label label-warning">预休</span>
+                </td>
+                <td>
+                    16.00 &nbsp;<span class="label label-warning">预休</span>
+                </td>
+                <td>回老家给孩子过满月  </td>
+
+            </tr>
+            <tr class="cursor-pointer " data-url="/HR/EmployeeLeave/Details?businessId=325">
+                <td>
+                    <span class="label label-primary">已完成</span>
+                    <a class="btnRecordView" data-url="/HR/EmployeeLeave/Details?businessId=325">
+                        王鑫
+                    </a>
+                </td>
+                <td>事假</td>
+                <td>2016-04-27 08:35</td>
+                <td class="text-center">
+                    2016-04-26 08:30 &nbsp;<span class="label label-success">实休</span>
+                </td>
+                <td class="text-center">
+                    2016-04-26 17:30 &nbsp;<span class="label label-success">实休</span>
+                </td>
+                <td>
+                    8.00 &nbsp;<span class="label label-success">实休</span>
+                </td>
+                <td>因急性肠胃炎，去医院就诊，休息，请假一天</td>
+
+            </tr>
+            <tr class="cursor-pointer " data-url="/HR/EmployeeLeave/Details?businessId=324">
+                <td>
+                    <span class="label label-success">审批中</span>
+                    <a class="btnRecordView" data-url="/HR/EmployeeLeave/Details?businessId=324">
+                        马靖桓
+                    </a>
+                </td>
+                <td>调休</td>
+                <td>2016-04-27 08:34</td>
+                <td class="text-center">
+                    2016-05-03 08:30 &nbsp;<span class="label label-success">实休</span>
+                </td>
+                <td class="text-center">
+                    2016-05-03 17:30 &nbsp;<span class="label label-success">实休</span>
+                </td>
+                <td>
+                    8.00 &nbsp;<span class="label label-success">实休</span>
+                </td>
+                <td>调休</td>
+
+            </tr>
+            <tr class="cursor-pointer " data-url="/HR/EmployeeLeave/Details?businessId=323">
+                <td>
+                    <span class="label label-success">审批中</span>
+                    <a class="btnRecordView" data-url="/HR/EmployeeLeave/Details?businessId=323">
+                        马靖桓
+                    </a>
+                </td>
+                <td>调休</td>
+                <td>2016-04-27 08:33</td>
+                <td class="text-center">
+                    2016-04-29 08:30 &nbsp;<span class="label label-success">实休</span>
+                </td>
+                <td class="text-center">
+                    2016-04-29 17:30 &nbsp;<span class="label label-success">实休</span>
+                </td>
+                <td>
+                    8.00 &nbsp;<span class="label label-success">实休</span>
+                </td>
+                <td>换休</td>
+
+            </tr>
+            <tr class="cursor-pointer " data-url="/HR/EmployeeLeave/Details?businessId=322">
+                <td>
+                    <span class="label label-primary">已完成</span>
+                    <a class="btnRecordView" data-url="/HR/EmployeeLeave/Details?businessId=322">
+                        张强
+                    </a>
+                </td>
+                <td>事假</td>
+                <td>2016-04-26 17:47</td>
+                <td class="text-center">
+                    2016-04-27 08:30 &nbsp;<span class="label label-success">实休</span>
+                </td>
+                <td class="text-center">
+                    2016-04-27 12:35 &nbsp;<span class="label label-success">实休</span>
+                </td>
+                <td>
+                    3.50 &nbsp;<span class="label label-success">实休</span>
+                </td>
+                <td>到五龙车管所办理车辆临时牌照。</td>
+
+            </tr>
+            <tr class="cursor-pointer " data-url="/HR/EmployeeLeave/Details?businessId=321">
+                <td>
+                    <span class="label label-primary">已完成</span>
+                    <a class="btnRecordView" data-url="/HR/EmployeeLeave/Details?businessId=321">
+                        王萌
+                    </a>
+                </td>
+                <td>事假</td>
+                <td>2016-04-26 17:40</td>
+                <td class="text-center">
+                    2016-04-27 08:30 &nbsp;<span class="label label-success">实休</span>
+                </td>
+                <td class="text-center">
+                    2016-04-27 17:30 &nbsp;<span class="label label-success">实休</span>
+                </td>
+                <td>
+                    8.00 &nbsp;<span class="label label-success">实休</span>
+                </td>
+                <td>个人私事，处理</td>
+
+            </tr>
+            <tr class="cursor-pointer " data-url="/HR/EmployeeLeave/Details?businessId=320">
+                <td>
+                    <span class="label label-primary">已完成</span>
+                    <a class="btnRecordView" data-url="/HR/EmployeeLeave/Details?businessId=320">
+                        全巧玲
+                    </a>
+                </td>
+                <td>年休假</td>
+                <td>2016-04-26 16:06</td>
+                <td class="text-center">
+                    2016-04-26 08:30 &nbsp;<span class="label label-success">实休</span>
+                </td>
+                <td class="text-center">
+                    2016-04-26 17:30 &nbsp;<span class="label label-success">实休</span>
+                </td>
+                <td>
+                    8.00 &nbsp;<span class="label label-success">实休</span>
+                </td>
+                <td>孩子晚上发烧，需留家观察，特请假一天。</td>
+
+            </tr>
+            <tr class="cursor-pointer " data-url="/HR/EmployeeLeave/Details?businessId=319">
+                <td>
+                    <span class="label label-success">审批中</span>
+                    <a class="btnRecordView" data-url="/HR/EmployeeLeave/Details?businessId=319">
+                        王瑞祥
+                    </a>
+                </td>
+                <td>调休</td>
+                <td>2016-04-26 14:05</td>
+                <td class="text-center">
+                    2016-04-27 08:30 &nbsp;<span class="label label-warning">预休</span>
+                </td>
+                <td class="text-center">
+                    2016-04-29 17:30 &nbsp;<span class="label label-warning">预休</span>
+                </td>
+                <td>
+                    24.00 &nbsp;<span class="label label-warning">预休</span>
+                </td>
+                <td>因私人事务，调休3天。</td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="row paginateArea">
+        <div class="col-sm-6">
+            <div class="dataTables_info">共 264 条 当前显示 1 到 20 条</div>
+        </div>
+        <div class="col-sm-6">
+            <div class="dataTables_paginate paging_bootstrap">
+                <ul class="pagination" style="margin-right:0">
+                    <li class="active" title="第1页"><span>1</span></li>
+                    <li title="第2页"><a data-page="2" style="cursor: pointer;">2</a></li>
+                    <li title="第3页"><a data-page="3" style="cursor: pointer;">3</a></li>
+                    <li title="第4页"><a data-page="4" style="cursor: pointer;">4</a></li>
+                    <li title="第5页"><a data-page="5" style="cursor: pointer;">5</a></li>
+                    <li title="第6页"><a data-page="6" style="cursor: pointer;">6</a></li>
+                    <li title="第7页"><a data-page="7" style="cursor: pointer;">7</a></li>
+                    <li title="第8页"><a data-page="8" style="cursor: pointer;">8</a></li>
+                    <li title="第9页"><a data-page="9" style="cursor: pointer;">9</a></li>
+                    <li title="第10页"><a data-page="10" style="cursor: pointer;">10</a></li>
+                    <li title="第11页"><a data-page="11" style="cursor: pointer;">11</a></li>
+                    <li class="disabled"><span>···</span></li>
+                    <li title="第14页"><a data-page="14" style="cursor: pointer;">14</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

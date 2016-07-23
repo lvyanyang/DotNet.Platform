@@ -1,0 +1,54 @@
+﻿@model Audit
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">系统审计日志 - @Model.UserName</h4>
+</div>
+<div class="modal-body">
+    <div class="form-body">
+        <table class="table table-bordered table-striped table-details">
+            <tr>
+                <th class="w-100px">用户姓名</th>
+                <td>@Model.UserName</td>
+            </tr>
+            <tr>
+                <th>用户主键</th>
+                <td>@Model.UserId</td>
+            </tr>
+            <tr>
+                <th>操作日期</th>
+                <td>@DateTimeHelper.FormatDateHasSecond(Model.CreateDateTime)</td>
+            </tr>
+            <tr>
+                <th>审计类型</th>
+                <td>@Model.CategoryName</td>
+            </tr>
+            <tr>
+                <th>所在地</th>
+                <td>@Model.AreaAddress</td>
+            </tr>
+            <tr>
+                <th>IP地址</th>
+                <td>@Model.IPAddress</td>
+            </tr>
+            <tr>
+                <th>浏览器</th>
+                <td>@Model.Browser</td>
+            </tr>
+            <tr>
+                <th>设备</th>
+                <td>@Model.Device</td>
+            </tr>
+            <tr>
+                <th>操作系统</th>
+                <td>@Model.OS</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">
+        <i class="fa fa-sign-in"></i> 关闭
+    </button>
+</div>

@@ -1,0 +1,38 @@
+﻿@model Courseware
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">课件 - @Model.Name</h4>
+</div>
+<div class="modal-body">
+    <div class="form-body">
+        <table class="table table-bordered table-striped table-details">
+				 <tr>
+					<th class="w100px">名称</th>
+					<td>@Model.Name</td>
+				</tr>
+				 <tr>
+					<th>学时</th>
+					<td>@Model.PeriodName</td>
+				</tr>
+				 <tr>
+					<th>从业类型</th>
+					<td>@Model.WorkTypeName</td>
+				</tr>
+				 <tr>
+					<th>课件类型</th>
+					<td>@Model.CourseTypeName</td>
+				</tr>
+				 <tr>
+					<th>序号</th>
+					<td>@Model.RowIndex</td>
+				</tr>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">
+        <i class="fa fa-sign-in"></i> 关闭
+    </button>
+</div>

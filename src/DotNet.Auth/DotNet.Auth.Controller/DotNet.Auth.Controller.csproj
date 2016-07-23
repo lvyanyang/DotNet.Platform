@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3C3F3FD6-9A24-4F39-8C8D-3B75F6399ED6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DotNet.Auth.Controllers</RootNamespace>
+    <AssemblyName>DotNet.Auth.Controller</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\release\DotNet.Auth.Controller.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AuditController.cs" />
+    <Compile Include="AuthController.cs" />
+    <Compile Include="MenuController.cs" />
+    <Compile Include="ExcepController.cs" />
+    <Compile Include="ParamController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DicDetailController.cs" />
+    <Compile Include="DicController.cs" />
+    <Compile Include="RoleController.cs" />
+    <Compile Include="LogController.cs" />
+    <Compile Include="DepartmentController.cs" />
+    <Compile Include="SeqController.cs" />
+    <Compile Include="UserController.cs" />
+    <Compile Include="VersionController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DotNet.Framework\DotNet.Mvc\DotNet.Mvc.csproj">
+      <Project>{6a790c23-5638-4098-aa0d-ea9d4944749b}</Project>
+      <Name>DotNet.Mvc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DotNet.Framework\DotNet.Utility\DotNet.Utility.csproj">
+      <Project>{786cf068-24a5-46a9-8126-cdd89f558991}</Project>
+      <Name>DotNet.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.Auth.Entity\DotNet.Auth.Entity.csproj">
+      <Project>{b4777dbd-8963-4153-895e-011f7ce355b5}</Project>
+      <Name>DotNet.Auth.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.Auth.Service\DotNet.Auth.Service.csproj">
+      <Project>{9b565a89-ad05-4712-ad8e-920ebfd3c113}</Project>
+      <Name>DotNet.Auth.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.Auth.Utility\DotNet.Auth.Utility.csproj">
+      <Project>{a832c7e2-bd55-41d8-a0e6-e7c406c7231b}</Project>
+      <Name>DotNet.Auth.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

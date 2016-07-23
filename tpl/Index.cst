@@ -1,0 +1,63 @@
+﻿<%@ CodeTemplate Language="C#" TargetLanguage="Html" Debug="False" CompilerVersion="v3.5"  ResponseEncoding="UTF-8" Description="生成实体对象" %>
+<%@ Assembly Name="System.Data" %>
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="SchemaExplorer" %>
+<%@ Map Name="CSharpAlias" Src="DbType-CSharp.csmap" Reverse="False"%>
+<%@ Property Name="Table" Type="SchemaExplorer.TableSchema" Category="参数" Description="表名" Optional="False" %>
+<%
+string TableRemark = Table.Description.Replace("\n","").Replace("\r","").Replace(" ","");
+string TableName = Table.Name.Replace("\n","").Replace("\r","").Replace(" ","");
+string pkName = "Id";
+string pkType = "int";
+if(Table.HasPrimaryKey)
+{
+    pkName = Table.PrimaryKey.MemberColumns[0].Name;
+    pkType = CSharpAlias[Table.PrimaryKey.MemberColumns[0].SystemType.Name];
+}
+%>
+<div class="module-container">
+    <div class="search-panel">
+        <form class="form-inline search-table">
+            <div class="form-group">
+                <input class="form-control w250px" name="name" type="text"
+                       placeholder="请输入名称/简拼查询">
+            </div>
+            <div class="form-group">
+                <select class="form-control uiselect uiselectsubmit" name="category"
+                        data-has-text-field="false">
+                    @Html.EmptyOption("全部分类")
+                    @Html.RoleCategoryOption()
+                </select>
+            </div>
+            <div class="form-group">
+                <select class="form-control uiselect uiselectsubmit" name="enabled"
+                        data-has-text-field="false">
+                    @Html.EmptyOption("全部状态")
+                    <option value="true">启用</option>
+                    <option value="false">禁用</option>
+                </select>
+            </div>
+
+            <button class="btn btn-primary" type="submit">
+                <i class="fa fa-search"></i> 查询
+            </button>
+
+            <a class="btn btn-success uimodal" data-url="@Url.Action("Create")">
+                <i class="fa fa-plus"></i> 新建
+            </a>
+
+            <a class="btn btn-danger tmdelete" data-table=".uitable" data-url="@Url.Action("Delete")">
+                <i class="fa fa-trash-o"></i> 删除
+            </a>
+            
+            <a class="btn btn-default" href="@Url.Action("Export")">
+                <i class="fa fa-share-square-o"></i> 导出
+            </a>
+
+        </form>
+    </div>
+    <div class="uitable" data-url="@Url.Action("Grid")">
+        @Html.Action("Grid")
+    </div>
+</div>

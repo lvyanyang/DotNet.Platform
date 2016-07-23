@@ -1,0 +1,59 @@
+﻿@{
+    string trainGroupId = ViewBag.trainGroupId;
+}
+<div class="modal fade" id="un_reservation_student_import_window" aria-hidden="true" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form-horizontal uiform" id="un_reservation_student_import_form" method="post"
+                  action="@Url.Action("UnReservationImportSave")">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">学员消预约导入</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="trainGroupId" value="@trainGroupId" />
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            <span class="required"> * </span>
+                            学员取消预约文件：
+                        </label>
+                        <div class="col-md-7">
+
+                            <input name="attachment" type="file" class="uifileupload"
+                                   accept=".xls,.xlsx"
+                                   data-validate="required: true"
+                                   data-validate-message="required:'学员取消预约文件'">
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+
+                    <a class="btn btn-default" href="/www/tpl/学员取消预约导入.xlsx">
+                        <i class="fa fa-file-excel-o"></i> 模板下载
+                    </a>
+
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fa fa-save"></i> 导入
+                    </button>
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <i class="fa fa-sign-in"></i> 关闭
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $('#un_reservation_student_import_form').on('submitsuccess', function (e, result) {
+        $('#un_reservation_student_import_window').modal('hide');
+        if (result.success) {
+            $('#unReservationInfo').find(':submit').click();
+        }
+        fx.serverResult(result.items);
+    });
+</script>

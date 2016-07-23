@@ -1,0 +1,118 @@
+﻿@model Param
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">系统参数 - @Model.Name</h4>
+</div>
+<div class="modal-body">
+    <div class="form-body">
+        <table class="table table-bordered table-striped table-details">
+            <tr>
+                <th class="w100px">编号</th>
+                <td>@Model.Code</td>
+            </tr>
+            <tr>
+                <th>名称</th>
+                <td>@Model.Name</td>
+            </tr>
+            <tr>
+                <th>简拼</th>
+                <td>@Model.Spell</td>
+            </tr>
+            <tr>
+                <th>上级主键</th>
+                <td>@Model.DepartmentId</td>
+            </tr>
+            <tr>
+                <th>上级名称</th>
+                <td>@Model.DepartmentName</td>
+            </tr>
+            <tr>
+                <th>省主键</th>
+                <td>@Model.ProvinceId</td>
+            </tr>
+            <tr>
+                <th>省名称</th>
+                <td>@Model.ProvinceName</td>
+            </tr>
+            <tr>
+                <th>市主键</th>
+                <td>@Model.CityId</td>
+            </tr>
+            <tr>
+                <th>市名称</th>
+                <td>@Model.CityName</td>
+            </tr>
+            <tr>
+                <th>区主键</th>
+                <td>@Model.AreaId</td>
+            </tr>
+            <tr>
+                <th>区名称</th>
+                <td>@Model.AreaName</td>
+            </tr>
+            <tr>
+                <th>核发日期</th>
+                <td>@DateTimeHelper.FormatDateHasSecond(Model.HFDate)</td>
+            </tr>
+            <tr>
+                <th>生效日期</th>
+                <td>@DateTimeHelper.FormatDateHasSecond(Model.StartDate)</td>
+            </tr>
+            <tr>
+                <th>失效日期</th>
+                <td>@DateTimeHelper.FormatDateHasSecond(Model.EndDate)</td>
+            </tr>
+            <tr>
+                <th>法人代表</th>
+                <td>@Model.Frdb</td>
+            </tr>
+            <tr>
+                <th>联系电话</th>
+                <td>@Model.Telephone</td>
+            </tr>
+            <tr>
+                <th>许可证号</th>
+                <td>@Model.Xkzh</td>
+            </tr>
+            <tr>
+                <th>工商注册号</th>
+                <td>@Model.GSCode</td>
+            </tr>
+            <tr>
+                <th>批准文号</th>
+                <td>@Model.PZCode</td>
+            </tr>
+            <tr>
+                <th>档案号</th>
+                <td>@Model.DACode</td>
+            </tr>
+            <tr>
+                <th>工商注册地址</th>
+                <td>@Model.Gsaddress</td>
+            </tr>
+            <tr>
+                <th>实际地址</th>
+                <td>@Model.Address</td>
+            </tr>
+            <tr>
+                <th>经营范围</th>
+                <td>@Model.Jyfw</td>
+            </tr>
+            <tr>
+                <th>创建时间</th>
+                <td>@DateTimeHelper.FormatDateHasSecond(Model.CreateDateTime)</td>
+            </tr>
+            <tr>
+                <th>备注</th>
+                <td>@Model.Note</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">
+        <i class="fa fa-sign-in"></i> 关闭
+    </button>
+</div>

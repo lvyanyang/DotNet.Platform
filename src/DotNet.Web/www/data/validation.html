@@ -1,0 +1,130 @@
+﻿<form action="/default/post" id="form_sample_1"
+      class="form-horizontal uiform"
+      data-error-container="#form_sample_1 .alert-danger"
+      method="post">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">Ajax Content</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-body">
+            <div class="alert alert-danger display-hide">
+                <button class="close" data-close="alert"></button> You have some form errors. Please check below.
+            </div>
+            <div class="alert alert-success display-hide">
+                <button class="close" data-close="alert"></button> Your form validation is successful!
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3">
+                    Name
+                    <span class="required"> * </span>
+                </label>
+                <div class="col-md-8">
+                    <input type="text" name="name" class="form-control"
+                           data-validate="required: true,minlength: 2"
+                           data-validate-message="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3">
+                    Email
+                    <span class="required"> * </span>
+                </label>
+                <div class="col-md-8">
+                    <input name="email" type="text" class="form-control"
+                           data-validate="required: true,email: true"
+                           data-validate-message="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3">
+                    Select2
+                    <span class="required"> * </span>
+                </label>
+                <div class="col-md-8">
+                    <select class="form-control ui-select2" name="options2"
+                            data-validate="required: true"
+                            data-validate-message="required:'请选择一个选项标识'">
+                        <option value="">Select...</option>
+                        <option value="Option 1">Option 1</option>
+                        <option value="Option 2">Option 2</option>
+                        <option value="Option 3">Option 3</option>
+                        <option value="Option 4">Option 4</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3">
+                    URL
+                    <span class="required"> * </span>
+                </label>
+                <div class="col-md-8">
+                    <input name="url" type="text" class="form-control" />
+                    <span class="help-block"> e.g: http://www.demo.com or http://demo.com </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3">
+                    Number
+                    <span class="required"> * </span>
+                </label>
+                <div class="col-md-8">
+                    <input name="number" type="text" class="form-control" />
+                </div>
+            </div>
+          
+            <div class="form-group">
+                <label class="control-label col-md-3">
+                    Select
+                    <span class="required"> * </span>
+                </label>
+                <div class="col-md-8">
+                    <select class="form-control" name="select">
+                        <option value="">Select...</option>
+                        <option value="Category 1">Category 1</option>
+                        <option value="Category 2">Category 2</option>
+                        <option value="Category 3">Category 5</option>
+                        <option value="Category 4">Category 4</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3">
+                    Multi Select
+                    <span class="required"> * </span>
+                </label>
+                <div class="col-md-8">
+                    <select class="form-control" name="select_multi" 
+                            data-validate="required: true,minlength: 1,maxlength: 3"
+                            data-validate-message="required:'最少选 1 项',
+                            maxlength: $.validator.format('最多选 {0} 项')"
+                            multiple>
+                        <option value="Category 1">Category 1</option>
+                        <option value="Category 2">Category 2</option>
+                        <option value="Category 3">Category 3</option>
+                        <option value="Category 4">Category 4</option>
+                        <option value="Category 5">Category 5</option>
+                    </select>
+                    <span class="help-block"> select max 3 options, min 1 option </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="reset" class="btn btn-default">重置</button>
+        <button type="submit" class="btn btn-default">Save changes</button>
+    </div>
+</form>
+<script>
+    $('#form_sample_1').uiform({
+        success: function(result) {
+            if (result.success) {
+                $('#form_sample_1').closest('.ui-modal-container').parent().uimodali().close();
+            } else {
+                alert(result.message);
+            }
+        }
+    });
+</script>

@@ -1,0 +1,92 @@
+﻿<%@ CodeTemplate Language="C#" TargetLanguage="Text" Debug="False" OutputType="Trace" CompilerVersion="v3.5"  ResponseEncoding="UTF-8" Description="输出实体文件" %>
+
+<%@ Assembly Name="System.Design" %>
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Import Namespace="System.IO" %>
+<%@ Import Namespace="System.Text.RegularExpressions" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="SchemaExplorer" %>
+<%@ Property Name="NameSpace" Type="String" Category="参数" Description="命名空间" Default="Zeniths.Hr" %>
+<%@ Property Name="Area" Type="String" Category="参数" Description="区域" Default="Hr" %>
+<%@ Property Name="Tables" Type="SchemaExplorer.TableSchemaCollection" Category="参数" Description="数据表" Optional="False"%>
+
+<%@ Register Name="Entity" Template="Entity.cst"%>
+<%@ Register Name="Service" Template="Service.cst"%>
+<%@ Register Name="Controller" Template="Controller.cst"%>
+<%@ Register Name="Index" Template="Index.cst"%>
+<%@ Register Name="Edit" Template="Edit.cst"%>
+<%@ Register Name="Grid" Template="Grid.cst"%>
+<%@ Register Name="Details" Template="Details.cst"%>
+<script runat="template">
+    private string _outputDirectory = String.Empty;
+	[Editor(typeof(System.Windows.Forms.Design.FolderNameEditor), typeof(System.Drawing.Design.UITypeEditor))] 
+	[Category("参数")]
+	[Description("文件输出目录.")]
+	public string OutDirectory 
+	{
+		get
+		{
+			if (_outputDirectory.Length == 0) return "C:\\output\\";			
+			return _outputDirectory;
+		}
+		set
+		{
+			if (!value.EndsWith("\\")) value += "\\";
+			_outputDirectory = value;
+		} 
+	}
+    
+    public void Generate()
+    {        
+        Entity  entity = this.Create<Entity>();
+        Service service = this.Create<Service>();
+        Controller controller= this.Create<Controller>();
+        Index index = this.Create<Index>();
+        Edit edit = this.Create<Edit>();
+        Grid grid = this.Create<Grid>();
+        Details details = this.Create<Details>();
+                
+        foreach(TableSchema table in Tables)
+        {
+            entity.NameSpace = NameSpace;
+            entity.Table = table;
+                        
+            service.NameSpace = NameSpace;
+            service.Table = table;
+            
+            controller.NameSpace = NameSpace;
+            controller.Table = table;
+            controller.Area = Area;
+                                    
+            index.Table = table;                        
+            edit.Table = table;
+            grid.Table = table;                        
+            details.Table = table;
+                        
+            string className = table.Name;
+            string entityFileName = Path.Combine(OutDirectory,"Entity\\"+className + ".cs");    
+            entity.RenderToFile(entityFileName,true);
+                        
+            string serviceFileName = Path.Combine(OutDirectory,"Service\\"+className+ "Service.cs");    
+            service.Area = Area;
+            service.RenderToFile(serviceFileName,true);
+                        
+            string controllerFileName = Path.Combine(OutDirectory,"Controllers\\" + className + "Controller.cs");    
+            controller.RenderToFile(controllerFileName,true);
+            
+            string indexFileName = Path.Combine(OutDirectory,"Views\\"+className+"\\Index.cshtml");    
+            index.RenderToFile(indexFileName,true);
+            
+            string editFileName = Path.Combine(OutDirectory,"Views\\"+className+"\\Edit.cshtml");    
+            edit.RenderToFile(editFileName,true);
+            
+            string gridFileName = Path.Combine(OutDirectory,"Views\\"+className+"\\Grid.cshtml");    
+            grid.RenderToFile(gridFileName,true);
+            
+            string detailsFileName = Path.Combine(OutDirectory,"Views\\"+className+"\\Details.cshtml");    
+            details.RenderToFile(detailsFileName,true);
+        }
+        System.Diagnostics.Debug.WriteLine("生成成功");
+    }   
+</script>
+<% Generate(); Response.WriteLine("生成成功,输入目录为:"+OutDirectory);%>

@@ -1,0 +1,89 @@
+﻿<div class="module-container">
+    <div class="search-panel">
+        <form class="form-horizontal search-table" id="student_stockin_form">
+            <div class="row">
+                <div class="col-md-3">
+                    <input class="form-control" name="Name" type="text" placeholder="请输入学员姓名" title="请输入学员姓名">
+                </div>
+                <div class="col-md-3">
+                    <input class="form-control" name="IDCardNo" type="text" placeholder="请输入身份证号" title="请输入身份证号">
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control uiselect uiselectsubmit" name="CompanyId"
+                            data-has-text-field="false">
+                        @Html.EmptyOption("请选择企业")
+                        @Html.CompanyOption()
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control uiselect uiselectsubmit" name="WorkCategoryId"
+                            data-has-text-field="false">
+                        @Html.EmptyOption("请选择从业类别")
+                        @Html.TrainCategoryOption()
+                    </select>
+                </div>
+            </div>
+
+            <div class="row search-row">
+                <div class="col-md-3">
+                    <div class="input-group date uidate">
+                        <input class="form-control" name="CreateStartDate" type="text" placeholder="请选择录入开始日期" title="请选择录入开始日期">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-th"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group date uidate">
+                        <input class="form-control" name="CreateEndDate" type="text" placeholder="请选择录入结束日期" title="请选择录入结束日期">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-th"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 text-right">
+
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fa fa-search"></i> 查询
+                    </button>
+
+                    <a class="btn btn-success" id="student_stockin_submit"
+                       data-url="@Url.Action("StockIn")">
+                        <i class="fa fa-random"></i> 入库
+                    </a>
+
+                    <a class="btn btn-default" id="student_stockin_export" data-url="@Url.Action("Export")">
+                        <i class="icon-share-alt"></i> 导出
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="uitable" id="student_stockin_table" data-url="@Url.Action("_Grid")">
+        @Html.Action("_Grid")
+    </div>
+</div>
+<script>
+    $('#student_stockin_submit').on('click', function () {
+        var ids = $('#student_stockin_table').uitable().getSelectedIds();
+        if (ids.length == 0) {
+            fx.msg('请选择入库的学员');
+            return false;
+        }
+        var url = $(this).data('url');
+        fx.ajax({
+            url: url,
+            data: { studentIds: ids.join() },
+            confirm: '确定要对选中的 ' + ids.length + ' 个学员入库吗?',
+            success: function (result) {
+                $('.search-table').find(':submit').click();
+                fx.serverResult(result.items);
+            }
+        });
+    });
+
+    $('#student_stockin_export').on('click', function () {
+        var url = $(this).data('url') + '?' + $.param(fx.serializeForm($('#student_stockin_form')));
+        window.location.href = url;
+    });
+</script>

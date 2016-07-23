@@ -1,0 +1,38 @@
+﻿<div class="module-container">
+    <div class="search-panel">
+        <form class="form-inline search-table">
+            <div class="form-group">
+                <input class="form-control w250px" name="name" type="text"
+                       placeholder="请输入编号/名称/简拼查询">
+            </div>
+            <div class="form-group">
+                <select class="form-control uiselect uiselectsubmit" name="enabled"
+                        data-has-text-field="false">
+                    @Html.EmptyOption("全部状态")
+                    <option value="true">启用</option>
+                    <option value="false">禁用</option>
+                </select>
+            </div>
+
+            <button class="btn btn-primary" type="submit">
+                <i class="fa fa-search"></i> 查询
+            </button>
+
+            <a class="btn btn-success uimodal" data-url="@Url.Action("Create")">
+                <i class="fa fa-plus"></i> 新建
+            </a>
+
+            <a class="btn btn-danger tmdelete" data-table=".uitable" data-url="@Url.Action("Delete")">
+                <i class="fa fa-trash-o"></i> 删除
+            </a>
+            
+            <a class="btn btn-default" href="@Url.Action("Export")">
+                <i class="fa fa-share-square-o"></i> 导出
+            </a>
+
+        </form>
+    </div>
+    <div class="uitable" data-url="@Url.Action("Grid")">
+        @Html.Action("Grid")
+    </div>
+</div>

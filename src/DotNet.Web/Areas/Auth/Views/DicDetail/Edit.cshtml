@@ -1,0 +1,93 @@
+﻿@model DicDetail
+<form class="uiform form-horizontal" method="post" action="@Url.Action("Save")"
+      data-modal="true"
+      data-table=".uitable"
+      data-error-el=".alert-danger"
+      data-on-submit-success="fx.mtfSuccess">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">@Html.EditStatus("系统字典项")</h4>
+    </div>
+    <div class="modal-body">
+        @Html.AntiForgeryToken()
+        @Html.MarkCreate()
+        @Html.HiddenFor(p => p.Id)
+        @Html.HiddenFor(p => p.DicId)
+        @Html.HiddenFor(p => p.CreateUserId)
+        @Html.HiddenFor(p => p.CreateUserName)
+        @Html.HiddenFor(p => p.CreateDateTime)
+        <div class="alert alert-danger fxhide"></div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                数据字典：
+            </label>
+            <div class="col-md-8">
+                <p class="form-control-static">
+                    @ViewBag.ItemName
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                <span class="required"> * </span>
+                项名称：
+            </label>
+            <div class="col-md-8">
+                <input class="form-control" name="@nameof(Model.Name)" value="@Model.Name" 
+                       type="text" autocomplete="off"
+                       data-validate="required: true,maxlength: 50"
+                       data-validate-message="required:'请输入项名称'" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                项值：
+            </label>
+            <div class="col-md-8">
+                <input class="form-control" name="@nameof(Model.Value)" value="@Model.Value" 
+                       type="text" autocomplete="off" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                <span class="required"> * </span>
+                序号：
+            </label>
+            <div class="col-md-8">
+                <input class="form-control" name="@nameof(Model.RowIndex)" value="@Model.RowIndex" 
+                       type="text" autocomplete="off"
+                       data-validate="required: true,digits: true,maxlength: 9"
+                       data-validate-message="required:'请输入序号'" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                状态：
+            </label>
+            <div class="col-md-8">
+                <input class="uiswitch" name="@nameof(Model.IsEnabled)"
+                       value="true" type="checkbox" 
+                       data-on-text="启用" data-off-text="禁用"
+                       data-size="small" @Html.IsChecked(Model.IsEnabled)>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                备注：
+            </label>
+            <div class="col-md-8">
+                <textarea class="form-control" name="@nameof(Model.Note)" rows="3">@Model.Note</textarea>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">
+            <i class="fa fa-save"></i> 保存
+        </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+            <i class="fa fa-sign-in"></i> 关闭
+        </button>
+    </div>
+</form>

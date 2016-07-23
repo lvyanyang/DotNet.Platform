@@ -1,0 +1,295 @@
+﻿@using DotNet.Edu.WebUtility
+@model User
+<form class="uiform form-horizontal" method="post" action="@Url.Action("Save")"
+      data-modal="true"
+      data-table=".uitable"
+      data-error-el=".alert-danger"
+      data-on-submit-success="fx.mtfSuccess">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">@Html.EditStatus("系统用户")</h4>
+    </div>
+    <div class="modal-body">
+        @Html.AntiForgeryToken()
+        @Html.MarkCreate()
+        @Html.HiddenFor(p => p.Id)
+        <div class="alert alert-danger fxhide"></div>
+        <div class="tabbable-line">
+            <ul class="nav nav-tabs ">
+                <li class="active">
+                    <a href="#baseInfo" data-toggle="tab">
+                        基本信息
+                    </a>
+                </li>
+                <li>
+                    <a href="#otherInfo" data-toggle="tab">
+                        扩展信息
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="baseInfo">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            部门：
+                        </label>
+                        <div class="col-md-8">
+                            <select class="form-control uiselect" 
+                                    id="@nameof(Model.DepartmentId)" name="@nameof(Model.DepartmentId)"
+                                    data-allow-clear="true" 
+                                    data-text-field="DepartmentName">
+                                <option></option>
+                                @Html.SystemDeptOption(Model.DepartmentId)
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            <span class="required"> * </span>
+                            账号：
+                        </label>
+                        <div class="col-md-8">
+                            <input class="form-control" 
+                                   name="@nameof(Model.Account)" value="@Model.Account"
+                                   type="text" autocomplete="off" autofocus
+                                   data-validate="required: true"
+                                   data-validate-message="required:'请输入账号'"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            <span class="required"> * </span>
+                            姓名：
+                        </label>
+                        <div class="col-md-8">
+                            <input class="form-control" 
+                                   name="@nameof(Model.Name)" value="@Model.Name"
+                                   type="text" autocomplete="off"
+                                   data-validate="required: true"
+                                   data-validate-message="required:'请输入姓名'"/>
+                        </div>
+                    </div>
+
+                    @if (Html.IsCreate())
+                    {
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                <span class="required"> * </span>
+                                密码：
+                            </label>
+                            <div class="col-md-8">
+                                <input class="form-control" 
+                                       id="@nameof(Model.Password)" name="@nameof(Model.Password)"
+                                       value="@Model.Password" type="password"  autocomplete="off"
+                                       data-validate="required: true"
+                                       data-validate-message="required:'请输入密码'"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                <span class="required"> * </span>
+                                确认密码：
+                            </label>
+                            <div class="col-md-8">
+                                <input class="form-control" 
+                                       name="ConfirmPassword" value="@Model.Password"
+                                       type="password" autocomplete="off"
+                                       data-validate="required: true,equalTo: '#Password'"
+                                       data-validate-message="required:'请输入确认密码'"/>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            电子邮件：
+                        </label>
+                        <div class="col-md-8">
+                            <input class="form-control" 
+                                   name="@nameof(Model.Email)" value="@Model.Email"
+                                   type="text" autocomplete="off"
+                                   data-validate="required: false,email: true"
+                                   data-validate-message="email:'请输入正确的电子邮件'"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            默认角色：
+                        </label>
+                        <div class="col-md-8">
+                            <select class="form-control uiselect"
+                                    id="@nameof(Model.DefaultRoleId)" 
+                                    name="@nameof(Model.DefaultRoleId)"
+                                    data-allow-clear="true" 
+                                    data-text-field="DefaultRoleName">
+                                <option></option>
+                                @Html.SystemRoleOption(Model.DefaultRoleId)
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            状态：
+                        </label>
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <label class="checkbox-inline" style="padding-left: 0">
+                                    <input class="uicheck"
+                                           name="@nameof(Model.IsEnabled)"
+                                           value="true" type="checkbox"
+                                           @Html.IsChecked(Model.IsEnabled)/>
+                                    <span>启用</span>
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input class="uicheck"
+                                           name="@nameof(Model.IsAudit)" value="true"
+                                           type="checkbox" @Html.IsChecked(Model.IsAudit)/>
+                                    <span>审核</span>
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input class="uicheck"
+                                           name="@nameof(Model.IsAdmin)" value="true"
+                                           type="checkbox" @Html.IsChecked(Model.IsAdmin)/>
+                                    <span>管理员</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            用户类型：
+                        </label>
+                        <div class="col-md-8">
+                            <select class="form-control uiselect"
+                                    name="@nameof(Model.UserCategoryId)"
+                                    data-text-field="@nameof(Model.UserCategoryName)">
+                                <option></option>
+                                @Html.UserCategoryOption(Model.UserCategoryId)
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            运输企业：
+                        </label>
+                        <div class="col-md-8">
+                            <select class="form-control uiselect"
+                                    name="@nameof(Model.CompanyId)"
+                                    data-allow-clear="true" 
+                                    data-text-field="@nameof(Model.CompanyName)">
+                                <option></option>
+                                @Html.CompanyOption(Model.CompanyId)
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            培训机构：
+                        </label>
+                        <div class="col-md-8">
+                            <select class="form-control uiselect"
+                                    name="@nameof(Model.SchoolId)"
+                                    data-allow-clear="true" 
+                                    data-text-field="@nameof(Model.SchoolName)">
+                                <option></option>
+                                @Html.SchoolOption(Model.SchoolId)
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tab-pane" id="otherInfo">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            授权开始时间：
+                        </label>
+                        <div class="col-md-8">
+                            <input class="form-control uidatetime"
+                                   name="@nameof(Model.AllowStartDateTime)" 
+                                   value="@DateTimeHelper.FormatDateHasMinute(Model.AllowStartDateTime)"
+                                   type="text" autocomplete="off"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            授权结束时间：
+                        </label>
+                        <div class="col-md-8">
+                            <input class="form-control uidatetime"
+                                   name="@nameof(Model.AllowEndDateTime)" 
+                                   value="@DateTimeHelper.FormatDateHasMinute(Model.AllowEndDateTime)"
+                                   type="text" autocomplete="off"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            密码提示问题：
+                        </label>
+                        <div class="col-md-8">
+                            <select name="@nameof(Model.HintQuestion)" class="form-control uiselect"
+                                    data-allow-clear="true" 
+                                    data-validate="required: true"
+                                    data-validate-message="required:'请选择密码提示问题'">
+                                <option></option>
+                                @Html.HintQuestionOption(Model.HintQuestion)
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            密码提示答案：
+                        </label>
+                        <div class="col-md-8">
+                            <input class="form-control"
+                                   name="@nameof(Model.HintAnswer)" 
+                                   value="@Model.HintAnswer" type="text" autocomplete="off"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            <span class="required"> * </span>
+                            序号：
+                        </label>
+                        <div class="col-md-8">
+                            <input class="form-control" 
+                                   name="@nameof(Model.RowIndex)"
+                                   value="@Model.RowIndex" 
+                                   data-validate="required: true,digits: true,maxlength: 9"
+                                   data-validate-message="required:'请输入序号'"
+                                   type="text" autocomplete="off"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            备注：
+                        </label>
+                        <div class="col-md-8">
+                            <textarea class="form-control"
+                                      name="@nameof(Model.Note)" 
+                                      rows="3">@Model.Note</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">
+            <i class="fa fa-save"></i> 保存
+        </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+            <i class="fa fa-sign-in"></i> 关闭
+        </button>
+    </div>
+</form>

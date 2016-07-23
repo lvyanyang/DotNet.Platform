@@ -1,0 +1,298 @@
+﻿@model Student
+<form class="form-horizontal edit-form uiform" method="post"
+      data-modal="true"
+      data-table=".uitable"
+      data-error-el=".alert-danger"
+      data-on-submit-success="fx.mtfSuccess"
+      action="@Url.Action("Save")">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">@Html.EditStatus("报名信息")</h4>
+    </div>
+    <div class="modal-body" style="padding-right: 30px">
+        @Html.AntiForgeryToken()
+        @Html.MarkCreate()
+        @Html.HiddenFor(p => p.Id)
+        <div class="alert alert-danger fxhide"></div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-4">
+                        <span class="required"> * </span>
+                        姓名：
+                    </label>
+                    <div class="col-md-8">
+                        <input class="form-control" name="@nameof(Model.Name)" value="@Model.Name"
+                               data-validate="required: true,maxlength: 50"
+                               data-validate-message="required:'请输入姓名'"
+                               type="text" autocomplete="off" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-4">
+                        <span class="required"> * </span>
+                        性别：
+                    </label>
+                    <div class="col-md-8">
+                        <select class="form-control uiselect" name="@nameof(Model.Sex)"
+                                data-text-field="@nameof(Model.Sex)"
+                                data-validate="required: true"
+                                data-validate-message="required:'请选择性别'">
+                            <option value="男" @Html.IsSelected(Model.Sex?.Equals("男"))>男</option>
+                            <option value="女" @Html.IsSelected(Model.Sex?.Equals("女"))>女</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-4">
+                        <span class="required"> * </span>
+                        身份证号码：
+                    </label>
+                    <div class="col-md-8">
+                        <input class="form-control" name="@nameof(Model.IDCardNo)" value="@Model.IDCardNo"
+                               data-validate="required: true,maxlength: 20"
+                               data-validate-message="required:'请输入身份证号码'"
+                               type="text" autocomplete="off" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-4">
+                        <span class="required"> * </span>
+                        从业类别：
+                    </label>
+                    <div class="col-md-8">
+                        <select class="form-control uiselect" name="@nameof(Model.WorkCategoryId)"
+                                data-text-field="@nameof(Model.WorkCategoryName)"
+                                data-validate="required: true"
+                                data-validate-message="required:'请选择从业类别'">
+                            <option></option>
+                            @Html.TrainCategoryOption(Model.WorkCategoryId)
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-4">
+                        <span class="required"> * </span>
+                        手机号码：
+                    </label>
+                    <div class="col-md-8">
+                        <input class="form-control" name="@nameof(Model.MobilePhone)" value="@Model.MobilePhone"
+                               data-validate="required: true,maxlength: 50"
+                               data-validate-message="required:'请输入手机号码'"
+                               type="text" autocomplete="off" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-4">
+                        准驾车型：
+                    </label>
+                    <div class="col-md-8">
+                        <select class="form-control uiselect" name="@nameof(Model.DrivingModel)"
+                                data-has-text-field="false">
+                            <option></option>
+                            @Html.DrivingCategoryOption(Model.DrivingModel)
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-4">
+                        <span class="required"> * </span>
+                        培训机构：
+                    </label>
+                    <div class="col-md-8">
+                        <select class="form-control uiselect" name="@nameof(Model.SchoolId)"
+                                data-text-field="@nameof(Model.SchoolName)"
+                                data-validate="required: true"
+                                data-validate-message="required:'请选择培训机构'">
+                            @Html.SchoolOption(Model.SchoolId)
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-4">
+                        培训原因：
+                    </label>
+                    <div class="col-md-8">
+                        <select class="form-control uiselect" name="@nameof(Model.TrainReason)"
+                                data-has-text-field="false"
+                                data-text-field="@nameof(Model.TrainReason)">
+                            <option></option>
+                            @Html.TrainReasonCategoryOption(Model.TrainReason)
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-4">
+                        企业：
+                    </label>
+                    <div class="col-md-8">
+                        <select class="form-control uiselect" name="@nameof(Model.CompanyId)"
+                                data-text-field="@nameof(Model.CompanyName)">
+                            @Html.EmptyOption()
+                            @Html.CompanyOption(Model.CompanyId)
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-4">
+                        企业电话：
+                    </label>
+                    <div class="col-md-8">
+                        <input class="form-control" name="@nameof(Model.CompanyTelPhone)" value="@Model.CompanyTelPhone"
+                               type="text" autocomplete="off" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h4 class="form-section clickable-item text-muted"><i class="fa fa-angle-down"></i> 扩展信息</h4>
+        <div class="extend-info fxhide">
+            
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">
+                            住址：
+                        </label>
+                        <div class="col-md-10">
+                            <input class="form-control" name="@nameof(Model.Address)" value="@Model.Address"
+                                   type="text" autocomplete="off" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            从业资格证号：
+                        </label>
+                        <div class="col-md-8">
+                            <input class="form-control" name="@nameof(Model.Certificate)" value="@Model.Certificate"
+                                   type="text" autocomplete="off" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            获得资格证日期：
+                        </label>
+                        <div class="col-md-8">
+                            <div class="input-group date uidate">
+                                <input class="form-control" name="@nameof(Model.CertificateDate)"
+                                       value="@DateTimeHelper.FormatDate(Model.CertificateDate)"
+                                       type="text" autocomplete="off">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-th"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            证件开始日期：
+                        </label>
+                        <div class="col-md-8">
+                            <div class="input-group date uidate">
+                                <input class="form-control" name="@nameof(Model.StartDate)"
+                                       value="@DateTimeHelper.FormatDate(Model.StartDate)"
+                                       type="text" autocomplete="off">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-th"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">
+                            证件结束日期：
+                        </label>
+                        <div class="col-md-8">
+                            <div class="input-group date uidate">
+                                <input class="form-control" name="@nameof(Model.EndDate)"
+                                       value="@DateTimeHelper.FormatDate(Model.EndDate)"
+                                       type="text" autocomplete="off">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-th"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">
+                            备注：
+                        </label>
+                        <div class="col-md-10">
+                            <textarea class="form-control" name="@nameof(Model.Note)" rows="3">@Model.Note</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">
+            <i class="fa fa-save"></i> 保存
+        </button>
+        <button class="btn btn-default" type="button" data-dismiss="modal">
+            <i class="fa fa-sign-in"></i> 关闭
+        </button>
+    </div>
+</form>
+<script>
+    $('.edit-form').find('.clickable-item').click(function () {
+        var rows = $('.edit-form').find('.extend-info');
+        var displayStatus = $(this).data('displayStatus') || false;
+        if (displayStatus === true) {
+            $(this).data('displayStatus', false);
+            $(this).html('<i class="fa fa-angle-down"></i> 显示扩展信息');
+            rows.hide('500');
+        } else {
+            $(this).data('displayStatus', true);
+            $(this).html('<i class="fa fa-angle-up"></i> 隐藏扩展信息');
+            rows.show('500');
+        }
+    });
+</script>

@@ -1,0 +1,538 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\..\packages\Microsoft.Net.Compilers.1.2.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.1.2.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{43734ED8-6B8C-41A0-9600-41FD8577F86B}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DotNet.Web</RootNamespace>
+    <AssemblyName>DotNet.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Areas\Auth\Views\Role\Grid.cshtml" />
+    <Content Include="Areas\Auth\Views\Role\Edit.cshtml" />
+    <Content Include="Areas\Auth\Views\Role\Details.cshtml" />
+    <Content Include="Web.config" />
+    <Content Include="www\core\css\core.css" />
+    <Content Include="www\core\img\checkmark%402x.png" />
+    <Content Include="www\core\img\checkmark.png" />
+    <Content Include="www\core\img\checkno.gif" />
+    <Content Include="www\core\img\checkok.gif" />
+    <Content Include="www\core\js\action.js" />
+    <Content Include="www\core\js\core.js" />
+    <Content Include="www\core\js\extend.js" />
+    <Content Include="www\core\js\form.js" />
+    <Content Include="www\core\js\modal.js" />
+    <Content Include="www\core\js\plugin.js" />
+    <Content Include="www\core\js\table.js" />
+    <Content Include="www\core\js\tree.js" />
+    <Content Include="www\core\js\treegrid.js" />
+    <Content Include="www\core\js\treetable.js" />
+    <Content Include="www\lib\bootstrap-fileinput\css\fileinput.css" />
+    <Content Include="www\lib\bootstrap-fileinput\css\fileinput.min.css" />
+    <Content Include="www\lib\bootstrap-fileinput\examples\index.html" />
+    <Content Include="www\lib\bootstrap-fileinput\img\loading-sm.gif" />
+    <Content Include="www\lib\bootstrap-fileinput\img\loading.gif" />
+    <Content Include="www\lib\bootstrap-fileinput\js\fileinput.js" />
+    <Content Include="www\lib\bootstrap-fileinput\js\fileinput.min.js" />
+    <Content Include="www\lib\bootstrap-fileinput\js\plugins\canvas-to-blob.js" />
+    <Content Include="www\lib\bootstrap-fileinput\js\plugins\canvas-to-blob.min.js" />
+    <Content Include="www\lib\bootstrap-fileinput\js\plugins\purify.js" />
+    <Content Include="www\lib\bootstrap-fileinput\js\plugins\purify.min.js" />
+    <Content Include="www\lib\bootstrap-fileinput\js\plugins\sortable.js" />
+    <Content Include="www\lib\bootstrap-fileinput\js\plugins\sortable.min.js" />
+    <Content Include="www\lib\bootstrap-fileinput\js\fileinput_locale_zh.js" />
+    <Content Include="www\lib\bootstrap-fileinput\themes\fa\theme.js" />
+    <Content Include="www\lib\bootstrap-fileinput\themes\gly\theme.js" />
+    <Content Include="www\lib\fonts\fontawesome-webfont.svg" />
+    <Content Include="www\lib\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="www\lib\fonts\Simple-Line-Icons.dev.svg" />
+    <Content Include="www\lib\fonts\Simple-Line-Icons.svg" />
+    <Content Include="www\lib\img\accordion-plusminus.png" />
+    <Content Include="www\lib\img\accordion_arrows.png" />
+    <Content Include="www\lib\img\aero%402x.png" />
+    <Content Include="www\lib\img\aero.png" />
+    <Content Include="www\lib\img\ajax-loading.gif" />
+    <Content Include="www\lib\img\ajax-modal-loading.gif" />
+    <Content Include="www\lib\img\blank.gif" />
+    <Content Include="www\lib\img\blue%402x.png" />
+    <Content Include="www\lib\img\blue.png" />
+    <Content Include="www\lib\img\datagrid_icons.png" />
+    <Content Include="www\lib\img\flat%402x.png" />
+    <Content Include="www\lib\img\flat.png" />
+    <Content Include="www\lib\img\green%402x.png" />
+    <Content Include="www\lib\img\green.png" />
+    <Content Include="www\lib\img\grey%402x.png" />
+    <Content Include="www\lib\img\grey.png" />
+    <Content Include="www\lib\img\input-spinner.gif" />
+    <Content Include="www\lib\img\jquery.minicolors.png" />
+    <Content Include="www\lib\img\layer_icon-ext.png" />
+    <Content Include="www\lib\img\layer_icon.png" />
+    <Content Include="www\lib\img\layer_loading-0.gif" />
+    <Content Include="www\lib\img\layer_loading-1.gif" />
+    <Content Include="www\lib\img\layer_loading-2.gif" />
+    <Content Include="www\lib\img\layout_arrows.png" />
+    <Content Include="www\lib\img\loading-spinner-blue.gif" />
+    <Content Include="www\lib\img\loading-spinner-default.gif" />
+    <Content Include="www\lib\img\loading-spinner-grey.gif" />
+    <Content Include="www\lib\img\loading.gif" />
+    <Content Include="www\lib\img\menu_arrows.png" />
+    <Content Include="www\lib\img\orange%402x.png" />
+    <Content Include="www\lib\img\orange.png" />
+    <Content Include="www\lib\img\overlay-icon.png" />
+    <Content Include="www\lib\img\pagination_icons.png" />
+    <Content Include="www\lib\img\pink%402x.png" />
+    <Content Include="www\lib\img\pink.png" />
+    <Content Include="www\lib\img\portlet-collapse-icon-white.png" />
+    <Content Include="www\lib\img\portlet-collapse-icon.png" />
+    <Content Include="www\lib\img\portlet-config-icon-white.png" />
+    <Content Include="www\lib\img\portlet-config-icon.png" />
+    <Content Include="www\lib\img\portlet-expand-icon-white.png" />
+    <Content Include="www\lib\img\portlet-expand-icon.png" />
+    <Content Include="www\lib\img\portlet-reload-icon-white.png" />
+    <Content Include="www\lib\img\portlet-reload-icon.png" />
+    <Content Include="www\lib\img\portlet-remove-icon-white.png" />
+    <Content Include="www\lib\img\portlet-remove-icon.png" />
+    <Content Include="www\lib\img\purple%402x.png" />
+    <Content Include="www\lib\img\purple.png" />
+    <Content Include="www\lib\img\red%402x.png" />
+    <Content Include="www\lib\img\red.png" />
+    <Content Include="www\lib\img\remove-icon-small.png" />
+    <Content Include="www\lib\img\square%402x.png" />
+    <Content Include="www\lib\img\square.png" />
+    <Content Include="www\lib\img\square_aero%402x.png" />
+    <Content Include="www\lib\img\square_aero.png" />
+    <Content Include="www\lib\img\square_blue%402x.png" />
+    <Content Include="www\lib\img\square_blue.png" />
+    <Content Include="www\lib\img\square_green%402x.png" />
+    <Content Include="www\lib\img\square_green.png" />
+    <Content Include="www\lib\img\square_grey%402x.png" />
+    <Content Include="www\lib\img\square_grey.png" />
+    <Content Include="www\lib\img\square_orange%402x.png" />
+    <Content Include="www\lib\img\square_orange.png" />
+    <Content Include="www\lib\img\square_pink%402x.png" />
+    <Content Include="www\lib\img\square_pink.png" />
+    <Content Include="www\lib\img\square_purple%402x.png" />
+    <Content Include="www\lib\img\square_purple.png" />
+    <Content Include="www\lib\img\square_red%402x.png" />
+    <Content Include="www\lib\img\square_red.png" />
+    <Content Include="www\lib\img\square_yellow%402x.png" />
+    <Content Include="www\lib\img\square_yellow.png" />
+    <Content Include="www\lib\img\tabs_icons.png" />
+    <Content Include="www\lib\img\tree_icons.png" />
+    <Content Include="www\lib\img\yellow%402x.png" />
+    <Content Include="www\lib\img\yellow.png" />
+    <Content Include="www\lib\jquery-easyui\img\datagrid_icons.png" />
+    <Content Include="www\lib\jquery-easyui\img\pagination_icons.png" />
+    <Content Include="www\lib\jquery-easyui\jquery-easy-grid.css" />
+    <Content Include="www\lib\jquery-easyui\jquery-easy-grid.js" />
+    <Content Include="www\lib\jquery-loadmask\jquery-loadmask.css" />
+    <Content Include="www\lib\jquery-loadmask\jquery-loadmask.js" />
+    <Content Include="www\lib\jquery-sortable\css\kv-sortable.css" />
+    <Content Include="www\lib\jquery-sortable\css\kv-sortable.min.css" />
+    <Content Include="www\lib\jquery-sortable\js\html.sortable.js" />
+    <Content Include="www\lib\jquery-sortable\js\html.sortable.min.js" />
+    <Content Include="www\lib\mediaelement\background.png" />
+    <Content Include="www\lib\mediaelement\bigplay.fw.png" />
+    <Content Include="www\lib\mediaelement\bigplay.png" />
+    <Content Include="www\lib\mediaelement\bigplay.svg" />
+    <Content Include="www\lib\mediaelement\controls-ted.png" />
+    <Content Include="www\lib\mediaelement\controls-wmp-bg.png" />
+    <Content Include="www\lib\mediaelement\controls-wmp.png" />
+    <Content Include="www\lib\mediaelement\controls.fw.png" />
+    <Content Include="www\lib\mediaelement\controls.png" />
+    <Content Include="www\lib\mediaelement\controls.svg" />
+    <Content Include="www\lib\mediaelement\DO NOT CHANGE THESE FILES. USE -src- FOLDER.txt" />
+    <Content Include="www\lib\mediaelement\flashmediaelement-cdn.swf" />
+    <Content Include="www\lib\mediaelement\flashmediaelement-debug.swf" />
+    <Content Include="www\lib\mediaelement\flashmediaelement.swf" />
+    <Content Include="www\lib\mediaelement\jquery.js" />
+    <Content Include="www\lib\mediaelement\jumpforward.png" />
+    <Content Include="www\lib\mediaelement\loading.gif" />
+    <Content Include="www\lib\mediaelement\mediaelement-and-player.js" />
+    <Content Include="www\lib\mediaelement\mediaelement-and-player.min.js" />
+    <Content Include="www\lib\mediaelement\mediaelement.js" />
+    <Content Include="www\lib\mediaelement\mediaelement.min.js" />
+    <Content Include="www\lib\mediaelement\mediaelementplayer.css" />
+    <Content Include="www\lib\mediaelement\mediaelementplayer.js" />
+    <Content Include="www\lib\mediaelement\mediaelementplayer.min.css" />
+    <Content Include="www\lib\mediaelement\mediaelementplayer.min.js" />
+    <Content Include="www\lib\mediaelement\mejs-skins.css" />
+    <Content Include="www\lib\mediaelement\silverlightmediaelement.xap" />
+    <Content Include="www\lib\mediaelement\skipback.png" />
+    <Content Include="www\lib\useragent\useragent.js" />
+    <Content Include="www\lib\useragent\useragent_base.js" />
+    <Content Include="www\data\alert.html" />
+    <Content Include="www\data\edit.html" />
+    <Content Include="www\data\formlayout.html" />
+    <Content Include="www\data\table.html" />
+    <Content Include="www\data\table2.html" />
+    <Content Include="www\data\test.html" />
+    <Content Include="www\data\tree.html" />
+    <Content Include="www\data\validation.html" />
+    <Content Include="www\data\welcome.html" />
+    <Content Include="www\home\css\home.css" />
+    <Content Include="www\home\css\login.css" />
+    <Content Include="www\home\img\header_bg.png" />
+    <Content Include="www\home\js\home.js" />
+    <Content Include="www\home\js\login.js" />
+    <Content Include="www\lib\bootstrap\bootstrap.css" />
+    <Content Include="www\lib\bootstrap\bootstrap.js" />
+    <Content Include="www\lib\bootstrap\bootstrap.min.css" />
+    <Content Include="www\lib\bootstrap\bootstrap.min.js" />
+    <Content Include="www\lib\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="www\lib\font-awesome\font-awesome.css" />
+    <Content Include="www\lib\font-awesome\font-awesome.min.css" />
+    <Content Include="www\lib\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="www\lib\jquery-easyui\img\accordion-plusminus.png" />
+    <Content Include="www\lib\jquery-easyui\img\accordion_arrows.png" />
+    <Content Include="www\lib\jquery-easyui\img\blank.gif" />
+    <Content Include="www\lib\jquery-easyui\img\layout_arrows.png" />
+    <Content Include="www\lib\jquery-easyui\img\loading.gif" />
+    <Content Include="www\lib\jquery-easyui\img\menu_arrows.png" />
+    <Content Include="www\lib\jquery-easyui\img\tabs_icons.png" />
+    <Content Include="www\lib\jquery-easyui\img\tree_icons.png" />
+    <Content Include="www\lib\jquery-easyui\jquery-easy-layout.css" />
+    <Content Include="www\lib\jquery-easyui\jquery-easy-layout.js" />
+    <Content Include="www\lib\jquery-easyui\jquery-easy-parser.js" />
+    <Content Include="www\lib\jquery-easyui\jquery-easy-tree.css" />
+    <Content Include="www\lib\jquery-easyui\jquery-easy-tree.js" />
+    <Content Include="www\lib\jquery\jquery.js" />
+    <Content Include="www\lib\jquery\jquery.min.js" />
+    <Content Include="www\lib\lib.css" />
+    <Content Include="www\lib\lib.js" />
+    <Content Include="www\lib\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="www\lib\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="www\lib\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="www\lib\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="www\lib\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="www\lib\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="www\lib\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="www\lib\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="www\lib\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
+    <Content Include="Areas\Auth\Views\Excep\Details.cshtml" />
+    <Content Include="Areas\Auth\Views\Excep\Grid.cshtml" />
+    <Content Include="Areas\Auth\Views\Excep\Index.cshtml" />
+    <Content Include="Areas\Auth\Views\Audit\Details.cshtml" />
+    <Content Include="Areas\Auth\Views\Audit\Grid.cshtml" />
+    <Content Include="Areas\Auth\Views\Audit\Index.cshtml" />
+    <Content Include="Areas\Auth\Views\Log\Details.cshtml" />
+    <Content Include="Areas\Auth\Views\Log\Grid.cshtml" />
+    <Content Include="Areas\Auth\Views\Log\Index.cshtml" />
+    <Content Include="Areas\Auth\Views\Seq\Details.cshtml" />
+    <Content Include="Areas\Auth\Views\Seq\Edit.cshtml" />
+    <Content Include="Areas\Auth\Views\Seq\Grid.cshtml" />
+    <Content Include="Areas\Auth\Views\Seq\Index.cshtml" />
+    <Content Include="Areas\Auth\Views\Param\Details.cshtml" />
+    <Content Include="Areas\Auth\Views\Param\Edit.cshtml" />
+    <Content Include="Areas\Auth\Views\Param\Grid.cshtml" />
+    <Content Include="Areas\Auth\Views\Param\Index.cshtml" />
+    <Content Include="Areas\Auth\Views\Version\Details.cshtml" />
+    <Content Include="Areas\Auth\Views\Version\Grid.cshtml" />
+    <Content Include="Areas\Auth\Views\User\ModifyUserPassword.cshtml" />
+    <Content Include="Areas\Auth\Views\User\ResetUserPassword.cshtml" />
+    <Content Include="Areas\Auth\Views\User\ResetUser.cshtml" />
+    <Content Include="Areas\Auth\Views\Menu\Edit.cshtml" />
+    <Content Include="Areas\Auth\Views\Menu\Index.cshtml" />
+    <Content Include="Areas\Auth\Views\Menu\Details.cshtml" />
+    <Content Include="Areas\Auth\Views\Menu\Grid.cshtml" />
+    <Content Include="www\data\treegrid_data2.json" />
+    <Content Include="Areas\Edu\Views\web.config" />
+    <Content Include="Areas\Edu\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Edu\Views\School\Details.cshtml" />
+    <Content Include="Areas\Edu\Views\School\Edit.cshtml" />
+    <Content Include="Areas\Edu\Views\School\Grid.cshtml" />
+    <Content Include="Areas\Edu\Views\School\Index.cshtml" />
+    <Content Include="App_Data\City.json" />
+    <Content Include="App_Data\District.json" />
+    <Content Include="App_Data\Province.json" />
+    <Content Include="Areas\Edu\Views\Company\Details.cshtml" />
+    <Content Include="Areas\Edu\Views\Company\Edit.cshtml" />
+    <Content Include="Areas\Edu\Views\Company\Grid.cshtml" />
+    <Content Include="Areas\Edu\Views\Company\Index.cshtml" />
+    <Content Include="Areas\Edu\Views\TrainGroup\Details.cshtml" />
+    <Content Include="Areas\Edu\Views\TrainGroup\Edit.cshtml" />
+    <Content Include="Areas\Edu\Views\TrainGroup\_Grid.cshtml" />
+    <Content Include="Areas\Edu\Views\TrainGroup\Index.cshtml" />
+    <Content Include="Areas\Edu\Views\Student\Details.cshtml" />
+    <Content Include="Areas\Edu\Views\Student\Edit.cshtml" />
+    <Content Include="Areas\Edu\Views\Student\Grid.cshtml" />
+    <Content Include="Areas\Edu\Views\Student\Index.cshtml" />
+    <Content Include="Areas\Edu\Views\TrainGroup\Reservation.cshtml" />
+    <Content Include="Areas\Edu\Views\TrainGroup\_ReservationGrid.cshtml" />
+    <Content Include="Areas\Edu\Views\TrainGroup\_UnReservationGrid.cshtml" />
+    <Content Include="Areas\Edu\Views\Student\Import.cshtml" />
+    <Content Include="www\tpl\学员导入.xlsx" />
+    <Content Include="Areas\Edu\Views\StudentStockIn\Index.cshtml" />
+    <Content Include="Areas\Edu\Views\StudentStockIn\_Grid.cshtml" />
+    <Content Include="Areas\Edu\Views\StudentPrepare\_Grid.cshtml" />
+    <Content Include="Areas\Edu\Views\StudentPrepare\Index.cshtml" />
+    <Content Include="Areas\Edu\Views\TrainGroup\ReservationImport.cshtml" />
+    <Content Include="www\tpl\学员预约导入.xlsx" />
+    <Content Include="Areas\Edu\Views\TrainGroup\UnReservationImport.cshtml" />
+    <Content Include="www\tpl\学员取消预约导入.xlsx" />
+    <Content Include="Areas\Edu\Views\Student\_LogGrid.cshtml" />
+    <Content Include="Areas\Edu\Views\StudentExam\Index.cshtml" />
+    <Content Include="Areas\Edu\Views\Shared\_StudentGrid.cshtml" />
+    <Content Include="Views\Default\Test.cshtml" />
+    <Content Include="Areas\Edu\Views\Courseware\Details.cshtml" />
+    <Content Include="Areas\Edu\Views\Courseware\Edit.cshtml" />
+    <Content Include="Areas\Edu\Views\Courseware\Grid.cshtml" />
+    <Content Include="Areas\Edu\Views\Courseware\Index.cshtml" />
+    <Content Include="Areas\Edu\Views\CoursewareDetails\Index.cshtml" />
+    <Content Include="Areas\Edu\Views\CoursewareDetails\_Image.cshtml" />
+    <Content Include="Areas\Edu\Views\CoursewareDetails\_Video.cshtml" />
+    <Content Include="Areas\Edu\Views\Question\Details.cshtml" />
+    <Content Include="Areas\Edu\Views\Question\Edit.cshtml" />
+    <Content Include="Areas\Edu\Views\Question\Grid.cshtml" />
+    <Content Include="Areas\Edu\Views\Question\Index.cshtml" />
+    <Content Include="Areas\Edu\Views\Question\Import.cshtml" />
+    <None Include="Properties\PublishProfiles\local.pubxml" />
+    <Content Include="www\lib\fonts\fontawesome-webfont.eot" />
+    <Content Include="www\lib\fonts\fontawesome-webfont.ttf" />
+    <Content Include="www\lib\fonts\fontawesome-webfont.woff" />
+    <Content Include="www\lib\fonts\fontawesome-webfont.woff2" />
+    <Content Include="www\lib\fonts\FontAwesome.otf" />
+    <Content Include="www\lib\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="www\lib\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="www\lib\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="www\lib\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="www\lib\fonts\Simple-Line-Icons.eot" />
+    <Content Include="www\lib\fonts\Simple-Line-Icons.ttf" />
+    <Content Include="www\lib\fonts\Simple-Line-Icons.woff" />
+    <Content Include="www\tpl\题库导入.xlsx" />
+    <None Include="_references.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Auth\AuthAreaRegistration.cs" />
+    <Compile Include="Areas\Edu\EduAreaRegistration.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\UtilController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Default\Login.cshtml" />
+    <Content Include="app.json" />
+    <Content Include="Areas\Auth\Views\web.config" />
+    <Content Include="Areas\Auth\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Auth\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Auth\Views\Role\Index.cshtml" />
+    <Content Include="Areas\Auth\Views\Dic\Index.cshtml" />
+    <Content Include="Areas\Auth\Views\Dic\Edit.cshtml" />
+    <Content Include="Areas\Auth\Views\DicDetail\Details.cshtml" />
+    <Content Include="Areas\Auth\Views\DicDetail\Grid.cshtml" />
+    <Content Include="Areas\Auth\Views\DicDetail\Edit.cshtml" />
+    <Content Include="Areas\Auth\Views\Department\Edit.cshtml" />
+    <Content Include="Areas\Auth\Views\Department\Index.cshtml" />
+    <Content Include="Areas\Auth\Views\User\Details.cshtml" />
+    <Content Include="Areas\Auth\Views\User\Edit.cshtml" />
+    <Content Include="Areas\Auth\Views\User\Grid.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <Content Include="www\data\tree.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Util\" />
+    <Folder Include="www\auth\css\" />
+    <Folder Include="www\auth\img\" />
+    <Folder Include="www\auth\js\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DotNet.Auth\DotNet.Auth.Controller\DotNet.Auth.Controller.csproj">
+      <Project>{3c3f3fd6-9a24-4f39-8c8d-3b75f6399ed6}</Project>
+      <Name>DotNet.Auth.Controller</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.Auth\DotNet.Auth.Entity\DotNet.Auth.Entity.csproj">
+      <Project>{b4777dbd-8963-4153-895e-011f7ce355b5}</Project>
+      <Name>DotNet.Auth.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.Auth\DotNet.Auth.Service\DotNet.Auth.Service.csproj">
+      <Project>{9b565a89-ad05-4712-ad8e-920ebfd3c113}</Project>
+      <Name>DotNet.Auth.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.Auth\DotNet.Auth.Utility\DotNet.Auth.Utility.csproj">
+      <Project>{a832c7e2-bd55-41d8-a0e6-e7c406c7231b}</Project>
+      <Name>DotNet.Auth.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.Auth\DotNet.Auth.WebUtility\DotNet.Auth.WebUtility.csproj">
+      <Project>{e2eeff2f-0e5d-44f5-96ec-5c2f7e15fc3e}</Project>
+      <Name>DotNet.Auth.WebUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.Edu\DotNet.Edu.Controller\DotNet.Edu.Controller.csproj">
+      <Project>{5f725dde-d64e-4421-ac85-f64b8740b3e0}</Project>
+      <Name>DotNet.Edu.Controller</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.Edu\DotNet.Edu.Entity\DotNet.Edu.Entity.csproj">
+      <Project>{95384cf1-18e8-49d0-b96f-22d0a46c31f2}</Project>
+      <Name>DotNet.Edu.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.Edu\DotNet.Edu.WebUtility\DotNet.Edu.WebUtility.csproj">
+      <Project>{b3990cd4-d71a-4c6b-8c56-e10929f7958f}</Project>
+      <Name>DotNet.Edu.WebUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.Framework\DotNet.Mvc\DotNet.Mvc.csproj">
+      <Project>{6a790c23-5638-4098-aa0d-ea9d4944749b}</Project>
+      <Name>DotNet.Mvc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.Framework\DotNet.Utility\DotNet.Utility.csproj">
+      <Project>{786cf068-24a5-46a9-8126-cdd89f558991}</Project>
+      <Name>DotNet.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>2038</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:2038/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.1.2.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.1.2.2\build\Microsoft.Net.Compilers.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

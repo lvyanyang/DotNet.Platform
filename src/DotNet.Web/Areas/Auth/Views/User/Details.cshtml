@@ -1,0 +1,112 @@
+﻿@model User
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">系统用户 - @Model.Name</h4>
+</div>
+<div class="modal-body">
+    <div class="form-body">
+        <div class="tabbable-line">
+            <ul class="nav nav-tabs ">
+                <li class="active">
+                    <a href="#baseInfo" data-toggle="tab">
+                        基本信息
+                    </a>
+                </li>
+                <li>
+                    <a href="#otherInfo" data-toggle="tab">
+                        扩展信息
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="baseInfo">
+                    <table class="table table-details table-bordered table-striped">
+                        <tr>
+                            <th class="w140px">帐号</th>
+                            <td>@Model.Account</td>
+                        </tr>
+                        <tr>
+                            <th>姓名</th>
+                            <td>@Model.Name</td>
+                        </tr>
+                        <tr>
+                            <th>简拼</th>
+                            <td>@Model.Spell</td>
+                        </tr>
+                        <tr>
+                            <th>部门</th>
+                            <td>@Model.DepartmentName</td>
+                        </tr>
+                        <tr>
+                            <th>默认角色</th>
+                            <td>@Model.DefaultRoleName</td>
+                        </tr>
+                        <tr>
+                            <th>管理员</th>
+                            <td>@Html.BoolLabel(Model.IsAdmin)</td>
+                        </tr>
+                        <tr>
+                            <th>状态</th>
+                            <td>@Html.BoolLabel(Model.IsEnabled)</td>
+                        </tr>
+                        <tr>
+                            <th>审核</th>
+                            <td>@Html.BoolLabel(Model.IsAudit)</td>
+                        </tr>
+                        <tr>
+                            <th>电子邮件</th>
+                            <td>@Model.Email</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="tab-pane" id="otherInfo">
+                    <table class="table table-details table-bordered table-striped">
+                        <tr>
+                            <th class="w140px">允许开始时间</th>
+                            <td>@DateTimeHelper.FormatDateHasSecond(Model.AllowStartDateTime)</td>
+                        </tr>
+                        <tr>
+                            <th>允许结束时间</th>
+                            <td>@DateTimeHelper.FormatDateHasSecond(Model.AllowEndDateTime)</td>
+                        </tr>
+                        <tr>
+                            <th>第一次登录时间</th>
+                            <td>@DateTimeHelper.FormatDateHasSecond(Model.FirstVisitDateTime)</td>
+                        </tr>
+                        <tr>
+                            <th>最后一次登录时间</th>
+                            <td>@DateTimeHelper.FormatDateHasSecond(Model.LastVisitDateTime)</td>
+                        </tr>
+                        <tr>
+                            <th>登录次数</th>
+                            <td>@Model.LoginCount</td>
+                        </tr>
+                        <tr>
+                            <th>密码提示问题</th>
+                            <td>@Model.HintQuestion</td>
+                        </tr>
+                        <tr>
+                            <th>密码提示答案</th>
+                            <td>@Model.HintAnswer</td>
+                        </tr>
+                        <tr>
+                            <th>序号</th>
+                            <td>@Model.RowIndex</td>
+                        </tr>
+                        <tr>
+                            <th>备注</th>
+                            <td>@Model.Note</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">
+        <i class="fa fa-sign-in"></i> 关闭
+    </button>
+</div>

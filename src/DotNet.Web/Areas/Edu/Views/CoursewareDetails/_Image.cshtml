@@ -1,0 +1,28 @@
+﻿@model List<CoursewareDetails>
+<ul class="sortable grid cursor-move" style="border: 0">
+    @*<div class="row">*@
+    @foreach (var item in Model)
+    {
+        <li class="col-md-3" style="border: 0; margin: 4px 0 0 0;" data-id="@item.Id">
+            <div class="thumbnail">
+                <img src="@Url.Content(item.Url)" class="cursor-pointer" style="height: 200px">
+                <div class="caption text-center">
+                    <a class="btn btn-danger" title="删除" onclick="deleteDetails(this,'@Url.Action("Delete", new {id = item.Id})')">
+                        <i class="fa fa-lg fa-trash-o"></i>
+                    </a>
+                </div>
+            </div>
+        </li>
+            @*<div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="@Url.Content(item.Url)" class="cursor-pointer" style="height: 200px">
+                        <div class="caption text-center">
+                            <a class="btn btn-danger" title="删除" onclick="deleteDetails('@Url.Action("Delete", new {id = item.Id})')">
+                                <i class="fa fa-lg fa-trash-o"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>*@
+    }
+    @*</div>*@
+</ul>

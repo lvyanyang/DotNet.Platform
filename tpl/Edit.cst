@@ -1,0 +1,88 @@
+﻿<%@ CodeTemplate Language="C#" TargetLanguage="Html" Debug="False" CompilerVersion="v3.5"  ResponseEncoding="UTF-8" Description="生成实体对象" %>
+<%@ Assembly Name="System.Data" %>
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="SchemaExplorer" %>
+<%@ Map Name="CSharpAlias" Src="DbType-CSharp.csmap" Reverse="False"%>
+<%@ Property Name="Table" Type="SchemaExplorer.TableSchema" Category="参数" Description="表名" Optional="False" %>
+<%
+string TableRemark = Table.Description.Replace("\n","").Replace("\r","").Replace(" ","");
+string TableName = Table.Name.Replace("\n","").Replace("\r","").Replace(" ","");
+string pkName = "Id";
+string pkType = "int";
+if(Table.HasPrimaryKey)
+{
+    pkName = Table.PrimaryKey.MemberColumns[0].Name;
+    pkType = CSharpAlias[Table.PrimaryKey.MemberColumns[0].SystemType.Name];
+}
+%>
+@model <%= TableName %>
+<form class="form-horizontal uiform" method="post"
+      data-modal="true"
+      data-table=".uitable"
+      data-error-el=".alert-danger"
+      data-on-submit-success="fx.mtfSuccess"
+      action="@Url.Action("Save")">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">@Html.EditStatus("<%=TableRemark%>")</h4>
+    </div>
+    <div class="modal-body">
+        @Html.AntiForgeryToken()
+        @Html.MarkCreate()
+        @Html.HiddenFor(p => p.<%= pkName %>)
+        @Html.HiddenFor(p => p.CreateUserId)
+        @Html.HiddenFor(p => p.CreateUserName)
+        @Html.HiddenFor(p => p.CreateDateTime)
+        <div class="alert alert-danger fxhide"></div>
+        <% 
+            for(int i= 0;i< Table.Columns.Count;i++) { 
+            ColumnSchema column = Table.Columns[i];
+            string columnRemark = column.Description.Replace("\n","").Replace("\r","").Replace(" ","");
+            bool allowNull = column.AllowDBNull;
+            if(column.Name==pkName) continue;
+        %>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                <% if(!allowNull) {%><span class="required"> * </span><% } %>
+                <%=columnRemark  %>：
+            </label>
+            <div class="col-md-8">
+                 <% if(column.SystemType==typeof(bool)) {%>
+                 <input class="uiswitch" name="@nameof(Model.<%= column.Name %>)"
+                       data-on-text="启用" data-off-text="禁用" data-size="small"
+                       type="checkbox" @Html.IsChecked(Model.<%= column.Name %>)>
+                <% } else if(column.SystemType==typeof(DateTime)){%>
+                    <input class="form-control uidate" name="@nameof(Model.<%= column.Name %>)" value="@Model.<%= column.Name %>" 
+                       data-validate="required: true,maxlength: <%=column.Size%>"
+                       data-validate-message="required:'请输入<%=columnRemark  %>'"
+                       type="text" autocomplete="off" />
+                <% } else {%>
+                <input class="form-control" name="@nameof(Model.<%= column.Name %>)" value="@Model.<%= column.Name %>"
+                       data-validate="required: true,maxlength: <%=column.Size%>"
+                       data-validate-message="required:'请输入<%=columnRemark  %>'"
+                       type="text" autocomplete="off" />
+                <% } %>
+            </div>
+        </div>
+        <% } %>
+        @*<div class="form-group">
+            <label class="control-label col-md-3">
+                备注：
+            </label>
+            <div class="col-md-8">
+                <textarea class="form-control" name="@nameof(Model.Note)" rows="3">@Model.Note</textarea>
+            </div>
+        </div>*@
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">
+            <i class="fa fa-save"></i> 保存
+        </button>
+        <button class="btn btn-default" type="button" data-dismiss="modal">
+            <i class="fa fa-sign-in"></i> 关闭
+        </button>
+    </div>
+</form>

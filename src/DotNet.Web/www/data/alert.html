@@ -1,0 +1,77 @@
+﻿
+<div style="margin: 30px">
+    <div class="row">
+        <button id="salert" class="btn btn-primary">salert</button>
+    </div>
+    <hr />
+    <div class="row">
+        <button id="sconfirm" class="btn btn-primary">sconfirm</button>
+    </div>
+    <hr />
+    <div class="row">
+        <button id="sprompt" class="btn btn-primary">sprompt</button>
+    </div>
+    <hr />
+    <div class="row">
+        <button id="alert" class="btn btn-primary">alert</button>
+    </div>
+    <hr />
+    <div class="row">
+        <button id="confirm" class="btn btn-primary">confirm</button>
+    </div>
+    <hr />
+    <div class="row">
+        <button id="msg" class="btn btn-primary">msg</button>
+    </div>
+    <hr />
+    <div class="row">
+        <button id="prompt" class="btn btn-primary">prompt</button>
+    </div>
+</div>
+
+<script>
+    $('#salert').click(function() {
+        dotnet.salert('警告标题','消息内容','error');
+    });
+
+    $('#sconfirm').click(function() {
+        dotnet.sconfirm('确认标题','确认消息内容','warning',function() {
+            dotnet.salert("删除了!","Your imaginary file has been deleted.","success");
+        },{ closeOnConfirm: false });
+    });
+
+    $('#sprompt').click(function() {
+        dotnet.sprompt('输入标题','请输入您的密码',function(v) {
+            if(v === false)
+                return false;
+            if(v === "") {
+                swal.showInputError('请输入密码!');
+                return false
+            }
+            swal.close();
+            dotnet.salert('您输入的是:' + v);
+        });
+    });
+
+    $('#alert').click(function() {
+        dotnet.alert('警告标题');
+    });
+
+    $('#confirm').click(function() {
+        dotnet.confirm('警告标题',function(i) {
+            layer.close(i);
+            alert('已确认');
+        });
+    });
+
+    $('#msg').click(function() {
+        dotnet.msg('提示消息');
+    });
+
+    $('#prompt').click(function() {
+        dotnet.prompt('输入任意口令,请确认',function(v,i) {
+            layer.close(i);
+            alert('演示完毕！您的口令：' + v);
+        });
+    });
+</script>

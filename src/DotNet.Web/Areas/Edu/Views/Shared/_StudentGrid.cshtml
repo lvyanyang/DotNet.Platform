@@ -1,0 +1,39 @@
+﻿@model PageList<Student>
+<table class="table table-striped table-bordered table-hover table-fix table-manage">
+    <thead>
+    <tr>
+        <th class="w35px">
+            <label><input class="checkbox-check" type="checkbox"><span></span></label>
+        </th>
+        <th class="text-center w70px" data-order="@nameof(Student.Name)">姓名</th>
+        <th class="w180px" data-order="@nameof(Student.IDCardNo)">身份证号</th>
+        <th class="w120px" data-order="@nameof(Student.MobilePhone)">手机号码</th>
+        <th class="" data-order="@nameof(Student.CompanyName)">服务公司</th>
+        <th class="w200px" data-order="@nameof(Student.WorkCategoryName)">从业类型</th>
+        <th class="w120px" data-order="@nameof(Student.TrainReason)">培训原因</th>
+        <th class="text-center w100px" data-order="@nameof(Student.CreateDateTime)">录入时间</th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in Model)
+        {
+            <tr>
+                <td>
+                    <label><input class="checkbox-check" type="checkbox" value="@record.Id"><span></span></label>
+                </td>
+                <td class="text-center">
+                    <a class="uimodal" data-size="lg" data-backdrop="true" data-url="@Url.Action("Details", "Student", new {id = record.Id})">
+                        @record.Name
+                    </a>
+                </td>
+                <td class="">@record.IDCardNo</td>
+                <td class="">@record.MobilePhone</td>
+                <td class="nowrap">@record.CompanyName</td>
+                <td class="">@record.WorkCategoryName</td>
+                <td class="">@record.TrainReason</td>
+                <td class="text-center">@DateTimeHelper.FormatDate(record.CreateDateTime)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.RenderPages(Model)

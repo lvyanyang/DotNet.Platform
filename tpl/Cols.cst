@@ -1,0 +1,19 @@
+﻿<%@ CodeTemplate Language="C#" TargetLanguage="C#" Debug="False" CompilerVersion="v3.5"  ResponseEncoding="UTF-8" Description="生成实体对象" %>
+<%@ Assembly Name="System.Data" %>
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="SchemaExplorer" %>
+<%@ Map Name="CSharpAlias" Src="DbType-CSharp.csmap" Reverse="False"%>
+<%@ Property Name="Table" Type="SchemaExplorer.TableSchema" Category="参数" Description="表名" Optional="False" %>
+#region 更新列
+var cols = new[]
+{
+<% for(int i= 0;i< Table.Columns.Count;i++) { 
+    ColumnSchema column = Table.Columns[i];
+    string columnName = column.Name;
+    string columnRemark = column.Description.Replace("\n","").Replace("\r","").Replace(" ","");
+%>
+    nameof(entity.<%=columnName%>)<% if(i!=Table.Columns.Count-1) {%>,<%}%> //<%=columnRemark%>
+<%}%>
+};
+#endregion

@@ -1,0 +1,48 @@
+﻿@using DotNet.Auth.Service
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>@SystemSetting.SystemTitle - 系统登录</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/www/lib/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="/www/lib/font-awesome/font-awesome.min.css" rel="stylesheet" />
+    <link href="/www/home/css/login.css" rel="stylesheet" />
+</head>
+<body class="container">
+    <div class="col-md-6 col-md-offset-3 text-center">
+        <div class="row"><i class="fa fa-windows logo"></i></div>
+        <div class="row title">@SystemSetting.SystemTitle</div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="has-feedback input-margin">
+                    <input class="form-control input-lg" id="account" name="account"
+                           type="text" placeholder="账号" autofocus />
+                    <i class="fa fa-user fa-2x form-control-feedback icon-color"></i>
+                </div>
+                <div class="has-feedback input-margin">
+                    <input class="form-control input-lg" id="password" name="password"
+                           type="password" placeholder="密码" />
+                    <i class="fa fa-lock fa-2x form-control-feedback icon-color"></i>
+                </div>
+                <div class="input-margin">
+                    <input class="btn btn-default btn-block btn-lg"
+                           data-url="default/login"
+                           value="登 录" type="submit" />
+                </div>
+            </div>
+        </div>
+        <div class="row text-center copyright">
+            @SystemSetting.Copyright © @DateTime.Now.Year
+        </div>
+    </div>
+    <script src="/www/lib/jquery/jquery.min.js"></script>
+    <script src="/www/lib/bootstrap/bootstrap.min.js"></script>
+    <script src="/www/lib/useragent/useragent_base.js"></script>
+    <script src="/www/lib/useragent/useragent.js"></script>
+    <script src="/www/core/js/core.js"></script>
+    <script src="/www/home/js/login.js"></script>
+</body>
+</html>
+

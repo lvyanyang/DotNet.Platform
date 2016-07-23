@@ -1,0 +1,73 @@
+﻿<%@ CodeTemplate Language="C#" TargetLanguage="Html" Debug="False" CompilerVersion="v3.5"  ResponseEncoding="UTF-8" Description="生成实体对象" %>
+<%@ Assembly Name="System.Data" %>
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="SchemaExplorer" %>
+<%@ Map Name="CSharpAlias" Src="DbType-CSharp.csmap" Reverse="False"%>
+<%@ Property Name="Table" Type="SchemaExplorer.TableSchema" Category="参数" Description="表名" Optional="False" %>
+<%
+string TableRemark = Table.Description.Replace("\n","").Replace("\r","").Replace(" ","");
+string TableName = Table.Name.Replace("\n","").Replace("\r","").Replace(" ","");
+string pkName = "Id";
+string pkType = "int";
+if(Table.HasPrimaryKey)
+{
+    pkName = Table.PrimaryKey.MemberColumns[0].Name;
+    pkType = CSharpAlias[Table.PrimaryKey.MemberColumns[0].SystemType.Name];
+}
+%>
+@model PageList<<%= TableName %>>
+<table class="table table-striped table-bordered table-hover table-fix table-manage">
+    <thead>
+        <tr>
+            <th class="w20px">
+                <label><input class="checkbox-check" type="checkbox"><span></span></label>
+            </th>           
+            <% for(int i= 0;i< Table.Columns.Count;i++) { 
+                ColumnSchema column = Table.Columns[i];
+                string columnRemark = column.Description.Replace("\n","").Replace("\r","").Replace(" ","");
+                 if(column.Name==pkName) continue;
+            %>
+            <th class="w100px" data-order="@nameof(<%= TableName %>.<%= column.Name %>)"><%= columnRemark %></th>
+            <% } %>
+            <th class="text-center w70px">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in Model)
+        {
+            <tr class="cursor-pointer" data-url="@Url.Action("Details",new {id = record.<%= pkName %>})">
+                <td>
+                    <label><input class="checkbox-check" type="checkbox" value="@record.<%= pkName %>"><span></span></label>
+                </td>
+                <% for(int i= 0;i< Table.Columns.Count;i++) { 
+                ColumnSchema column = Table.Columns[i];
+                string columnRemark = column.Description.Replace("\n","").Replace("\r","").Replace(" ","");
+                 if(column.Name==pkName) continue;
+                %>
+                <% if(column.SystemType == typeof(DateTime)){ %>
+                <td class="text-center">@DateTimeHelper.FormatDateHasSecond(record.<%= column.Name %>)</td>
+                <%} else if(column.SystemType == typeof(Boolean)){%>
+                <td class="text-center">@Html.BoolLabel(record.<%= column.Name %>)</td>
+                <%} else {%>
+                <td class="">@record.<%= column.Name %></td>
+                <% } %>
+                <% } %>
+                <td class="text-center">
+                    <a class="color-primary uimodal" data-toggle="tooltip"
+                       data-url="@Url.Action("Edit", new {id = record.Id})"
+                       title="编辑">
+                        <i class="fa fa-lg fa-edit"></i>
+                    </a>
+                    &nbsp;
+                    <a class="color-danger tsdelete" data-toggle="tooltip"
+                       data-url="@Url.Action("Delete", new {id = record.Id})"
+                       title="删除">
+                        <i class="fa fa-lg fa-trash-o"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.RenderPages(Model)

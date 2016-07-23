@@ -1,0 +1,193 @@
+﻿<h1>Tree</h1>
+<style>
+    .table-head {
+        padding-right: 17px;
+    }
+
+    .table-body {
+        width: 100%;
+        height: 300px;
+        overflow-y: scroll;
+    }
+
+        .table-head table, .table-body table {
+            width: 100%;
+        }
+</style>
+
+<input type="text" id="txtname" />
+<a class="btn btn-primary ajax-load"
+   data-target="#tree"
+   data-url="/www/data/tree.html">加载Tree</a>
+
+<a class="btn btn-primary do-ajax"
+   data-url="/default/post?name={#txtname}"
+   data-success="ups.success"
+   data-options="auto:false,interval:3000">doajax</a>
+<div id="tree">
+
+</div>
+ initKindEditor
+initSwitch
+initiCheck
+initSelect2
+initClockPicker
+initTimePicker
+initDatePicker
+initDateTimePicker
+initValidate
+<button id="btnTest" class="btn btn-primary">按钮</button>
+<div class="table-scrollable">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th scope="col" style="width:450px !important"> Column header 1 </th>
+                <th scope="col"> Column header 2 </th>
+                <th scope="col"> Column header 3 </th>
+                <th scope="col"> Column header 4 </th>
+                <th scope="col"> Column header 5 </th>
+                <th scope="col"> Column header 6 </th>
+                <th scope="col"> Column header 7 </th>
+                <th scope="col"> Column header 8 </th>
+                <th scope="col"> Column header 9 </th>
+                <th scope="col"> Column header 10 </th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+            </tr>
+            <tr>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+            </tr>
+            <tr>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+            </tr>
+            <tr>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+            </tr>
+            <tr>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+            </tr>
+            <tr>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+            </tr>
+            <tr>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+            </tr>
+            <tr>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+            </tr>
+            <tr>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+                <td> Table data </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<script>
+    var ups = function() {
+
+        return {
+            success: function(result) {
+                console.log('success : ' + result.data);
+            }
+        }
+    }();
+
+    $('#btnTest').click(function() {
+        var $element = $('body');
+        dotnet.mask($element);
+        setTimeout(function() {
+            dotnet.upmask($element);
+            setTimeout(function() {
+                dotnet.unmask($element);
+            },2000);
+
+        },3000);
+    });
+
+</script>

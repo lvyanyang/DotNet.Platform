@@ -1,0 +1,16 @@
+﻿{
+  "Database": [
+    {
+      "Name": "dotnet.auth",
+      "ConnectionString": "server=.;uid=sa;pwd=1;database=DotNetAuth"
+    },
+    {
+      "Name": "dotnet.edu",
+      "ConnectionString": "server=.;uid=sa;pwd=1;database=DotNetEdu"
+    },
+    {
+      "Name": "dotnet.exam",
+      "ConnectionString": "server=.;uid=sa;pwd=1;database=ExamSystem"
+    }
+  ]
+}

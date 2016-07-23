@@ -1,0 +1,114 @@
+﻿@model TrainGroup
+<form class="form-horizontal uiform" method="post"
+      data-modal="true"
+      data-table=".uitable"
+      data-error-el=".alert-danger"
+      data-on-submit-success="fx.mtfSuccess"
+      action="@Url.Action("Save")">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">@Html.EditStatus("班级信息")</h4>
+    </div>
+    <div class="modal-body">
+        @Html.AntiForgeryToken()
+        @Html.MarkCreate()
+        @Html.HiddenFor(p => p.Id)
+        @Html.HiddenFor(p => p.CreateDateTime)
+        <div class="alert alert-danger fxhide"></div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                <span class="required"> * </span>
+                班级名称：
+            </label>
+            <div class="col-md-8">
+                <input class="form-control" name="@nameof(Model.Name)" value="@Model.Name"
+                       data-validate="required: true,maxlength: 50"
+                       data-validate-message="required:'请输入班级名称'"
+                       type="text" autocomplete="off" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                <span class="required"> * </span>
+                从业类型：
+            </label>
+            <div class="col-md-8">
+                <select class="form-control uiselect" name="@nameof(Model.CategoryId)"
+                        data-text-field="@nameof(Model.CategoryName)"
+                        data-validate="required: true"
+                        data-validate-message="required:'请选择从业类型'">
+                    <option></option>
+                    @Html.TrainCategoryOption(Model.CategoryId)
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                <span class="required"> * </span>
+                培训学校：
+            </label>
+            <div class="col-md-8">
+                <select class="form-control uiselect" name="@nameof(Model.SchoolId)"
+                        data-text-field="@nameof(Model.SchoolName)"
+                        data-validate="required: true"
+                        data-validate-message="required:'请选择培训学校'">
+                    @Html.SchoolOption(Model.SchoolId)
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                <span class="required"> * </span>
+                开始日期：
+            </label>
+            <div class="col-md-8">
+                <div class="input-group date uidate">
+                    <input class="form-control" name="@nameof(Model.StartDate)"
+                           value="@DateTimeHelper.FormatDate(Model.StartDate)"
+                           data-validate="required: true"
+                           data-validate-message="required:'请输入开始日期'"
+                           type="text" autocomplete="off">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-th"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                <span class="required"> * </span>
+                结束日期：
+            </label>
+            <div class="col-md-8">
+                <div class="input-group date uidate">
+                    <input class="form-control" name="@nameof(Model.EndDate)"
+                           value="@DateTimeHelper.FormatDate(Model.EndDate)"
+                           data-validate="required: true"
+                           data-validate-message="required:'请输入结束日期'"
+                           type="text" autocomplete="off">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-th"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                备注：
+            </label>
+            <div class="col-md-8">
+                <textarea class="form-control" name="@nameof(Model.Note)" rows="3">@Model.Note</textarea>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">
+            <i class="fa fa-save"></i> 保存
+        </button>
+        <button class="btn btn-default" type="button" data-dismiss="modal">
+            <i class="fa fa-sign-in"></i> 关闭
+        </button>
+    </div>
+</form>

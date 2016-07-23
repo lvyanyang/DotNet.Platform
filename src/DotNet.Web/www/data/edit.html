@@ -1,0 +1,249 @@
+﻿
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+    <h4 class="modal-title">Ajax Content</h4>
+</div>
+<div class="modal-body">
+    
+    <div class="form-group">
+        <label for="default" class="control-label">Default textbox</label>
+        <input id="default" type="text" class="form-control" placeholder="Placeholder text">
+    </div>
+    <div class="form-group">
+        <label for="single" class="control-label">Select2 single select</label>
+        <select id="single" class="form-control uiselect2">
+            <option></option>
+            <optgroup label="Alaskan">
+                <option value="AK">Alaska</option>
+                <option value="HI" disabled="disabled">Hawaii</option>
+            </optgroup>
+            <optgroup label="Pacific Time Zone">
+                <option value="CA">California</option>
+                <option value="NV">Nevada</option>
+                <option value="OR">Oregon</option>
+                <option value="WA">Washington</option>
+            </optgroup>
+            <optgroup label="Mountain Time Zone">
+                <option value="AZ">Arizona</option>
+                <option value="CO">Colorado</option>
+                <option value="ID">Idaho</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NM">New Mexico</option>
+                <option value="ND">North Dakota</option>
+                <option value="UT">Utah</option>
+                <option value="WY">Wyoming</option>
+            </optgroup>
+            <optgroup label="Central Time Zone">
+                <option value="AL">Alabama</option>
+                <option value="AR">Arkansas</option>
+                <option value="IL">Illinois</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="OK">Oklahoma</option>
+                <option value="SD">South Dakota</option>
+                <option value="TX">Texas</option>
+                <option value="TN">Tennessee</option>
+                <option value="WI">Wisconsin</option>
+            </optgroup>
+            <optgroup label="Eastern Time Zone">
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="IN">Indiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="OH">Ohio</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WV">West Virginia</option>
+            </optgroup>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="multiple" class="control-label">Select2 multi select</label>
+        <select id="multiple" class="form-control uiselect2" multiple>
+            <optgroup label="Alaskan">
+                <option value="AK">Alaska</option>
+                <option value="HI" disabled="disabled">Hawaii</option>
+            </optgroup>
+            <optgroup label="Pacific Time Zone">
+                <option value="CA">California</option>
+                <option value="NV">Nevada</option>
+                <option value="OR">Oregon</option>
+                <option value="WA">Washington</option>
+            </optgroup>
+            <optgroup label="Mountain Time Zone">
+                <option value="AZ">Arizona</option>
+                <option value="CO">Colorado</option>
+                <option value="ID">Idaho</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NM">New Mexico</option>
+                <option value="ND">North Dakota</option>
+                <option value="UT">Utah</option>
+                <option value="WY">Wyoming</option>
+            </optgroup>
+            <optgroup label="Central Time Zone">
+                <option value="AL">Alabama</option>
+                <option value="AR">Arkansas</option>
+                <option value="IL">Illinois</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="OK">Oklahoma</option>
+                <option value="SD">South Dakota</option>
+                <option value="TX">Texas</option>
+                <option value="TN">Tennessee</option>
+                <option value="WI">Wisconsin</option>
+            </optgroup>
+            <optgroup label="Eastern Time Zone">
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="IN">Indiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="OH">Ohio</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WV">West Virginia</option>
+            </optgroup>
+        </select>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Default Sizes</label>
+        <div>
+            <input type="checkbox" checked class="uiswitch" id="test" data-size="small">
+            <input type="checkbox" checked class="uiswitch" data-size="normal">
+            <input type="checkbox" checked class="uiswitch" data-size="large">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label ">Vertical button alignment</label>
+        <div>
+            <input id="touchspin_3" class="uispin" data-max="200" type="text" value="" name="demo_vertical">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Default1</label>
+        <div>
+            <div class="fileinput fileinput-new" data-provides="fileinput">
+                <div class="input-group input-large">
+                    <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                        <i class="fa fa-file fileinput-exists"></i>&nbsp;
+                        <span class="fileinput-filename"> </span>
+                    </div>
+                    <span class="input-group-addon btn default btn-file">
+                        <span class="fileinput-new"> Select file </span>
+                        <span class="fileinput-exists"> Change </span>
+                        <input type="file" name="...">
+                    </span>
+                    <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Default Timepicker</label>
+        <div class="">
+            <div class="input-icon">
+                <i class="fa fa-clock-o"></i>
+                <input type="text" data-show-seconds="true" data-minute-step="1" class="form-control uitime timepicker-default">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label "> Date picker</label>
+        <div class="">
+            <div class="input-group date uidate">
+                <input type="text" class="form-control">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-th"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label ">Without Seconds</label>
+        <div class="">
+            <div class="input-group">
+                <input type="text" class="form-control uitime timepicker-no-seconds">
+
+                <span class="input-group-addon">
+                    <i class="fa fa-clock-o"></i>
+                </span>
+
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label ">24hr Timepicker</label>
+        <div class="">
+            <div class="input-group">
+                <input type="text" data-show-seconds="false" data-show-meridian="false" class="form-control uitime timepicker-24">
+                <span class="input-group-addon">
+                    <i class="fa fa-clock-o"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label ">Clockpicker</label>
+        <div class="input-group uiclock" data-placement="right" data-align="top" data-autoclose="true">
+            <input type="text" class="form-control">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-time"></span>
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Default usage</label>
+        <div>
+            <input type="text" class="form-control uilength" maxlength="25" name="defaultconfig" id="maxlength_defaultconfig">
+            <span class="help-block"> Maxlength is 25 chars. The badge will show up by default when the remaining chars are 10 or less. </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Hue (default)</label>
+        <input type="text" id="hue-demo" class="form-control uicolor" data-control="hue">
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-default">Save changes</button>
+</div>

@@ -1,0 +1,123 @@
+﻿[
+  {
+    "id": 1,
+    "text": "工作桌面",
+    "iconCls": "font-icon icon-home"
+  },
+  {
+    "id": 11,
+    "text": "培训机构",
+    "iconCls": "font-icon icon-graduation",
+    "url": "/edu/school"
+  },
+  {
+    "id": 12,
+    "text": "企业管理",
+    "iconCls": "font-icon icon-trophy",
+    "url": "/edu/company"
+  },
+  {
+    "id": 13,
+    "text": "班级管理",
+    "iconCls": "font-icon icon-layers",
+    "url": "/edu/traingroup"
+  },
+  {
+    "id": 14,
+    "text": "学员管理",
+    "iconCls": "font-icon icon-users",
+    "url": "/edu/student"
+  },
+  {
+    "id": 15,
+    "text": "学员入库",
+    "iconCls": "font-icon icon-user-following",
+    "url": "/edu/StudentStockIn"
+  },
+  {
+    "id": 16,
+    "text": "企业学员管理",
+    "iconCls": "font-icon icon-badge",
+    "url": "/edu/StudentPrepare"
+  },
+  {
+    "id": 17,
+    "text": "学员考试预约",
+    "iconCls": "font-icon icon-plane",
+    "url": "/edu/StudentExam"
+  },
+  {
+    "id": 18,
+    "text": "课件管理",
+    "iconCls": "font-icon fa fa-file-text-o",
+    "url": "/edu/Courseware"
+  },
+  {
+    "id": 19,
+    "text": "题库管理",
+    "iconCls": "font-icon fa fa-file-text-o",
+    "url": "/edu/Question"
+  },
+  {
+    "id": 100,
+    "text": "系统管理",
+    "iconCls": "font-icon fa fa-gears",
+    "state": "closed",
+    "children": [
+      {
+        "id": 2,
+        "text": "组织机构",
+        "iconCls": "font-icon fa fa-file-text-o",
+        "url": "/auth/department"
+      },
+      {
+        "id": 3,
+        "text": "角色管理",
+        "iconCls": "font-icon fa fa-file-text-o",
+        "url": "/auth/role"
+      },
+      {
+        "id": 4,
+        "text": "字典管理",
+        "iconCls": "font-icon fa fa-file-text-o",
+        "url": "/auth/dic"
+      },
+      {
+        "id": 5,
+        "text": "异常管理",
+        "iconCls": "font-icon fa fa-file-text-o",
+        "url": "/auth/excep"
+      },
+      {
+        "id": 6,
+        "text": "登录日志",
+        "iconCls": "font-icon fa fa-file-text-o",
+        "url": "/auth/audit"
+      },
+      {
+        "id": 7,
+        "text": "操作日志",
+        "iconCls": "font-icon fa fa-file-text-o",
+        "url": "/auth/log"
+      },
+      {
+        "id": 8,
+        "text": "系统序列",
+        "iconCls": "font-icon fa fa-file-text-o",
+        "url": "/auth/seq"
+      },
+      {
+        "id": 9,
+        "text": "系统参数",
+        "iconCls": "font-icon fa fa-file-text-o",
+        "url": "/auth/param"
+      },
+      {
+        "id": 10,
+        "text": "系统菜单",
+        "iconCls": "font-icon fa fa-file-text-o",
+        "url": "/auth/menu"
+      }
+    ]
+  }
+]

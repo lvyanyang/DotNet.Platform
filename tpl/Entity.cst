@@ -1,0 +1,79 @@
+﻿<%@ CodeTemplate Language="C#" TargetLanguage="C#" Debug="False" CompilerVersion="v3.5"  ResponseEncoding="UTF-8" Description="生成实体对象" %>
+<%@ Assembly Name="System.Data" %>
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="SchemaExplorer" %>
+<%@ Map Name="CSharpAlias" Src="DbType-CSharp.csmap" Reverse="False"%>
+<%@ Property Name="NameSpace" Type="String" Category="参数" Description="命名空间" Default="Zeniths.HR" %>
+<%@ Property Name="Table" Type="SchemaExplorer.TableSchema" Category="参数" Description="表名" Optional="False" %>
+<%
+string TableRemark = Table.Description.Replace("\n","").Replace("\r","").Replace(" ","");
+string TableName = Table.Name.Replace("\n","").Replace("\r","").Replace(" ","");
+string PKName = string.Empty;
+bool autoIncrement = false;
+if (Table.HasPrimaryKey)
+{
+	PKName = Table.PrimaryKey.MemberColumns[0].Name;
+    autoIncrement = Table.PrimaryKey.MemberColumns[0].ExtendedProperties["CS_IsIdentity"].Value.ToString().ToLower()=="true";
+}
+%>
+// ===============================================================================
+// DotNet.Platform 开发框架 2016 版权所有
+// ===============================================================================
+
+using System;
+using DotNet.Entity;
+
+namespace <%= NameSpace %>.Entity
+{
+    /// <summary>
+    /// <%= TableRemark %>
+    /// </summary>
+    [Table("<%= TableRemark %>")]    
+    public class <%=TableName%>
+    {
+        <% for(int i= 0;i< Table.Columns.Count;i++) { 
+            ColumnSchema column = Table.Columns[i];
+            string columnRemark = column.Description.Replace("\n","").Replace("\r","").Replace(" ","");
+        %>		
+		/// <summary>
+        /// <%= columnRemark %>
+        /// </summary>
+        <% if (Table.HasPrimaryKey && Table.PrimaryKey.MemberColumns[0].Name.Equals(column.Name)){ %>
+        <%if(autoIncrement){ %>
+        [PrimaryKey(true)]
+        <%} else{%>
+        [PrimaryKey]
+        <% } %>
+        [Column("<%= columnRemark %>",false)]
+        <% } else{%>
+		[Column("<%= columnRemark %>")]
+        <% } %>
+        public <%=CSharpAlias[column.SystemType.Name]%><%if(!column.SystemType.Name.Equals("String")) if(column.AllowDBNull) Response.Write("?");%> <%= column.Name%> { get; set; }
+		<% 
+        if(i!=Table.Columns.Count-1) Response.WriteLine();
+        } 
+        %>
+
+        /// <summary>
+        /// 复制对象
+        /// </summary>
+        public <%=TableName%> Clone()
+        {
+            return (<%=TableName%>)MemberwiseClone();
+        }
+    }
+}
+<script runat="template">        
+    public static bool HasColumn(TableSchema table,string name)
+    {
+        for(int i= 0;i< table.Columns.Count;i++) { 
+             ColumnSchema column = table.Columns[i];
+             if(column.Name.Equals(name))
+             {
+                 return true;
+             }
+         }
+        return false;
+    }
+</script>

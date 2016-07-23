@@ -1,0 +1,22 @@
+﻿<div style="width:200px">
+    <ui class="uitree" data-on-select="abs.onSelect" data-url="/www/data/tree.json"></ui>
+</div>
+<button id="meth" class="btn btn-primary">获取</button>
+<script>
+    var abs = function() {
+
+        return {
+            onSelect: function(node) {
+                console.log( node);
+            }
+        }
+    }();
+
+    //$('#meth').click(function() {
+    //    var instance = $('.uitree').uitreei();
+    //    //var node = instance.getSelected();
+    //    //console.log(node);
+    //    var node = instance.find('2');
+    //    instance.select(node.target);
+    //});
+</script>

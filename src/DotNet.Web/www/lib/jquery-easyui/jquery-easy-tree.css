@@ -1,0 +1,337 @@
+﻿
+/***************************Tree***********************************/
+
+.tree {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.tree li {
+  white-space: nowrap;
+}
+.tree li ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.tree-node {
+  height: 18px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.tree-hit {
+  cursor: pointer;
+}
+.tree-expanded,
+.tree-collapsed,
+.tree-folder,
+.tree-file,
+.tree-checkbox,
+.tree-indent {
+  display: inline-block;
+  width: 16px;
+  height: 18px;
+  vertical-align: top;
+  overflow: hidden;
+}
+.tree-expanded {
+  background: url('img/tree_icons.png') no-repeat -18px 0px;
+}
+.tree-expanded-hover {
+  background: url('img/tree_icons.png') no-repeat -50px 0px;
+}
+.tree-collapsed {
+  background: url('img/tree_icons.png') no-repeat 0px 0px;
+}
+.tree-collapsed-hover {
+  background: url('img/tree_icons.png') no-repeat -32px 0px;
+}
+.tree-lines .tree-expanded,
+.tree-lines .tree-root-first .tree-expanded {
+  background: url('img/tree_icons.png') no-repeat -144px 0;
+}
+.tree-lines .tree-collapsed,
+.tree-lines .tree-root-first .tree-collapsed {
+  background: url('img/tree_icons.png') no-repeat -128px 0;
+}
+.tree-lines .tree-node-last .tree-expanded,
+.tree-lines .tree-root-one .tree-expanded {
+  background: url('img/tree_icons.png') no-repeat -80px 0;
+}
+.tree-lines .tree-node-last .tree-collapsed,
+.tree-lines .tree-root-one .tree-collapsed {
+  background: url('img/tree_icons.png') no-repeat -64px 0;
+}
+.tree-line {
+  background: url('img/tree_icons.png') no-repeat -176px 0;
+}
+.tree-join {
+  background: url('img/tree_icons.png') no-repeat -192px 0;
+}
+.tree-joinbottom {
+  background: url('img/tree_icons.png') no-repeat -160px 0;
+}
+.tree-folder {
+  background: url('img/tree_icons.png') no-repeat -208px 0;
+}
+.tree-folder-open {
+  background: url('img/tree_icons.png') no-repeat -224px 0;
+}
+.tree-file {
+  background: url('img/tree_icons.png') no-repeat -240px 0;
+}
+.tree-loading {
+  background: url('img/loading.gif') no-repeat center center;
+}
+.tree-checkbox0 {
+  background: url('img/tree_icons.png') no-repeat -208px -18px;
+}
+.tree-checkbox1 {
+  background: url('img/tree_icons.png') no-repeat -224px -18px;
+}
+.tree-checkbox2 {
+  background: url('img/tree_icons.png') no-repeat -240px -18px;
+}
+.tree-title {
+  font-size: 14px;
+  display: inline-block;
+  text-decoration: none;
+  vertical-align: top;
+  white-space: nowrap;
+  padding: 0 2px;
+  height: 18px;
+  line-height: 18px;
+}
+.tree-node-proxy {
+  font-size: 12px;
+  line-height: 20px;
+  padding: 0 2px 0 20px;
+  border-width: 1px;
+  border-style: solid;
+  z-index: 9900000;
+}
+.tree-dnd-icon {
+  display: inline-block;
+  position: absolute;
+  width: 16px;
+  height: 18px;
+  left: 2px;
+  top: 50%;
+  margin-top: -9px;
+}
+.tree-dnd-yes {
+  background: url('img/tree_icons.png') no-repeat -256px 0;
+}
+.tree-dnd-no {
+  background: url('img/tree_icons.png') no-repeat -256px -18px;
+}
+.tree-node-top {
+  border-top: 1px dotted red !important;
+}
+.tree-node-bottom {
+  border-bottom: 1px dotted red !important;
+}
+.tree-node-append .tree-title {
+  border: 1px dotted red !important;
+}
+.tree-editor {
+  border: 1px solid #ccc;
+  font-size: 12px;
+  height: 14px !important;
+  height: 18px;
+  line-height: 14px;
+  padding: 1px 2px;
+  width: 80px;
+  position: absolute;
+  top: 0;
+}
+.tree-node-proxy {
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #95B8E7;
+}
+.tree-node-hover {
+  background: #eaf2ff;
+  color: #000000;
+}
+.tree-node-selected {
+  background: #ffe48d;
+  color: #000000;
+}
+.tree-node-hidden {
+  display: none;
+}
+
+.font-icon {
+    padding-top: 2px;
+    background-image: none;
+}
+.font-icon-treegrid {
+    padding-top: 3px;
+    background-image: none;
+}
+
+/*.tree span {
+    font-size: 14px;
+}*/
+
+.tree .tree-node {
+    padding: 4px;
+    text-decoration: none;
+    box-sizing: content-box;
+}
+
+.tree li div {
+    border: 1px dashed transparent;
+    margin: 2px 0;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.tree .tree-node-hover {
+    border: 1px dashed #99BBE8;
+    /*color: #416AA3;
+    background: #fcde61;*/
+    cursor: pointer;
+}
+
+.tree .tree-node-selected {
+    border: 1px dashed #99BBE8;
+    /*background: #E0ECFF;
+    color: #416AA3;*/
+    cursor: pointer;
+}
+
+.tree .tree-node-yellow {
+    background: #ffe48d;
+    color: #416AA3;
+    font-weight: bold;
+}
+
+
+/***************************Tree***********************************/
+
+/***************************Menu***********************************/
+
+.menu {
+  position: absolute;
+  margin: 0;
+  padding: 2px;
+  border-width: 1px;
+  border-style: solid;
+  overflow: hidden;
+}
+.menu-inline {
+  position: relative;
+}
+.menu-item {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  border-width: 1px;
+  border-style: solid;
+}
+.menu-text {
+  height: 20px;
+  line-height: 20px;
+  float: left;
+  padding-left: 28px;
+}
+.menu-icon {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 2px;
+  top: 50%;
+  margin-top: -8px;
+}
+.menu-rightarrow {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: 0;
+  top: 50%;
+  margin-top: -8px;
+}
+.menu-line {
+  position: absolute;
+  left: 26px;
+  top: 0;
+  height: 2000px;
+  font-size: 1px;
+}
+.menu-sep {
+  margin: 3px 0px 3px 25px;
+  font-size: 1px;
+}
+.menu-noline .menu-line {
+  display: none;
+}
+.menu-noline .menu-sep {
+  margin-left: 0;
+  margin-right: 0;
+}
+.menu-active {
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+.menu-item-disabled {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  cursor: default;
+}
+.menu-text,
+.menu-text span {
+  font-size: 12px;
+}
+.menu-shadow {
+  position: absolute;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  background: #ccc;
+  -moz-box-shadow: 2px 2px 3px #cccccc;
+  -webkit-box-shadow: 2px 2px 3px #cccccc;
+  box-shadow: 2px 2px 3px #cccccc;
+  filter: progid:DXImageTransform.Microsoft.Blur(pixelRadius=2,MakeShadow=false,ShadowOpacity=0.2);
+}
+.menu-rightarrow {
+  background: url('img/menu_arrows.png') no-repeat -32px center;
+}
+.menu-line {
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #fff;
+}
+.menu-sep {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #fff;
+}
+.menu {
+  background-color: #fafafa;
+  border-color: #ddd;
+  color: #444;
+}
+.menu-content {
+  background: #ffffff;
+}
+.menu-item {
+  border-color: transparent;
+  _border-color: #fafafa;
+}
+.menu-active {
+  border-color: #b7d2ff;
+  color: #000000;
+  background: #eaf2ff;
+}
+.menu-active-disabled {
+  border-color: transparent;
+  background: transparent;
+  color: #444;
+}
+
+/***************************Menu***********************************/

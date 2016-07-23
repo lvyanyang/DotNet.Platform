@@ -1,0 +1,241 @@
+﻿@model TrainGroup
+<div class="modal fade" id="reservation_modal" aria-hidden="true" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-big">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">学员预约 - @Model.Name - @Model.CategoryName</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="tabbable-line">
+                    <ul class="nav nav-tabs" id="reservation_tab">
+                        <li class="active" data-form="#reservation_form">
+                            <a href="#reservationInfo" data-toggle="tab">
+                                待预约信息
+                            </a>
+                        </li>
+                        <li data-form="#un_reservation_form">
+                            <a href="#unReservationInfo" data-toggle="tab">
+                                <span class="color-success">已预约信息</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="reservationInfo">
+                            <div class="search-panel">
+                                <form class="form-horizontal" id="reservation_form">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <input class="form-control" name="Name" type="text" placeholder="请输入学员姓名" title="请输入学员姓名">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input class="form-control" name="IDCardNo" type="text" placeholder="请输入身份证号" title="请输入身份证号">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control uiselect uiselectsubmit" name="CompanyId"
+                                                    data-has-text-field="false">
+                                                @Html.EmptyOption("请选择企业")
+                                                @Html.CompanyOption()
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row search-row">
+                                        <div class="col-md-4">
+                                            <div class="input-group date uidate">
+                                                <input class="form-control" name="CreateStartDate" type="text" placeholder="请选择录入开始日期" title="请选择录入开始日期">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-th"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group date uidate">
+                                                <input class="form-control" name="CreateEndDate" type="text" placeholder="请选择录入结束日期" title="请选择录入结束日期">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-th"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 text-right">
+
+                                            <button class="btn btn-primary" type="submit">
+                                                <i class="fa fa-search"></i> 查询
+                                            </button>
+
+                                            <a class="btn btn-success" id="batch_reservation_student" data-url="@Url.Action("Reservation", new {trainGroupId = Model.Id})">
+                                                <i class="fa fa-plus"></i> 批量预约
+                                            </a>
+
+                                            <a class="btn btn-danger uiwindow" data-url="@Url.Action("ReservationImport", new {trainGroupId = Model.Id})">
+                                                <i class="fa fa-cloud-upload"></i> 上传预约
+                                            </a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="uitable" id="reservation_table" data-url="@Url.Action("_ReservationGrid", new {groupId = Model.Id})" data-form="#reservation_form">
+                                @Html.Action("_ReservationGrid", new { groupId = Model.Id })
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="unReservationInfo">
+                            <div class="search-panel">
+                                <form class="form-horizontal" id="un_reservation_form">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <input class="form-control" name="Name" type="text" placeholder="请输入学员姓名" title="请输入学员姓名">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input class="form-control" name="IDCardNo" type="text" placeholder="请输入身份证号" title="请输入身份证号">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control uiselect uiselectsubmit" name="CompanyId"
+                                                    data-has-text-field="false">
+                                                @Html.EmptyOption("请选择企业")
+                                                @Html.CompanyOption()
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row search-row">
+                                        <div class="col-md-4">
+                                            <div class="input-group date uidate">
+                                                <input class="form-control" name="CreateStartDate" type="text" placeholder="请选择录入开始日期" title="请选择录入开始日期">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-th"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group date uidate">
+                                                <input class="form-control" name="CreateEndDate" type="text" placeholder="请选择录入结束日期" title="请选择录入结束日期">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-th"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 text-right">
+
+                                            <button class="btn btn-primary" type="submit">
+                                                <i class="fa fa-search"></i> 查询
+                                            </button>
+
+                                            <a class="btn btn-success" id="batch_un_reservation_student" data-url="@Url.Action("UnReservation", new {trainGroupId = Model.Id})">
+                                                <i class="fa fa-plus"></i> 批量取消
+                                            </a>
+
+                                            <a class="btn btn-danger uiwindow" data-url="@Url.Action("UnReservationImport", new {trainGroupId = Model.Id})">
+                                                <i class="fa fa-cloud-upload"></i> 上传取消
+                                            </a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="uitable" id="un_reservation_table" data-url="@Url.Action("_UnReservationGrid", new {groupId = Model.Id})" data-form="#un_reservation_form">
+                                @Html.Action("_UnReservationGrid", new { groupId = Model.Id })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    <i class="fa fa-sign-in"></i> 关闭
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    (function () {
+        var $reservation_table = $('#reservation_table');
+        var $un_reservation_table = $('#un_reservation_table');
+        var ajax = function (url, $form) {
+            fx.ajax({
+                url: url,
+                success: function (result) {
+                    $form.find(':submit').click();
+                    if (result.items.length > 1) {
+                        fx.serverResult(result.items);
+                    } else if (result.items[0].message) {
+                        fx.alert(result.items[0].message);
+                    }
+                }
+            });
+        };
+
+        $reservation_table.on('loaded', function () {
+            $(this).find('.reservation-table-student').click(function () {
+                var url = $(this).data('url');
+                var $form = $('#reservation_form');
+                ajax(url, $form);
+            });
+        });
+
+        $un_reservation_table.on('loaded', function () {
+            $(this).find('.un-reservation-table-student').click(function () {
+                var url = $(this).data('url');
+                var $form = $('#un_reservation_form');
+                ajax(url, $form);
+            });
+        });
+
+        $('#batch_reservation_student').on('click', function () {
+            var ids = $reservation_table.uitable().getSelectedIds();
+            if (ids.length == 0) {
+                fx.msg('请选择需要预约的学员');
+                return false;
+            }
+            var url = $(this).data('url');
+            fx.ajax({
+                url: url,
+                data: { studentIds: ids.join() },
+                confirm: '确定要预约选中的 <span class="color-danger"> ' + ids.length + '</span> 个学员吗?',
+                success: function (result) {
+                    $('#reservation_form').find(':submit').click();
+                    if (result.items.length > 1) {
+                        fx.serverResult(result.items);
+                    } else if (result.items[0].message) {
+                        fx.alert(result.items[0].message);
+                    }
+                }
+            });
+        });
+
+        $('#batch_un_reservation_student').on('click', function () {
+            var ids = $un_reservation_table.uitable().getSelectedIds();
+            if (ids.length == 0) {
+                fx.msg('请选择需要取消的学员');
+                return false;
+            }
+            var url = $(this).data('url');
+            fx.ajax({
+                url: url,
+                data: { studentIds: ids.join() },
+                confirm: '确定要取消选中的 <span class="color-danger"> ' + ids.length + '</span> 个学员吗?',
+                success: function (result) {
+                    $('#un_reservation_form').find(':submit').click();
+                    if (result.items.length > 1) {
+                        fx.serverResult(result.items);
+                    } else if (result.items[0].message) {
+                        fx.alert(result.items[0].message);
+                    }
+                }
+            });
+        });
+
+        $('#reservation_tab > li').on('click', function () {
+            var form = $(this).data('form');
+            $(form).find(':submit').click();
+        });
+
+        $('#reservation_modal').on('hide', function () {
+            $('#train_group_form').find(':submit').click();
+        });
+
+    })();
+</script>

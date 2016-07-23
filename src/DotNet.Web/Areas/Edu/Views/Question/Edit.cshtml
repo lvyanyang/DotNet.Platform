@@ -1,0 +1,148 @@
+﻿@model Question
+<form class="form-horizontal uiform" method="post"
+      data-modal="true"
+      data-table=".uitable"
+      data-error-el=".alert-danger"
+      data-on-submit-success="fx.mtfSuccess"
+      action="@Url.Action("Save")">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">@Html.EditStatus("题库")</h4>
+    </div>
+    <div class="modal-body">
+        @Html.AntiForgeryToken()
+        @Html.MarkCreate()
+        @Html.HiddenFor(p => p.Id)
+        @Html.HiddenFor(p => p.CreateDateTime)
+        <div class="alert alert-danger fxhide"></div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                <span class="required"> * </span>
+                题目名称：
+            </label>
+            <div class="col-md-8">
+                <textarea class="form-control" name="@nameof(Model.Name)" data-validate="required: true,maxlength: 1000" data-validate-message="required:'请输入题目名称'" rows="3">@Model.Name</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                <span class="required"> * </span>
+                题目类型：
+            </label>
+            <div class="col-md-8">
+                <select class="form-control uiselect" name="@nameof(Model.QuestType)"
+                        data-validate="required: true"
+                        data-validate-message="required:'请选择题目类型'">
+                    <option></option>
+                    @Html.QuestTypeOption(Model.QuestType)
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                <span class="required"> * </span>
+                从业类型：
+            </label>
+            <div class="col-md-8">
+                <select class="form-control uiselect" name="@nameof(Model.WorkType)"
+                        data-validate="required: true"
+                        data-validate-message="required:'请选择从业类型'">
+                    <option></option>
+                    @Html.TrainCategoryOption(Model.WorkType)
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                <span class="required"> * </span>
+                题目单元：
+            </label>
+            <div class="col-md-8">
+                <select class="form-control uiselect" name="@nameof(Model.QuestUnit)"
+                        data-validate="required: true"
+                        data-validate-message="required:'请选择题目单元'">
+                    <option></option>
+                    @Html.QuestUnitOption(Model.QuestUnit)
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                <span class="required"> * </span>
+                答案A：
+            </label>
+            <div class="col-md-8">
+                <textarea class="form-control" name="@nameof(Model.A)" rows="3" data-validate="required: true,maxlength: 500"
+                       data-validate-message="required:'请输入答案A'">@Model.A</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                答案B：
+            </label>
+            <div class="col-md-8">
+                <textarea class="form-control" name="@nameof(Model.B)" rows="3">@Model.B</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                答案C：
+            </label>
+            <div class="col-md-8">
+                <textarea class="form-control" name="@nameof(Model.C)" rows="3">@Model.C</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                答案D：
+            </label>
+            <div class="col-md-8">
+                <textarea class="form-control" name="@nameof(Model.D)" rows="3">@Model.D</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                <span class="required"> * </span>
+                正确答案：
+            </label>
+            <div class="col-md-8">
+                <input class="form-control" name="@nameof(Model.Answer)" value="@Model.Answer"
+                       data-validate="required: true,maxlength: 50"
+                       data-validate-message="required:'请输入正确答案'"
+                       type="text" autocomplete="off" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                <span class="required"> * </span>
+                分数：
+            </label>
+            <div class="col-md-8">
+                <input class="form-control uispin" name="@nameof(Model.Score)" value="@Model.Score"
+                       data-bts-max="1000"
+                       data-bts-postfix="分"
+                       data-validate="required: true,min:1"
+                       data-validate-message="required:'请输入分数'"
+                       type="text" autocomplete="off" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                备注：
+            </label>
+            <div class="col-md-8">
+                <textarea class="form-control" name="@nameof(Model.Note)" rows="3">@Model.Note</textarea>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">
+            <i class="fa fa-save"></i> 保存
+        </button>
+        <button class="btn btn-default" type="button" data-dismiss="modal">
+            <i class="fa fa-sign-in"></i> 关闭
+        </button>
+    </div>
+</form>

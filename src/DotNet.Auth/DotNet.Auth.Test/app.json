@@ -1,0 +1,12 @@
+﻿{
+  "Database": [
+    {
+      "Name": "dotnet.auth",
+      "ConnectionString": "server=.;uid=sa;pwd=1;database=DotNetAuth"
+    },
+    {
+      "Name": "station",
+      "ConnectionString": "server=.;uid=sa;pwd=1;database=CXStationNet"
+    }
+  ]
+}

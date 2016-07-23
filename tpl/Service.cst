@@ -1,0 +1,206 @@
+﻿<%@ CodeTemplate Language="C#" TargetLanguage="C#" Debug="False" CompilerVersion="v3.5"  ResponseEncoding="UTF-8" Description="生成实体对象" %>
+<%@ Assembly Name="System.Data" %>
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="SchemaExplorer" %>
+<%@ Map Name="CSharpAlias" Src="DbType-CSharp.csmap" Reverse="False"%>
+<%@ Property Name="Area" Type="String" Category="参数" Description="区域" Default="Hr" %>
+<%@ Property Name="NameSpace" Type="String" Category="参数" Description="命名空间" Default="Zeniths.HR" %>
+<%@ Property Name="Table" Type="SchemaExplorer.TableSchema" Category="参数" Description="表名" Optional="False" %>
+<%
+string TableRemark = Table.Description.Replace("\n","").Replace("\r","").Replace(" ","");
+string TableName = Table.Name.Replace("\n","").Replace("\r","").Replace(" ","");
+string pkName = "Id";
+string pkType = "int";
+if(Table.HasPrimaryKey)
+{
+    pkName = Table.PrimaryKey.MemberColumns[0].Name;
+    pkType = CSharpAlias[Table.PrimaryKey.MemberColumns[0].SystemType.Name];
+}
+%>
+// ===============================================================================
+// DotNet.Platform 开发框架 2016 版权所有
+// ===============================================================================
+
+using System.Collections.Generic;
+using System.Linq;
+using <%= NameSpace %>.Entity;
+using DotNet.Collections;
+using DotNet.Extensions;
+using DotNet.Utility;
+
+namespace <%= NameSpace %>.Service
+{
+    /// <summary>
+    /// <%= TableRemark %>服务
+    /// </summary>
+    public class <%=TableName%>Service
+    {
+        private static readonly Cache<string, <%=TableName%>> Cache = new Cache<string, <%=TableName%>>();
+
+        /// <summary>
+        /// 构造服务
+        /// </summary>
+        internal <%=TableName%>Service()
+        {
+            InitCache();
+        }
+
+        /// <summary>
+        /// 初始化缓存
+        /// </summary>
+        public void InitCache()
+        {
+            Cache.Clear().Set(new <%=Area%>Repository<<%=TableName%>>().Query().ToDictionary(p => p.<%= pkName %>, p => p));
+        }
+
+        /// <summary>
+        /// 是否存在指定名称的对象
+        /// </summary>
+        /// <param name="id">主键</param>
+        /// <param name="name">名称</param>
+        /// <returns>如果存在返回false</returns>
+        public BoolMessage ExistsByName(string id, string name)
+        {
+            //var repos = new <%=Area%>Repository<<%=TableName%>>();
+
+            //var has = repos.Exists(p => p.Name == entity.Name && p.Id != entity.Id);
+            //return has ? new BoolMessage(false, "输入xx名称已经存在") : BoolMessage.True;
+
+            //var has = Cache.ValueList().Contains(p => p.Name.Equals(name) && !p.Id.Equals(id));
+            //return has ? new BoolMessage(false, "指定的xx名称已经存在") : BoolMessage.True;
+            return BoolMessage.True;
+        }
+
+        /// <summary>
+        /// 添加对象
+        /// </summary>
+        /// <param name="entity">实体</param>
+        public BoolMessage Create(<%=TableName%> entity)
+        {
+            var repos = new <%=Area%>Repository<<%=TableName%>>();
+            repos.Insert(entity);
+            Cache.Set(entity.<%= pkName %>, entity);
+            return BoolMessage.True;
+        }
+
+        /// <summary>
+        /// 更新对象
+        /// </summary>
+        /// <param name="entity">实体</param>
+        public BoolMessage Update(<%=TableName%> entity)
+        {
+            var repos = new <%=Area%>Repository<<%=TableName%>>();
+            repos.Update(entity);
+            Cache.Set(entity.<%= pkName %>, entity);
+            return BoolMessage.True;
+        }
+
+        /// <summary>
+        /// 保存对象
+        /// </summary>
+        /// <param name="entity">实体</param>
+        /// <param name="isCreate">是否新增</param>
+        public BoolMessage Save(<%=TableName%> entity, bool isCreate)
+        {
+            return isCreate ? Create(entity) : Update(entity);
+        }
+
+        /// <summary>
+        /// 删除对象
+        /// </summary>
+        /// <param name="ids">主键数组</param>
+        public BoolMessage Delete(string[] ids)
+        {
+            var repos = new <%=Area%>Repository<<%=TableName%>>();
+            repos.Delete(ids);
+            Cache.Remove(ids);
+            return BoolMessage.True;
+        }
+
+        /// <summary>
+        /// 获取对象
+        /// </summary>
+        /// <param name="id">主键</param>
+        public <%=TableName%> Get(string id)
+        {
+            //return new <%=Area%>Repository<<%=TableName%>>().Get(id);
+            return Cache.Get(id);
+        }
+
+        /*
+        /// <summary>
+        /// 获取新建序号
+        /// </summary>
+        public int GetNewRowIndex()
+        {
+            return Cache.ValueList().Max(p => p.RowIndex, 1) + 1;
+        }
+
+        /// <summary>
+        /// 获取启用的简单对象集合(已排序)
+        /// </summary>
+        public List<Simple> GetSimpleList()
+        {
+            return Cache.ValueList()
+                .Where(p => p.IsEnabled).ToList()
+                .OrderByAsc(p => p.RowIndex)
+                .Select(p => new Simple(p.Id, p.Name, p.Spell))
+                .ToList();
+        }
+        */
+
+        /// <summary>
+        /// 获取启用的对象集合(已排序)
+        /// </summary>
+        public List<<%=TableName%>> GetList()
+        {
+            //var repos = new <%=Area%>Repository<<%=TableName%>>();
+            //var query = repos.SQL.Where(p => p.IsEnabled == true).OrderByAsc(p => p.SortIndex);
+            //return repos.Query(query).ToList();
+
+            return Cache.ValueList()
+                .Where(p => p.IsEnabled).ToList()
+                .OrderByAsc(p => p.RowIndex);
+        }
+
+        /// <summary>
+        /// 获取对象集合
+        /// </summary>
+        /// <param name="isEnabled">启用状态(null为全部,true为启用,false为禁用)</param>
+        /// <param name="isOrderBy">是否排序</param>
+        public List<<%=TableName%>> GetList(bool? isEnabled = true, bool isOrderBy = true)
+        {
+            var list = Cache.ValueList();
+            if (isEnabled.HasValue)
+            {
+                list = list.Where(p => p.IsEnabled == isEnabled).ToList();
+            }
+            return isOrderBy ? list.OrderByAsc(p => p.RowIndex) : list;
+        }
+
+        /// <summary>
+        /// 获取对象分页集合
+        /// </summary>
+        /// <param name="pageCondition">分页对象</param>
+        /// <param name="name">名称关键字</param>
+        /// <param name="isEnabled">启用</param>
+        public PageList<<%=TableName%>> GetPageList(PaginationCondition pageCondition,
+            string name,bool? isEnabled)
+        {
+            pageCondition.SetDefaultOrder(nameof(<%=TableName%>.RowIndex));
+            var repos = new <%=Area%>Repository<<%=TableName%>>();
+            var query = repos.PageQuery(pageCondition);
+            if (isEnabled.HasValue)
+            {
+                query.Where(p => p.IsEnabled == isEnabled.Value);
+            }
+            if (name.IsNotEmpty())
+            {
+                name = name.Trim();
+                query.Where(p => p.Name.Contains(name) || p.Spell.Contains(name));
+            }
+            return repos.Page(query);
+        }
+    }
+}

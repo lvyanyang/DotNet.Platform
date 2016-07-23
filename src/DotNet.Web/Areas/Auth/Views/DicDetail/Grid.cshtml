@@ -1,0 +1,43 @@
+﻿@model PageList<DicDetail>
+<table class="table table-striped table-bordered table-hover table-manage">
+    <thead>
+        <tr>
+            <th class="w20px">
+                <label><input class="checkbox-check" type="checkbox"><span></span></label>
+            </th>
+            <th data-order="@nameof(DicDetail.Name)">项名称</th>
+            <th data-order="@nameof(DicDetail.Value)">项值</th>
+            <th class="w70px text-center" data-order="@nameof(DicDetail.RowIndex)">序号</th>
+            <th class="w70px text-center" data-order="@nameof(DicDetail.IsEnabled)">状态</th>
+            <th class="w70px text-center">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in Model)
+        {
+            <tr>
+                <td>
+                    <label><input class="checkbox-check" type="checkbox" value="@record.Id"><span></span></label>
+                </td>
+                <td>
+                    <a class="uimodal" data-url="@Url.Action("Details",new {id = record.Id})">
+                        @record.Name
+                    </a>
+                </td>
+                <td>@record.Value</td>
+                <td class="text-center">@record.RowIndex</td>
+                <td class="text-center">@Html.BoolLabel(record.IsEnabled)</td>
+                <td class="text-center">
+                    <a class="color-primary uimodal" title="编辑" data-toggle="tooltip" data-url="@Url.Action("Edit","DicDetail",new {id = record.Id})">
+                        <i class="fa fa-lg fa-edit"></i> 
+                    </a>
+                    &nbsp;
+                    <a class="color-danger tsdelete" title="删除" data-toggle="tooltip" data-url="@Url.Action("Delete","DicDetail",new {id = record.Id})">
+                        <i class="fa fa-lg fa-trash-o"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.RenderPages(Model)

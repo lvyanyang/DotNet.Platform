@@ -1,0 +1,66 @@
+﻿@model Question
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">题库</h4>
+</div>
+<div class="modal-body">
+    <div class="form-body">
+        <table class="table table-bordered table-striped table-details">
+				 <tr>
+					<th class="w100px">名称</th>
+					<td>@Model.Name</td>
+				</tr>
+				 <tr>
+					<th>题目类型</th>
+					<td>@Model.QuestType</td>
+				</tr>
+				 <tr>
+					<th>从业类型</th>
+					<td>@Model.WorkType</td>
+				</tr>
+				 <tr>
+					<th>题目单元</th>
+					<td>@Model.QuestUnit</td>
+				</tr>
+				 <tr>
+					<th>答案A</th>
+					<td>@Model.A</td>
+				</tr>
+				 <tr>
+					<th>答案B</th>
+					<td>@Model.B</td>
+				</tr>
+				 <tr>
+					<th>答案C</th>
+					<td>@Model.C</td>
+				</tr>
+				 <tr>
+					<th>答案D</th>
+					<td>@Model.D</td>
+				</tr>
+				 <tr>
+					<th>正确答案</th>
+					<td>@Model.Answer</td>
+				</tr>
+				 <tr>
+					<th>分数</th>
+					<td>@Model.Score</td>
+				</tr>
+				 <tr>
+					<th>备注</th>
+					<td>@Model.Note</td>
+				</tr>
+				 <tr>
+					<th>创建时间</th>
+					<td>@DateTimeHelper.FormatDateHasSecond(Model.CreateDateTime)</td>
+				</tr>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">
+        <i class="fa fa-sign-in"></i> 关闭
+    </button>
+</div>

@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{786CF068-24A5-46A9-8126-CDD89F558991}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DotNet</RootNamespace>
+    <AssemblyName>DotNet.Utility</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\release\DotNet.Utility.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\EnumCaptionAttribute.cs" />
+    <Compile Include="Attributes\MacroVariableAttribute.cs" />
+    <Compile Include="Collections\BindingListEx.cs" />
+    <Compile Include="Collections\PageList.cs" />
+    <Compile Include="Collections\PagingCollection.cs" />
+    <Compile Include="Configuration\ComponentSetting.cs" />
+    <Compile Include="Configuration\ConfigManager.cs" />
+    <Compile Include="Configuration\JsonConfigFile.cs" />
+    <Compile Include="Configuration\JsonDataFile.cs" />
+    <Compile Include="Configuration\JsonHelper.cs" />
+    <Compile Include="Configuration\SystemDirectory.cs" />
+    <Compile Include="EntityMetadata\Attributes.cs" />
+    <Compile Include="EntityMetadata\ColumnInfo.cs" />
+    <Compile Include="EntityMetadata\EntityColumn.cs" />
+    <Compile Include="EntityMetadata\EntityMetadata.cs" />
+    <Compile Include="EntityMetadata\TableInfo.cs" />
+    <Compile Include="Extensions\DataTableExtensions.cs" />
+    <Compile Include="Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Extensions\PredicateExtensions.cs" />
+    <Compile Include="Helper\AssemblyHelper.cs" />
+    <Compile Include="Helper\CookieHelper.cs" />
+    <Compile Include="Helper\CurrencyManagerHelper.cs" />
+    <Compile Include="Helper\DataTableHelper.cs" />
+    <Compile Include="Helper\DateTimeHelper.cs" />
+    <Compile Include="Helper\DebugHelper.cs" />
+    <Compile Include="Helper\DirHelper.cs" />
+    <Compile Include="Helper\EnumHelper.cs" />
+    <Compile Include="Helper\ExpressionHelper.cs" />
+    <Compile Include="Helper\FileHelper.cs" />
+    <Compile Include="Helper\ImageHelper.cs" />
+    <Compile Include="Helper\IniFileHelper.cs" />
+    <Compile Include="Helper\MacroHelper.cs" />
+    <Compile Include="Helper\NativeMethods.cs" />
+    <Compile Include="Helper\NetWorkHelper.cs" />
+    <Compile Include="Helper\ObjectHelper.cs" />
+    <Compile Include="Helper\PortHelper.cs" />
+    <Compile Include="Helper\ProcessHelper.cs" />
+    <Compile Include="Helper\RandomHelper.cs" />
+    <Compile Include="Helper\ReflectionHelper.cs" />
+    <Compile Include="Helper\RegistryHelper.cs" />
+    <Compile Include="Helper\RmbHelper.cs" />
+    <Compile Include="Helper\SpellHelper.cs" />
+    <Compile Include="Helper\StringHelper.cs" />
+    <Compile Include="Helper\ThreadHelper.cs" />
+    <Compile Include="Helper\TimerHelper.cs" />
+    <Compile Include="Helper\TreeHelper.cs" />
+    <Compile Include="Helper\TypeHelper.cs" />
+    <Compile Include="Helper\ValidateCodeDrawHelper.cs" />
+    <Compile Include="Helper\ValidateHelper.cs" />
+    <Compile Include="Helper\WebHelper.cs" />
+    <Compile Include="Helper\XmlHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\BoolMessage.cs" />
+    <Compile Include="Utility\Cache.cs" />
+    <Compile Include="Utility\ChinaCalendar.cs" />
+    <Compile Include="Utility\DateUnit.cs" />
+    <Compile Include="Utility\InnerAction.cs" />
+    <Compile Include="Utility\KeyValue.cs" />
+    <Compile Include="Utility\MutipleThreadResetEvent.cs" />
+    <Compile Include="Utility\OrderDir.cs" />
+    <Compile Include="Utility\PaginationCondition.cs" />
+    <Compile Include="Utility\RWLock.cs" />
+    <Compile Include="Utility\SafeList.cs" />
+    <Compile Include="Utility\Singleton.cs" />
+    <Compile Include="Utility\SystemMacro.cs" />
+    <Compile Include="Utility\TreeNode.cs" />
+    <Compile Include="Utility\UploadFileInfo.cs" />
+    <Compile Include="Utility\UploadFileSetting.cs" />
+    <Compile Include="Utility\WebClientx.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

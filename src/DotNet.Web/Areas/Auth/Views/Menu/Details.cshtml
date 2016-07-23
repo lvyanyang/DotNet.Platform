@@ -1,0 +1,90 @@
+﻿@model Menu
+<div class="modal fade" aria-hidden="true" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">系统菜单 - @Model.Name</h4>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-bordered table-striped table-details">
+                    <tr>
+                        <th>编码</th>
+                        <td>@Model.Code</td>
+                    </tr>
+                    <tr>
+                        <th>名称</th>
+                        <td>@Model.Name</td>
+                    </tr>
+                    <tr>
+                        <th>简拼</th>
+                        <td>@Model.Spell</td>
+                    </tr>
+                    <tr>
+                        <th>地址</th>
+                        <td>@Model.Url</td>
+                    </tr>
+                    <tr>
+                        <th>样式</th>
+                        <td><i class="@Model.IconCls"></i> @Model.IconCls</td>
+                    </tr>
+                    <tr>
+                        <th>展开</th>
+                        <td>
+                            @if (Model.IsExpand)
+                            {
+                                <span class="label label-success">展开</span>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>公开</th>
+                        <td>
+                            @if (Model.IsExpand)
+                            {
+                                <span class="label label-success">公开</span>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>启用</th>
+                        <td>@Html.BoolLabel(Model.IsEnabled)</td>
+                    </tr>
+                    <tr>
+                        <th>排序路径</th>
+                        <td>@Model.SortPath</td>
+                    </tr>
+                    <tr>
+                        <th>创建者</th>
+                        <td>@Model.CreateUserName</td>
+                    </tr>
+                    <tr>
+                        <th>创建时间</th>
+                        <td>@DateTimeHelper.FormatDateHasSecond(Model.CreateDateTime)</td>
+                    </tr>
+                    <tr>
+                        <th>修改者</th>
+                        <td>@Model.ModifyUserName</td>
+                    </tr>
+                    <tr>
+                        <th>修改时间</th>
+                        <td>@DateTimeHelper.FormatDateHasSecond(Model.ModifyDateTime)</td>
+                    </tr>
+                    <tr>
+                        <th>备注</th>
+                        <td>@Model.Note</td>
+                    </tr>
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    <i class="fa fa-sign-in"></i> 关闭
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

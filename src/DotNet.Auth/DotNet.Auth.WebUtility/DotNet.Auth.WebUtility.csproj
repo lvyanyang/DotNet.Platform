@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E2EEFF2F-0E5D-44F5-96EC-5C2F7E15FC3E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DotNet.Auth.WebUtility</RootNamespace>
+    <AssemblyName>DotNet.Auth.WebUtility</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\release\DotNet.Auth.WebUtility.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\..\..\lib\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AuthExceptionAttribute.cs" />
+    <Compile Include="AuthWebHelper.cs" />
+    <Compile Include="HtmlExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DotNet.Framework\DotNet.Mvc\DotNet.Mvc.csproj">
+      <Project>{6A790C23-5638-4098-AA0D-EA9D4944749B}</Project>
+      <Name>DotNet.Mvc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DotNet.Framework\DotNet.Utility\DotNet.Utility.csproj">
+      <Project>{786CF068-24A5-46A9-8126-CDD89F558991}</Project>
+      <Name>DotNet.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.Auth.Entity\DotNet.Auth.Entity.csproj">
+      <Project>{b4777dbd-8963-4153-895e-011f7ce355b5}</Project>
+      <Name>DotNet.Auth.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.Auth.Service\DotNet.Auth.Service.csproj">
+      <Project>{9b565a89-ad05-4712-ad8e-920ebfd3c113}</Project>
+      <Name>DotNet.Auth.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.Auth.Utility\DotNet.Auth.Utility.csproj">
+      <Project>{A832C7E2-BD55-41D8-A0E6-E7C406C7231B}</Project>
+      <Name>DotNet.Auth.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
