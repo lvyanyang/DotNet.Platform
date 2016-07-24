@@ -129,7 +129,8 @@ namespace DotNet.Entity
         {
             if (string.IsNullOrEmpty(TableInfo.PrimaryKey))
             {
-                throw new ArgumentException($"请指定实体{EntityType.FullName}({TableInfo.Caption})的主键");
+                return null;
+                //throw new ArgumentException($"请指定实体{EntityType.FullName}({TableInfo.Caption})的主键");
             }
             string primaryKeyName = TableInfo.PrimaryKey;
             if (!string.IsNullOrEmpty(primaryKeyName))

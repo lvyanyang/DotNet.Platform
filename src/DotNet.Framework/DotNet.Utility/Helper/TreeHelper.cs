@@ -111,7 +111,10 @@ namespace DotNet.Helper
             foreach (T item in childs)
             {
                 var node = CreateNode(item, defaultIconCls, each);
-                node.IconCls = rootIconCls;
+                if (string.IsNullOrEmpty(node.IconCls))
+                {
+                    node.IconCls = rootIconCls;
+                }
                 BuildTree(entityList, node, meta.TableInfo.PrimaryKeyProperty.Get(item).ToStringOrEmpty(), defaultIconCls, each);
                 list.Add(node);
             }
@@ -146,7 +149,11 @@ namespace DotNet.Helper
             if (childs.Any())
             {
                 node.Children = new List<TreeNode>();
-                node.State = TreeNodeState.Closed;
+                if (!node.State.HasValue)
+                {
+                    node.State = TreeNodeState.Closed;
+                }
+                
             }
             foreach (T item in childs)
             {

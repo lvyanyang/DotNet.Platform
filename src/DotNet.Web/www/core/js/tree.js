@@ -40,7 +40,7 @@
                         } else {
                             node.children = [child];
                         }
-                        node.state = 'closed';
+                        //node.state = 'closed';
                         toDo.push(child);
                     }
                 }

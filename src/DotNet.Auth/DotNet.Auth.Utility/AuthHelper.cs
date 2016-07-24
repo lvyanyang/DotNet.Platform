@@ -99,12 +99,23 @@ namespace DotNet.Auth.Utility
             entity.LoginIPAddr = HttpContext.Current.Request.UserHostAddress;
             entity.LoginDateTime = DateTime.Now;
             entity.User = user;
-            entity.Menus = AuthService.Menu.GetList();
-            entity.Roles = new List<Role>();
-
-            entity.MenuNodes = TreeHelper.BuildTree(entity.Menus, "0",null,null, (n, e) =>
+            if (!string.IsNullOrEmpty(user.DefaultRoleId))
             {
-                n.IconCls = "font-icon icon-badge";
+                entity.Menus = AuthService.Menu.GetMenuListByRoleId(user.DefaultRoleId);
+                entity.Roles = new List<Role>();
+
+                var roleEntity = AuthService.Role.Get(user.DefaultRoleId);
+                if (roleEntity != null)
+                {
+                    entity.Roles.Add(roleEntity);
+                }
+            }
+            if (user.IsAdmin)
+            {
+                entity.Menus = AuthService.Menu.GetList();
+            }
+            entity.MenuNodes = TreeHelper.BuildTree(entity.Menus, "0", null, "font-icon fa fa-file-text-o", (n, e) =>
+            {
                 if (e.IconCls.IsNotEmpty())
                 {
                     n.IconCls = e.IconCls;
@@ -113,16 +124,8 @@ namespace DotNet.Auth.Utility
                 {
                     n.State = DotNet.Utility.TreeNodeState.Open;
                 }
+                n.Url = e.Url;
             });
-
-            //if (!string.IsNullOrEmpty(user.DefaultRoleId))
-            //{
-            //    var roleEntity = AuthService.Role.Get(user.DefaultRoleId);
-            //    if (roleEntity != null)
-            //    {
-            //        entity.Roles.Add(roleEntity);
-            //    }
-            //}
             return entity;
         }
 

@@ -41,7 +41,7 @@
                                 <input class="form-control" name="@nameof(Model.Code)" value="@Model.Code"
                                        data-validate="required: true,maxlength: 100"
                                        data-validate-message="required:'请输入编码'"
-                                       type="text" autocomplete="off"/>
+                                       type="text" autocomplete="off" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -53,16 +53,7 @@
                                 <input class="form-control" name="@nameof(Model.Name)" value="@Model.Name"
                                        data-validate="required: true,maxlength: 100"
                                        data-validate-message="required:'请输入名称'"
-                                       type="text" autocomplete="off"/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-3">
-                                地址：
-                            </label>
-                            <div class="col-md-8">
-                                <textarea class="form-control" name="@nameof(Model.Url)" rows="3">@Model.Url</textarea>
+                                       type="text" autocomplete="off" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -71,9 +62,18 @@
                             </label>
                             <div class="col-md-8">
                                 <input class="form-control" name="@nameof(Model.IconCls)" value="@Model.IconCls"
-                                       type="text" autocomplete="off"/>
+                                       type="text" autocomplete="off" />
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">
+                                地址：
+                            </label>
+                            <div class="col-md-8">
+                                <textarea class="form-control" name="@nameof(Model.Url)" rows="3">@Model.Url</textarea>
+                            </div>
+                        </div>
+                        
                         <div class="form-group">
                             <label class="control-label col-md-3">
                                 选项：
@@ -84,19 +84,19 @@
                                         <input class="uicheck"
                                                name="@nameof(Model.IsEnabled)"
                                                value="true" type="checkbox"
-                                               @Html.IsChecked(Model.IsEnabled)/>
+                                               @Html.IsChecked(Model.IsEnabled) />
                                         <span>启用</span>
                                     </label>
                                     <label class="checkbox-inline">
                                         <input class="uicheck"
                                                name="@nameof(Model.IsPublic)" value="true"
-                                               type="checkbox" @Html.IsChecked(Model.IsPublic)/>
+                                               type="checkbox" @Html.IsChecked(Model.IsPublic) />
                                         <span>公开</span>
                                     </label>
                                     <label class="checkbox-inline">
                                         <input class="uicheck"
                                                name="@nameof(Model.IsExpand)" value="true"
-                                               type="checkbox" @Html.IsChecked(Model.IsExpand)/>
+                                               type="checkbox" @Html.IsChecked(Model.IsExpand) />
                                         <span>展开</span>
                                     </label>
                                 </div>

@@ -48,17 +48,19 @@
         </table>
     </div>
 
-    <table class="treegrid" data-url="@Url.Action("Tree")" data-details-url="@Url.Action("Details")">
+    <table class="treegrid" data-url="@Url.Action("Tree")" 
+           data-details-url="@Url.Action("Details")"
+           data-parent-url="@Url.Action("SaveParent")"
+           data-sort-url="@Url.Action("SaveSort")">
         <thead>
             <tr>
                 <th data-options="field:'Name',title:'名称'" width="200"></th>
                 <th data-options="field:'Code',title:'编码'" width="150"></th>
-                <th data-options="field:'iconCls',title:'图标'" width="200"></th>
                 <th data-options="field:'Url',title:'地址'" width="250"></th>
                 <th data-options="field:'IsEnabled',title:'有效',align: 'center', fixed: true,formatter: fx.boolColumnFormatter" width="50"></th>
                 <th data-options="field:'IsPublic',title:'公共',align: 'center', fixed: true,formatter: fx.boolColumnFormatter" width="50"></th>
                 <th data-options="field:'IsExpand',title:'展开',align: 'center', fixed: true,formatter: fx.boolColumnFormatter" width="50"></th>
-                <th data-options="field:'Note',title:'备注'" width="200"></th>
+                <th data-options="field:'Note',title:'备注'" width="100"></th>
             </tr>
         </thead>
     </table>

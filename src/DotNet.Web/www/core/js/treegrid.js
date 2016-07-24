@@ -15,7 +15,7 @@
         var getSelectedTreeNode = function (self) {
             var node = self.$treegridEl.treegrid('getSelected');
             if (!node) {
-                fx.alert('请先选择节点');
+                fx.msg('请先选择节点');
                 return null;
             }
             return node;
@@ -107,12 +107,14 @@
                 },
                 onContextMenu: function (e, node) {
                     e.preventDefault();
-                    $(this).treegrid('expand', node.Id);
-                    $(this).treegrid('select', node.Id);
-                    self.$menuEl.menu('show', {
-                        left: e.pageX,
-                        top: e.pageY
-                    });
+                    if (node) {
+                        $(this).treegrid('expand', node.Id);
+                        $(this).treegrid('select', node.Id);
+                        self.$menuEl.menu('show', {
+                            left: e.pageX,
+                            top: e.pageY
+                        });
+                    }
                 },
                 onDblClickRow: function (row) {
                     var url = $(this).data("detailsUrl");
@@ -129,6 +131,8 @@
                     dropParentId = sourceRow._parentId;
                 },
                 onDrop: function (targetRow, sourceRow, point) {
+                    var saveParentUrl = $(this).data('parentUrl');
+                    var updateSortPathUrl = $(this).data('sortUrl');
                     var id = sourceRow.Id;
                     var newParentId;
                     if (point == 'append') {
@@ -149,25 +153,23 @@
                     var ids = [];
                     ids.push(newParentId);
 
-                    var options = treeControl.treegrid('options');
-                    var idField = options.idField;
                     var data = {};
                     $.each(ids, function (i, v) {
-                        var row = treeControl.treegrid('find', v);
+                        var row = self.$treegridEl.treegrid('find', v);
                         if (row == null) {
-                            var sz = treeControl.treegrid('getRoots');
+                            var sz = self.$treegridEl.treegrid('getRoots');
                             $.each(sz, function (index, value) {
-                                data[value.Id] = (index.toString()).FixLengthString(4, '0');
+                                data[value.Id] = fx.fixLenString(index.toString(), 4, '0');
                             });
                         } else if (row.children) {
                             $.each(row.children, function (index, value) {
-                                data[value.Id] = xci.core.GetNodeSortPath(treeControl, value.Id, idField);
+                                data[value.Id] = self.getNodeSortPath(value.Id);
                             });
                         }
                     });
                     $.post(updateSortPathUrl, data, function (result) {
                         if (!result.success) {
-                            xci.core.alert(result.message);
+                            fx.alert(result.message);
                         }
                     });
                 },
@@ -183,6 +185,34 @@
                 }
             });
         };
+
+        /**
+         * 获取数节点的排序路径
+         * @param id 节点Id
+         */
+        UITreeGrid.prototype.getNodeSortPath = function (id) {
+            if (!id) {
+                return '';
+            }
+            var parentNode = this.$treegridEl.treegrid('getParent', id);
+            if (parentNode != null) {
+                var pstring = this.getNodeSortPath(parentNode.Id);
+                return pstring + fx.fixLenString(this.getNodeIndex(id, parentNode.children), 4, '0');
+            } else {
+                return fx.fixLenString(this.getNodeIndex(id, this.$treegridEl.treegrid('getRoots')), 4, '0');
+            }
+        };
+
+        UITreeGrid.prototype.getNodeIndex = function (id, nodes) {
+            var nodeIndex = -1;
+            $.each(nodes, function (index, value) {
+                if (value.Id == id) {
+                    nodeIndex = index;
+                    return false;
+                }
+            });
+            return nodeIndex.toString();
+        }
 
         UITreeGrid.prototype.initMenu = function () {
             var self = this;

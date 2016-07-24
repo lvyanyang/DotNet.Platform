@@ -13,7 +13,7 @@
             <th class="text-center w160px" data-order="@nameof(Role.CreateDateTime)">创建时间</th>
             <th class="text-center w100px" data-order="@nameof(Role.ModifyUserName)">修改者</th>
             <th class="text-center w160px" data-order="@nameof(Role.ModifyDateTime)">修改时间</th>
-            <th class="text-center w70px">操作</th>
+            <th class="text-center w90px">操作</th>
         </tr>
     </thead>
     <tbody>
@@ -36,11 +36,14 @@
                 <td class="text-center">@record.ModifyUserName</td>
                 <td class="text-center">@DateTimeHelper.FormatDateHasSecond(record.ModifyDateTime)</td>
                 <td class="text-center">
+                    <a class="color-success uiwindow" data-toggle="tooltip" title="权限"
+                       data-url="@Url.Action("Permission", new {id = record.Id})">
+                        <i class="fa fa-lg fa-key"></i>
+                    </a>
                     <a class="color-primary uimodal" data-toggle="tooltip" title="编辑"
                        data-url="@Url.Action("Edit", new {id = record.Id})">
                         <i class="fa fa-lg fa-edit"></i>
                     </a>
-                    &nbsp;
                     <a class="color-danger tsdelete" data-toggle="tooltip" title="删除"
                        data-url="@Url.Action("Delete", new {id = record.Id})">
                         <i class="fa fa-lg fa-trash-o"></i>

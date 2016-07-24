@@ -1,0 +1,75 @@
+﻿@model Role
+<div class="modal fade" id="role_permission" aria-hidden="true" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">权限设置 - @Model.Name</h4>
+            </div>
+            <div class="modal-body">
+
+                <ul class="menutree" fit="true" data-url="@Url.Action("Menu",new { roleId = Model.Id })"></ul>
+
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary" id="save_permission" data-url="@Url.Action("PermissionSave")">
+                    <i class="fa fa-save"></i> 保存
+                </a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    <i class="fa fa-sign-in"></i> 关闭
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#role_permission').on('show', function () {
+        var $tree = $('.menutree');
+        $tree.uitree({
+            url: $tree.data('url'),
+            animate: false,
+            checkbox: true,
+            cascadeCheck: false,
+            onLoadSuccess: function () {
+                $.each($tree.tree('getChecked'), function (i, v) {
+                    $(v.target).find('.tree-title').addClass('tree-node-yellow');
+                    $tree.tree('expandTo', v.target);
+                });
+                $tree.tree('options').cascadeCheck = true;
+            },
+            onCheck: function (node, checked) {
+                if (checked) {
+                    $(node.target).find('.tree-title').addClass('tree-node-yellow');
+                } else {
+                    $(node.target).find('.tree-title').removeClass('tree-node-yellow');
+                }
+            }
+        });
+    });
+
+    $('#save_permission').click(function () {
+        var url = $(this).data('url');
+        var $tree = $('.menutree');
+        var nodes = $tree.tree('getChecked', ['checked', 'indeterminate']);
+        var id = [];
+        $.each(nodes, function (i, v) {
+            id.push(v.id);
+        });
+
+        fx.ajax({
+            url: url,
+            data: { roleId: '@Model.Id', menuids: id.join() },
+            success: function (result) {
+                if (result.success) {
+                    $('#role_permission').modal('hide');
+                } else {
+                    fx.alert(result.message);
+                }
+            }
+        })
+
+    });
+
+</script>

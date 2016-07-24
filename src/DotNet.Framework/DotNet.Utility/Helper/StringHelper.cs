@@ -488,10 +488,10 @@ namespace DotNet.Helper
         public static string[] ConvertStringToArray(string text, string delimeter = ",")
         {
             if (string.IsNullOrEmpty(text))
-                return null;
+                return new string[0];
 
             string[] tokens = text.Split(new[] { delimeter }, StringSplitOptions.RemoveEmptyEntries);
-            return tokens;
+            return tokens?? new string[0];
         }
 
         /// <summary>
@@ -639,7 +639,7 @@ namespace DotNet.Helper
             {
                 return string.Empty;
             }
-            return SpellHelper.GetSpell(str.Substring(0,1));
+            return SpellHelper.GetSpell(str.Substring(0, 1));
         }
 
         /// <summary>
@@ -649,7 +649,7 @@ namespace DotNet.Helper
         /// <param name="end">结束</param>
         /// <param name="spliter">分割符号</param>
         /// <returns></returns>
-        public static string GetSplitStringByRange(int start, int end,string spliter = ",")
+        public static string GetSplitStringByRange(int start, int end, string spliter = ",")
         {
             StringBuilder sb = new StringBuilder();
             for (int i = start; i <= end; i++)
@@ -759,7 +759,7 @@ namespace DotNet.Helper
         /// <param name="maxLen">最大长度</param>
         /// <param name="suffix">指定的字符,例如...</param>
         /// <returns>截取之后的字符串</returns>
-        public static string SubStringB(string text, int maxLen, string suffix="...")
+        public static string SubStringB(string text, int maxLen, string suffix = "...")
         {
             if (string.IsNullOrEmpty(text))
                 return text;

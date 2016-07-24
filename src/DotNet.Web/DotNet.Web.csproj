@@ -385,6 +385,7 @@
     <Content Include="Areas\Edu\Views\Question\Grid.cshtml" />
     <Content Include="Areas\Edu\Views\Question\Index.cshtml" />
     <Content Include="Areas\Edu\Views\Question\Import.cshtml" />
+    <Content Include="Areas\Auth\Views\Role\Permission.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <Content Include="www\lib\fonts\fontawesome-webfont.eot" />
     <Content Include="www\lib\fonts\fontawesome-webfont.ttf" />

@@ -43,6 +43,7 @@
     <Compile Include="LogService.cs" />
     <Compile Include="MenuService.cs" />
     <Compile Include="MessageService.cs" />
+    <Compile Include="ObjectMapService.cs" />
     <Compile Include="ParamService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeqService.cs" />

@@ -7,6 +7,9 @@ using DotNet.Auth.Entity;
 using DotNet.Collections;
 using DotNet.Extensions;
 using DotNet.Utility;
+using DotNet.Edu.Entity;
+using DotNet.Edu.Service;
+using DotNet.Data.Extensions;
 
 namespace DotNet.Auth.Service
 {
@@ -77,6 +80,42 @@ namespace DotNet.Auth.Service
         public BoolMessage Save(Role entity, bool isCreate)
         {
             return isCreate ? Create(entity) : Update(entity);
+        }
+
+        public string[] GetRoleMenus(string roleId)
+        {
+            string objectId = roleId;
+            string objectName = "Role";
+            string targetName = "Menu";
+            var service = new ObjectMapService();
+            var menuIds = service.GetTargetIds(objectName,objectId, targetName);
+            return menuIds;
+        }
+
+        /// <summary>
+        /// 保存角色菜单对应表
+        /// </summary>
+        /// <param name="roleId">角色主键</param>
+        /// <param name="menuIds">菜单主键字符串</param>
+        public BoolMessage SaveRoleMenus(string roleId, string menuIds)
+        {
+            string objectId = roleId;
+            string objectName = "Role";
+            string targetName = "Menu";
+            var list = new List<ObjectMap>();
+            foreach (var item in menuIds.SplitToArray())
+            {
+                list.Add(new ObjectMap
+                {
+                    ObjectId = objectId,
+                    ObjectName = objectName,
+                    TargetId = item,
+                    TargetName = targetName
+                });
+            }
+            var service = new ObjectMapService();
+            service.Delete(objectName, objectId);
+            return service.Create(list);
         }
 
         /// <summary>

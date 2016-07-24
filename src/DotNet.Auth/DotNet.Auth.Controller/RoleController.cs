@@ -85,5 +85,33 @@ namespace DotNet.Auth.Controllers
         {
             return NotFound("获取 角色信息 错误", $"无法找到 主键 = {id} 的角色信息");
         }
+
+        public ActionResult Menu(string roleId)
+        {
+            var menuIds = AuthService.Role.GetRoleMenus(roleId);
+            var nodes = AuthService.Menu.GetNodeList(false);
+            foreach (var item in nodes)
+            {
+                if (Array.IndexOf(menuIds, item.Id) > -1)
+                {
+                    item.Checked = true;
+                }
+            }
+            return Json(nodes);
+        }
+
+        public ActionResult Permission(string id)
+        {
+            var entity = AuthService.Role.Get(id);
+            if (entity == null) return NotFound(id);
+            return View(entity);
+        }
+
+        public ActionResult PermissionSave(string roleId, string menuIds)
+        {
+            var result = AuthService.Role.SaveRoleMenus(roleId, menuIds);
+            return Json(result);
+        }
+
     }
 }

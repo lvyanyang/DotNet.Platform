@@ -158,6 +158,55 @@ namespace DotNet.Auth.Service
         }
 
         /// <summary>
+        /// 获取对象节点集合
+        /// </summary>
+        public List<TreeNode> GetNodeList(bool hasRoot = true, string[] menuIds = null)
+        {
+            var query = Cache.ValueList()
+                .Where(p => p.IsEnabled == true || p.IsPublic == true);
+            if (menuIds != null && menuIds.Length > 0)
+            {
+                query = query.Where(p => p.Id.InArrayString(menuIds));
+            }
+            var list = query.ToList().OrderByAsc(p => p.SortPath);
+            var nodeList = TreeHelper.CreateNodeList(list, "font-icon fa fa-bookmark-o", (n, e) =>
+            {
+                if (e.IconCls.IsNotEmpty())
+                {
+                    n.IconCls = e.IconCls;
+                }
+                if (e.IsExpand)
+                {
+                    n.State = TreeNodeState.Open;
+                }
+                //else
+                //{
+                //    n.State = TreeNodeState.Closed;
+                //}
+            });
+            if (hasRoot)
+            {
+                var root = TreeHelper.CreateRootNodet("系统菜单", "font-icon fa fa-bookmark-o");
+                root.State = TreeNodeState.Open;
+                nodeList.Insert(0, root);
+            }
+            return nodeList;
+        }
+
+        /// <summary>
+        /// 获取启用的菜单对象集合
+        /// </summary>
+        public List<Menu> GetMenuListByRoleId(string roleId)
+        {
+            var menuIds = AuthService.Role.GetRoleMenus(roleId);
+            if (menuIds == null || menuIds.Length == 0) return new List<Menu>();
+            return Cache.ValueList()
+                .Where(p => p.Id.InArray(menuIds))
+                .ToList().OrderByAsc(p => p.SortPath);
+        }
+
+
+        /// <summary>
         /// 获取启用的对象集合
         /// </summary>
         public List<Menu> GetList(string name = null)
@@ -166,7 +215,10 @@ namespace DotNet.Auth.Service
             {
                 return Cache.ValueList().OrderByAsc(p => p.SortPath);
             }
-            return Cache.ValueList().Where(p => p.Name.Contains(name) || (!string.IsNullOrEmpty(p.Spell)&& p.Spell.Contains(name))).ToList().OrderByAsc(p => p.SortPath);
+            return Cache.ValueList()
+                .Where(p => p.Name.Contains(name)
+                    || (!string.IsNullOrEmpty(p.Spell) && p.Spell.Contains(name)))
+                .ToList().OrderByAsc(p => p.SortPath);
         }
 
         /// <summary>
