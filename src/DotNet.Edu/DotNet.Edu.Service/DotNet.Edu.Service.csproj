@@ -47,9 +47,11 @@
     <Compile Include="Edu.cs" />
     <Compile Include="Exam.cs" />
     <Compile Include="ExamUserService.cs" />
+    <Compile Include="PeriodDetailsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionService.cs" />
     <Compile Include="SchoolService.cs" />
+    <Compile Include="StudentAuditsService.cs" />
     <Compile Include="StudentLogService.cs" />
     <Compile Include="StudentService.cs" />
     <Compile Include="TrainGroupService.cs" />

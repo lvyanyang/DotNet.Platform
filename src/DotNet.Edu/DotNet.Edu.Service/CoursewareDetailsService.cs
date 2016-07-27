@@ -60,7 +60,7 @@ namespace DotNet.Edu.Service
         }
 
         /// <summary>
-        /// 获取启用的对象集合(已排序)
+        /// 获取对象集合(已排序)
         /// </summary>
         public List<CoursewareDetails> GetList(string coursewareId)
         {

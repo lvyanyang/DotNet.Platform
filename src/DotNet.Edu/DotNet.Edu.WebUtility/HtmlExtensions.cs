@@ -9,6 +9,7 @@ using DotNet.Edu.Service;
 using DotNet.Edu.Utility;
 using DotNet.Extensions;
 using DotNet.Helper;
+using System;
 
 namespace DotNet.Edu.WebUtility
 {
@@ -147,6 +148,27 @@ namespace DotNet.Edu.WebUtility
                     return Mvc.HtmlExtensions.LabelSuccess(helper, record.StatusName);
             }
             return Mvc.HtmlExtensions.LabelPrimary(helper, record.StatusName);
+        }
+
+        public static MvcHtmlString IsActiveStudentMenu(this HtmlHelper helper, string action, string controller)
+        {
+            var dic = helper.ViewContext.RouteData.Values;
+            string _controller = string.Empty;
+            string _action = string.Empty;
+            if (dic.ContainsKey("controller"))
+            {
+                _controller = dic["controller"].ToStringOrEmpty();
+            }
+            if (dic.ContainsKey("action"))
+            {
+                _action = dic["action"].ToStringOrEmpty();
+            }
+            if (_controller.Equals(controller, StringComparison.OrdinalIgnoreCase) &&
+                _action.Equals(action, StringComparison.OrdinalIgnoreCase))
+            {
+                return MvcHtmlString.Create("h");
+            }
+            return MvcHtmlString.Empty;
         }
     }
 }

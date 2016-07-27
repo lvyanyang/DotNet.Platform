@@ -22,7 +22,7 @@ namespace DotNet.Helper
         private int _padding = 1;
 
         /// <summary>
-        /// 验证码字体大小(为了显示扭曲效果，默认30像素，可以自行修改)
+        /// 验证码字体大小(为了显示扭曲效果，默认14像素，可以自行修改)
         /// </summary>
         public int FontSize
         {

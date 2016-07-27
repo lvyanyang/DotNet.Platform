@@ -51,6 +51,7 @@
     <Compile Include="Question.cs" />
     <Compile Include="School.cs" />
     <Compile Include="Student.cs" />
+    <Compile Include="StudentAudits.cs" />
     <Compile Include="StudentLog.cs" />
     <Compile Include="StudentSimple.cs" />
     <Compile Include="StudentSearchParam.cs" />

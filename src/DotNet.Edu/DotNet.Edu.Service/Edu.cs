@@ -65,6 +65,10 @@ namespace DotNet.Edu.Service
         /// </summary>
         public static QuestionService Question { get; } = new QuestionService();
 
+        /// <summary>
+        /// 学员登录日志服务
+        /// </summary>
+        public static StudentAuditsService StudentAudits { get; } = new StudentAuditsService();
 
         ///// <summary>
         ///// 学时明细服务

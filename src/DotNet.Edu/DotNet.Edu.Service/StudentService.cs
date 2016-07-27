@@ -47,7 +47,9 @@ namespace DotNet.Edu.Service
         /// <param name="entity">实体</param>
         public BoolMessage Create(Student entity)
         {
-            if(entity.IDCardNo.IsEmpty()) throw new ArgumentException("请输入学员身份证号码");
+            if (entity.IDCardNo.IsEmpty()) throw new ArgumentException("请输入学员身份证号码");
+            if (entity.IDCardNo.Length < 15) throw new ArgumentException("身份证号码必须是15或者18位");
+
             var user = AuthHelper.GetSessionUser();
             var repos = new EduRepository<Student>();
             if (user.IsCompany)
@@ -55,6 +57,7 @@ namespace DotNet.Edu.Service
                 entity.CompanyId = user.User.CompanyId;
                 entity.CompanyName = user.User.CompanyName;
             }
+            entity.Password = StringHelper.EncryptString(entity.IDCardNo.Substring(entity.IDCardNo.Length - 6));
             entity.CreateDateTime = DateTime.Now;
             entity.Status = user.IsCompany ? 0 : 1; //如果是企业状态为预报名状态,如果是培训机构为报名状态
             entity.TrainCycle = GetStudentTrainCycle(entity.IDCardNo);
@@ -154,16 +157,39 @@ namespace DotNet.Edu.Service
             return isCreate ? Create(entity) : Update(entity);
         }
 
-        ///// <summary>
-        ///// 删除对象
-        ///// </summary>
-        ///// <param name="ids">主键数组</param>
-        //public BoolMessage Delete(string[] ids)
-        //{
-        //    var repos = new EduRepository<Student>();
-        //    repos.Delete(ids);
-        //    return BoolMessage.True;
-        //}
+        // <summary>
+        /// 学员登录
+        /// </summary>
+        /// <param name="account">账号</param>
+        /// <param name="password">密码(明文)</param>
+        /// <returns>操作成功返回True</returns>
+        public BoolMessage Login(string account, string password)
+        {
+            account = account.Trim();
+            var entity = GetByIDCardNoOrMobile(account);
+            if (entity == null)
+            {
+                return new BoolMessage(false, "无效的账号");
+            }
+
+            #region 检测条件
+
+            var encryptedPwd = StringHelper.EncryptString(password);
+            if (string.IsNullOrEmpty(entity.Password) || !entity.Password.Equals(encryptedPwd))
+            {
+                return new BoolMessage(false, "账号密码错误");
+            }
+
+            if (entity.Status != 2)
+            {
+                return new BoolMessage(false, "此学员还没有开通学习权限,请联系学校管理员");
+            }
+
+            #endregion
+
+            return new BoolMessage(true);
+        }
+
 
         /// <summary>
         /// 获取对象
@@ -172,6 +198,20 @@ namespace DotNet.Edu.Service
         public Student Get(string id)
         {
             return new EduRepository<Student>().Get(id);
+        }
+
+        /// <summary>
+        /// 获取学员对象使用身份证或者手机号码
+        /// </summary>
+        /// <param name="studentAccount">学员账号</param>
+        public Student GetByIDCardNoOrMobile(string studentAccount)
+        {
+            var repos = new EduRepository<Student>();
+            if (studentAccount.Length == 11)
+            {
+                return repos.Get(p => p.MobilePhone == studentAccount);
+            }
+            return repos.Get(p => p.IDCardNo == studentAccount);
         }
 
         /// <summary>
@@ -239,6 +279,11 @@ namespace DotNet.Edu.Service
                     results.Add(new BoolMessage(false, "请指定身份证号码"));
                     continue;
                 }
+                if (entity.IDCardNo.Length < 15)
+                {
+                    results.Add(new BoolMessage(false, "身份证号码必须是15或者18位"));
+                    continue;
+                }
                 if (entity.SchoolName.IsEmpty())
                 {
                     results.Add(new BoolMessage(false, "请指定培训机构"));
@@ -294,6 +339,7 @@ namespace DotNet.Edu.Service
                     entity.CompanyName = user.User.CompanyName;
                 }
                 entity.Id = StringHelper.Guid();
+                entity.Password = StringHelper.EncryptString(entity.IDCardNo.Substring(entity.IDCardNo.Length - 6));
                 entity.Spell = entity.Name.Spell();
                 entity.CreateDateTime = DateTime.Now;
                 entity.Status = user.IsCompany ? 0 : 1; //如果是企业状态为预报名状态,如果是培训机构为报名状态

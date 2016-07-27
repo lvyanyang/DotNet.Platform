@@ -80,7 +80,7 @@ namespace DotNet.Edu.Controllers
 
         public ActionResult Export()
         {
-            return Export(EduService.Courseware.GetList());
+            return Export(EduService.Courseware.GetList(null));
         }
 
         private ActionResult NotFound(string id)

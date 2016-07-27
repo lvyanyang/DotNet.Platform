@@ -169,6 +169,26 @@ namespace DotNet.Mvc
             return WebHelper.GetRouteValues(helper.ViewContext.RouteData.Values, addValues, true, true, removeNames);
         }
 
+        public static string GetCurrentController(this HtmlHelper helper)
+        {
+            var dic = helper.ViewContext.RouteData.Values;
+            if (dic.ContainsKey("controller"))
+            {
+                return dic["controller"].ToStringOrEmpty();
+            }
+            return string.Empty;
+        }
+
+        public static string GetCurrentAction(this HtmlHelper helper)
+        {
+            var dic = helper.ViewContext.RouteData.Values;
+            if (dic.ContainsKey("action"))
+            {
+                return dic["action"].ToStringOrEmpty();
+            }
+            return string.Empty;
+        }
+        
         /// <summary>
         /// IIF函数
         /// </summary>
@@ -199,6 +219,18 @@ namespace DotNet.Mvc
                 return MvcHtmlString.Create("&nbsp;");
             }
             return MvcHtmlString.Create(value.ToStringOrEmpty());
+        }
+
+        /// <summary>
+        /// 输出字符串
+        /// </summary>
+        public static MvcHtmlString WriteValue(this HtmlHelper helper, bool result,string value)
+        {
+            if (result)
+            {
+                return MvcHtmlString.Create(value);
+            }
+            return MvcHtmlString.Empty;
         }
 
         /// <summary>

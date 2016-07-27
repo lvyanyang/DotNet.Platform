@@ -28,6 +28,12 @@ namespace DotNet.Edu.Entity
         public string Name { get; set; }
 
         /// <summary>
+        /// 密码
+        /// </summary>
+        [Column("密码")]
+        public string Password { get; set; }
+
+        /// <summary>
         /// 简拼
         /// </summary>
         [Column("简拼")]

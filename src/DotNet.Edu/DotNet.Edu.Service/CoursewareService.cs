@@ -108,7 +108,7 @@ namespace DotNet.Edu.Service
         {
             return Cache.Get(id);
         }
-        
+
         /// <summary>
         /// 获取新建序号
         /// </summary>
@@ -127,13 +127,17 @@ namespace DotNet.Edu.Service
                 .Select(p => new Simple(p.Id, p.Name, p.Spell))
                 .ToList();
         }
-       
+
 
         /// <summary>
-        /// 获取启用的对象集合(已排序)
+        /// 获取对象集合(已排序)
         /// </summary>
-        public List<Courseware> GetList()
+        public List<Courseware> GetList(int? workType)
         {
+            if (workType.HasValue)
+            {
+                return Cache.ValueList().Where(p => p.WorkType == workType).ToList().OrderByAsc(p => p.RowIndex);
+            }
             return Cache.ValueList().OrderByAsc(p => p.RowIndex);
         }
 
@@ -145,7 +149,7 @@ namespace DotNet.Edu.Service
         /// <param name="workType">从业类型</param>
         /// <param name="courseType">课件类型</param>
         public PageList<Courseware> GetPageList(PaginationCondition pageCondition,
-            string name,int? workType, int? courseType)
+            string name, int? workType, int? courseType)
         {
             pageCondition.SetDefaultOrder(nameof(Courseware.RowIndex));
             var repos = new EduRepository<Courseware>();
