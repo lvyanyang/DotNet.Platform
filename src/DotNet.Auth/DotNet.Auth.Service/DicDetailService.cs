@@ -127,17 +127,6 @@ namespace DotNet.Auth.Service
         }
 
         /// <summary>
-        /// 根据数据字典明细名称,获取字典明细名称
-        /// </summary>
-        /// <param name="dicCode">字典编码</param>
-        /// <param name="value">明细值</param>
-        public string GetNameByValue(string dicCode, int value)
-        {
-            var list = GetListByDicCode(dicCode);
-            return list.FirstOrDefault(p => p.Value.Equals(value.ToString()))?.Name ?? string.Empty;
-        }
-
-        /// <summary>
         /// 根据数据字典明细值,获取字典明细名称
         /// </summary>
         /// <param name="dicCode">字典编码</param>

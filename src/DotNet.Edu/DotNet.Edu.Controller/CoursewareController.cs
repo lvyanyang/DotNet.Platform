@@ -21,8 +21,7 @@ namespace DotNet.Edu.Controllers
 
         public ActionResult Grid(string name, string workType, string courseType)
         {
-            var list = EduService.Courseware.GetPageList(PageInfo(), name, 
-                workType.ToIntOrNull(), courseType.ToIntOrNull());
+            var list = EduService.Courseware.GetPageList(PageInfo(), name, workType, courseType);
             return View(list);
         }
 

@@ -1,0 +1,149 @@
+﻿@{
+    string title = "学员学习中心 - ";//道路运输从业人员继续教育学习平台
+    if (ViewBag.Title != null)
+    {
+        title = ViewBag.Title + " - " + title;
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@title</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/www/lib/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="/www/lib/core/css/core.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/www/css/user_common.css" />
+    <link rel="stylesheet" href="/www/css/user_personal.css" />
+    <link href="~/www/lib/layer/layer.css" rel="stylesheet" />
+    <link href="~/www/lib/jquery-loadmask/jquery-loadmask.css" rel="stylesheet" />
+    <link href="~/www/lib/jquery-icheck/jquery-icheck-square.css" rel="stylesheet" />
+    <link href="~/www/lib/font-awesome/font-awesome.min.css" rel="stylesheet" />
+<script src="~/www/lib/jquery/jquery.min.js"></script>
+    <script src="/www/lib/core/js/core.js"></script>
+    <script src="/www/lib/core/js/extend.js"></script>
+    <script src="/www/lib/core/js/table.js"></script>
+<script src="~/www/lib/bootstrap/bootstrap.min.js"></script>
+    @RenderSection("css", false)
+</head>
+<body>
+    <div id="header">
+        <div class="top-nav-wrap">
+            <div class="top-nav clearfix">
+                <ul class="f-left">
+                    <li><a href="http://192.168.10.102:8888/index.php" target="_self" class="nav-li ">首  页</a></li>
+                    <li><a href="http://192.168.10.102:8888/jobs/" target="_blank" class="nav-li ">招聘信息</a></li>
+                    <li><a href="http://192.168.10.102:8888/simple/simple-list.php" target="_self" class="nav-li ">微商圈</a></li>
+                </ul>
+                <div class="nav-right f-right">
+                    <span class="login-reg">
+                        <a href="#" class="underline">@DotNet.Edu.WebUtility.EduWebHelper.GetStudentSession().StudentName</a>&nbsp;&nbsp;&nbsp;
+                        <a href="@Url.Action("Logout","Default")" class="underline">[退出]</a>
+                    </span>
+                    <span class="nav-items"><a href="/plus/shortcut.php" class="underline">保存到桌面</a></span>
+                </div>
+            </div>
+        </div>
+        <div class="container-index header-main clearfix">
+            <div class="logo-box f-left"><a href="/"><img src="/www/images/logo.gif" alt="道路运输从业人员继续教育学习平台" border="0" width="300" height="70" /></a></div>
+            <div class="mobile-block f-right">
+                <div class="complex-center f-left">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="usermain">
+        <div class="leftmenu link_bk">
+            @Html.Partial("_Navbar")
+        </div>
+        <div class="rightmain">
+            @RenderBody()
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    @Html.Partial("_Bottom")
+    <div class="back_to_top" id="back_to_top">
+        <div class="back" style="display: none;">
+            <div>回到顶部</div>
+        </div>
+        <div class="steer">
+            <div onclick="javascript:location.href = 'http://192.168.10.102:8888/suggest/index.php'">我要建议</div>
+        </div>
+    </div>
+    <script src="~/www/lib/layer/layer.js"></script>
+    <script src="~/www/lib/jquery-loadmask/jquery-loadmask.js"></script>
+    <script src="~/www/lib/jquery-icheck/jquery-icheck.js"></script>
+    <script>
+        $(function () {
+            $(".leftmenu .meunbox li[class!='h']")
+                .hover(
+                    function () {
+                        $(this).css("background-color", "#F5F5F5");
+                    },
+                    function () {
+                        $(this).css("background-color", "#FFFFFF");
+                    }
+                );
+
+            //所有提交按钮效果
+            $("input[type='submit'],input[type='button']")
+                .hover(
+                    function () {
+                        $(this).addClass("hover");
+                    },
+                    function () {
+                        $(this).removeClass("hover");
+                    }
+                );
+
+
+            //信息列表背景变色
+            $(".userliststyle")
+                .hover(
+                    function () {
+                        $(this).css('background-color', '#FCFCFC');
+                    },
+                    function () {
+                        $(this).css('background-color', '#FFFFFF');
+                    }
+                );
+
+            $(".foot_list ul:odd li").css("width", 62);
+            $(".weixin_img:last").css("margin-right", 0);
+
+            //回到顶部组件出现设置
+            $(window)
+                .scroll(function () {
+                    if ($(window).scrollTop() > 200) {
+                        $(".back").fadeIn(400);
+                    } else {
+                        $(".back").fadeOut(400);
+                    }
+                });
+
+            //回到顶部hover效果
+            $(".back_to_top .back, .steer, .sub")
+                .hover(function () {
+                    $(this).find("div").css("display", "block");
+                },
+                    function () {
+                        $(this).find("div").css("display", "none");
+                    });
+
+            //设置滚回顶部方法
+            $(".back")
+                .click(function () {
+                    $("body,html").animate({ scrollTop: 0 }, 500);
+                    return false;
+                });
+            $('.uitable').uitable();
+        });
+    </script>
+
+    @RenderSection("js", false)
+</body>
+</html>

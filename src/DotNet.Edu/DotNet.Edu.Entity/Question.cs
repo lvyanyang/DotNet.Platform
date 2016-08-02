@@ -15,7 +15,7 @@ namespace DotNet.Edu.Entity
     [Table("题库数据")]    
     public class Question
     {
-		/// <summary>
+        /// <summary>
         /// 主键
         /// </summary>
         [PrimaryKey]
@@ -119,5 +119,46 @@ namespace DotNet.Edu.Entity
         {
             return (Question)MemberwiseClone();
         }
+    }
+
+    /// <summary>
+    /// 练习题库
+    /// </summary>
+    public class ExcerciseQuestion : Question
+    {
+        public ExcerciseQuestion(Question q)
+        {
+            Id = q.Id;
+            Name = q.Name;
+            QuestType = q.QuestType;
+            WorkType = q.WorkType;
+            QuestUnit = q.QuestUnit;
+            A = q.A;
+            B = q.B;
+            C = q.C;
+            D = q.D;
+            Answer = q.Answer;
+            Score = q.Score;
+            CreateDateTime = q.CreateDateTime;
+            Note = q.Note;
+        }
+
+        /// <summary>
+        /// 是否作答
+        /// </summary>
+        [Ignore]
+        public bool? UserSelected { get; set; }
+
+        /// <summary>
+        /// 用户答案结果
+        /// </summary>
+        [Ignore]
+        public bool UserResult { get; set; }
+
+        /// <summary>
+        /// 用户答案
+        /// </summary>
+        [Ignore]
+        public string UserAnswer { get; set; }
     }
 }

@@ -188,7 +188,7 @@ namespace DotNet.Mvc
             }
             return string.Empty;
         }
-        
+
         /// <summary>
         /// IIF函数
         /// </summary>
@@ -224,7 +224,7 @@ namespace DotNet.Mvc
         /// <summary>
         /// 输出字符串
         /// </summary>
-        public static MvcHtmlString WriteValue(this HtmlHelper helper, bool result,string value)
+        public static MvcHtmlString WriteValue(this HtmlHelper helper, bool result, string value)
         {
             if (result)
             {
@@ -297,6 +297,11 @@ namespace DotNet.Mvc
         public static MvcHtmlString IsSelected(this HtmlHelper helper, bool isSelected)
         {
             return isSelected ? MvcHtmlString.Create("selected") : MvcHtmlString.Empty;
+        }
+   
+        public static MvcHtmlString IsPrimaryBtn(this HtmlHelper helper, bool condition)
+        {
+            return condition ? MvcHtmlString.Create("btn-primary") : MvcHtmlString.Empty;
         }
 
         /// <summary>

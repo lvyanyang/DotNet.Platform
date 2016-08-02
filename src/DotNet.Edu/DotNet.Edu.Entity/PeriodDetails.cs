@@ -10,67 +10,73 @@ namespace DotNet.Edu.Entity
     /// <summary>
     /// 学时明细
     /// </summary>
-    [Table("学时明细")]    
+    [Table("学时明细")]
     public class PeriodDetails
     {
-		/// <summary>
+        /// <summary>
+        /// 课件主键
+        /// </summary>
+        [Column("课件主键")]
+        public string CoursewareId { get; set; }
+
+        /// <summary>
         /// 培训学校主键
         /// </summary>
-		[Column("培训学校主键")]
+        [Column("培训学校主键")]
         public string SchoolId { get; set; }
 
-		/// <summary>
+        /// <summary>
         /// 培训学校名称
         /// </summary>
-		[Column("培训学校名称")]
+        [Column("培训学校名称")]
         public string SchoolName { get; set; }
 
-		/// <summary>
+        /// <summary>
         /// 学员主键
         /// </summary>
-		[Column("学员主键")]
+        [Column("学员主键")]
         public string StudentId { get; set; }
 
-		/// <summary>
+        /// <summary>
         /// 学员姓名
         /// </summary>
-		[Column("学员姓名")]
+        [Column("学员姓名")]
         public string StudentName { get; set; }
 
-		/// <summary>
+        /// <summary>
         /// 学习方式
         /// </summary>
-		[Column("学习方式")]
+        [Column("学习方式")]
         public string StudyCategory { get; set; }
 
-		/// <summary>
+        /// <summary>
         /// IP地址
         /// </summary>
-		[Column("IP地址")]
+        [Column("IP地址")]
         public string IPAddress { get; set; }
 
-		/// <summary>
+        /// <summary>
         /// 签到时间
         /// </summary>
-		[Column("签到时间")]
+        [Column("签到时间")]
         public DateTime SignInDateTime { get; set; }
 
-		/// <summary>
+        /// <summary>
         /// 签退时间
         /// </summary>
-		[Column("签退时间")]
+        [Column("签退时间")]
         public DateTime SignOutDateTime { get; set; }
 
-		/// <summary>
+        /// <summary>
         /// 时长
         /// </summary>
-		[Column("时长")]
+        [Column("时长")]
         public int Period { get; set; }
 
-		/// <summary>
+        /// <summary>
         /// 创建时间
         /// </summary>
-		[Column("创建时间")]
+        [Column("创建时间")]
         public DateTime CreateDateTime { get; set; }
 
         /// <summary>

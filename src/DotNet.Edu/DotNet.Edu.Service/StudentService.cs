@@ -138,6 +138,14 @@ namespace DotNet.Edu.Service
             return BoolMessage.True;
         }
 
+        public BoolMessage UpdateTotalPeriod(string studentId, int period)
+        {
+            var repos = new EduRepository<Student>();
+            string sql = "UPDATE Student SET TotalPeriod=TotalPeriod+@Period WHERE id=@StudentId";
+            repos.Database.Execute(sql, new object[] { period, studentId });
+            return BoolMessage.True;
+        }
+
         /// <summary>
         /// 获取班级人数
         /// </summary>
@@ -458,6 +466,17 @@ namespace DotNet.Edu.Service
             var repos = new EduRepository<Student>();
             var query = repos.SQL.OrderByAsc(p => p.CreateDateTime);
             SetQuery(searchParam, query);
+            return repos.Fetch(query);
+        }
+
+        /// <summary>
+        /// 获取学员培训历史记录
+        /// </summary>
+        /// <param name="studentId"></param>
+        public List<Student> GetTrainHistoryList(string studentId)
+        {
+            var repos = new EduRepository<Student>();
+            var query = repos.SQL.Where(p => p.Id == studentId).OrderByAsc(p => p.CreateDateTime);
             return repos.Fetch(query);
         }
 

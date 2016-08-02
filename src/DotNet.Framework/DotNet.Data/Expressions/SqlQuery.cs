@@ -227,6 +227,16 @@ namespace DotNet.Data
         }
 
         /// <summary>
+        /// 获取记录Sum
+        /// </summary>
+        /// <returns>返回查询对象</returns>
+        public SQLinqSum<T> Sum(Expression<Func<T, object>> col)
+        {
+            var name = ExpressionHelper.GetPropertyName<T, object>(col);
+            return new SQLinqSum<T>(this, name);
+        }
+
+        /// <summary>
         /// 添加查询条件
         /// </summary>
         /// <param name="expression">查询表达式</param>

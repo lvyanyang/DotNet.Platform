@@ -1,0 +1,37 @@
+﻿@model ExcerciseQuestion
+@if (Model.A.IsNotEmpty())
+{
+    <li>
+        <input class="uicheck" id="answerA" @Html.IsDisabled(Model.UserSelected.HasValue) @Html.IsChecked(Model.UserSelected.HasValue && Model.UserAnswer.Equals("A")) type="checkbox" value="A" style="margin-right: 10px;">
+        <label for="answerA">
+            A、@Model.A
+        </label>
+    </li>
+}
+@if (Model.B.IsNotEmpty())
+{
+    <li>
+        <input class="uicheck" id="answerB" @Html.IsDisabled(Model.UserSelected.HasValue) @Html.IsChecked(Model.UserSelected.HasValue && Model.UserAnswer.Equals("B")) type="checkbox" value="B" style="margin-right: 10px;">
+        <label for="answerB">
+            B、@Model.B
+        </label>
+    </li>
+}
+@if (Model.C.IsNotEmpty())
+{
+    <li>
+        <input class="uicheck" id="answerC" @Html.IsDisabled(Model.UserSelected.HasValue) @Html.IsChecked(Model.UserSelected.HasValue && Model.UserAnswer.Equals("C")) type="checkbox" value="C" style="margin-right: 10px;">
+        <label for="answerC">
+            C、@Model.C
+        </label>
+    </li>
+}
+@if (Model.D.IsNotEmpty())
+{
+    <li>
+        <input class="uicheck" id="answerD" @Html.IsDisabled(Model.UserSelected.HasValue) @Html.IsChecked(Model.UserSelected.HasValue && Model.UserAnswer.Equals("D")) type="checkbox" value="D" style="margin-right: 10px;">
+        <label for="answerD">
+            D、@Model.D
+        </label>
+    </li>
+}

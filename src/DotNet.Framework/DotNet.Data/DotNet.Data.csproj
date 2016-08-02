@@ -51,6 +51,7 @@
     <Compile Include="Expressions\Extensions\SQLinqExtensions.cs" />
     <Compile Include="Expressions\ISQLinq.cs" />
     <Compile Include="Expressions\ISQLinqResult.cs" />
+    <Compile Include="Expressions\SQLinqSum.cs" />
     <Compile Include="Expressions\SQLinqCount.cs" />
     <Compile Include="Expressions\SQLinqSelectResult.cs" />
     <Compile Include="Expressions\SqlQuery.cs" />

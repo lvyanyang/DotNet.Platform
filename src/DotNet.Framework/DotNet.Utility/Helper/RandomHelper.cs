@@ -2,6 +2,7 @@
 // DotNet.Platform 开发框架 2016 版权所有
 // ===============================================================================
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace DotNet.Helper
@@ -84,7 +85,7 @@ namespace DotNet.Helper
         /// <returns>返回取值范围为(0-9)的数字</returns>
         public static long GenerateRandomNumber(int randomStringLength)
         {
-            char[] constant = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+            char[] constant = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
             return Convert.ToInt64(GetRandomString(constant, randomStringLength));
         }
 
@@ -100,6 +101,30 @@ namespace DotNet.Helper
         }
 
         /// <summary>
+        /// 获取一个打乱的整数数组
+        /// </summary>
+        /// <param name="len">数组长度</param>
+        /// <returns></returns>
+        public static int[] GenerateRandomArray(int len)
+        {
+            Random rd = new Random((int)DateTime.Now.Ticks);
+            var list = new List<int>(len);
+            var newList = new List<int>(len);
+            for (int i = 0; i < len; i++)
+            {
+                list.Add(i);
+            }
+            while (list.Count > 0)
+            {
+                var sj = rd.Next(list.Count);
+                newList.Add(list[sj]);
+                list.RemoveAt(sj);
+            }
+            
+            return newList.ToArray();
+        }
+
+        /// <summary>
         /// 获取随机字符串
         /// </summary>
         /// <param name="constant">字符取值数组</param>
@@ -108,7 +133,7 @@ namespace DotNet.Helper
         private static string GetRandomString(char[] constant, int randomStringLength)
         {
             StringBuilder sb = new StringBuilder(randomStringLength);
-            Random rd = new Random((int) DateTime.Now.Ticks);
+            Random rd = new Random((int)DateTime.Now.Ticks);
             for (int i = 0; i < randomStringLength; i++)
             {
                 sb.Append(constant[rd.Next(constant.Length)]);

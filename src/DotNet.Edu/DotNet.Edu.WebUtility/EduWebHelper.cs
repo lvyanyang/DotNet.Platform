@@ -43,9 +43,19 @@ namespace DotNet.Edu.WebUtility
             entity.StudentId = student.Id;
             entity.StudentName = student.Name;
             entity.LoginIPAddr = WebHelper.GetFormString("ip", HttpContext.Current.Request.UserHostAddress);
+            entity.Device = WebHelper.GetFormString("device");
             entity.LoginDateTime = DateTime.Now;
             entity.Student = student;
             return entity;
+        }
+
+        /// <summary>
+        /// 清空会话用户
+        /// </summary>
+        public static void ClearStudentSession()
+        {
+            var key = "_dotnet_edu_user_";
+            HttpContext.Current.Session[key] = null;
         }
 
         /// <summary>

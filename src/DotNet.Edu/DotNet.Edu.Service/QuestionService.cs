@@ -196,7 +196,7 @@ namespace DotNet.Edu.Service
                 {
                     results.Add(new BoolMessage(false, "请指定正确答案"));
                 }
-               
+
                 if (entity.QuestType.IsEmpty())
                 {
                     results.Add(new BoolMessage(false, "请指定题目类型"));
@@ -213,7 +213,7 @@ namespace DotNet.Edu.Service
                 #endregion
 
                 #region check 下拉
-                entity.WorkType = AuthService.DicDetail.GetValueByName(EduDicConst.WorkType,entity.WorkType);
+                entity.WorkType = AuthService.DicDetail.GetValueByName(EduDicConst.WorkType, entity.WorkType);
                 if (entity.WorkType.IsEmpty())
                 {
                     results.Add(new BoolMessage(false, $"题目 {entity.Name} 从业类型输入错误"));
@@ -237,7 +237,7 @@ namespace DotNet.Edu.Service
 
                 #region exists
 
-                var has = Cache.ValueList().Contains(p => p.Name.Equals(entity.Name) );
+                var has = Cache.ValueList().Contains(p => p.Name.Equals(entity.Name));
                 if (has)
                 {
                     results.Add(new BoolMessage(false, $"题目 {entity.Name} 已经导入"));
@@ -253,6 +253,31 @@ namespace DotNet.Edu.Service
                 results.Add(BoolMessage.True);
             }
             return results;
+        }
+
+        /// <summary>
+        /// 顺序获取题目
+        /// </summary>
+        /// <param name="workType">从业类型</param>
+        /// <returns></returns>
+        public List<ExcerciseQuestion> GetSeqQuestions(string workType)
+        {
+            var qList = Cache.ValueList().Where(p => p.WorkType == workType).ToList().OrderByAsc(p => p.CreateDateTime);
+            return qList.Select(q => new ExcerciseQuestion(q)).ToList();
+        }
+
+        /// <summary>
+        /// 随机获取题目
+        /// </summary>
+        /// <param name="workType">从业类型</param>
+        /// <returns></returns>
+        public List<ExcerciseQuestion> GetRandomQuestions(string workType)
+        {
+            var sourceList = Cache.ValueList().Where(p => p.WorkType == workType).ToList();
+            var count = sourceList.Count;
+            var sz = RandomHelper.GenerateRandomArray(count);
+            var qList = sz.Select(index => sourceList[index]).ToList();
+            return qList.Select(q => new ExcerciseQuestion(q)).ToList();
         }
     }
 }

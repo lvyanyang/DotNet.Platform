@@ -1,0 +1,26 @@
+﻿@model PageList<StudentAudits>
+@{
+    Layout = null;
+}
+<table class="table table-bordered table-hover table-manage">
+    <thead>
+        <tr>
+            <th class="w100px" data-order="@nameof(StudentAudits.LoginDateTime)">登录时间</th>
+            <th class="w100px" data-order="@nameof(StudentAudits.AreaAddress)">所在地区</th>
+            <th class="w100px" data-order="@nameof(StudentAudits.IPAddress)">IP地址</th>
+            <th class="w100px" data-order="@nameof(StudentAudits.Device)">设备</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in Model)
+        {
+            <tr>
+                <td class="">@DateTimeHelper.FormatDateHasSecond(record.LoginDateTime)</td>
+                <td class="">@record.AreaAddress</td>
+                <td class="">@record.IPAddress</td>
+                <td class="">@record.Device</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.RenderPages(Model)

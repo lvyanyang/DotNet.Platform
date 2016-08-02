@@ -70,9 +70,25 @@ namespace DotNet.Edu.Service
         /// </summary>
         public static StudentAuditsService StudentAudits { get; } = new StudentAuditsService();
 
-        ///// <summary>
-        ///// 学时明细服务
-        ///// </summary>
-        //public static PeriodDetailsService PeriodDetails { get; } = new PeriodDetailsService();
+        /// <summary>
+        /// 学时明细服务
+        /// </summary>
+        public static PeriodDetailsService PeriodDetails { get; } = new PeriodDetailsService();
+
+        /// <summary>
+        /// 学员课件学时服务
+        /// </summary>
+        public static StudentCoursewarePeriodService StudentCoursewarePeriod { get; } = new StudentCoursewarePeriodService();
+
+        /// <summary>
+        /// 题库收藏服务
+        /// </summary>
+        public static QuestionFavoriteService QuestionFavorite { get; } = new QuestionFavoriteService();
+
+
+
+
+
+
     }
 }

@@ -1,0 +1,12 @@
+﻿@model List<CoursewareDetails>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="@Url.Content(item.Url)" class="cursor-pointer" style="height: 200px">
+            </div>
+        </div>
+    }
+</div>

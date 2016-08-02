@@ -1,0 +1,37 @@
+﻿@model List<Student>
+@{
+    ViewBag.Title = "学员培训记录";
+}
+<div class="bbox1">
+    <div class="student_topnav">
+        <div class="titleH1">
+            <div class="h1-title">@ViewBag.Title</div>
+        </div>
+    </div>
+
+    <div style="margin:15px;">
+        <table class="table table-bordered table-hover table-manage">
+            <thead>
+            <tr>
+                <th class="w100px">培训周期</th>
+                <th class="w100px">从业类型</th>
+                <th class="w100px">培训机构</th>
+                <th class="w100px">报名日期</th>
+                <th class="w100px">培训状态</th>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach (var record in Model)
+                {
+                    <tr>
+                        <td class="">@record.TrainCycle</td>
+                        <td class="">@record.WorkCategoryName</td>
+                        <td class="">@record.SchoolName</td>
+                        <td class="">@DateTimeHelper.FormatDate(record.RegDateTime)</td>
+                        <td class="">@record.StatusName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+﻿.exercise_title {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+    line-height: 22px;
+}
+
+.exercise_answer {
+    line-height: 30px;
+    margin-top: 10px;
+}
+
+    .exercise_answer li label {
+        font-size: 14px;
+        line-height: 30px;
+        font-weight:normal;
+    }
+
+.exercise_btn {
+    font-size: 20px;
+    padding: 5px 12px 5px 12px;
+    margin-left: 15px;
+    width: 45px;
+    height: 45px;
+}

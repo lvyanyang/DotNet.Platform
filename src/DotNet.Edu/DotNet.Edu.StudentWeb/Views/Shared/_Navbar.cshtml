@@ -1,0 +1,73 @@
+﻿@{
+    var controller = Html.GetCurrentController();
+    var action = Html.GetCurrentAction();
+}
+<div class="meun1">
+    <div class="meun2">
+        @*<div class="meunbox">
+            <div class="menu_top">
+                <a href="#">中心首页</a>
+                &nbsp;&nbsp;
+                <span>|</span>
+                &nbsp;&nbsp;
+                <a href="#">我的课程</a>
+            </div>
+        </div>*@
+        <div class="meunbox">
+            <div class="tit"><div class="t i1">我的课程</div></div>
+            <div class="linktxt">
+                <ul>
+                    <li class="@Html.IsActiveStudentMenu("Index","Default")">
+                        <a href="@Url.Action("Index","Default")">在学课程</a>
+                    </li>
+                    <li><a href="#">课堂笔记</a></li>
+                    <li><a href="#">学习记录</a></li>
+                    <li class="@Html.IsActiveStudentMenu("TrainHistory", "Student")">
+                        <a href="@Url.Action("TrainHistory", "Student")">培训历史</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="meunbox">
+            <div class="tit"><div class="t i2">练习测试</div></div>
+            <div class="linktxt">
+                <ul>
+                    <li class="@Html.IsActiveStudentMenu("Index", "SimulatorExercise")">
+                        <a href="@Url.Action("Index", "SimulatorExercise")">模拟练习</a>
+                    </li>
+                    <li>
+                        <a href="#">综合测试</a>
+                    </li>
+                    <li class="@Html.IsActiveStudentMenu("Index", "ErrorQuestion")">
+                        <a href="@Url.Action("Index", "ErrorQuestion")">错题记录</a>
+                    </li>
+                    <li class="@Html.IsActiveStudentMenu("Index", "FavoriteQuestion")">
+                        <a href="@Url.Action("Index", "FavoriteQuestion")">关注题库</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="meunbox">
+            <div class="tit"><div class="t c3">考试考核</div></div>
+            <div class="linktxt">
+                <ul>
+                    <li class="@Html.WriteValue(false,"h")"><a href="#">成绩查询</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="meunbox last">
+            <div class="tit"><div class="t i3">账号管理</div></div>
+            <div class="linktxt">
+                <ul>
+                    <li><a href="#">账号安全</a></li>
+                    <li><a href="#">我的消息</a></li>
+                    <li class="@Html.IsActiveStudentMenu("Index","StudentAudits")">
+                        <a href="@Url.Action("Index","StudentAudits")">登录日志</a>
+                    </li>
+                    <li><a href="@Url.Action("Logout","Default")">安全退出</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

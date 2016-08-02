@@ -53,7 +53,7 @@
                         data-validate="required: true"
                         data-validate-message="required:'请选择从业类型'">
                     <option></option>
-                    @Html.TrainCategoryOption(Model.WorkType.ToString())
+                    @Html.TrainCategoryOption(Model.WorkType)
                 </select>
             </div>
         </div>
@@ -67,7 +67,7 @@
                         data-validate="required: true"
                         data-validate-message="required:'请选择课件类型'">
                     <option></option>
-                    @Html.CourseTypeOption(Model.CourseType.ToString())
+                    @Html.CourseTypeOption(Model.CourseType)
                 </select>
             </div>
         </div>

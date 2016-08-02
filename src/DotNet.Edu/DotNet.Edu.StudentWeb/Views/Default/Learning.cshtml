@@ -1,0 +1,71 @@
+﻿@model List<CoursewareDetails>
+@{
+    ViewBag.Title = "Learning";
+    Courseware entity = ViewBag.Courseware;
+}
+<div class="bbox1">
+    <div class="resumelist">
+        <div class="titleH1">
+            <div class="h1-title f-left">@entity.Name</div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="row" style="margin: 15px;">
+            @if (entity.CourseType.Equals("1"))
+            {
+                @Html.Partial("_Image", Model)
+            }
+            else
+            {
+                @Html.Partial("_Video", Model)
+            }
+        </div>
+        <div class="row">
+            <a class="btn btn-primary" id="signOut" data-url="@Url.Action("Commit","StudentLearning")">签退</a>
+        </div>
+        <div class="row">
+            <div class="bottomtip">
+                <div class="tp h2-title">温馨提示</div>
+                <p>1、为保证学习效果，建议驾驶人使用IE8以上版本内核浏览器。同时平台支持谷歌、火狐等浏览器。</p>
+                <p>2、学习开始时，系统会弹出验证窗口：通过后，系统开始记录学时，驾驶人如果需要离开或保存学时，点击学习右侧签退按钮，完成验证后，系统保存当次有效学时。</p>
+                <p>3、学习过程中，会依据各地管理规则设置，随机弹出验证窗口，中间验证过程有设置等待时间，如果超时或回答错误次数超出，本次学习的学时将不被记录。驾驶人如果中间离开，请提前做好签退保存学时。</p>
+                <p>4、每个课件系统设置规定学时，课件学时达到规定学时后，系统将不再计时，驾驶人可通过课程列表更换其他课件继续学习。驾驶人每天学习的学时，不能超过各地设置的当天最大学时，超过最大学时，驾驶人可学习但系统不再计时。每天最大学时以当地管理规则为准，一般默认为每天4小时。请不要在实操培训或集中理论培训的时候参加网络学习，否则网络培训学时将作废。</p>
+                <p>5、平台不允许多台电脑同时登录同一个账户，账号重新登录后，前面已登录未保存的学时将作废，并会退出登录窗口。建议驾驶人首次登录后，及时更改登录密码。</p>
+            </div>
+        </div>
+    </div>
+</div>
+@section js{
+    <script>
+        $(function () {
+
+            fx.prompt("验证", function (v, index) {
+                layer.close(index);
+
+                fx.ajax({
+                    url: '@Url.Action("Begin","StudentLearning")',
+                    data:{coursewareId:'@entity.Id'},
+                    success: function (result) {
+
+                    }
+            });
+        });
+
+        $('#signOut').click(function () {
+
+            var url = $(this).data('url');
+
+            fx.ajax({
+                url: url,
+                success: function (result) {
+                    if (result.success) {
+                        window.location.href = '@Url.Action("Index","Default")';
+                    }
+                }
+            });
+
+        });
+
+        });
+    </script>
+}

@@ -47,7 +47,6 @@
   <ItemGroup>
     <Compile Include="EduWebHelper.cs" />
     <Compile Include="HtmlExtensions.cs" />
-    <Compile Include="PeriodHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegionHelper.cs" />
     <Compile Include="StudentSession.cs" />

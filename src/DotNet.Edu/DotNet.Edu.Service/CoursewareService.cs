@@ -132,13 +132,22 @@ namespace DotNet.Edu.Service
         /// <summary>
         /// 获取对象集合(已排序)
         /// </summary>
-        public List<Courseware> GetList(int? workType)
+        public List<Courseware> GetList(string workType)
         {
-            if (workType.HasValue)
+            if (workType.IsNotEmpty())
             {
                 return Cache.ValueList().Where(p => p.WorkType == workType).ToList().OrderByAsc(p => p.RowIndex);
             }
             return Cache.ValueList().OrderByAsc(p => p.RowIndex);
+        }
+
+        /// <summary>
+        /// 获取课件总学时
+        /// </summary>
+        /// <param name="workType">从业类型</param>
+        public int GetTotalPeriod(string workType)
+        {
+            return Cache.ValueList().Where(p => p.WorkType == workType).Sum(p => p.Period);
         }
 
         /// <summary>
@@ -149,18 +158,18 @@ namespace DotNet.Edu.Service
         /// <param name="workType">从业类型</param>
         /// <param name="courseType">课件类型</param>
         public PageList<Courseware> GetPageList(PaginationCondition pageCondition,
-            string name, int? workType, int? courseType)
+            string name, string workType, string courseType)
         {
             pageCondition.SetDefaultOrder(nameof(Courseware.RowIndex));
             var repos = new EduRepository<Courseware>();
             var query = repos.PageQuery(pageCondition);
-            if (workType.HasValue)
+            if (workType.IsNotEmpty())
             {
-                query.Where(p => p.WorkType == workType.Value);
+                query.Where(p => p.WorkType == workType);
             }
-            if (courseType.HasValue)
+            if (courseType.IsNotEmpty())
             {
-                query.Where(p => p.CourseType == courseType.Value);
+                query.Where(p => p.CourseType == courseType);
             }
             if (name.IsNotEmpty())
             {

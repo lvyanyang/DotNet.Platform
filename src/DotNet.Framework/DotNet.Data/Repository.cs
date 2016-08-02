@@ -682,6 +682,40 @@ namespace DotNet.Data
 
         #endregion
 
+        #region Sum
+
+        /// <summary>
+        /// Sum
+        /// </summary>
+        /// <param name="col">合计列</param>
+        public int Sum(Expression<Func<T, object>> col)
+        {
+            return Sum(col,SQLQuery<T>.Instance);
+        }
+
+        /// <summary>
+        /// Sum
+        /// </summary>
+        /// <param name="col">合计列</param>
+        /// <param name="expression">查询表达式</param>
+        public int Sum(Expression<Func<T, object>> col,Expression<Func<T, bool>> expression)
+        {
+            return Sum(col,SQLQuery<T>.Instance.Where(expression));
+        }
+
+        /// <summary>
+        /// Count
+        /// </summary>
+        /// <param name="col">合计列</param>
+        /// <param name="linq">查询表达式</param>
+        public int Sum(Expression<Func<T, object>> col,SQLQuery<T> linq)
+        {
+            var result = linq.Sum(col).ToResult();
+            return Database.Query<int>(result.ToSQL(), result.Parameters).FirstOrDefault();
+        }
+
+        #endregion
+
         #region Query
 
         /// <summary>

@@ -60,7 +60,7 @@ namespace DotNet.Edu.Entity
         /// 从业类型
         /// </summary>
         [Column("从业类型")]
-        public int WorkType { get; set; }
+        public string WorkType { get; set; }
 
         /// <summary>
         /// 从业类型名称
@@ -72,7 +72,7 @@ namespace DotNet.Edu.Entity
         /// 课件类型 1.图片 2.视频
         /// </summary>
         [Column("课件类型")]
-        public int CourseType { get; set; }
+        public string CourseType { get; set; }
 
         /// <summary>
         /// 课件类型名称 1.图片 2.视频

@@ -1,0 +1,675 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B2799F07-2A9B-49E5-9758-4F61334968F8}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DotNet.Edu.StudentWeb</RootNamespace>
+    <AssemblyName>DotNet.Edu.StudentWeb</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+    <Content Include="www\css\question.css" />
+    <Content Include="www\css\reg.css" />
+    <Content Include="www\css\user_common.css" />
+    <Content Include="www\css\user_personal.css" />
+    <Content Include="www\images\01.gif" />
+    <Content Include="www\images\01.jpg" />
+    <Content Include="www\images\02.jpg" />
+    <Content Include="www\images\022.gif" />
+    <Content Include="www\images\03.jpg" />
+    <Content Include="www\images\04.gif" />
+    <Content Include="www\images\05.gif" />
+    <Content Include="www\images\06.jpg" />
+    <Content Include="www\images\06.png" />
+    <Content Include="www\images\07.gif" />
+    <Content Include="www\images\07.jpg" />
+    <Content Include="www\images\07.png" />
+    <Content Include="www\images\08.jpg" />
+    <Content Include="www\images\09.gif" />
+    <Content Include="www\images\09map.gif" />
+    <Content Include="www\images\10.jpg" />
+    <Content Include="www\images\102.gif" />
+    <Content Include="www\images\11.gif" />
+    <Content Include="www\images\11.jpg" />
+    <Content Include="www\images\12.jpg" />
+    <Content Include="www\images\13.gif" />
+    <Content Include="www\images\14.gif" />
+    <Content Include="www\images\14t.gif" />
+    <Content Include="www\images\15.gif" />
+    <Content Include="www\images\15.jpg" />
+    <Content Include="www\images\16.gif" />
+    <Content Include="www\images\16.jpg" />
+    <Content Include="www\images\17.gif" />
+    <Content Include="www\images\17.jpg" />
+    <Content Include="www\images\17.png" />
+    <Content Include="www\images\17over.png" />
+    <Content Include="www\images\17yet.png" />
+    <Content Include="www\images\18.gif" />
+    <Content Include="www\images\19.gif" />
+    <Content Include="www\images\19.jpg" />
+    <Content Include="www\images\20.jpg" />
+    <Content Include="www\images\20.png" />
+    <Content Include="www\images\21.gif" />
+    <Content Include="www\images\21.jpg" />
+    <Content Include="www\images\22.gif" />
+    <Content Include="www\images\23.gif" />
+    <Content Include="www\images\24.gif" />
+    <Content Include="www\images\24.jpg" />
+    <Content Include="www\images\25.gif" />
+    <Content Include="www\images\25.jpg" />
+    <Content Include="www\images\26.jpg" />
+    <Content Include="www\images\27.jpg" />
+    <Content Include="www\images\28.jpg" />
+    <Content Include="www\images\29.jpg" />
+    <Content Include="www\images\30.gif" />
+    <Content Include="www\images\30.jpg" />
+    <Content Include="www\images\31.jpg" />
+    <Content Include="www\images\32.jpg" />
+    <Content Include="www\images\33.jpg" />
+    <Content Include="www\images\33.png" />
+    <Content Include="www\images\36.gif" />
+    <Content Include="www\images\36.jpg" />
+    <Content Include="www\images\3_03.jpg" />
+    <Content Include="www\images\404_bj_ang.gif" />
+    <Content Include="www\images\41.gif" />
+    <Content Include="www\images\42.gif" />
+    <Content Include="www\images\44.gif" />
+    <Content Include="www\images\45.gif" />
+    <Content Include="www\images\45close.gif" />
+    <Content Include="www\images\46.jpg" />
+    <Content Include="www\images\47.gif" />
+    <Content Include="www\images\48.gif" />
+    <Content Include="www\images\49.gif" />
+    <Content Include="www\images\50.gif" />
+    <Content Include="www\images\51.gif" />
+    <Content Include="www\images\55.gif" />
+    <Content Include="www\images\62.gif" />
+    <Content Include="www\images\64.gif" />
+    <Content Include="www\images\65.gif" />
+    <Content Include="www\images\67.gif" />
+    <Content Include="www\images\69.gif" />
+    <Content Include="www\images\72.gif" />
+    <Content Include="www\images\73.gif" />
+    <Content Include="www\images\80.gif" />
+    <Content Include="www\images\85.gif" />
+    <Content Include="www\images\90.gif" />
+    <Content Include="www\images\91m.gif" />
+    <Content Include="www\images\92.gif" />
+    <Content Include="www\images\apply_for_jobs_bg.gif" />
+    <Content Include="www\images\apply_for_jobs_train_bg.gif" />
+    <Content Include="www\images\back-index.png" />
+    <Content Include="www\images\big-error.png" />
+    <Content Include="www\images\big-yes-2.png" />
+    <Content Include="www\images\big-yes.png" />
+    <Content Include="www\images\box_t_bg.gif" />
+    <Content Include="www\images\btn-plus.png" />
+    <Content Include="www\images\btn02.png" />
+    <Content Include="www\images\cd_bg.gif" />
+    <Content Include="www\images\cell_name_bg.gif" />
+    <Content Include="www\images\clear.gif" />
+    <Content Include="www\images\cm_bg.gif" />
+    <Content Include="www\images\data-icon.png" />
+    <Content Include="www\images\ding.jpg" />
+    <Content Include="www\images\fenxi_icon.png" />
+    <Content Include="www\images\fenxi_kuang.png" />
+    <Content Include="www\images\fenxi_s_icon.png" />
+    <Content Include="www\images\foot_comment.gif" />
+    <Content Include="www\images\gift-icon.png" />
+    <Content Include="www\images\gift-img.jpg" />
+    <Content Include="www\images\gift_submit_but.gif" />
+    <Content Include="www\images\guanbi.gif" />
+    <Content Include="www\images\guide11.png" />
+    <Content Include="www\images\guide21.png" />
+    <Content Include="www\images\guide31.png" />
+    <Content Include="www\images\guidep11.png" />
+    <Content Include="www\images\guidep21.png" />
+    <Content Include="www\images\guidep31.png" />
+    <Content Include="www\images\guwen_avater.gif" />
+    <Content Include="www\images\guwen_blc.gif" />
+    <Content Include="www\images\hl_icon.png" />
+    <Content Include="www\images\hunter_search_bg.gif" />
+    <Content Include="www\images\h_t_bg.gif" />
+    <Content Include="www\images\h_t_d_bg.gif" />
+    <Content Include="www\images\h_t_d_g_bg.gif" />
+    <Content Include="www\images\icon-error.png" />
+    <Content Include="www\images\icon-success-new.gif" />
+    <Content Include="www\images\icon-success.png" />
+    <Content Include="www\images\icon.png" />
+    <Content Include="www\images\icon20.png" />
+    <Content Include="www\images\icon36.png" />
+    <Content Include="www\images\iconji.gif" />
+    <Content Include="www\images\iconjian.gif" />
+    <Content Include="www\images\iconren.jpg" />
+    <Content Include="www\images\iconyan.gif" />
+    <Content Include="www\images\icon_multi_c.gif" />
+    <Content Include="www\images\icon_multi_c.png" />
+    <Content Include="www\images\icon_pop_selection.png" />
+    <Content Include="www\images\ico_warn.png" />
+    <Content Include="www\images\index-account-bg.png" />
+    <Content Include="www\images\index-icon.png" />
+    <Content Include="www\images\index\02.gif" />
+    <Content Include="www\images\index\02h.png" />
+    <Content Include="www\images\index\03.jpg" />
+    <Content Include="www\images\index\07.gif" />
+    <Content Include="www\images\index\08.jpg" />
+    <Content Include="www\images\index\09.jpg" />
+    <Content Include="www\images\index\111.jpg" />
+    <Content Include="www\images\index\13.gif" />
+    <Content Include="www\images\index\17.gif" />
+    <Content Include="www\images\index\84.gif" />
+    <Content Include="www\images\index\84.jpg" />
+    <Content Include="www\images\index\no_pic.jpg" />
+    <Content Include="www\images\info_c_bg.gif" />
+    <Content Include="www\images\Jcrop.gif" />
+    <Content Include="www\images\jl_postIcon.png" />
+    <Content Include="www\images\job.gif" />
+    <Content Include="www\images\jobfair-banner.jpg" />
+    <Content Include="www\images\jobfair-banner2.jpg" />
+    <Content Include="www\images\jobfair-logo.png" />
+    <Content Include="www\images\jobfairmapbg.png" />
+    <Content Include="www\images\jobslistdown.gif" />
+    <Content Include="www\images\job_gq.gif" />
+    <Content Include="www\images\job_sx.gif" />
+    <Content Include="www\images\l.png" />
+    <Content Include="www\images\lecturer_no_photo.gif" />
+    <Content Include="www\images\lec_clear_bg.gif" />
+    <Content Include="www\images\left_bj_404.jpg" />
+    <Content Include="www\images\list-detail.gif" />
+    <Content Include="www\images\li_right.png" />
+    <Content Include="www\images\li_right_h.png" />
+    <Content Include="www\images\login-banner1.jpg" />
+    <Content Include="www\images\login-banner2.jpg" />
+    <Content Include="www\images\login-banner3.jpg" />
+    <Content Include="www\images\login-icon.png" />
+    <Content Include="www\images\login-type.png" />
+    <Content Include="www\images\logo.gif" />
+    <Content Include="www\images\logo.jpg" />
+    <Content Include="www\images\logo.png" />
+    <Content Include="www\images\merger_img.gif" />
+    <Content Include="www\images\mobile\ai-icon.png" />
+    <Content Include="www\images\mobile\android-down.png" />
+    <Content Include="www\images\mobile\android-img1.jpg" />
+    <Content Include="www\images\mobile\android-img2.jpg" />
+    <Content Include="www\images\mobile\android-img3.png" />
+    <Content Include="www\images\mobile\android-phone.png" />
+    <Content Include="www\images\mobile\banner-android.jpg" />
+    <Content Include="www\images\mobile\banner-ios.jpg" />
+    <Content Include="www\images\mobile\banner-wap.jpg" />
+    <Content Include="www\images\mobile\banner-wechat.jpg" />
+    <Content Include="www\images\mobile\code.jpg" />
+    <Content Include="www\images\mobile\ios-down.png" />
+    <Content Include="www\images\mobile\ios-img1.jpg" />
+    <Content Include="www\images\mobile\ios-img2.jpg" />
+    <Content Include="www\images\mobile\ios-img3.png" />
+    <Content Include="www\images\mobile\ios-phone.png" />
+    <Content Include="www\images\mobile\little-yuan.jpg" />
+    <Content Include="www\images\mobile\logo.png" />
+    <Content Include="www\images\mobile\map.png" />
+    <Content Include="www\images\mobile\wachat-icon.png" />
+    <Content Include="www\images\mobile\wap-banner.jpg" />
+    <Content Include="www\images\mobile\wap-img1.jpg" />
+    <Content Include="www\images\mobile\wap-img2.jpg" />
+    <Content Include="www\images\mobile\wap-img3.jpg" />
+    <Content Include="www\images\mobile\wap-img4.jpg" />
+    <Content Include="www\images\mobile\wap-input.jpg" />
+    <Content Include="www\images\mobile\wap-sp-img.png" />
+    <Content Include="www\images\mobile\wechat-banner.jpg" />
+    <Content Include="www\images\mobile\wechat-box.png" />
+    <Content Include="www\images\mobile\wechat-enlarge.png" />
+    <Content Include="www\images\mobile\wechat-img1.jpg" />
+    <Content Include="www\images\mobile\wechat-img2.jpg" />
+    <Content Include="www\images\mobile\wechat-img3.jpg" />
+    <Content Include="www\images\mobile\wechat-input.png" />
+    <Content Include="www\images\more.gif" />
+    <Content Include="www\images\news0.jpg" />
+    <Content Include="www\images\news1.jpg" />
+    <Content Include="www\images\news2.jpg" />
+    <Content Include="www\images\news3.jpg" />
+    <Content Include="www\images\news4.jpg" />
+    <Content Include="www\images\new_acc.gif" />
+    <Content Include="www\images\new_bindding.png" />
+    <Content Include="www\images\new_choose.gif" />
+    <Content Include="www\images\new_choose.jpg" />
+    <Content Include="www\images\noyan.jpg" />
+    <Content Include="www\images\no_exerc.png" />
+    <Content Include="www\images\no_logo.gif" />
+    <Content Include="www\images\no_photo.gif" />
+    <Content Include="www\images\ns_down_bg.gif" />
+    <Content Include="www\images\null-box.png" />
+    <Content Include="www\images\photo.gif" />
+    <Content Include="www\images\photoTrad.gif" />
+    <Content Include="www\images\pop_collect.gif" />
+    <Content Include="www\images\quick-reg-icon.png" />
+    <Content Include="www\images\r.png" />
+    <Content Include="www\images\s-jobfair-icon.png" />
+    <Content Include="www\images\searchclear.png" />
+    <Content Include="www\images\searchclose.png" />
+    <Content Include="www\images\searchicon.gif" />
+    <Content Include="www\images\selector-close.png" />
+    <Content Include="www\images\selector.png" />
+    <Content Include="www\images\shop-filter-icon.png" />
+    <Content Include="www\images\shoucang_icon.png" />
+    <Content Include="www\images\shoucang_s_icon.png" />
+    <Content Include="www\images\showmsg\11.gif" />
+    <Content Include="www\images\showmsg\12.gif" />
+    <Content Include="www\images\showmsg\13.gif" />
+    <Content Include="www\images\showmsg\21.gif" />
+    <Content Include="www\images\simple.jpg" />
+    <Content Include="www\images\simple_s.png" />
+    <Content Include="www\images\simple_s1.png" />
+    <Content Include="www\images\simple_s2.png" />
+    <Content Include="www\images\small01.gif" />
+    <Content Include="www\images\sns-icon-b.jpg" />
+    <Content Include="www\images\sort-icon.png" />
+    <Content Include="www\images\spread_icon.gif" />
+    <Content Include="www\images\spread_icon_up.gif" />
+    <Content Include="www\images\stick.gif" />
+    <Content Include="www\images\talent.gif" />
+    <Content Include="www\images\tip-big-icon.png" />
+    <Content Include="www\images\top_news.gif" />
+    <Content Include="www\images\train_no_logo.gif" />
+    <Content Include="www\images\user-ad.png" />
+    <Content Include="www\images\user-btn1.jpg" />
+    <Content Include="www\images\user-btn2.jpg" />
+    <Content Include="www\images\user-btn3.jpg" />
+    <Content Include="www\images\user-icon36.png" />
+    <Content Include="www\images\user-up-arrow.png" />
+    <Content Include="www\images\vip-icon.png" />
+    <Content Include="www\images\wap_logo.gif" />
+    <Content Include="www\images\wechat-pay.png" />
+    <Content Include="www\images\wei.jpg" />
+    <Content Include="www\images\weixin-code-border.png" />
+    <Content Include="www\images\weixin-img.png" />
+    <Content Include="www\images\weixin_img.jpg" />
+    <Content Include="www\images\word_resume.png" />
+    <Content Include="www\images\wx_showmsg.jpg" />
+    <Content Include="www\images\xiala.gif" />
+    <Content Include="www\images\yan.gif" />
+    <Content Include="www\images\yanzheng.jpg" />
+    <Content Include="www\images\yesyan.jpg" />
+    <Content Include="www\images\ying.jpg" />
+    <Content Include="www\images\yq.gif" />
+    <Content Include="www\images\zhengque_btn.png" />
+    <Content Include="www\images\zhu.jpg" />
+    <Content Include="www\js\ajaxfileupload.js" />
+    <Content Include="www\js\dialog-min-common.js" />
+    <Content Include="www\js\dialog-min.js" />
+    <Content Include="www\js\emailAutoComplete.js" />
+    <Content Include="www\js\image.cut.js" />
+    <Content Include="www\js\image.drag.js" />
+    <Content Include="www\js\index_foucs.js" />
+    <Content Include="www\js\jquery.ajax.personal.selectlayer.js" />
+    <Content Include="www\js\jquery.autocomplete.js" />
+    <Content Include="www\js\jquery.company-search.js" />
+    <Content Include="www\js\jquery.company.selectlayer.js" />
+    <Content Include="www\js\jquery.comreg.selectlayer.js" />
+    <Content Include="www\js\jquery.comtip-min.js" />
+    <Content Include="www\js\jquery.cookie.js" />
+    <Content Include="www\js\jquery.datepicker.js" />
+    <Content Include="www\js\jquery.date_input.js" />
+    <Content Include="www\js\jquery.dialog.js" />
+    <Content Include="www\js\jquery.dropDownWidget.js" />
+    <Content Include="www\js\jquery.fancybox-1.3.4.pack.js" />
+    <Content Include="www\js\jquery.gotoemail.js" />
+    <Content Include="www\js\jquery.header.js" />
+    <Content Include="www\js\jquery.highlight-3.js" />
+    <Content Include="www\js\jquery.hoverDelay.js" />
+    <Content Include="www\js\jquery.iColorPicker.js" />
+    <Content Include="www\js\jquery.idTabs.min.js" />
+    <Content Include="www\js\jquery.index.js" />
+    <Content Include="www\js\jquery.Jcrop.min.js" />
+    <Content Include="www\js\jquery.jobs-list.js" />
+    <Content Include="www\js\jquery.jobs-search.js" />
+    <Content Include="www\js\jquery.jobs-street-list.js" />
+    <Content Include="www\js\jquery.jobs-tag-search.js" />
+    <Content Include="www\js\jquery.jobtag-search.js" />
+    <Content Include="www\js\jquery.js" />
+    <Content Include="www\js\jquery.KinSlideshow.min.js" />
+    <Content Include="www\js\jquery.lazyload.js" />
+    <Content Include="www\js\jquery.manager-resume-search.js" />
+    <Content Include="www\js\jquery.map-jobs-search.js" />
+    <Content Include="www\js\jquery.map-selectlayer.js" />
+    <Content Include="www\js\jquery.newindex.js" />
+    <Content Include="www\js\jquery.pagination.js" />
+    <Content Include="www\js\jquery.personal.selectlayer.js" />
+    <Content Include="www\js\jquery.QSdialog.js" />
+    <Content Include="www\js\jquery.reasontip-min.js" />
+    <Content Include="www\js\jquery.resume-list.js" />
+    <Content Include="www\js\jquery.resume-search.js" />
+    <Content Include="www\js\jquery.resume-tag-search.js" />
+    <Content Include="www\js\jquery.resumetag-search.js" />
+    <Content Include="www\js\jquery.selectlayer.js" />
+    <Content Include="www\js\jquery.simple.js" />
+    <Content Include="www\js\jquery.user.selectlayer.js" />
+    <Content Include="www\js\jquery.validate.min.js" />
+    <Content Include="www\js\jquery.vtip-min.js" />
+    <Content Include="www\js\jquery.zclip.min.js" />
+    <Content Include="www\js\swipe.js" />
+    <Content Include="www\js\tc.all.js" />
+    <Content Include="www\lib\bootstrap\bootstrap.css" />
+    <Content Include="www\lib\bootstrap\bootstrap.js" />
+    <Content Include="www\lib\bootstrap\bootstrap.min.css" />
+    <Content Include="www\lib\bootstrap\bootstrap.min.js" />
+    <Content Include="www\lib\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="www\lib\core\css\core.css" />
+    <Content Include="www\lib\core\img\checkmark%402x.png" />
+    <Content Include="www\lib\core\img\checkmark.png" />
+    <Content Include="www\lib\core\img\checkno.gif" />
+    <Content Include="www\lib\core\img\checkok.gif" />
+    <Content Include="www\lib\core\js\action.js" />
+    <Content Include="www\lib\core\js\core.js" />
+    <Content Include="www\lib\core\js\extend.js" />
+    <Content Include="www\lib\core\js\form.js" />
+    <Content Include="www\lib\core\js\modal.js" />
+    <Content Include="www\lib\core\js\plugin.js" />
+    <Content Include="www\lib\core\js\table.js" />
+    <Content Include="www\lib\core\js\tree.js" />
+    <Content Include="www\lib\core\js\treegrid.js" />
+    <Content Include="www\lib\core\js\treetable.js" />
+    <Content Include="www\lib\font-awesome\font-awesome.css" />
+    <Content Include="www\lib\font-awesome\font-awesome.min.css" />
+    <Content Include="www\lib\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="www\lib\jquery-icheck\img\aero%402x.png" />
+    <Content Include="www\lib\jquery-icheck\img\aero.png" />
+    <Content Include="www\lib\jquery-icheck\img\blue%402x.png" />
+    <Content Include="www\lib\jquery-icheck\img\blue.png" />
+    <Content Include="www\lib\jquery-icheck\img\flat%402x.png" />
+    <Content Include="www\lib\jquery-icheck\img\flat.png" />
+    <Content Include="www\lib\jquery-icheck\img\green%402x.png" />
+    <Content Include="www\lib\jquery-icheck\img\green.png" />
+    <Content Include="www\lib\jquery-icheck\img\grey%402x.png" />
+    <Content Include="www\lib\jquery-icheck\img\grey.png" />
+    <Content Include="www\lib\jquery-icheck\img\orange%402x.png" />
+    <Content Include="www\lib\jquery-icheck\img\orange.png" />
+    <Content Include="www\lib\jquery-icheck\img\pink%402x.png" />
+    <Content Include="www\lib\jquery-icheck\img\pink.png" />
+    <Content Include="www\lib\jquery-icheck\img\purple%402x.png" />
+    <Content Include="www\lib\jquery-icheck\img\purple.png" />
+    <Content Include="www\lib\jquery-icheck\img\red%402x.png" />
+    <Content Include="www\lib\jquery-icheck\img\red.png" />
+    <Content Include="www\lib\jquery-icheck\img\square%402x.png" />
+    <Content Include="www\lib\jquery-icheck\img\square.png" />
+    <Content Include="www\lib\jquery-icheck\img\square_aero%402x.png" />
+    <Content Include="www\lib\jquery-icheck\img\square_aero.png" />
+    <Content Include="www\lib\jquery-icheck\img\square_blue%402x.png" />
+    <Content Include="www\lib\jquery-icheck\img\square_blue.png" />
+    <Content Include="www\lib\jquery-icheck\img\square_green%402x.png" />
+    <Content Include="www\lib\jquery-icheck\img\square_green.png" />
+    <Content Include="www\lib\jquery-icheck\img\square_grey%402x.png" />
+    <Content Include="www\lib\jquery-icheck\img\square_grey.png" />
+    <Content Include="www\lib\jquery-icheck\img\square_orange%402x.png" />
+    <Content Include="www\lib\jquery-icheck\img\square_orange.png" />
+    <Content Include="www\lib\jquery-icheck\img\square_pink%402x.png" />
+    <Content Include="www\lib\jquery-icheck\img\square_pink.png" />
+    <Content Include="www\lib\jquery-icheck\img\square_purple%402x.png" />
+    <Content Include="www\lib\jquery-icheck\img\square_purple.png" />
+    <Content Include="www\lib\jquery-icheck\img\square_red%402x.png" />
+    <Content Include="www\lib\jquery-icheck\img\square_red.png" />
+    <Content Include="www\lib\jquery-icheck\img\square_yellow%402x.png" />
+    <Content Include="www\lib\jquery-icheck\img\square_yellow.png" />
+    <Content Include="www\lib\jquery-icheck\img\yellow%402x.png" />
+    <Content Include="www\lib\jquery-icheck\img\yellow.png" />
+    <Content Include="www\lib\jquery-icheck\jquery-icheck-square.css" />
+    <Content Include="www\lib\jquery-icheck\jquery-icheck.js" />
+    <Content Include="www\lib\jquery-loadmask\jquery-loadmask.css" />
+    <Content Include="www\lib\jquery-loadmask\jquery-loadmask.js" />
+    <Content Include="www\lib\jquery\jquery.js" />
+    <Content Include="www\lib\jquery\jquery.min.js" />
+    <Content Include="www\lib\layer\img\layer_icon-ext.png" />
+    <Content Include="www\lib\layer\img\layer_icon.png" />
+    <Content Include="www\lib\layer\img\layer_loading-0.gif" />
+    <Content Include="www\lib\layer\img\layer_loading-1.gif" />
+    <Content Include="www\lib\layer\img\layer_loading-2.gif" />
+    <Content Include="www\lib\layer\layer.css" />
+    <Content Include="www\lib\layer\layer.js" />
+    <Content Include="www\lib\mediaelement\background.png" />
+    <Content Include="www\lib\mediaelement\bigplay.fw.png" />
+    <Content Include="www\lib\mediaelement\bigplay.png" />
+    <Content Include="www\lib\mediaelement\bigplay.svg" />
+    <Content Include="www\lib\mediaelement\controls-ted.png" />
+    <Content Include="www\lib\mediaelement\controls-wmp-bg.png" />
+    <Content Include="www\lib\mediaelement\controls-wmp.png" />
+    <Content Include="www\lib\mediaelement\controls.fw.png" />
+    <Content Include="www\lib\mediaelement\controls.png" />
+    <Content Include="www\lib\mediaelement\controls.svg" />
+    <Content Include="www\lib\mediaelement\DO NOT CHANGE THESE FILES. USE -src- FOLDER.txt" />
+    <Content Include="www\lib\mediaelement\flashmediaelement-cdn.swf" />
+    <Content Include="www\lib\mediaelement\flashmediaelement-debug.swf" />
+    <Content Include="www\lib\mediaelement\flashmediaelement.swf" />
+    <Content Include="www\lib\mediaelement\jquery.js" />
+    <Content Include="www\lib\mediaelement\jumpforward.png" />
+    <Content Include="www\lib\mediaelement\loading.gif" />
+    <Content Include="www\lib\mediaelement\mediaelement-and-player.js" />
+    <Content Include="www\lib\mediaelement\mediaelement-and-player.min.js" />
+    <Content Include="www\lib\mediaelement\mediaelement.js" />
+    <Content Include="www\lib\mediaelement\mediaelement.min.js" />
+    <Content Include="www\lib\mediaelement\mediaelementplayer.css" />
+    <Content Include="www\lib\mediaelement\mediaelementplayer.js" />
+    <Content Include="www\lib\mediaelement\mediaelementplayer.min.css" />
+    <Content Include="www\lib\mediaelement\mediaelementplayer.min.js" />
+    <Content Include="www\lib\mediaelement\mejs-skins.css" />
+    <Content Include="www\lib\mediaelement\silverlightmediaelement.xap" />
+    <Content Include="www\lib\mediaelement\skipback.png" />
+    <Content Include="www\lib\useragent\useragent.js" />
+    <Content Include="www\lib\useragent\useragent_base.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\ErrorQuestionController.cs" />
+    <Compile Include="Controllers\FavoriteQuestionController.cs" />
+    <Compile Include="Controllers\SimulatorExerciseController.cs" />
+    <Compile Include="Controllers\StudentAuditsController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\StudentLearningController.cs" />
+    <Compile Include="Controllers\StudentWebController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Default\Login.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Views\StudentAudits\Index.cshtml" />
+    <Content Include="Views\Shared\_Bottom.cshtml" />
+    <Content Include="Views\Shared\_Navbar.cshtml" />
+    <Content Include="Views\Shared\_Copyright.cshtml" />
+    <Content Include="app.json" />
+    <Content Include="Views\StudentAudits\Grid.cshtml" />
+    <Content Include="Views\Default\Learning.cshtml" />
+    <Content Include="Views\Default\_Video.cshtml" />
+    <Content Include="Views\Default\_Image.cshtml" />
+    <Content Include="Views\SimulatorExercise\Index.cshtml" />
+    <Content Include="Views\SimulatorExercise\_Question.cshtml" />
+    <Content Include="Views\SimulatorExercise\_pd.cshtml" />
+    <Content Include="Views\SimulatorExercise\_sx.cshtml" />
+    <Content Include="Views\SimulatorExercise\_mx.cshtml" />
+    <Content Include="Views\ErrorQuestion\Index.cshtml" />
+    <Content Include="Views\ErrorQuestion\_Question.cshtml" />
+    <Content Include="Views\FavoriteQuestion\Index.cshtml" />
+    <Content Include="Views\FavoriteQuestion\_Question.cshtml" />
+    <Content Include="Views\Student\TrainHistory.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <Content Include="www\lib\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="www\lib\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="www\lib\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="www\lib\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="www\lib\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="www\lib\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="www\lib\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="www\lib\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="www\lib\font-awesome\fonts\FontAwesome.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+    <Folder Include="Views\StudentLearning\" />
+    <Folder Include="Views\StudentWeb\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DotNet.Auth\DotNet.Auth.Utility\DotNet.Auth.Utility.csproj">
+      <Project>{A832C7E2-BD55-41D8-A0E6-E7C406C7231B}</Project>
+      <Name>DotNet.Auth.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DotNet.Framework\DotNet.Mvc\DotNet.Mvc.csproj">
+      <Project>{6A790C23-5638-4098-AA0D-EA9D4944749B}</Project>
+      <Name>DotNet.Mvc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DotNet.Framework\DotNet.Utility\DotNet.Utility.csproj">
+      <Project>{786CF068-24A5-46A9-8126-CDD89F558991}</Project>
+      <Name>DotNet.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.Edu.Entity\DotNet.Edu.Entity.csproj">
+      <Project>{95384cf1-18e8-49d0-b96f-22d0a46c31f2}</Project>
+      <Name>DotNet.Edu.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.Edu.Service\DotNet.Edu.Service.csproj">
+      <Project>{4ef7a03b-4496-4a39-957d-2551932a4eca}</Project>
+      <Name>DotNet.Edu.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.Edu.Utility\DotNet.Edu.Utility.csproj">
+      <Project>{87eb08e4-b9f6-43fb-8cd3-a9ab0cb2fcba}</Project>
+      <Name>DotNet.Edu.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.Edu.WebUtility\DotNet.Edu.WebUtility.csproj">
+      <Project>{b3990cd4-d71a-4c6b-8c56-e10929f7958f}</Project>
+      <Name>DotNet.Edu.WebUtility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>14076</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:14076/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\..\..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
