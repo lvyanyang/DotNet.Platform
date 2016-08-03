@@ -1,0 +1,200 @@
+﻿@{
+    ViewBag.Title = "模拟考试";
+}
+<div class="bbox1">
+    <div class="student_topnav">
+        <div class="titleH1">
+            <div class="h1-title">@ViewBag.Title</div>
+        </div>
+    </div>
+
+    <div id="questArea" data-url="@Url.Action("_Question")"></div>
+
+</div>
+
+@section css{
+    <link href="~/www/css/question.css" rel="stylesheet" />
+}
+@section js{
+    <script>
+        var surplusSecond = 5400;
+        var okScore = 80;
+        var isInitCount = false;
+
+        function commitQuest() {
+            var url = $('#commit_quest').data('url');
+            fx.ajax({
+                url: url,
+                confirm: '确定交卷吗？',
+                success: function (result) {
+                    pauseCount();
+                    $('.answer_btn').remove();
+                    $('#pause_quest').remove();
+                    $('#commit_quest').remove();
+
+                    var totalScore = result.totalScore;
+                    var totalCount = result.totalCount;
+                    var correctCount = result.correctCount;
+                    var errorCount = result.errorCount;
+                    var userScore = result.userScore;
+                    var isOk = userScore > okScore;
+                    var tpl =
+                        '<p class="exam_question_result_title">' +
+                            '得分:{0}分,{1}' +
+                            '</p>' +
+                            '<p class="exam_question_result_content">' +
+                            '共:<span class="exam_question_result_number">{2}</span>题 ' +
+                            '正确:<span class="exam_question_result_number">{3}</span>题 ' +
+                            '错误:<span class="exam_question_result_number">{4}</span>题' +
+                            '</p>';
+                    var callback = function(index) {
+                        layer.close(index);
+                        var url = $('#currentQuestionUrl').data('url');
+                        init(url);
+                    };
+                    if (isOk) {
+                        layer.alert(tpl.format(userScore, '恭喜,通过考核', totalCount, correctCount, errorCount), 
+                            { title: '系统提示', icon: 1, btn: ['查看答案'], closeBtn: 0 }, callback);
+                    } else {
+                        layer.alert(tpl.format(userScore, '很遗憾,未能通过考核', totalCount, correctCount, errorCount), 
+                            { title: '系统提示', icon: 2, btn: ['查看答案'], closeBtn: 0 }, callback);
+                    }
+                }
+            });
+        }
+
+        //显示倒计时
+        function ShowCountDown() {
+
+            if (surplusSecond < 1) {
+                $("#remainingTime").html('00:00');
+                window.clearInterval(window.jsq);
+                commitQuest();
+                return;
+            }
+
+            surplusSecond = surplusSecond - 1;
+            var min = Math.floor(surplusSecond / 60);
+            if (min < 1) {
+                min = 0;
+            }
+            var sec = surplusSecond % 60; // 这是取模
+            if (min < 10) {
+                min = '0' + min;
+            }
+
+            if (sec < 10) {
+                sec = '0' + sec;
+            }
+            $("#remainingTime").html(min + ':' + sec);
+        }
+
+        function pauseCount() {
+            if (window.jsq) {
+                window.clearInterval(window.jsq);
+                window.jsq = null;
+            }
+        }
+
+        function continueCount() {
+            if (!window.jsq) {
+                window.jsq = window.setInterval(function () { ShowCountDown(); }, 1000);
+            }
+        }
+
+        function init(url) {
+            fx.ajax({
+                maskTarget: '.bbox1',
+                //masked:false,
+                delay: 200,
+                url: url,
+                dataType: 'html',
+                success: function (result) {
+                    $('#questArea').empty().html(result);
+                    $('#questArea').find('#exercise_row').animateCss('fadeIn');
+
+                    $('#questArea')
+                        .find('.uicheck')
+                        .iCheck({
+                            checkboxClass: 'icheckbox_square-blue',
+                            radioClass: 'iradio_square-blue',
+                            increaseArea: '20%'
+                        });
+
+                    $('#questArea')
+                        .find('.navQuestion,.exam_question_num')
+                        .click(function () {
+                            var url = $(this).data('url');
+                            init(url);
+                        });
+
+                    $('#questArea')
+                        .find('#pause_quest')
+                        .click(function () {
+                            pauseCount();
+                            fx.alert('暂停计时,点击按钮继续考试',
+                                function (index) {
+                                    layer.close(index);
+                                    continueCount();
+                                },
+                                { btn: ['继续'], closeBtn: 0 });
+                        });
+
+                    $('#questArea')
+                        .find('#commit_quest')
+                        .click(function () {
+                            commitQuest();
+                        });
+
+                    $('#questArea')
+                        .find('.answer_btn')
+                        .click(function () {
+                            var value = $(this).data('value');
+                            var $input = $('#answer' + value);
+                            var checked = $input.prop('checked');
+                            $input.iCheck(checked ? 'uncheck' : 'check');
+                        });
+
+                    $('#questArea')
+                        .find('input[type="radio"]')
+                        .on('ifChecked',
+                            function () {
+                                var user_value = $(this).val();
+                                var correct_value = $('#questArea').find('#correctAnswer').val();
+                                $('#questArea').find('#user_result').html(user_value);
+                                var result = user_value == correct_value;
+                                //记录答题情况
+                                var check_url = $('#questArea').find('#quest_result').data('url');
+                                fx.ajax({
+                                    masked: false,
+                                    data: { userResult: result, userAnswer: user_value },
+                                    url: check_url,
+                                    success: function () {
+                                        if ($('#nextQuest').length > 0) {
+                                            var init_url = $('#nextQuest').data('url');
+                                            init(init_url);
+                                        }
+                                    }
+                                });
+                                //$('#questArea').find('.answer_btn').hide();
+                                //$('#questArea').find('input[type="radio"]').iCheck('disable');
+
+                                //$('#questArea').find('#quest_result').show();
+                            });
+
+                    //倒计时
+                    if (!isInitCount && $('#noCommit').length > 0) {
+                        ShowCountDown();
+                        continueCount();
+                    }
+                }
+            });
+        }
+
+        $(function () {
+            var url = $('#questArea').data('url');
+            init(url);
+
+        });
+    </script>
+}

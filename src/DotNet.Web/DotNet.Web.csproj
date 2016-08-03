@@ -125,6 +125,7 @@
     <Content Include="www\core\js\tree.js" />
     <Content Include="www\core\js\treegrid.js" />
     <Content Include="www\core\js\treetable.js" />
+    <Content Include="www\lib\animate\animate.css" />
     <Content Include="www\lib\bootstrap-fileinput\css\fileinput.css" />
     <Content Include="www\lib\bootstrap-fileinput\css\fileinput.min.css" />
     <Content Include="www\lib\bootstrap-fileinput\examples\index.html" />

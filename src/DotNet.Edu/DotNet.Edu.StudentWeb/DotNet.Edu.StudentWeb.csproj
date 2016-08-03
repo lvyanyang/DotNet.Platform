@@ -385,6 +385,7 @@
     <Content Include="www\js\image.cut.js" />
     <Content Include="www\js\image.drag.js" />
     <Content Include="www\js\index_foucs.js" />
+    <Content Include="www\js\jquery-bigSlider.js" />
     <Content Include="www\js\jquery.ajax.personal.selectlayer.js" />
     <Content Include="www\js\jquery.autocomplete.js" />
     <Content Include="www\js\jquery.company-search.js" />
@@ -433,6 +434,7 @@
     <Content Include="www\js\jquery.zclip.min.js" />
     <Content Include="www\js\swipe.js" />
     <Content Include="www\js\tc.all.js" />
+    <Content Include="www\lib\animate\animate.css" />
     <Content Include="www\lib\bootstrap\bootstrap.css" />
     <Content Include="www\lib\bootstrap\bootstrap.js" />
     <Content Include="www\lib\bootstrap\bootstrap.min.css" />
@@ -545,6 +547,7 @@
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\ErrorQuestionController.cs" />
     <Compile Include="Controllers\FavoriteQuestionController.cs" />
+    <Compile Include="Controllers\SimulatorExamController.cs" />
     <Compile Include="Controllers\SimulatorExerciseController.cs" />
     <Compile Include="Controllers\StudentAuditsController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
@@ -581,6 +584,8 @@
     <Content Include="Views\FavoriteQuestion\Index.cshtml" />
     <Content Include="Views\FavoriteQuestion\_Question.cshtml" />
     <Content Include="Views\Student\TrainHistory.cshtml" />
+    <Content Include="Views\SimulatorExam\_Question.cshtml" />
+    <Content Include="Views\SimulatorExam\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

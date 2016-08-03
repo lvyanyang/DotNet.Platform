@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DotNet.Edu.Entity;
 using DotNet.Edu.Service;
 using DotNet.Utility;
 
@@ -31,15 +32,15 @@ namespace DotNet.Edu.StudentWeb.Controllers
         public ActionResult _Question(int index = 0)
         {
             int count = CurrentStudent.ExerciseQuestions.Count;
+            ViewBag.studentSession = CurrentStudent;
+            ViewBag.index = index;
+            ViewBag.exerciseQuestions = CurrentStudent.ExerciseQuestions;
+            ExcerciseQuestion entity = null;
             if (index >= 0 && index < count)
             {
-                ViewBag.studentSession = CurrentStudent;
-                ViewBag.index = index;
-                ViewBag.exerciseQuestions = CurrentStudent.ExerciseQuestions;
-                var entity = CurrentStudent.ExerciseQuestions[index];
-                return View("_Question", entity);
+                entity = CurrentStudent.ExerciseQuestions[index];
             }
-            throw new ArgumentOutOfRangeException(nameof(index), "无效的题库索引");
+            return View("_Question", entity);
         }
 
         public ActionResult FavoriteQuestion(string questionId, int favoriteType, bool isFavorite)

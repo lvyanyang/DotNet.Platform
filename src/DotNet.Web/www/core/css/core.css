@@ -520,6 +520,31 @@ table td.nowrap {
     color: #c9302c;
 }
 
+/* =============================BGColor=============================== */
+.bgcolor-primary {
+    background-color:#337ab7;
+    color: #FFFFFF;
+}
+
+.bgcolor-success {
+    background-color:#449d44;
+    color: #FFFFFF;
+}
+
+.bgcolor-info {
+    background-color:#5bc0de;
+    color: #FFFFFF;
+}
+
+.bgcolor-warning {
+    background-color:#ec971f;
+    color: #FFFFFF;
+}
+
+.bgcolor-danger {
+    background-color:#c9302c;
+    color: #FFFFFF;
+}
 /* =============================Form=============================== */
 
 .form-group .required {

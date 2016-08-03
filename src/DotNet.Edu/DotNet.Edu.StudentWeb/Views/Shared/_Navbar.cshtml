@@ -35,8 +35,8 @@
                     <li class="@Html.IsActiveStudentMenu("Index", "SimulatorExercise")">
                         <a href="@Url.Action("Index", "SimulatorExercise")">模拟练习</a>
                     </li>
-                    <li>
-                        <a href="#">综合测试</a>
+                    <li class="@Html.IsActiveStudentMenu("Index", "SimulatorExam")">
+                        <a href="@Url.Action("Index", "SimulatorExam")">模拟考试</a>
                     </li>
                     <li class="@Html.IsActiveStudentMenu("Index", "ErrorQuestion")">
                         <a href="@Url.Action("Index", "ErrorQuestion")">错题记录</a>

@@ -914,7 +914,9 @@ var fx = {};
             var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
             $(this).addClass('animated ' + aname).one(animationEnd, function () {
                 $(this).removeClass('animated ' + aname);
-                callback.call(this);
+                if (callback) {
+                    callback.call(this);
+                }
             });
         },
 

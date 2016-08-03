@@ -279,5 +279,27 @@ namespace DotNet.Edu.Service
             var qList = sz.Select(index => sourceList[index]).ToList();
             return qList.Select(q => new ExcerciseQuestion(q)).ToList();
         }
+
+        /// <summary>
+        /// 获取模拟考试题目
+        /// </summary>
+        /// <param name="workType">从业类型</param>
+        /// <returns></returns>
+        public List<ExcerciseQuestion> GetExamQuestions(string workType)
+        {
+            var sourceList = GetRandomQuestions(workType);
+            var newList = new List<ExcerciseQuestion>();
+            var sum = 0;
+            foreach (var item in sourceList)
+            {
+                sum += item.Score;
+                newList.Add(item);
+                if (sum >= 100)
+                {
+                    break;
+                }
+            }
+            return newList;
+        }
     }
 }

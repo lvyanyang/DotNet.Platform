@@ -7,105 +7,118 @@
     int nextIndex = index + 1;
     List<ExcerciseQuestion> exerciseQuestions = ViewBag.exerciseQuestions;
     StudentSession studentSession = ViewBag.studentSession;
-    bool isFavorite = EduService.QuestionFavorite.IsFavorite(studentSession.StudentId, Model.Id, 2);
+    bool isFavorite = false;
+    if (Model != null)
+    {
+        isFavorite = EduService.QuestionFavorite.IsFavorite(studentSession.StudentId, Model.Id, 2);
+    }
 }
-<div class="row" style="margin-top: 15px;margin-left: 15px;">
-
-    <a class="btn btn-sm btn-default initQuestion @Html.IsPrimaryBtn(studentSession.ExerciseType==1)" data-url="@Url.Action("Seq")">顺序出题</a>
-
-    <a class="btn btn-sm btn-default initQuestion @Html.IsPrimaryBtn(studentSession.ExerciseType==2)" data-url="@Url.Action("Random")" style="margin-left:15px;">随机出题</a>
-</div>
-
-<div class="row" style="margin-top: 15px;margin-left: 15px; margin-right: 15px; border:1px solid #cac8c9; padding:20px;">
-    <p class="exercise_title">@(index + 1)、@Model.Name</p>
-    <div>
-        <ul class="exercise_answer">
-            @if (Model.QuestType == "1")//判断
-            {
-                @Html.Partial("_pd", Model)
-            }
-            else if (Model.QuestType == "2")//单选
-            {
-                @Html.Partial("_sx", Model)
-            }
-            else if (Model.QuestType == "3")//多选
-            {
-                @Html.Partial("_mx", Model)
-            }
-        </ul>
+@if (Model == null)
+{
+    <div class="bs-callout bs-callout-warning" style="margin-right: 15px; margin-left: 15px;">
+        <h4>暂无练习题</h4>
     </div>
-    <div class="row" style="margin-top: 15px;">
-        <div class="col-md-6">
-            @if (!Model.UserSelected.HasValue)
-            {
+}
+else
+{
+    <div class="row" style="margin-top: 15px; margin-left: 15px;">
+
+        <a class="btn btn-sm btn-default initQuestion @Html.IsPrimaryBtn(studentSession.ExerciseType == 1)" data-url="@Url.Action("Seq")">顺序出题</a>
+
+        <a class="btn btn-sm btn-default initQuestion @Html.IsPrimaryBtn(studentSession.ExerciseType == 2)" data-url="@Url.Action("Random")" style="margin-left: 15px;">随机出题</a>
+    </div>
+
+    <div class="row" style="margin-top: 15px; margin-left: 15px; margin-right: 15px; border: 1px solid #cac8c9; padding: 20px;">
+        <p class="exercise_title">@(index + 1)、@Model.Name</p>
+        <div>
+            <ul class="exercise_answer">
+                @if (Model.QuestType == "1") //判断
+                {
+                @Html.Partial("_pd", Model)
+                }
+                else if (Model.QuestType == "2") //单选
+                {
+                @Html.Partial("_sx", Model)
+                }
+                else if (Model.QuestType == "3") //多选
+                {
+                @Html.Partial("_mx", Model)
+                }
+            </ul>
+        </div>
+        <div class="row" style="margin-top: 15px;">
+            <div class="col-md-6">
+                @if (!Model.UserSelected.HasValue)
+                {
                 <div class="fxhide" id="quest_result" data-url="@Url.Action("CheckQuestion", new {questionId = Model.Id})">
-                    您选择的答案：<span id="user_result"></span>
+                    您选择的答案：<span id="user_result" class="user_result"></span>
                     <a class="btn btn-success exercise_btn fxhide" id="answer_yes" style="width: 120px;">回答正确</a>
                     <a class="btn btn-danger exercise_btn fxhide" id="answer_no" style="width: 150px;">正确答案：@Model.Answer</a>
                 </div>
-            }
-            else
-            {
+                }
+                else
+                {
                 <div class="" id="quest_result" data-url="@Url.Action("CheckQuestion", new {questionId = Model.Id})">
-                    您选择的答案：<span id="user_result">@Model.UserAnswer</span>
+                    您选择的答案：<span id="user_result" class="user_result">@Model.UserAnswer</span>
                     @if (Model.UserResult)
-                    {
+                        {
                         <a class="btn btn-success exercise_btn" id="answer_yes" style="width: 120px;">回答正确</a>
-                    }
-                    else
-                    {
+                        }
+                        else
+                        {
                         <a class="btn btn-danger exercise_btn" id="answer_no" style="width: 150px;">正确答案：@Model.Answer</a>
-                    }
+                        }
                 </div>
-            }
-        </div>
-        <div class="col-md-6 text-right" style="padding-right: 15px;">
-            @if (!Model.UserSelected.HasValue)
-            {
-                if (Model.A.IsNotEmpty())
-                {
-                    <a class="btn btn-primary exercise_btn answer_btn" data-value="A">A</a>
                 }
-                if (Model.B.IsNotEmpty())
+            </div>
+            <div class="col-md-6 text-right" style="padding-right: 15px;">
+                @if (!Model.UserSelected.HasValue)
                 {
-                    <a class="btn btn-primary exercise_btn answer_btn" data-value="B">B</a>
+                    if (Model.A.IsNotEmpty())
+                    {
+                <a class="btn btn-primary exercise_btn answer_btn" data-value="A">A</a>
+                    }
+                    if (Model.B.IsNotEmpty())
+                    {
+                <a class="btn btn-primary exercise_btn answer_btn" data-value="B">B</a>
+                    }
+                    if (Model.C.IsNotEmpty())
+                    {
+                <a class="btn btn-primary exercise_btn answer_btn" data-value="C">C</a>
+                    }
+                    if (Model.D.IsNotEmpty())
+                    {
+                <a class="btn btn-primary exercise_btn answer_btn" data-value="D">D</a>
+                    }
                 }
-                if (Model.C.IsNotEmpty())
-                {
-                    <a class="btn btn-primary exercise_btn answer_btn" data-value="C">C</a>
-                }
-                if (Model.D.IsNotEmpty())
-                {
-                    <a class="btn btn-primary exercise_btn answer_btn" data-value="D">D</a>
-                }
-            }
+            </div>
         </div>
     </div>
-</div>
 
-<div class="row" style="margin-top: 15px;margin-left: 15px;">
-    <div class="col-md-6" style="font-size: 12px;line-height: 34px;padding-left: 0">
-        共：<span id="total">@exerciseQuestions.Count</span> 题
-        &nbsp;&nbsp;&nbsp;&nbsp;答对：<span class="color-success">@studentSession.ExerciseQuestions.Count(p => p.UserSelected.HasValue && p.UserResult)</span> 题
-        &nbsp;&nbsp;&nbsp;&nbsp;答错：<span class="color-danger">@studentSession.ExerciseQuestions.Count(p => p.UserSelected.HasValue && !p.UserResult)</span> 题
-    </div>
-    <div class="col-md-6 text-right" style="padding-right: 30px;">
-        @if (exerciseQuestions.Count > 0)
-        {
+    <div class="row" style="margin-top: 15px; margin-left: 15px;">
+        <div class="col-md-6" style="font-size: 12px; line-height: 34px; padding-left: 0">
+            共：<span id="total">@exerciseQuestions.Count</span> 题
+            &nbsp;&nbsp;&nbsp;&nbsp;答对：<span class="color-success">@studentSession.ExerciseQuestions.Count(p => p.UserSelected.HasValue && p.UserResult)</span> 题
+            &nbsp;&nbsp;&nbsp;&nbsp;答错：<span class="color-danger">@studentSession.ExerciseQuestions.Count(p => p.UserSelected.HasValue && !p.UserResult)</span> 题
+        </div>
+        <div class="col-md-6 text-right" style="padding-right: 30px;">
+            @if (exerciseQuestions.Count > 0)
+            {
             <a class="btn btn-default favoriteQuestion @Html.IsPrimaryBtn(isFavorite)"
                data-url="@Url.Action("FavoriteQuestion", new {questionId = Model.Id, favoriteType = 2})"
                data-favorite="@isFavorite.ToString().ToLower()"><span class="fa fa-star"></span><span>@Html.IIF(isFavorite, "已关注", "关注")</span></a>
 
-            if (prveIndex > -1)
-            {
-                <a class="btn btn-default navQuestion" data-url="@Url.Action("_Question", new {index = prveIndex})" style="margin-left: 15px;"><span class="fa fa-arrow-left"></span> 上一题</a>
-            }
+                if (prveIndex > -1)
+                {
+            <a class="btn btn-default navQuestion" data-url="@Url.Action("_Question", new {index = prveIndex})" style="margin-left: 15px;"><span class="fa fa-arrow-left"></span> 上一题</a>
+                }
 
-            if (nextIndex < exerciseQuestions.Count)
-            {
-                <a class="btn btn-default navQuestion" data-url="@Url.Action("_Question", new {index = nextIndex})" style="margin-left: 15px;"><span class="fa fa-arrow-right"></span> 下一题</a>
+                if (nextIndex < exerciseQuestions.Count)
+                {
+            <a class="btn btn-default navQuestion" data-url="@Url.Action("_Question", new {index = nextIndex})" style="margin-left: 15px;"><span class="fa fa-arrow-right"></span> 下一题</a>
+                }
             }
-        }
+        </div>
     </div>
-</div>
-<input id="correctAnswer" type="hidden" value="@Model.Answer" />
+    <input id="correctAnswer" type="hidden" value="@Model.Answer" />
+}

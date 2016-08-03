@@ -53,6 +53,21 @@ namespace DotNet.Edu.WebUtility
         public int ExerciseType { get; set; }
 
         /// <summary>
+        /// 学员模拟考试题
+        /// </summary>
+        public List<ExcerciseQuestion> ExamQuestions { get; set; }
+
+        /// <summary>
+        /// 模拟考试是否提交
+        /// </summary>
+        public bool IsExamCommit { get; set; }
+
+        /// <summary>
+        /// 模拟考试开始时间
+        /// </summary>
+        public DateTime ExamStartDateTime { get; set; }
+
+        /// <summary>
         /// 学员练习题
         /// </summary>
         public List<ExcerciseQuestion> ExerciseQuestions { get; set; }

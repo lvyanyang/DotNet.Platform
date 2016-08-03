@@ -36,8 +36,13 @@
     </div>
 </div>
 @section js{
+<script src="~/www/js/jquery-bigSlider.js"></script>
     <script>
         $(function () {
+
+           jQuery('#wrapper2').bigSlider({
+		   
+		    });
 
             fx.prompt("验证", function (v, index) {
                 layer.close(index);

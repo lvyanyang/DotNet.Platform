@@ -13,7 +13,7 @@
         isFavorite = EduService.QuestionFavorite.IsFavorite(studentSession.StudentId, Model.Id, 2);
     }
 }
-@if (favoriteQuestions.Count == 0)
+@if (Model == null)
 {
     <div class="bs-callout bs-callout-warning" style="margin-right: 15px;margin-left: 15px;">
         <h4>暂无错误题</h4>

@@ -7,7 +7,7 @@
     int nextIndex = index + 1;
     List<ExcerciseQuestion> favoriteQuestions = ViewBag.favoriteQuestions;
 }
-@if (favoriteQuestions.Count == 0)
+@if (Model == null)
 {
     <div class="bs-callout bs-callout-warning" style="margin-right: 15px;margin-left: 15px;">
         <h4>暂无关注题</h4>
