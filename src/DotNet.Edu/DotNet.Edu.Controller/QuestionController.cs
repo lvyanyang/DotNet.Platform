@@ -58,7 +58,10 @@ namespace DotNet.Edu.Controllers
             {
                 return Json(hasResult);
             }
-            entity.CreateDateTime = DateTime.Now;
+            if (IsCreate)
+            {
+                entity.CreateDateTime = DateTime.Now;
+            }
             var result = EduService.Question.Save(entity, IsCreate);
             return Json(result);
         }

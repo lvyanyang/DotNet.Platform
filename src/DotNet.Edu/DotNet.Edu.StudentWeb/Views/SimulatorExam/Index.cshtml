@@ -182,6 +182,34 @@
                                 //$('#questArea').find('#quest_result').show();
                             });
 
+                    //多选提交
+                    $('#questArea').find('.answer_submit_btn').click(function () {
+                        var user_value = '';
+                        $('.uicheck:checked').each(function (i, v) {
+                            user_value += v.value;
+                        });
+                        var correct_value = $('#questArea').find('#correctAnswer').val();
+
+                        user_value = user_value.toLocaleUpperCase().split('').sort().join('');
+                        correct_value= correct_value.toLocaleUpperCase().split('').sort().join('');
+
+
+                        var result = user_value == correct_value;
+                        //记录答题情况
+                        var check_url = $('#questArea').find('#quest_result').data('url');
+                        fx.ajax({
+                            masked: false,
+                            data: { userResult: result, userAnswer: user_value },
+                            url: check_url,
+                            success: function () {
+                                if ($('#nextQuest').length > 0) {
+                                    var init_url = $('#nextQuest').data('url');
+                                    init(init_url);
+                                }
+                            }
+                        });
+                    });
+
                     //倒计时
                     if (!isInitCount && $('#noCommit').length > 0) {
                         ShowCountDown();

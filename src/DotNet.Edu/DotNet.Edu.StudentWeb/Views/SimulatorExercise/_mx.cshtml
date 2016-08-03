@@ -2,7 +2,7 @@
 @if (Model.A.IsNotEmpty())
 {
     <li>
-        <input class="uicheck" id="answerA" @Html.IsDisabled(Model.UserSelected.HasValue) @Html.IsChecked(Model.UserSelected.HasValue && Model.UserAnswer.Equals("A")) type="checkbox" value="A" style="margin-right: 10px;">
+        <input class="uicheck" id="answerA" @Html.IsDisabled(Model.UserSelected.HasValue) @Html.IsChecked(Model.UserSelected.HasValue && Model.UserAnswer.Contains("A")) type="checkbox" value="A" style="margin-right: 10px;">
         <label for="answerA">
             A、@Model.A
         </label>
@@ -11,7 +11,7 @@
 @if (Model.B.IsNotEmpty())
 {
     <li>
-        <input class="uicheck" id="answerB" @Html.IsDisabled(Model.UserSelected.HasValue) @Html.IsChecked(Model.UserSelected.HasValue && Model.UserAnswer.Equals("B")) type="checkbox" value="B" style="margin-right: 10px;">
+        <input class="uicheck" id="answerB" @Html.IsDisabled(Model.UserSelected.HasValue) @Html.IsChecked(Model.UserSelected.HasValue && Model.UserAnswer.Contains("B")) type="checkbox" value="B" style="margin-right: 10px;">
         <label for="answerB">
             B、@Model.B
         </label>
@@ -20,7 +20,7 @@
 @if (Model.C.IsNotEmpty())
 {
     <li>
-        <input class="uicheck" id="answerC" @Html.IsDisabled(Model.UserSelected.HasValue) @Html.IsChecked(Model.UserSelected.HasValue && Model.UserAnswer.Equals("C")) type="checkbox" value="C" style="margin-right: 10px;">
+        <input class="uicheck" id="answerC" @Html.IsDisabled(Model.UserSelected.HasValue) @Html.IsChecked(Model.UserSelected.HasValue && Model.UserAnswer.Contains("C")) type="checkbox" value="C" style="margin-right: 10px;">
         <label for="answerC">
             C、@Model.C
         </label>
@@ -29,7 +29,7 @@
 @if (Model.D.IsNotEmpty())
 {
     <li>
-        <input class="uicheck" id="answerD" @Html.IsDisabled(Model.UserSelected.HasValue) @Html.IsChecked(Model.UserSelected.HasValue && Model.UserAnswer.Equals("D")) type="checkbox" value="D" style="margin-right: 10px;">
+        <input class="uicheck" id="answerD" @Html.IsDisabled(Model.UserSelected.HasValue) @Html.IsChecked(Model.UserSelected.HasValue && Model.UserAnswer.Contains("D")) type="checkbox" value="D" style="margin-right: 10px;">
         <label for="answerD">
             D、@Model.D
         </label>

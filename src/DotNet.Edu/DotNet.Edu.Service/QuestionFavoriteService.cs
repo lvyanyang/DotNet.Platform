@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DotNet.Edu.Entity;
 using DotNet.Collections;
+using DotNet.Data.Extensions;
 using DotNet.Extensions;
 using DotNet.Helper;
 using DotNet.Utility;
@@ -83,6 +84,16 @@ namespace DotNet.Edu.Service
         {
             var repos = new EduRepository<QuestionFavorite>();
             repos.Delete(p => p.StudentId == studentId && p.QuestionId == questionId && p.FavoriteType == favoriteType);
+            return BoolMessage.True;
+        }
+
+        /// <summary>
+        /// 删除对象
+        /// </summary>
+        public BoolMessage Delete(string[] questionId)
+        {
+            var repos = new EduRepository<QuestionFavorite>();
+            repos.Delete(p => p.QuestionId.In(questionId));
             return BoolMessage.True;
         }
 

@@ -71,7 +71,7 @@ namespace DotNet.Edu.Service
         public BoolMessage Update(Question entity)
         {
             var repos = new EduRepository<Question>();
-            repos.Update(entity);
+            repos.UpdateExclude(entity, p => p.CreateDateTime);
             Cache.Set(entity.Id, entity);
             return BoolMessage.True;
         }
@@ -95,6 +95,7 @@ namespace DotNet.Edu.Service
             var repos = new EduRepository<Question>();
             repos.Delete(ids);
             Cache.Remove(ids);
+            EduService.QuestionFavorite.Delete(ids);
             return BoolMessage.True;
         }
 
@@ -287,7 +288,7 @@ namespace DotNet.Edu.Service
         /// <returns></returns>
         public List<ExcerciseQuestion> GetExamQuestions(string workType)
         {
-            var sourceList = GetRandomQuestions(workType);
+            var sourceList = GetSeqQuestions(workType);
             var newList = new List<ExcerciseQuestion>();
             var sum = 0;
             foreach (var item in sourceList)
