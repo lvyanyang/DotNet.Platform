@@ -4,10 +4,13 @@ using DotNet.Extensions;
 using DotNet.Helper;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using DotNet.Utility;
 
 namespace DotNet.Edu.StudentWeb.Controllers
 {
@@ -19,6 +22,7 @@ namespace DotNet.Edu.StudentWeb.Controllers
             var list = EduService.StudentCoursewarePeriod.GetList(session.StudentId, session.Student.WorkCategoryId);
             ViewBag.totalPeriod = EduService.Courseware.GetTotalPeriod(session.Student.WorkCategoryId);
             ViewBag.learnPeriod = session.Student.TotalPeriod;
+            ViewBag.lastPeriodDetails = EduService.PeriodDetails.GetLast();
             return View(list);
         }
 
@@ -70,6 +74,28 @@ namespace DotNet.Edu.StudentWeb.Controllers
             return Redirect(FormsAuthentication.LoginUrl);
         }
 
+        public ActionResult ModifyUserPassword()
+        {
+            return View();
+        }
+
+        public ActionResult VideoPlay(string url)
+        {
+            ViewBag.url = url;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ModifyUserPassword(string currentPwd, string newPwd)
+        {
+            if (!EduService.Student.ValidUserPassword(CurrentStudent.StudentId, currentPwd))
+            {
+                return Json(false, "当前密码输入不正确,请重新输入");
+            }
+            var result = EduService.Student.UpdatePassword(CurrentStudent.StudentId, newPwd);
+            return Json(result);
+        }
+
         [AllowAnonymous]
         public ActionResult CaptchaImage()
         {
@@ -80,5 +106,6 @@ namespace DotNet.Edu.StudentWeb.Controllers
             var bmp = v.CreateImage(validateCode);
             return File(ImageHelper.ToArray(bmp), "image/png");
         }
+
     }
 }

@@ -142,6 +142,10 @@
     <Content Include="www\lib\bootstrap-fileinput\js\fileinput_locale_zh.js" />
     <Content Include="www\lib\bootstrap-fileinput\themes\fa\theme.js" />
     <Content Include="www\lib\bootstrap-fileinput\themes\gly\theme.js" />
+    <Content Include="www\lib\bootstrap-popover-x\css\bootstrap-popover-x.css" />
+    <Content Include="www\lib\bootstrap-popover-x\css\bootstrap-popover-x.min.css" />
+    <Content Include="www\lib\bootstrap-popover-x\js\bootstrap-popover-x.js" />
+    <Content Include="www\lib\bootstrap-popover-x\js\bootstrap-popover-x.min.js" />
     <Content Include="www\lib\fonts\fontawesome-webfont.svg" />
     <Content Include="www\lib\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="www\lib\fonts\Simple-Line-Icons.dev.svg" />
@@ -224,6 +228,7 @@
     <Content Include="www\lib\jquery-easyui\img\pagination_icons.png" />
     <Content Include="www\lib\jquery-easyui\jquery-easy-grid.css" />
     <Content Include="www\lib\jquery-easyui\jquery-easy-grid.js" />
+    <Content Include="www\lib\jquery-form\jquery-form.js" />
     <Content Include="www\lib\jquery-icheck\img\aero%402x.png" />
     <Content Include="www\lib\jquery-icheck\img\aero.png" />
     <Content Include="www\lib\jquery-icheck\img\blue%402x.png" />
@@ -273,6 +278,8 @@
     <Content Include="www\lib\jquery-sortable\css\kv-sortable.min.css" />
     <Content Include="www\lib\jquery-sortable\js\html.sortable.js" />
     <Content Include="www\lib\jquery-sortable\js\html.sortable.min.js" />
+    <Content Include="www\lib\jquery-validation\jquery-validate-messages-zh.js" />
+    <Content Include="www\lib\jquery-validation\jquery-validate.js" />
     <Content Include="www\lib\mediaelement\background.png" />
     <Content Include="www\lib\mediaelement\bigplay.fw.png" />
     <Content Include="www\lib\mediaelement\bigplay.png" />
@@ -301,6 +308,9 @@
     <Content Include="www\lib\mediaelement\mejs-skins.css" />
     <Content Include="www\lib\mediaelement\silverlightmediaelement.xap" />
     <Content Include="www\lib\mediaelement\skipback.png" />
+    <Content Include="www\lib\simple-line-icons\fonts\Simple-Line-Icons.dev.svg" />
+    <Content Include="www\lib\simple-line-icons\fonts\Simple-Line-Icons.svg" />
+    <Content Include="www\lib\simple-line-icons\simple-line-icons.css" />
     <Content Include="www\lib\useragent\useragent.js" />
     <Content Include="www\lib\useragent\useragent_base.js" />
     <Content Include="www\data\alert.html" />
@@ -444,6 +454,9 @@
     <Content Include="www\lib\fonts\Simple-Line-Icons.ttf" />
     <Content Include="www\lib\fonts\Simple-Line-Icons.woff" />
     <Content Include="www\tpl\题库导入.xlsx" />
+    <Content Include="www\lib\simple-line-icons\fonts\Simple-Line-Icons.eot" />
+    <Content Include="www\lib\simple-line-icons\fonts\Simple-Line-Icons.ttf" />
+    <Content Include="www\lib\simple-line-icons\fonts\Simple-Line-Icons.woff" />
     <None Include="_references.js" />
   </ItemGroup>
   <ItemGroup>

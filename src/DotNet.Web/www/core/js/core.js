@@ -548,6 +548,9 @@ var fx = {};
                 //$modal.on('shown.bs.modal', function () {});
                 $modal.on('hidden.bs.modal', function () {
                     $modal.triggerHandler('hide');
+                    if (options.hide) {
+                        options.hide.call($modal);
+                    }
                     if ($().datetimepicker) {
                         $modal.find('.uidatetime').datetimepicker('remove');
                     }
@@ -556,6 +559,9 @@ var fx = {};
                 $modal.onAfterInitUI(function () {
                     $modal.triggerHandler('show');
                     fx.unmask(options);
+                    if (options.show) {
+                        options.show.call($modal);
+                    }
                 });
 
                 $modal.initUI();

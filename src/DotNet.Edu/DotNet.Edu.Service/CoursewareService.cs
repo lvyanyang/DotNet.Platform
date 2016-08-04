@@ -110,6 +110,15 @@ namespace DotNet.Edu.Service
         }
 
         /// <summary>
+        /// 获取对象名称
+        /// </summary>
+        /// <param name="id">主键</param>
+        public string GetName(string id)
+        {
+            return Cache.Get(id)?.Name;
+        }
+
+        /// <summary>
         /// 获取新建序号
         /// </summary>
         public int GetNewRowIndex()

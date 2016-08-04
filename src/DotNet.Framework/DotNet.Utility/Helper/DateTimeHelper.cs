@@ -256,9 +256,13 @@ namespace DotNet.Helper
                 {
                     dateDiff = ts.Hours + "小时前";
                 }
-                else
+                else if (ts.Minutes > 1)
                 {
                     dateDiff = ts.Minutes + "分钟前";
+                }
+                else
+                {
+                    dateDiff = ts.Seconds + "秒前";
                 }
             }
             return dateDiff;

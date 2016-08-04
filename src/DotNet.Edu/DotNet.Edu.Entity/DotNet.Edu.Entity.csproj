@@ -45,6 +45,7 @@
     <Compile Include="Company.cs" />
     <Compile Include="Courseware.cs" />
     <Compile Include="CoursewareDetails.cs" />
+    <Compile Include="ExamRecord.cs" />
     <Compile Include="ExamUser.cs" />
     <Compile Include="LessonLog.cs" />
     <Compile Include="LessonNote.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="StudentLog.cs" />
     <Compile Include="StudentSimple.cs" />
     <Compile Include="StudentSearchParam.cs" />
+    <Compile Include="StudentValidate.cs" />
     <Compile Include="TrainGroup.cs" />
   </ItemGroup>
   <ItemGroup>

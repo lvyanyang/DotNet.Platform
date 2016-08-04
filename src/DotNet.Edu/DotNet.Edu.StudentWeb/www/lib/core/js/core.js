@@ -556,6 +556,9 @@ var fx = {};
                 $modal.onAfterInitUI(function () {
                     $modal.triggerHandler('show');
                     fx.unmask(options);
+                    if (options.show) {
+                        options.show.call($modal);
+                    }
                 });
 
                 $modal.initUI();

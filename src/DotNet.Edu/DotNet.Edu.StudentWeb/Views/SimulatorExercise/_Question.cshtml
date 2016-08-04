@@ -28,7 +28,7 @@ else
         <a class="btn btn-sm btn-default initQuestion @Html.IsPrimaryBtn(studentSession.ExerciseType == 2)" data-url="@Url.Action("Random")" style="margin-left: 15px;">随机出题</a>
     </div>
 
-    <div class="row" style="margin-top: 15px; margin-left: 15px; margin-right: 15px; border: 1px solid #cac8c9; padding: 20px;">
+    <div class="row" id="exercise_row" style="margin-top: 15px; margin-left: 15px; margin-right: 15px; border: 1px solid #cac8c9; padding: 20px;">
         <p class="exercise_title">@(index + 1)、@Model.Name</p>
         <div>
             <ul class="exercise_answer">

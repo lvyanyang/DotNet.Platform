@@ -1,14 +1,7 @@
 ﻿@model List<CoursewareDetails>
-<style>
-    #wrapper2 {
-        height: 500px;
-        width: 100%;
-        max-width: 100%;
-        margin: 20px auto;
-    }
-</style>
-<div id='wrapper2'>    @foreach (var item in Model)
+<div class="galleria">
+    @foreach (var item in Model)
     {
-        <img src="@Url.Content(item.Url)" class="cursor-pointer thumbnail">
+        <img src="@Url.Content(item.Url)">
     }
 </div>

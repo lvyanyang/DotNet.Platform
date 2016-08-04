@@ -26,6 +26,7 @@
                 dataType: 'html',
                 success: function (result) {
                     $('#questArea').empty().html(result);
+                    $('#questArea').find('#exercise_row').animateCss('fadeIn');
 
                     $('#questArea')
                         .find('.uicheck')

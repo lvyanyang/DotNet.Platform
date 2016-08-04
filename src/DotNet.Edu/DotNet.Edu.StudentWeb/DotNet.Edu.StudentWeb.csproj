@@ -196,6 +196,7 @@
     <Content Include="www\images\clear.gif" />
     <Content Include="www\images\cm_bg.gif" />
     <Content Include="www\images\data-icon.png" />
+    <Content Include="www\images\default_video.png" />
     <Content Include="www\images\ding.jpg" />
     <Content Include="www\images\fenxi_icon.png" />
     <Content Include="www\images\fenxi_kuang.png" />
@@ -385,7 +386,6 @@
     <Content Include="www\js\image.cut.js" />
     <Content Include="www\js\image.drag.js" />
     <Content Include="www\js\index_foucs.js" />
-    <Content Include="www\js\jquery-bigSlider.js" />
     <Content Include="www\js\jquery.ajax.personal.selectlayer.js" />
     <Content Include="www\js\jquery.autocomplete.js" />
     <Content Include="www\js\jquery.company-search.js" />
@@ -435,6 +435,10 @@
     <Content Include="www\js\swipe.js" />
     <Content Include="www\js\tc.all.js" />
     <Content Include="www\lib\animate\animate.css" />
+    <Content Include="www\lib\bootstrap-popover-x\css\bootstrap-popover-x.css" />
+    <Content Include="www\lib\bootstrap-popover-x\css\bootstrap-popover-x.min.css" />
+    <Content Include="www\lib\bootstrap-popover-x\js\bootstrap-popover-x.js" />
+    <Content Include="www\lib\bootstrap-popover-x\js\bootstrap-popover-x.min.js" />
     <Content Include="www\lib\bootstrap\bootstrap.css" />
     <Content Include="www\lib\bootstrap\bootstrap.js" />
     <Content Include="www\lib\bootstrap\bootstrap.min.css" />
@@ -458,6 +462,27 @@
     <Content Include="www\lib\font-awesome\font-awesome.css" />
     <Content Include="www\lib\font-awesome\font-awesome.min.css" />
     <Content Include="www\lib\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="www\lib\jquery-form\jquery-form.js" />
+    <Content Include="www\lib\jquery-galleria\galleria-1.4.2.js" />
+    <Content Include="www\lib\jquery-galleria\galleria-1.4.2.min.js" />
+    <Content Include="www\lib\jquery-galleria\plugins\flickr\flickr-demo.html" />
+    <Content Include="www\lib\jquery-galleria\plugins\flickr\flickr-loader.gif" />
+    <Content Include="www\lib\jquery-galleria\plugins\flickr\galleria.flickr.js" />
+    <Content Include="www\lib\jquery-galleria\plugins\flickr\galleria.flickr.min.js" />
+    <Content Include="www\lib\jquery-galleria\plugins\flickr\loader.gif" />
+    <Content Include="www\lib\jquery-galleria\plugins\history\galleria.history.js" />
+    <Content Include="www\lib\jquery-galleria\plugins\history\galleria.history.min.js" />
+    <Content Include="www\lib\jquery-galleria\plugins\history\history-demo.html" />
+    <Content Include="www\lib\jquery-galleria\plugins\picasa\galleria.picasa.js" />
+    <Content Include="www\lib\jquery-galleria\plugins\picasa\galleria.picasa.min.js" />
+    <Content Include="www\lib\jquery-galleria\plugins\picasa\loader.gif" />
+    <Content Include="www\lib\jquery-galleria\plugins\picasa\picasa-demo.html" />
+    <Content Include="www\lib\jquery-galleria\themes\classic\classic-demo.html" />
+    <Content Include="www\lib\jquery-galleria\themes\classic\classic-loader.gif" />
+    <Content Include="www\lib\jquery-galleria\themes\classic\classic-map.png" />
+    <Content Include="www\lib\jquery-galleria\themes\classic\galleria.classic.css" />
+    <Content Include="www\lib\jquery-galleria\themes\classic\galleria.classic.js" />
+    <Content Include="www\lib\jquery-galleria\themes\classic\galleria.classic.min.js" />
     <Content Include="www\lib\jquery-icheck\img\aero%402x.png" />
     <Content Include="www\lib\jquery-icheck\img\aero.png" />
     <Content Include="www\lib\jquery-icheck\img\blue%402x.png" />
@@ -502,6 +527,8 @@
     <Content Include="www\lib\jquery-icheck\jquery-icheck.js" />
     <Content Include="www\lib\jquery-loadmask\jquery-loadmask.css" />
     <Content Include="www\lib\jquery-loadmask\jquery-loadmask.js" />
+    <Content Include="www\lib\jquery-validation\jquery-validate-messages-zh.js" />
+    <Content Include="www\lib\jquery-validation\jquery-validate.js" />
     <Content Include="www\lib\jquery\jquery.js" />
     <Content Include="www\lib\jquery\jquery.min.js" />
     <Content Include="www\lib\layer\img\layer_icon-ext.png" />
@@ -539,6 +566,9 @@
     <Content Include="www\lib\mediaelement\mejs-skins.css" />
     <Content Include="www\lib\mediaelement\silverlightmediaelement.xap" />
     <Content Include="www\lib\mediaelement\skipback.png" />
+    <Content Include="www\lib\simple-line-icons\fonts\Simple-Line-Icons.dev.svg" />
+    <Content Include="www\lib\simple-line-icons\fonts\Simple-Line-Icons.svg" />
+    <Content Include="www\lib\simple-line-icons\simple-line-icons.css" />
     <Content Include="www\lib\useragent\useragent.js" />
     <Content Include="www\lib\useragent\useragent_base.js" />
   </ItemGroup>
@@ -546,6 +576,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\ErrorQuestionController.cs" />
+    <Compile Include="Controllers\ExamRecordController.cs" />
     <Compile Include="Controllers\FavoriteQuestionController.cs" />
     <Compile Include="Controllers\SimulatorExamController.cs" />
     <Compile Include="Controllers\SimulatorExerciseController.cs" />
@@ -586,6 +617,17 @@
     <Content Include="Views\Student\TrainHistory.cshtml" />
     <Content Include="Views\SimulatorExam\_Question.cshtml" />
     <Content Include="Views\SimulatorExam\Index.cshtml" />
+    <Content Include="Views\ExamRecord\Index.cshtml" />
+    <Content Include="Views\Default\ModifyUserPassword.cshtml" />
+    <Content Include="Views\Student\LearnHistory.cshtml" />
+    <Content Include="Views\Student\LearnGrid.cshtml" />
+    <Content Include="Views\Student\LessonNote.cshtml" />
+    <Content Include="Views\Student\LessonNoteGrid.cshtml" />
+    <Content Include="Views\Default\VideoPlay.cshtml" />
+    <Content Include="Views\Student\LessonNoteLi.cshtml" />
+    <Content Include="Views\Student\LearningValidateModal.cshtml" />
+    <Content Include="Views\Student\PeriodDetails.cshtml" />
+    <Content Include="Views\Student\PeriodDetailsGrid.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -601,6 +643,10 @@
     <Content Include="www\lib\font-awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="www\lib\font-awesome\fonts\fontawesome-webfont.woff2" />
     <Content Include="www\lib\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="www\lib\simple-line-icons\fonts\Simple-Line-Icons.eot" />
+    <Content Include="www\lib\simple-line-icons\fonts\Simple-Line-Icons.ttf" />
+    <Content Include="www\lib\simple-line-icons\fonts\Simple-Line-Icons.woff" />
+    <Content Include="www\images\default_video.psd" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -21,6 +21,12 @@ namespace DotNet.Edu.Entity
         public string Id { get; set; }
 
         /// <summary>
+        /// 学员主键
+        /// </summary>
+        [Column("学员主键")]
+        public string StudentId { get; set; }
+
+        /// <summary>
         /// 课件主键
         /// </summary>
         [Column("课件主键")]
@@ -51,7 +57,7 @@ namespace DotNet.Edu.Entity
         public DateTime CreateDateTime { get; set; }
 
         /// <summary>
-        /// 考勤类型
+        /// 考勤类型 1 签到 2 签退 3 随机验证
         /// </summary>
         [Column("考勤类型")]
         public int RecordType { get; set; }
@@ -70,6 +76,8 @@ namespace DotNet.Edu.Entity
                         return "签到";
                     case 2:
                         return "签退";
+                    case 3:
+                        return "随机验证";
                     default:
                         return "未知";
                 }

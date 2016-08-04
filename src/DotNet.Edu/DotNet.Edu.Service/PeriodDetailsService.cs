@@ -32,6 +32,16 @@ namespace DotNet.Edu.Service
         }
 
         /// <summary>
+        /// 获取对象
+        /// </summary>
+        public PeriodDetails GetLast()
+        {
+            var repos = new EduRepository<PeriodDetails>();
+            var query = repos.SQL.Take(1).OrderByDesc(p => p.CreateDateTime);
+            return repos.Query(query).FirstOrDefault();
+        }
+
+        /// <summary>
         /// 获取对象集合(已排序)
         /// </summary>
         public List<PeriodDetails> GetList(string studentId)
@@ -44,12 +54,12 @@ namespace DotNet.Edu.Service
         /// <summary>
         /// 获取对象分页集合
         /// </summary>
-        public PageList<PeriodDetails> GetPageList(PaginationCondition pageCondition,
+        public PageList<PeriodDetails> GetPageList(PaginationCondition pageCondition,string studentId,
             DateTime? startDate, DateTime? endDate)
         {
             pageCondition.SetDefaultOrder(nameof(PeriodDetails.CreateDateTime));
             var repos = new EduRepository<PeriodDetails>();
-            var query = repos.PageQuery(pageCondition);
+            var query = repos.PageQuery(pageCondition).Where(p=>p.StudentId==studentId);
             if (startDate.HasValue)
             {
                 query.Where(p => p.CreateDateTime >= startDate.Value);

@@ -165,7 +165,7 @@ namespace DotNet.Edu.Service
             return isCreate ? Create(entity) : Update(entity);
         }
 
-        // <summary>
+        /// <summary>
         /// 学员登录
         /// </summary>
         /// <param name="account">账号</param>
@@ -196,6 +196,35 @@ namespace DotNet.Edu.Service
             #endregion
 
             return new BoolMessage(true);
+        }
+
+        /// <summary>
+        /// 验证用户密码
+        /// </summary>
+        /// <param name="studentId">学员主键</param>
+        /// <param name="password">密码</param>
+        public bool ValidUserPassword(string studentId, string password)
+        {
+            var repos = new EduRepository<Student>();
+            var entity = repos.Get(p => p.Id == studentId, p => p.Password);
+            if (entity == null)
+            {
+                throw new ArgumentException("无效的学员主键", nameof(studentId));
+            }
+            return entity.Password.Equals(StringHelper.EncryptString(password));
+        }
+
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="studentId">学员主键</param>
+        /// <param name="newPassword">新密码(明文)</param>
+        public BoolMessage UpdatePassword(string studentId, string newPassword)
+        {
+            var repos = new EduRepository<Student>();
+            var pwd = StringHelper.EncryptString(newPassword);
+            repos.UpdateInclude(new Student { Password = pwd }, p => p.Id == studentId, p => p.Password);
+            return new BoolMessage(true, "密码修改成功");
         }
 
 

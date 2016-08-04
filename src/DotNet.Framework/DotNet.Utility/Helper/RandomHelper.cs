@@ -125,6 +125,31 @@ namespace DotNet.Helper
         }
 
         /// <summary>
+        /// 打乱数组
+        /// </summary>
+        /// <param name="source">原始数组</param>
+        /// <returns></returns>
+        public static string[] RandomArray(string[] source)
+        {
+            Random rd = new Random((int)DateTime.Now.Ticks);
+            var list = new List<string>();
+            var newList = new List<string>();
+            foreach (var item in source)
+            {
+                list.Add(item);
+            }
+            while (list.Count > 0)
+            {
+                var sj = rd.Next(list.Count);
+                newList.Add(list[sj]);
+                list.RemoveAt(sj);
+            }
+
+            return newList.ToArray();
+        }
+
+
+        /// <summary>
         /// 获取随机字符串
         /// </summary>
         /// <param name="constant">字符取值数组</param>

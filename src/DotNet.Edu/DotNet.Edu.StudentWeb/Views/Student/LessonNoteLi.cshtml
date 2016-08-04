@@ -1,0 +1,14 @@
+﻿@model List<LessonNote>
+@{
+    Layout = null;
+}
+@foreach (var record in Model)
+{
+    <li class="note_li">
+        <div class="note_message">@record.Message</div>
+        <div style="margin-top: 8px;">
+            <div style="margin-right: 3px; color: #999;">@DateTimeHelper.GetDateDiffString(record.CreateDateTime, DateTime.Now)</div>
+        </div>
+    </li>
+}
+ 

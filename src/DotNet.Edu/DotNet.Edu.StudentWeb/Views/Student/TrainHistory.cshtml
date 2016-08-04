@@ -9,29 +9,39 @@
         </div>
     </div>
 
-    <div style="margin:15px;">
-        <table class="table table-bordered table-hover table-manage">
-            <thead>
-            <tr>
-                <th class="w100px">培训周期</th>
-                <th class="w100px">从业类型</th>
-                <th class="w100px">培训机构</th>
-                <th class="w100px">报名日期</th>
-                <th class="w100px">培训状态</th>
-            </tr>
-            </thead>
-            <tbody>
-                @foreach (var record in Model)
-                {
+    <div style="margin: 15px;">
+        @if (Model.Count == 0)
+        {
+            @*<div class="bs-callout bs-callout-warning" style="margin-right: 15px; margin-left: 15px;">
+                <h4>暂无考试成绩</h4>
+            </div>*@
+            <div class="alert alert-warning alert-dismissible"><strong><i class="fa-lg fa fa-warning"></i> 没有查询到数据！</strong></div>
+        }
+        else
+        {
+            <table class="table table-bordered table-hover table-manage">
+                <thead>
                     <tr>
-                        <td class="">@record.TrainCycle</td>
-                        <td class="">@record.WorkCategoryName</td>
-                        <td class="">@record.SchoolName</td>
-                        <td class="">@DateTimeHelper.FormatDate(record.RegDateTime)</td>
-                        <td class="">@record.StatusName</td>
+                        <th class="w50px">周期</th>
+                        <th class="">从业类型</th>
+                        <th class="">培训机构</th>
+                        <th class="w100px">报名日期</th>
+                        <th class="w50px">状态</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var record in Model)
+                    {
+                        <tr>
+                            <td class="">@record.TrainCycle</td>
+                            <td class="">@record.WorkCategoryName</td>
+                            <td class="">@record.SchoolName</td>
+                            <td class="">@DateTimeHelper.FormatDate(record.RegDateTime)</td>
+                            <td class="">@Html.StudentStatusLabel(record)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
     </div>
 </div>

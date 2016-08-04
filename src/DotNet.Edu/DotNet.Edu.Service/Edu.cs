@@ -85,9 +85,25 @@ namespace DotNet.Edu.Service
         /// </summary>
         public static QuestionFavoriteService QuestionFavorite { get; } = new QuestionFavoriteService();
 
+        /// <summary>
+        /// 考试记录服务
+        /// </summary>
+        public static ExamRecordService ExamRecord { get; } = new ExamRecordService();
 
+        /// <summary>
+        /// 验证记录服务
+        /// </summary>
+        public static LessonLogService LessonLog { get; } = new LessonLogService();
 
-
+        /// <summary>
+        /// 课堂笔记服务
+        /// </summary>
+        public static LessonNoteService LessonNote { get; } = new LessonNoteService();
+       
+        /// <summary>
+        /// 验证问题服务
+        /// </summary>
+        public static StudentValidateService StudentValidate { get; } = new StudentValidateService();
 
 
     }

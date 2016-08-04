@@ -457,6 +457,9 @@ table td.nowrap {
 .w20p {
     width: 20% !important;
 }
+.w25p {
+    width: 25% !important;
+}
 
 .w30p {
     width: 30% !important;

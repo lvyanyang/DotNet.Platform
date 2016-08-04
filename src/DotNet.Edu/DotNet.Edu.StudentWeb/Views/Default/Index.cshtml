@@ -2,7 +2,12 @@
 @{
     ViewBag.Title = "我的课程";
     Student currentStudent = EduWebHelper.GetStudentSession().Student;
-    //string title = currentStudent.WorkCategoryName + "培训课件";
+    PeriodDetails lastPeriodDetails = ViewBag.lastPeriodDetails;
+    string lastLearning = string.Empty;
+    if (lastPeriodDetails!=null)
+    {
+        lastLearning = DateTimeHelper.FormatDateHasSecond(lastPeriodDetails.CreateDateTime);
+    }
 }
 <div class="bbox1">
     <div class="student_topnav">
@@ -21,7 +26,7 @@
                         <span class="h2-title">姓名:@currentStudent.Name</span>
                         <span class="date">培训总学时： @DateTimeHelper.GetTimeStringHMS(ViewBag.totalPeriod)</span>
                         <span class="date">已完成学时 @DateTimeHelper.GetTimeStringHMS(ViewBag.learnPeriod)</span>
-                        <span class="date">上次学习时间：2016-07-27 08:39</span>
+                        <span class="date">上次学习时间：@lastLearning</span>
                     </div>
                 </div>
                 <div class="fbox" style="padding-bottom: 20px;">

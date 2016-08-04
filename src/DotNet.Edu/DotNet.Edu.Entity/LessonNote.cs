@@ -32,10 +32,16 @@ namespace DotNet.Edu.Entity
 		[Column("课件主键")]
         public string CoursewareId { get; set; }
 
-		/// <summary>
+        /// <summary>
+        /// 课件名称
+        /// </summary>
+        [Column("课件名称")]
+        public string CoursewareName { get; set; }
+
+        /// <summary>
         /// 操作日期
         /// </summary>
-		[Column("操作日期")]
+        [Column("操作日期")]
         public DateTime CreateDateTime { get; set; }
 
 		/// <summary>

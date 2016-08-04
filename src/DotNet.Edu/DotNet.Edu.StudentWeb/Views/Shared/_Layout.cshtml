@@ -20,38 +20,53 @@
     <link href="~/www/lib/layer/layer.css" rel="stylesheet" />
     <link href="~/www/lib/jquery-loadmask/jquery-loadmask.css" rel="stylesheet" />
     <link href="~/www/lib/jquery-icheck/jquery-icheck-square.css" rel="stylesheet" />
-    <link href="~/www/lib/font-awesome/font-awesome.min.css" rel="stylesheet"/>
-<link href="~/www/lib/animate/animate.css" rel="stylesheet" />
-<script src="~/www/lib/jquery/jquery.min.js"></script>
+    <link href="~/www/lib/font-awesome/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/www/lib/simple-line-icons/simple-line-icons.css" rel="stylesheet" />
+    <link href="~/www/lib/animate/animate.css" rel="stylesheet" />
+    <link href="~/www/lib/bootstrap-popover-x/css/bootstrap-popover-x.min.css" rel="stylesheet" />
+    <script src="~/www/lib/jquery/jquery.min.js"></script>
+    <script src="~/www/lib/jquery-form/jquery-form.js"></script>
+    <script src="~/www/lib/jquery-validation/jquery-validate.js"></script>
+    <script src="~/www/lib/jquery-validation/jquery-validate-messages-zh.js"></script>
     <script src="/www/lib/core/js/core.js"></script>
     <script src="/www/lib/core/js/extend.js"></script>
+<script src="~/www/lib/core/js/action.js"></script>
     <script src="/www/lib/core/js/table.js"></script>
-<script src="~/www/lib/bootstrap/bootstrap.min.js"></script>
+    <script src="~/www/lib/core/js/form.js"></script>
+    <script src="~/www/lib/core/js/modal.js"></script>
+    <script src="~/www/lib/bootstrap/bootstrap.min.js"></script>
     @RenderSection("css", false)
 </head>
 <body>
-    <div id="header">
-        <div class="top-nav-wrap">
-            <div class="top-nav clearfix">
-                <ul class="f-left">
-                    <li><a href="http://192.168.10.102:8888/index.php" target="_self" class="nav-li ">首  页</a></li>
-                    <li><a href="http://192.168.10.102:8888/jobs/" target="_blank" class="nav-li ">招聘信息</a></li>
-                    <li><a href="http://192.168.10.102:8888/simple/simple-list.php" target="_self" class="nav-li ">微商圈</a></li>
-                </ul>
-                <div class="nav-right f-right">
-                    <span class="login-reg">
-                        <a href="#" class="underline">@DotNet.Edu.WebUtility.EduWebHelper.GetStudentSession().StudentName</a>&nbsp;&nbsp;&nbsp;
-                        <a href="@Url.Action("Logout","Default")" class="underline">[退出]</a>
-                    </span>
-                    <span class="nav-items"><a href="/plus/shortcut.php" class="underline">保存到桌面</a></span>
-                </div>
-            </div>
+    <div style="width: 1200px;margin: 0 auto;border-bottom: 1px #CCCCCC solid;height: 37px;line-height: 37px;">
+        <div class="row text-right">
+            您好 <a href="@Url.Action("Index","Default")">@EduWebHelper.GetStudentSession().StudentName</a> 欢迎来到网络教育学习平台！
+            <a class="uimodal" data-load-mask-target="body" data-container="body"
+               data-url="@Url.Action("ModifyUserPassword", "Default")">密码修改</a>&nbsp;|&nbsp;
+            <a href="@Url.Action("Logout","Default")">退出</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </div>
-        <div class="container-index header-main clearfix">
-            <div class="logo-box f-left"><a href="/"><img src="/www/images/logo.gif" alt="道路运输从业人员继续教育学习平台" border="0" width="300" height="70" /></a></div>
-            <div class="mobile-block f-right">
-                <div class="complex-center f-left">
+    </div>
+    <div id="header">
+        @*<div class="top-nav-wrap">
+                <div class="top-nav clearfix">
+                    <ul class="f-left">
+                        <li><a href="http://192.168.10.102:8888/index.php" target="_self" class="nav-li ">首  页</a></li>
+                        <li><a href="http://192.168.10.102:8888/jobs/" target="_blank" class="nav-li ">招聘信息</a></li>
+                        <li><a href="http://192.168.10.102:8888/simple/simple-list.php" target="_self" class="nav-li ">微商圈</a></li>
+                    </ul>
+                    <div class="nav-right f-right">
+                        <span class="login-reg">
+                            <a href="#" class="underline">@DotNet.Edu.WebUtility.EduWebHelper.GetStudentSession().StudentName</a>&nbsp;&nbsp;&nbsp;
+                            <a href="@Url.Action("Logout","Default")" class="underline">[退出]</a>
+                        </span>
+                        <span class="nav-items"><a href="/plus/shortcut.php" class="underline">保存到桌面</a></span>
+                    </div>
                 </div>
+            </div>*@
+        <div class="container-index header-main">
+            <div class="logo-box f-left">
+                <img src="/www/images/logo.png" alt="道路运输从业人员继续教育学习平台" width="300" height="70" />
             </div>
         </div>
     </div>
@@ -67,17 +82,14 @@
     </div>
 
     @Html.Partial("_Bottom")
-    <div class="back_to_top" id="back_to_top">
+    <div class="back_to_top" id="back_to_top" title="回到顶部">
         <div class="back" style="display: none;">
-            <div>回到顶部</div>
-        </div>
-        <div class="steer">
-            <div onclick="javascript:location.href = 'http://192.168.10.102:8888/suggest/index.php'">我要建议</div>
         </div>
     </div>
     <script src="~/www/lib/layer/layer.js"></script>
     <script src="~/www/lib/jquery-loadmask/jquery-loadmask.js"></script>
     <script src="~/www/lib/jquery-icheck/jquery-icheck.js"></script>
+    <script src="~/www/lib/bootstrap-popover-x/js/bootstrap-popover-x.js"></script>
     <script>
         $(function () {
             $(".leftmenu .meunbox li[class!='h']")
@@ -100,19 +112,6 @@
                         $(this).removeClass("hover");
                     }
                 );
-
-
-            //信息列表背景变色
-            $(".userliststyle")
-                .hover(
-                    function () {
-                        $(this).css('background-color', '#FCFCFC');
-                    },
-                    function () {
-                        $(this).css('background-color', '#FFFFFF');
-                    }
-                );
-
             $(".foot_list ul:odd li").css("width", 62);
             $(".weixin_img:last").css("margin-right", 0);
 
@@ -127,20 +126,12 @@
                 });
 
             //回到顶部hover效果
-            $(".back_to_top .back, .steer, .sub")
-                .hover(function () {
-                    $(this).find("div").css("display", "block");
-                },
-                    function () {
-                        $(this).find("div").css("display", "none");
-                    });
 
             //设置滚回顶部方法
-            $(".back")
-                .click(function () {
-                    $("body,html").animate({ scrollTop: 0 }, 500);
-                    return false;
-                });
+            $(".back").click(function () {
+                $("body,html").animate({ scrollTop: 0 }, 500);
+                return false;
+            });
             $('.uitable').uitable();
         });
     </script>

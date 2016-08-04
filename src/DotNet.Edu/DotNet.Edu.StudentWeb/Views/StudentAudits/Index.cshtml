@@ -2,25 +2,30 @@
     ViewBag.Title = "学员登录日志";
 }
 <div class="bbox1">
-    <div class="log">
-        <div class="topnav">
-            <div class="titleH1">
-                <div class="h1-title">账号管理</div>
-            </div>
-
-            <div class="navs link_bk">
-                <a href="?act=userprofile">基本资料</a>
-                <a href="?act=authenticate">账号安全</a>
-                <a href="?act=avatars">我的头像</a>
-                <a href="?act=pm">我的消息</a>
-                <a class="se">登录日志</a>
-                <div class="clear"></div>
-            </div>
+    <div class="student_topnav">
+        <div class="titleH1">
+            <div class="h1-title">@ViewBag.Title</div>
         </div>
+    </div>
 
+    <div style="margin: 15px;">
         <div class="uitable" style="margin:15px;" data-url="@Url.Action("Grid")">
             @Html.Action("Grid")
         </div>
-         
     </div>
 </div>
+
+@*<div class="topnav">
+    <div class="titleH1">
+        <div class="h1-title">账号管理</div>
+    </div>
+
+    <div class="navs link_bk">
+        <a href="?act=userprofile">基本资料</a>
+        <a href="?act=authenticate">账号安全</a>
+        <a href="?act=avatars">我的头像</a>
+        <a href="?act=pm">我的消息</a>
+        <a class="se">登录日志</a>
+        <div class="clear"></div>
+    </div>
+</div>*@

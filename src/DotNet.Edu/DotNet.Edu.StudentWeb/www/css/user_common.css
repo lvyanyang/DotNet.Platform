@@ -1,5 +1,5 @@
 ﻿html{_background-image:url(about:blank);_background-attachment:fixed;}
-body {margin-left: 0px;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;font-size:12px; color: #333333; font-family:Arial, Helvetica, sans-serif; background:#ffffff url(../images/01.jpg) repeat-x 0px 38px;font-family:"microsoft yahei";}
+body {margin-left: 0px;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;font-size:12px; color: #333333; font-family:Arial, Helvetica, sans-serif; background:#ffffff url(../images/01.jpg) repeat-x 0px 0px;font-family:"microsoft yahei";}
 form,p,h1,h2,h3,h4,input{ margin:0px; padding:0px;}
 ul { padding:0px; margin:0px;}
 li { padding:0px; margin:0px; line-height:180%;list-style-type:none;}
@@ -192,7 +192,7 @@ input[type="text"]{outline: none;}
 .infoContent .timeSel i{position:absolute;top:50px}
 .infoContent .timeSel .prevIcon,.infoContent .timeSel .prevHover{left:10px}
 i.prevIcon,i.nextIcon,i.prevHover,i.nextHover{height:16px;width:10px;background-position:-4px -62px;cursor:pointer}
-i{display:block;font-size:0;border:0;_overflow:hidden;background:url(../images/jl_postIcon.png) no-repeat 0 0 transparent}
+/*i{display:block;font-size:0;border:0;_overflow:hidden;background:url(../images/jl_postIcon.png) no-repeat 0 0 transparent}*/
 .infoContent .timeSel .nextIcon,.infoContent .timeSel .nextHover{right:10px}
 i.nextHover{background-position:-35px -62px}
 .infoContent .timeSel ul{overflow:hidden;zoom:1;padding:10px 25px;}
@@ -236,8 +236,8 @@ a.underline:hover{text-decoration: underline;}
 #header .top-nav .nav-right{font-size: 14px;line-height: 48px;}
 #header .top-nav .nav-right .nav-items{margin-left: 20px;}
 #header .top-nav .nav-right a{color:#fff;}
-#header .header-main{height: 110px;}
-#header .header-main .logo-box{width: 300px;height: 70px;overflow: hidden;padding-top: 20px;margin-right: 22px;}
+#header .header-main{height: 60px;}
+#header .header-main .logo-box{width: 300px;height: 70px;overflow: hidden;padding-top: 5px;margin-right: 22px;}
 #header .header-main .location-web{margin-top: 25px;height: 60px;border-left: 1px solid #ccc;width: 105px;text-align: center;position: relative;}
 #header .header-main .location-web h3{padding-top: 12px;font-size: 16px;color:#0180cf;font-weight: normal;}
 #header .header-main .location-web p{color:#666;margin-top: 3px;cursor: pointer;}

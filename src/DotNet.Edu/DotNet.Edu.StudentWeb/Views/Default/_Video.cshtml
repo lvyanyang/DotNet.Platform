@@ -1,20 +1,9 @@
 ﻿@model List<CoursewareDetails>
-<div class="row">
+<div class="galleria">
     @foreach (var item in Model)
     {
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <video controls width="100%" height="200px" autoplay src="@Url.Content(item.Url)"></video>
-            </div>
-        </div>
+        <a href="@Url.Action("VideoPlay","Default",new { url = item.Url })">
+            <img class="iframe" src="~/www/images/default_video.png">
+        </a>
     }
 </div>
-
-<link href="~/www/lib/mediaelement/mediaelementplayer.css" rel="stylesheet" />
-<link href="~/www/lib/mediaelement/mejs-skins.css" rel="stylesheet" />
-<script src="~/www/lib/mediaelement/mediaelement-and-player.min.js"></script>
-<script>
-    $(function () {
-        $('video,audio').mediaelementplayer(/* Options */);
-    });
-</script>
