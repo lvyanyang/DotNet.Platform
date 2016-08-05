@@ -99,12 +99,20 @@ namespace DotNet.Edu.Service
         /// 课堂笔记服务
         /// </summary>
         public static LessonNoteService LessonNote { get; } = new LessonNoteService();
-       
+
         /// <summary>
         /// 验证问题服务
         /// </summary>
         public static StudentValidateService StudentValidate { get; } = new StudentValidateService();
 
+        /// <summary>
+        /// 教师服务
+        /// </summary>
+        public static TeacherService Teacher { get; } = new TeacherService();
 
+        /// <summary>
+        /// 公告服务
+        /// </summary>
+        public static NoticeService Notice { get; } = new NoticeService();
     }
 }

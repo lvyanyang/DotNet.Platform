@@ -1,0 +1,51 @@
+﻿@model PageList<Teacher>
+<table class="table table-striped table-bordered table-hover table-fix table-manage">
+    <thead>
+        <tr>
+            <th class="w35px">
+                <label><input class="checkbox-check" type="checkbox"><span></span></label>
+            </th>
+            <th class="w100px" data-order="@nameof(Teacher.Name)">姓名</th>
+            <th class="w150px" data-order="@nameof(Teacher.Code)">编号</th>
+            <th class="w100px" data-order="@nameof(Teacher.Sex)">性别</th>
+            <th class="w200px" data-order="@nameof(Teacher.IdNumber)">身份证号码</th>
+            <th class="" data-order="@nameof(Teacher.SchoolName)">培训机构</th>
+            <th class="w120px" data-order="@nameof(Teacher.Phone)">联系电话</th>
+            <th class="text-center w70px">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in Model)
+        {
+            <tr>
+                <td>
+                    <label><input class="checkbox-check" type="checkbox" value="@record.Id"><span></span></label>
+                </td>
+                <td class="">
+                     <a class="uimodal" data-backdrop="true" data-url="@Url.Action("Details", new {id = record.Id})">
+                        @record.Name
+                    </a>
+                </td>
+                <td class="">@record.Code</td>
+                <td class="">@record.Sex</td>
+                <td class="">@record.IdNumber</td>
+                <td class="">@record.SchoolName</td>
+                <td class="">@record.Phone</td>
+                <td class="text-center">
+                    <a class="color-primary uimodal" data-toggle="tooltip"
+                       data-url="@Url.Action("Edit", new {id = record.Id})"
+                       title="编辑">
+                        <i class="fa fa-lg fa-edit"></i>
+                    </a>
+                    &nbsp;
+                    <a class="color-danger tsdelete" data-toggle="tooltip"
+                       data-url="@Url.Action("Delete", new {id = record.Id})"
+                       title="删除">
+                        <i class="fa fa-lg fa-trash-o"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.RenderPages(Model)

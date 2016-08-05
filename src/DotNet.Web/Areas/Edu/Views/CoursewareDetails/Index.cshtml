@@ -1,6 +1,6 @@
 ﻿@model Courseware
 @{
-    string url = Model.CourseType == 1 ? Url.Action("_Image", new { coursewareId = Model.Id }) : Url.Action("_Video", new { coursewareId = Model.Id });
+    string url = Model.CourseType == "1" ? Url.Action("_Image", new { coursewareId = Model.Id }) : Url.Action("_Video", new { coursewareId = Model.Id });
 }
 
 <div class="modal fade" id="courseware_details_modal" aria-hidden="true" role="dialog" data-backdrop="static">

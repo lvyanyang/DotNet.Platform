@@ -50,6 +50,7 @@
     <Compile Include="ExamUserService.cs" />
     <Compile Include="LessonLogService.cs" />
     <Compile Include="LessonNoteService.cs" />
+    <Compile Include="NoticeService.cs" />
     <Compile Include="PeriodDetailsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionFavoriteService.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="StudentLogService.cs" />
     <Compile Include="StudentService.cs" />
     <Compile Include="StudentValidateService.cs" />
+    <Compile Include="TeacherService.cs" />
     <Compile Include="TrainGroupService.cs" />
   </ItemGroup>
   <ItemGroup>

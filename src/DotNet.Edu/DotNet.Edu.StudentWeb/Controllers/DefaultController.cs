@@ -28,6 +28,7 @@ namespace DotNet.Edu.StudentWeb.Controllers
 
         public ActionResult Learning(string coursewareId)
         {
+            CurrentStudent.Learning = null;
             ViewBag.Courseware = EduService.Courseware.Get(coursewareId);
             var detailsList = EduService.CoursewareDetails.GetList(coursewareId);
             return View(detailsList);
@@ -107,5 +108,13 @@ namespace DotNet.Edu.StudentWeb.Controllers
             return File(ImageHelper.ToArray(bmp), "image/png");
         }
 
+        [AllowAnonymous]
+        public ActionResult VideoImage(string name)
+        {
+            ValidateCodeDrawHelper v = new ValidateCodeDrawHelper();
+            v.FontSize = 28;
+            var bmp = v.CreateImage(name);
+            return File(ImageHelper.ToArray(bmp), "image/png");
+        }
     }
 }

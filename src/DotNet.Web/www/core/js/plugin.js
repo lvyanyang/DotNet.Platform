@@ -251,6 +251,11 @@
                 $(this).fileinput(ops);
             });
         }
+
+        ///*-------KindEditor-------*/
+        //if (KindEditor) {
+            
+        //}
     }
 
     $(document).on(fx.initUIEventName, function (e) {
@@ -265,7 +270,7 @@
     $('body').on('hidden.bs.modal', function () {
         if ($('.modal:visible').size() > 0 && $('body').hasClass('modal-open') === false) {
             $('body').addClass('modal-open');
-        } 
+        }
     });
 
 })(jQuery);
