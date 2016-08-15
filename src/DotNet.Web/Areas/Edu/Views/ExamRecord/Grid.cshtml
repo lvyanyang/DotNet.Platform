@@ -1,0 +1,36 @@
+﻿@model PageList<ExamRecord>
+<table class="table table-striped table-bordered table-hover table-manage">
+    <thead>
+        <tr>
+            <th class="w100px" data-order="@nameof(ExamRecord.UserName)">用户姓名</th>
+            <th class="" data-order="@nameof(ExamRecord.UserCategoryName)">从业类型</th>
+            <th class="">身份证号码</th>
+            <th class="w100px" data-order="@nameof(ExamRecord.UserScore)">考试分数</th>
+            <th class="w100px" data-order="@nameof(ExamRecord.UserResult)">考试结果</th>
+            <th class="w160px" data-order="@nameof(ExamRecord.UserStartDateTime)">开始考试时间</th>
+            <th class="w160px" data-order="@nameof(ExamRecord.UserCommitDateTime)">考试提交时间</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in Model)
+        {
+            <tr>
+                <td class="">
+                    <a class="uimodal" data-backdrop="true" title="@record.UserName"
+                       data-url="@Url.Action("Details",new {id = record.Id})">
+                        @record.UserName
+                    </a>
+                </td>
+                <td class="">@record.UserCategoryName</td>
+                <td class="">@record.IdNumber</td>
+                <td class="">@record.UserScore</td>
+                <td class="">
+                    @Html.BoolLabel(record.UserIsCommit == 1 && (record.UserResult.HasValue && record.UserResult.Value == 1), "合格", "不合格")
+                </td>
+                <td class="text-center">@DateTimeHelper.FormatDateHasSecond(record.UserStartDateTime)</td>
+                <td class="text-center">@DateTimeHelper.FormatDateHasSecond(record.UserCommitDateTime)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.RenderPages(Model)

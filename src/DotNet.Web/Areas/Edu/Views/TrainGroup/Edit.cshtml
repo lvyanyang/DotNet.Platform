@@ -1,4 +1,7 @@
 ﻿@model TrainGroup
+@{
+    string schoolId = ViewBag.SchoolId;
+}
 <form class="form-horizontal uiform" method="post"
       data-modal="true"
       data-table=".uitable"
@@ -58,6 +61,21 @@
                 </select>
             </div>
         </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                <span class="required"> * </span>
+                培训教师：
+            </label>
+            <div class="col-md-8">
+                <select class="form-control uiselect" name="@nameof(Model.TeacherId)"
+                        data-text-field="@nameof(Model.TeacherName)"
+                        data-validate="required: true"
+                        data-validate-message="required:'请选择培训教师'">
+                    @Html.TeacherOption(schoolId, Model.TeacherId)
+                </select>
+            </div>
+        </div>
+
         <div class="form-group">
             <label class="control-label col-md-3">
                 <span class="required"> * </span>

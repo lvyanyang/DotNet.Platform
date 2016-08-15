@@ -56,6 +56,7 @@ namespace DotNet.Edu.Controllers
 
         private ActionResult EditCore(TrainGroup entity)
         {
+            ViewBag.SchoolId = CurrentSchoolId;
             return View("Edit", entity);
         }
 

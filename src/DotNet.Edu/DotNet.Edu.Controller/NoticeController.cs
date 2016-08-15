@@ -48,6 +48,7 @@ namespace DotNet.Edu.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Save(Notice entity)
         {

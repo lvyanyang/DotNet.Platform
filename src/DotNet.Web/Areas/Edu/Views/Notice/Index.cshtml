@@ -26,7 +26,7 @@
                 <i class="fa fa-search"></i> 查询
             </button>
 
-            <a class="btn btn-success uimodal" data-url="@Url.Action("Create")">
+            <a class="btn btn-success uimodal" data-size="lg" data-url="@Url.Action("Create")">
                 <i class="fa fa-plus"></i> 新建
             </a>
 
@@ -44,4 +44,6 @@
         @Html.Action("Grid")
     </div>
 </div>
- 
+<script>
+    fx.loadResource(['/www/lib/kindeditor/kindeditor-min.js']);
+</script>

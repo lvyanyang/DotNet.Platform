@@ -628,6 +628,9 @@
     <Content Include="Views\Student\LearningValidateModal.cshtml" />
     <Content Include="Views\Student\PeriodDetails.cshtml" />
     <Content Include="Views\Student\PeriodDetailsGrid.cshtml" />
+    <Content Include="Views\Student\Notice.cshtml" />
+    <Content Include="Views\Student\NoticeGrid.cshtml" />
+    <Content Include="Views\Student\NoticeDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

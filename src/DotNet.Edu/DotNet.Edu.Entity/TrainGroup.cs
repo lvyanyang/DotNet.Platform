@@ -56,10 +56,22 @@ namespace DotNet.Edu.Entity
 		[Column("培训学校名称")]
         public string SchoolName { get; set; }
 
-		/// <summary>
+        /// <summary>
+        /// 教室主键
+        /// </summary>
+		[Column("教室主键")]
+        public string TeacherId { get; set; }
+
+        /// <summary>
+        /// 教室名称
+        /// </summary>
+        [Column("教室名称")]
+        public string TeacherName { get; set; }
+
+        /// <summary>
         /// 开始日期
         /// </summary>
-		[Column("开始日期")]
+        [Column("开始日期")]
         public DateTime? StartDate { get; set; }
 
 		/// <summary>

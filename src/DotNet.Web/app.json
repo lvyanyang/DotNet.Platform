@@ -10,7 +10,7 @@
     },
     {
       "Name": "dotnet.exam",
-      "ConnectionString": "server=.;uid=sa;pwd=1;database=ExamSystem"
+      "ConnectionString": "server=.;uid=sa;pwd=1;database=DotNetExam"
     }
   ]
 }

@@ -59,6 +59,7 @@
     <Compile Include="CoursewareController.cs" />
     <Compile Include="CoursewareDetailsController.cs" />
     <Compile Include="EduController.cs" />
+    <Compile Include="ExamRecordController.cs" />
     <Compile Include="NoticeController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionController.cs" />

@@ -10,6 +10,7 @@ using DotNet.Edu.Utility;
 using DotNet.Extensions;
 using DotNet.Helper;
 using System;
+using DotNet.Auth.Utility;
 
 namespace DotNet.Edu.WebUtility
 {
@@ -104,6 +105,19 @@ namespace DotNet.Edu.WebUtility
         public static MvcHtmlString SchoolOption(this HtmlHelper helper, object selected = null, bool isMultiple = false)
         {
             var list = EduService.School.GetSimpleList();
+            return MvcHtmlString.Create(WebHelper.GetSelectOptions(list, selected, isMultiple));
+        }
+
+        /// <summary>
+        /// 获取教师下拉选项
+        /// </summary>
+        /// <param name="helper"></param>
+        /// <param name="schoolId"></param>
+        /// <param name="selected">选中的值</param>
+        /// <param name="isMultiple">是否多选</param>
+        public static MvcHtmlString TeacherOption(this HtmlHelper helper, string schoolId,object selected = null, bool isMultiple = false)
+        {
+            var list = EduService.Teacher.GetSimpleList(schoolId);
             return MvcHtmlString.Create(WebHelper.GetSelectOptions(list, selected, isMultiple));
         }
 

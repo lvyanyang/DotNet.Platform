@@ -81,7 +81,7 @@ else
 
                 <a class="btn btn-default favoriteQuestion @Html.IsPrimaryBtn(isFavorite)"
                    data-url="@Url.Action("FavoriteQuestion", new {questionId = Model.Id, favoriteType = 2})"
-                   data-favorite="@isFavorite.ToString().ToLower()" style="margin-left: 15px;"><span class="fa fa-star"></span><span>@Html.IIF(isFavorite, "已关注", "关注")</span></a>
+                   data-favorite="@isFavorite.ToString().ToLower()" style="margin-left: 15px;"><span class="fa fa-star"></span><span>@Html.IIF(isFavorite, "已收藏", "收藏")</span></a>
 
                 if (prveIndex > -1)
                 {

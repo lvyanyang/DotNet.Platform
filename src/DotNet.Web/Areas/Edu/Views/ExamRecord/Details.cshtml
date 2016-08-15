@@ -1,0 +1,50 @@
+﻿@model ExamRecord
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">考试记录 - @Model.UserName</h4>
+</div>
+<div class="modal-body">
+    <div class="form-body">
+        <table class="table table-bordered table-striped table-details">
+            <tr>
+                <th>学员姓名</th>
+                <td>@Model.UserName</td>
+            </tr>
+            <tr>
+                <th>从业类型</th>
+                <td>@Model.UserCategoryName</td>
+            </tr>
+            <tr>
+                <th>身份证号码</th>
+                <td>@Model.IdNumber</td>
+            </tr>
+            <tr>
+                <th>考试分数</th>
+                <td>@Model.UserScore</td>
+            </tr>
+            <tr>
+                <th>考试结果</th>
+                <td>@Model.UserResult</td>
+            </tr>
+            <tr>
+                <th>开始考试时间</th>
+                <td>@DateTimeHelper.FormatDateHasSecond(Model.UserStartDateTime)</td>
+            </tr>
+            <tr>
+                <th>考试提交时间</th>
+                <td>@DateTimeHelper.FormatDateHasSecond(Model.UserCommitDateTime)</td>
+            </tr>
+            <tr>
+                <th>打印日期</th>
+                <td>@DateTimeHelper.FormatDateHasSecond(Model.PrintDateTime)</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">
+        <i class="fa fa-sign-in"></i> 关闭
+    </button>
+</div>

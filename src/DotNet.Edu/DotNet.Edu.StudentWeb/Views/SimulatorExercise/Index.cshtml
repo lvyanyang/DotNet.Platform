@@ -150,7 +150,7 @@
                                 success: function (result) {
                                     if (result.success) {
                                         $(self).data('favorite', isFavorite);
-                                        $(self).find('span:eq(1)').html(isFavorite ? '已关注' : '关注');
+                                        $(self).find('span:eq(1)').html(isFavorite ? '已收藏' : '收藏');
                                         if (isFavorite) {
                                             $(self).addClass('btn-primary');
                                         } else {

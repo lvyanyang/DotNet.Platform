@@ -53,6 +53,25 @@ namespace DotNet.Edu.StudentWeb.Controllers
             var list = EduService.LessonNote.GetPageList(PageInfo(), CurrentStudent.StudentId);
             return View(list);
         }
+
+        public ActionResult Notice()
+        {
+            return View();
+        }
+
+        public ActionResult NoticeGrid(string title, string startDate, string endDate)
+        {
+            var list = EduService.Notice.GetPageList(PageInfo(), title,  
+                startDate.ToDateTimeOrNull(),  endDate.ToDateTimeOrNull());
+            return View(list);
+        }
+
+        public ActionResult NoticeDetails(string id)
+        {
+            var entity = EduService.Notice.Get(id);
+            return View(entity);
+        }
+
         public ActionResult LessonNoteLi()
         {
             var list = EduService.LessonNote.GetTopList(CurrentStudent.StudentId, 10);

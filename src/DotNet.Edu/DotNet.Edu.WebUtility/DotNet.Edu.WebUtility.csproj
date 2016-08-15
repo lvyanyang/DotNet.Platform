@@ -52,6 +52,10 @@
     <Compile Include="StudentSession.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\DotNet.Auth\DotNet.Auth.Utility\DotNet.Auth.Utility.csproj">
+      <Project>{A832C7E2-BD55-41D8-A0E6-E7C406C7231B}</Project>
+      <Name>DotNet.Auth.Utility</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\DotNet.Auth\DotNet.Auth.WebUtility\DotNet.Auth.WebUtility.csproj">
       <Project>{E2EEFF2F-0E5D-44F5-96EC-5C2F7E15FC3E}</Project>
       <Name>DotNet.Auth.WebUtility</Name>

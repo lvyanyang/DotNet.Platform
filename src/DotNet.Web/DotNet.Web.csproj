@@ -278,6 +278,7 @@
     <Content Include="www\lib\jquery-sortable\css\kv-sortable.min.css" />
     <Content Include="www\lib\jquery-sortable\js\html.sortable.js" />
     <Content Include="www\lib\jquery-sortable\js\html.sortable.min.js" />
+    <Content Include="www\lib\jquery-storageapi\jquery-storageapi.js" />
     <Content Include="www\lib\jquery-validation\jquery-validate-messages-zh.js" />
     <Content Include="www\lib\jquery-validation\jquery-validate.js" />
     <Content Include="www\lib\kindeditor\kindeditor-min.js" />
@@ -657,6 +658,10 @@
     <Content Include="Areas\Edu\Views\Teacher\Edit.cshtml" />
     <Content Include="Areas\Edu\Views\Teacher\Grid.cshtml" />
     <Content Include="Areas\Edu\Views\Teacher\Index.cshtml" />
+    <Content Include="Areas\Student\Views\web.config" />
+    <Content Include="Areas\Edu\Views\ExamRecord\Details.cshtml" />
+    <Content Include="Areas\Edu\Views\ExamRecord\Grid.cshtml" />
+    <Content Include="Areas\Edu\Views\ExamRecord\Index.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <Content Include="www\lib\fonts\fontawesome-webfont.eot" />
     <Content Include="www\lib\fonts\fontawesome-webfont.ttf" />
@@ -684,6 +689,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Auth\AuthAreaRegistration.cs" />
     <Compile Include="Areas\Edu\EduAreaRegistration.cs" />
+    <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\UtilController.cs" />
     <Compile Include="Global.asax.cs">
@@ -722,6 +728,9 @@
     <Content Include="www\data\tree.json" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Student\Controllers\" />
+    <Folder Include="Areas\Student\Models\" />
+    <Folder Include="Areas\Student\Views\Shared\" />
     <Folder Include="Views\Util\" />
     <Folder Include="www\auth\css\" />
     <Folder Include="www\auth\img\" />

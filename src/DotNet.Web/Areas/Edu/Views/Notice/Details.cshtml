@@ -8,18 +8,19 @@
 <div class="modal-body">
     <div class="form-body">
         <table class="table table-bordered table-striped table-details">
-				 <tr>
-					<th class="w100px">标题</th>
-					<td>@Model.Title</td>
-				</tr>
+            <tr>
+                <th class="w100px">标题</th>
+                <td>@Model.Title</td>
+            </tr>
+            <tr>
+                <th>发布时间</th>
+                <td>@DateTimeHelper.FormatDateHasSecond(Model.CreateDateTime)</td>
+            </tr>
 				 <tr>
 					<th>消息内容</th>
-					<td>@Model.Message</td>
+					<td>@Html.Raw(Model.Message)</td>
 				</tr>
-				 <tr>
-					<th>创建时间</th>
-					<td>@DateTimeHelper.FormatDateHasSecond(Model.CreateDateTime)</td>
-				</tr>
+				
         </table>
     </div>
 </div>

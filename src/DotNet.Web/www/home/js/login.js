@@ -70,6 +70,7 @@
             }).done(function (result) {
                 if (result.success) {
                     $submit.val('登陆成功,正在跳转...');
+                    fx.setCurrentPanelId('e45c7a460f574d08baccea28f2ec49b9');
                     window.location.href = result.url;
                 } else {
                     $submit.val('登录').removeAttr('disabled');
