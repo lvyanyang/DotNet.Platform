@@ -628,6 +628,7 @@
     <Content Include="Views\Student\LearningValidateModal.cshtml" />
     <Content Include="Views\Student\PeriodDetails.cshtml" />
     <Content Include="Views\Student\PeriodDetailsGrid.cshtml" />
+    <None Include="Properties\PublishProfiles\def.pubxml" />
     <Content Include="Views\Student\Notice.cshtml" />
     <Content Include="Views\Student\NoticeGrid.cshtml" />
     <Content Include="Views\Student\NoticeDetails.cshtml" />
