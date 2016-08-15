@@ -1,0 +1,28 @@
+﻿@model PageList<LessonLog>
+@{
+    Layout = null;
+}
+<table class="table table-bordered table-hover table-manage">
+    <thead>
+        <tr>
+            <th class="" data-order="@nameof(LessonLog.CoursewareName)">所属课件</th>
+            <th class="" data-order="@nameof(LessonLog.WorkTypeName)">从业类型</th>
+            <th class="w80px text-center" data-order="@nameof(LessonLog.RecordType)">类型</th>
+            <th class="w160px text-center" data-order="@nameof(LessonLog.CreateDateTime)">验证时间</th>
+            <th class="w100px text-center" data-order="@nameof(LessonLog.Result)">验证结果</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in Model)
+        {
+            <tr>
+                <td class="">@record.CoursewareName</td>
+                <td class="">@record.WorkTypeName</td>
+                <td class="text-center">@record.RecordTypeName</td>
+                <td class="text-center">@DateTimeHelper.FormatDateHasSecond(record.CreateDateTime)</td>
+                <td class="text-center">@Html.BoolLabel(record.Result, record.ResultName, record.ResultName)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.RenderPages(Model)

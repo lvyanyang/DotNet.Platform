@@ -1,0 +1,174 @@
+﻿@{
+    ViewBag.Title = "模拟练习";
+}
+<div class="bbox1">
+    <div class="student_topnav">
+        <div class="titleH1">
+            <div class="h1-title">@ViewBag.Title</div>
+        </div>
+    </div>
+
+    <div id="questArea" data-url="@Url.Action("_Question")"></div>
+
+</div>
+
+@section css{
+    <link href="~/www/css/question.css" rel="stylesheet" />
+}
+@section js{
+    <script>
+
+        function init(url) {
+            fx.ajax({
+                maskTarget: '.bbox1',
+                delay: 200,
+                url: url,
+                dataType: 'html',
+                success: function (result) {
+                    $('#questArea').empty().html(result);
+                    $('#questArea').find('#exercise_row').animateCss('fadeIn');
+
+                    $('#questArea')
+                        .find('.uicheck')
+                        .iCheck({
+                            checkboxClass: 'icheckbox_square-blue',
+                            radioClass: 'iradio_square-blue',
+                            increaseArea: '20%' // optional
+                        });
+
+                    $('#questArea')
+                        .find('.navQuestion')
+                        .click(function () {
+                            var url = $(this).data('url');
+                            init(url);
+                        });
+
+                    $('#questArea')
+                        .find('.answer_btn')
+                        .click(function () {
+                            var value = $(this).data('value');
+                            var $input = $('#answer' + value);
+                            var checked = $input.prop('checked');
+                            $input.iCheck(checked ? 'uncheck' : 'check');
+                        });
+
+                    $('#questArea')
+                        .find('input[type="radio"]')
+                        .on('ifChecked',
+                            function () {
+                                var user_value = $(this).val();
+                                var correct_value = $('#questArea').find('#correctAnswer').val();
+                                $('#questArea').find('#user_result').html(user_value);
+                                var result = false;
+                                if (user_value == correct_value) { //回答正确
+                                    result = true;
+                                    $('#questArea').find('#answer_yes').show();
+                                    $('#questArea').find('#answer_no').hide();
+                                } else { //回答错误
+                                    result = false;
+                                    $('#questArea').find('#answer_yes').hide();
+                                    $('#questArea').find('#answer_no').show();
+                                }
+                                //记录答题情况
+                                var check_url = $('#questArea').find('#quest_result').data('url');
+                                fx.ajax({
+                                    masked: false,
+                                    data: { userResult: result, userAnswer: user_value },
+                                    url: check_url
+                                });
+                                $('#questArea').find('.answer_btn').hide();
+                                $('#questArea').find('input[type="radio"]').iCheck('disable');
+                                $('#questArea').find('#quest_result').show();
+                            });
+
+                    //多选提交
+                    $('#questArea').find('.answer_submit_btn').click(function () {
+                        var user_value = '';
+                        $('.uicheck:checked').each(function (i, v) {
+                            user_value += v.value;
+                        });
+                        var correct_value = $('#questArea').find('#correctAnswer').val();
+
+                        user_value = user_value.toLocaleUpperCase().split('').sort().join('');
+                        correct_value= correct_value.toLocaleUpperCase().split('').sort().join('');
+
+
+                        $('#questArea').find('#user_result').html(user_value);
+                        var result = false;
+                        if (user_value == correct_value) { //回答正确
+                            result = true;
+                            $('#questArea').find('#answer_yes').show();
+                            $('#questArea').find('#answer_no').hide();
+                        } else { //回答错误
+                            result = false;
+                            $('#questArea').find('#answer_yes').hide();
+                            $('#questArea').find('#answer_no').show();
+                        }
+                        //记录答题情况
+                        var check_url = $('#questArea').find('#quest_result').data('url');
+                        fx.ajax({
+                            masked: false,
+                            data: { userResult: result, userAnswer: user_value },
+                            url: check_url
+                        });
+                        $('#questArea').find('.answer_btn,.answer_submit_btn').hide();
+                        $('#questArea').find('input[type="checkbox"]').iCheck('disable');
+                        $('#questArea').find('#quest_result').show();
+                    });
+
+                    $('#questArea')
+                        .find('.initQuestion')
+                        .click(function () {
+                            var url = $(this).data('url');
+                            fx.ajax({
+                                maskTarget: '.bbox1',
+                                delay: 200,
+                                url: url,
+                                success: function (result) {
+                                    $('.bbox1').unmask();
+                                    if (result.success) {
+                                        var initurl = $('#questArea').data('url');
+                                        init(initurl);
+                                    } else {
+                                        fx.alert(result.message);
+                                    }
+                                }
+                            });
+                        });
+
+                    $('#questArea')
+                        .find('.favoriteQuestion')
+                        .click(function () {
+                            var url = $(this).data('url');
+                            var isFavorite = !$(this).data('favorite');
+                            var self = this;
+                            fx.ajax({
+                                maskTarget: '.bbox1',
+                                delay: 200,
+                                url: url,
+                                data: { isFavorite: isFavorite },
+                                success: function (result) {
+                                    if (result.success) {
+                                        $(self).data('favorite', isFavorite);
+                                        $(self).find('span:eq(1)').html(isFavorite ? '已收藏' : '收藏');
+                                        if (isFavorite) {
+                                            $(self).addClass('btn-primary');
+                                        } else {
+                                            $(self).removeClass('btn-primary');
+                                        }
+                                    } else {
+                                        fx.alert(result.message);
+                                    }
+                                }
+                            });
+                        });
+                }
+            });
+        }
+
+        $(function () {
+            var url = $('#questArea').data('url');
+            init(url);
+        });
+    </script>
+}

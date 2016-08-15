@@ -1,0 +1,369 @@
+﻿@model List<CoursewareDetails>
+@{
+    ViewBag.Title = "学习课件";
+    Courseware entity = ViewBag.Courseware;
+}
+<div class="bbox1">
+    <div class="student_topnav">
+        <div class="titleH1">
+            <div class="h1-title">@entity.Name</div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px; margin-left: 15px; margin-right: 15px;">
+        <div class="col-md-6" style="padding-left: 0;">
+            <a id="b_fullscreen" class="btn btn-primary">
+                <span class="icon-size-fullscreen"></span> 全屏
+            </a>
+            <a id="b_note" class="btn btn-info" style="margin-left: 15px;"
+               data-use-offset-for-pos="true"
+               data-toggle="popover-x" data-target="#notepop" data-placement="bottom bottom-left">
+                <span class="icon-note"></span> 笔记
+            </a>
+            <a id="b_signout" class="btn btn-warning" style="margin-left: 15px;">
+                <span class="icon-logout"></span> 签退
+            </a>
+        </div>
+        <div class="col-md-6 text-right" style="padding-right: 3px;height: 34px; line-height: 34px;">
+            学习计时：<span id="totalTime" style="font-weight: bold;color: #01257d;">00:00:00</span>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px; margin-left: 15px; margin-right: 15px;">
+        @(entity.CourseType.Equals("1") ? Html.Partial("_Image", Model) : Html.Partial("_Video", Model))
+    </div>
+
+    <div class="row">
+        <div class="bottomtip">
+            <div class="tp h2-title">温馨提示</div>
+            <p>1、为保证学习效果，建议驾驶人使用IE8以上版本内核浏览器。同时平台支持谷歌、火狐等浏览器。</p>
+            <p>2、学习开始时，系统会弹出验证窗口：通过后，系统开始记录学时，驾驶人如果需要离开或保存学时，点击学习右侧签退按钮，完成验证后，系统保存当次有效学时。</p>
+            <p>3、学习过程中，会依据各地管理规则设置，随机弹出验证窗口，中间验证过程有设置等待时间，如果超时或回答错误次数超出，本次学习的学时将不被记录。驾驶人如果中间离开，请提前做好签退保存学时。</p>
+            <p>4、每个课件系统设置规定学时，课件学时达到规定学时后，系统将不再计时，驾驶人可通过课程列表更换其他课件继续学习。驾驶人每天学习的学时，不能超过各地设置的当天最大学时，超过最大学时，驾驶人可学习但系统不再计时。每天最大学时以当地管理规则为准，一般默认为每天4小时。请不要在实操培训或集中理论培训的时候参加网络学习，否则网络培训学时将作废。</p>
+            <p>5、平台不允许多台电脑同时登录同一个账户，账号重新登录后，前面已登录未保存的学时将作废，并会退出登录窗口。建议驾驶人首次登录后，及时更改登录密码。</p>
+        </div>
+    </div>
+</div>
+
+<div id="notepop" class="popover popover-default popover-lg">
+    <div class="arrow"></div>
+    <div class="popover-title">课堂笔记</div>
+    <div class="popover-content">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="notelist" style="max-height:345px; overflow-y: auto;"></ul>
+            </div>
+        </div>
+        <p>&nbsp;</p>
+        <div class="row">
+            <div class="col-md-12">
+                <textarea class="form-control" id="note_message" rows="3"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="popover-footer">
+        <button class="btn btn-sm btn-success" id="save_note">
+            <i class="fa fa-save"></i> 保存
+        </button>
+        <a class="btn btn-sm btn-default" id="cancel_note">
+            <i class="fa fa-sign-in"></i> 取消
+        </a>
+    </div>
+</div>
+
+@section css{
+    <style>
+        .galleria {
+            width: 100%;
+            height: 600px;
+            background: #fff;
+        }
+
+        .note_li {
+            border-bottom: 1px dotted #CCCCCC;
+            margin: 0 7px;
+            padding: 10px 3px 5px;
+        }
+
+        .note_message {
+            font-size: 12px;
+            line-height: 20px;
+            color: #666;
+        }
+    </style>
+}
+@section js{
+
+    <script src="~/www/lib/jquery-galleria/galleria-1.4.2.min.js"></script>
+    <script src="~/www/lib/jquery-galleria/plugins/history/galleria.history.min.js"></script>
+    <script>
+        var totals = 0;
+        var validTotals = 60;
+        var validCount = 3;
+
+        function redirect() {
+            window.location.href = '@Url.Action("Index", "Default")';
+        }
+
+        function validTiming() {
+            if (validTotals <= 0) {
+                pauseValidTiming();
+                $('#validate_window').modal('hide');
+                fx.alert('您已超过验证时间，将退出学习。', function (index) {
+                    layer.close(index);
+                });
+            } else {
+                validTotals--;
+                $('#validate_vtitle').html(validTotals);
+            }
+        }
+
+        function startValidTiming() {
+            if (!window.validTimings) {
+                window.validTimings = window.setInterval(function () { validTiming(); }, 1000);
+            }
+        }
+
+        function pauseValidTiming() {
+            if (window.validTimings) {
+                window.clearInterval(window.validTimings);
+                window.validTimings = null;
+                validTotals = 60;
+            }
+        }
+
+        function timing() {
+            totals += 1;
+
+            var hour = Math.floor(totals / 3600);
+            if (hour < 1) {
+                hour = 0;
+            }
+
+            var min = Math.floor(totals / 60);
+            if (min < 1) {
+                min = 0;
+            }
+
+            var sec = totals % 60; // 这是取模
+
+            if (hour < 10) {
+                hour = '0' + hour;
+            }
+
+            if (min < 10) {
+                min = '0' + min;
+            }
+
+            if (sec < 10) {
+                sec = '0' + sec;
+            }
+
+            $("#totalTime").html(hour + ':' + min + ':' + sec);
+        }
+
+        function startTiming() {
+            if (!window.jstiming) {
+                window.jstiming = window.setInterval(function () { timing(); }, 1000);
+            }
+        }
+
+        function pauseTiming() {
+            if (window.jstiming) {
+                window.clearInterval(window.jstiming);
+                window.jstiming = null;
+            }
+        }
+
+        function loadNote() {
+            fx.ajax({
+                maskTarget: '.notelist',
+                delay: 200,
+                dataType: 'html',
+                url: '@Url.Action("LessonNoteLi", "Student")',
+                success: function (result) {
+                    $('.notelist').empty().html(result);
+                }
+            });
+        }
+
+        function startValidate() {
+            fx.window({
+                url: '@Url.Action("LearningValidateModal", "Student")',
+                show: function () {
+                    startValidTiming();
+
+                    $('.validate_window_close').click(function () {
+                        $('#validate_window').modal('hide');
+                        pauseValidTiming();
+                        fx.alert('学习将不计时！');
+                    });
+
+                    $('.btn-answer').click(function () {
+                        var url = '@Url.Action("LearningValidate","Student")';
+                        var validateId = $('#validateId').val();
+                        var answer = $(this).data('value');
+                        fx.ajax({
+                            maskTarget: 'body',
+                            delay: 200,
+                            url: url,
+                            data: { validateId: validateId,coursewareId:'@entity.Id', answer: answer,recordType:1 },
+                            success: function (result) {
+                                $('body').unmask();
+                                if (result.success) {
+                                    $('#validate_window').modal('hide');
+                                    pauseValidTiming();
+                                    begin();
+                                } else {
+                                    reStartValidate();
+                                }
+                            }
+                        });
+                    });
+
+                }
+            });
+        }
+
+        function reStartValidate() {
+            if (validCount <= 0) {
+                pauseValidTiming();
+                $('#validate_window').modal('hide');
+                validCount = 3;
+                fx.alert('回答问题达到最大次数,学习将不计时！');
+            } else {
+                $('#validate_window').modal('hide');
+                startValidate();
+                validCount--;
+            }
+        }
+
+        function commitValidate() {
+            fx.window({
+                url: '@Url.Action("LearningValidateModal", "Student")',
+                show: function () {
+                    startValidTiming();
+
+                    $('.validate_window_close').hide();
+
+                    $('.btn-answer').click(function () {
+                        var url = '@Url.Action("LearningValidate","Student")';
+                        var validateId = $('#validateId').val();
+                        var answer = $(this).data('value');
+                        fx.ajax({
+                            maskTarget: 'body',
+                            delay: 200,
+                            url: url,
+                            data: { validateId: validateId,coursewareId:'@entity.Id', answer: answer,recordType:2 },
+                            success: function (result) {
+                                $('body').unmask();
+                                if (result.success) {
+                                    $('#validate_window').modal('hide');
+                                    pauseValidTiming();
+                                    commit();
+                                } else {
+                                    reCommitValidate();
+                                }
+                            }
+                        });
+                    });
+
+                }
+            });
+        }
+
+        function reCommitValidate() {
+            if (validCount <= 0) {
+                pauseValidTiming();
+                $('#validate_window').modal('hide');
+                validCount = 3;
+                fx.alert('回答问题达到最大次数,本次学习将不计时！', function (index) {
+                    layer.close(index);
+                    redirect();
+                });
+            } else {
+                $('#validate_window').modal('hide');
+                commitValidate();
+                validCount--;
+            }
+        }
+
+        function begin() {
+            fx.ajax({
+                masked: false,
+                url: '@Url.Action("Begin", "StudentLearning")',
+                data: { coursewareId: '@entity.Id' },
+                success: function (result) {
+                    if (result.success) {
+                        startTiming();
+                    } else {
+                        fx.alert(result.message);
+                    }
+                }
+            });
+        }
+
+        function commit() {
+            var period = totals;
+            var url = '@Url.Action("Commit","StudentLearning")';
+            fx.ajax({
+                maskTarget: 'body',
+                delay: 200,
+                url: url,
+                data: { period: period },
+                success: function (result) {
+                    if (result.success) {
+                        fx.alert('学时保存成功！', function (index) {
+                            layer.close(index);
+                            redirect();
+                        });
+                    } else {
+                        fx.alert(result.message);
+                    }
+                }
+            });
+        }
+
+        function saveNote() {
+            var msg = $('#note_message').val();
+            fx.ajax({
+                maskTarget: '.notelist',
+                delay: 200,
+                url: '@Url.Action("LessonNoteSave", "Student")',
+                data: { message: msg, coursewareId: '@entity.Id', coursewareName: '@entity.Name' },
+                success: function () {
+                    fx.unmask({ maskTarget: '.notelist' });
+                    loadNote();
+                    $('#note_message').val('');
+                    $('#note_message').focus();
+                }
+            });
+        }
+
+        $(function () {
+            Galleria.loadTheme('/www/lib/jquery-galleria/themes/classic/galleria.classic.min.js');
+            Galleria.run('.galleria');
+
+            $('#b_fullscreen').click(function () {
+                $('.galleria').data('galleria').enterFullscreen();
+            });
+
+            $('#b_signout').click(function () {
+                pauseTiming();
+                commitValidate();
+            });
+
+            $('#notepop').on('shown.bs.modal', function (e) {
+                loadNote();
+            });
+
+            $('#save_note').click(function () {
+                saveNote();
+            });
+
+            $('#cancel_note').click(function () {
+                $('#notepop').popoverX('hide');
+            });
+
+            startValidate();
+        });
+    </script>
+}

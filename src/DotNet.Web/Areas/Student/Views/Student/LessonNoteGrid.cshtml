@@ -1,0 +1,30 @@
+﻿@model PageList<LessonNote>
+@{
+    Layout = null;
+}
+<table class="table table-bordered table-hover table-manage">
+    <thead>
+        <tr>
+            <th class="">笔记</th>
+            <th class="w160px" data-order="@nameof(LessonNote.CreateDateTime)">时间</th>
+            <th class="w50px text-center">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var record in Model)
+    {
+        <tr>
+            <td>@record.Message</td>
+            <td class="w160px" style="color: #999">@DateTimeHelper.FormatDateHasSecond(record.CreateDateTime)</td>
+            <td class="text-center">
+                <a class="color-danger tsdelete" data-toggle="tooltip"
+                   data-url="@Url.Action("LessonNoteDelete", new {id = record.Id})"
+                   title="删除">
+                    <i class="fa fa-lg fa-trash-o"></i>
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+@Html.RenderPages(Model)

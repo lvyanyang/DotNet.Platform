@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "题库收藏";
+}
+<div class="bbox1">
+    <div class="student_topnav">
+        <div class="titleH1">
+            <div class="h1-title">@ViewBag.Title</div>
+        </div>
+    </div>
+
+    <div id="questArea" data-url="@Url.Action("_Question")"></div>
+
+</div>
+
+@section css{
+    <link href="~/www/css/question.css" rel="stylesheet" />
+}
+@section js{
+    <script>
+
+        function init(url) {
+            fx.ajax({
+                maskTarget: '.bbox1',
+                delay: 200,
+                url: url,
+                dataType: 'html',
+                success: function (result) {
+                    $('#questArea').empty().html(result);
+
+                    $('#questArea').find('.navQuestion').click(function () {
+                        var url = $(this).data('url');
+                        init(url);
+                    });
+
+                    $('#questArea').find('.deleteQuestion').click(function () {
+                        var url = $(this).data('url');
+                        fx.ajax({
+                            delay: 200,
+                            confirm:'确定要删除当前题吗?',
+                            url: url,
+                            success: function (result) {
+                                if (result.success) {
+                                    init($('#questArea').data('url'));
+                                } else {
+                                    fx.alert(result.message);
+                                }
+                            }
+                        });
+                    });
+
+                    $('#questArea').find('.clearQuestion').click(function () {
+                        var url = $(this).data('url');
+                        fx.ajax({
+                            delay: 200,
+                            confirm:'确定要清除所有的关注题吗?',
+                            url: url,
+                            success: function (result) {
+                                if (result.success) {
+                                    init($('#questArea').data('url'));
+                                } else {
+                                    fx.alert(result.message);
+                                }
+                            }
+                        });
+                    });
+                }
+            });
+        }
+
+        $(function () {
+            var url = $('#questArea').data('url');
+            init(url);
+        });
+    </script>
+}

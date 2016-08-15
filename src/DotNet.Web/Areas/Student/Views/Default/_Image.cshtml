@@ -1,0 +1,7 @@
+﻿@model List<CoursewareDetails>
+<div class="galleria">
+    @foreach (var item in Model)
+    {
+        <img src="@Url.Content(item.Url)">
+    }
+</div>
