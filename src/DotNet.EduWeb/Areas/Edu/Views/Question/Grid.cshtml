@@ -1,0 +1,48 @@
+﻿@model PageList<Question>
+<table class="table table-striped table-bordered table-hover table-fix table-manage">
+    <thead>
+        <tr>
+            <th class="w35px">
+                <label><input class="checkbox-check" type="checkbox"><span></span></label>
+            </th>
+            <th class="" data-order="@nameof(Question.Name)">名称</th>
+            <th class="w200px" data-order="@nameof(Question.WorkType)">从业类型</th>
+            <th class="w80px text-center" data-order="@nameof(Question.QuestType)">题目类型</th>
+            <th class="w80px text-center" data-order="@nameof(Question.QuestUnit)">题目单元</th>
+            <th class="w80px text-center" data-order="@nameof(Question.Score)">分数</th>
+            <th class="text-center w70px">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in Model)
+        {
+            <tr>
+                <td>
+                    <label><input class="checkbox-check" type="checkbox" value="@record.Id"><span></span></label>
+                </td>
+                <td class="nowrap">
+                    <a class="uimodal" data-url="@Url.Action("Details", new {id = record.Id})">
+                        @record.Name
+                    </a>
+                </td>
+                <td class="">@record.WorkTypeName</td>
+                <td class="text-center">@record.QuestTypeName</td>
+                <td class="text-center">@record.QuestUnitName</td>
+                <td class="text-center">@record.Score</td>
+                <td class="text-center">
+                    <a class="color-primary uimodal" data-size="lg" data-toggle="tooltip"
+                       data-url="@Url.Action("Edit", new {id = record.Id})"
+                       title="编辑">
+                        <i class="fa fa-lg fa-edit"></i>
+                    </a>
+                    <a class="color-danger tsdelete" data-toggle="tooltip"
+                       data-url="@Url.Action("Delete", new {id = record.Id})"
+                       title="删除">
+                        <i class="fa fa-lg fa-trash-o"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.RenderPages(Model)

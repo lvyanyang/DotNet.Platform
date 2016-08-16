@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using DotNet.Data;
 using DotNet.Extensions;
 using DotNet.Helper;
+using DotNet.Mvc;
 
 namespace DotNet
 {
@@ -25,8 +26,12 @@ namespace DotNet
             //Console.WriteLine(repos.Count());
             //Console.WriteLine(repos.Count(p => p.SendClientNum == "15802963862"));
 
-            Console.WriteLine(RandomHelper.GenerateRandomArray(50).Join());
-            
+            //Console.WriteLine(RandomHelper.GenerateRandomArray(50).Join());
+
+            Console.WriteLine(CdnHelper.Url("~/lib/abc/jquery.js"));
+            Console.WriteLine(CdnHelper.Url("~/lib/jquery.css"));
+
+            Console.ReadLine();
         }
     }
 }

@@ -1,0 +1,82 @@
+﻿<div class="module-container uitreegrid" style="width: 100%; height: 100%; padding: 0;">
+    <div class="treegridtoolbar">
+        <table>
+            <tr>
+                <td>
+                    <a id="ModuleBtnNewRoot" class="easyui-linkbutton tcreateroot" plain="true"
+                       iconcls="font-size-12 icon-plus"
+                       data-url="@Url.Action("Create")">新建根节点</a>
+                </td>
+                <td>
+                    <div class="datagrid-btn-separator"></div>
+                </td>
+                <td>
+                    <a id="ModuleBtnNew" class="easyui-linkbutton tcreate" plain="true"
+                       iconcls="font-size-12 icon-plus"
+                       data-url="@Url.Action("Create")">新建</a>
+                </td>
+                <td>
+                    <div class="datagrid-btn-separator"></div>
+                </td>
+                <td>
+                    <a id="ModuleBtnEdit" class="easyui-linkbutton tedit" plain="true"
+                       iconcls="font-size-12 icon-pencil"
+                       data-url="@Url.Action("Edit")">编辑</a>
+                </td>
+                <td>
+                    <div class="datagrid-btn-separator"></div>
+                </td>
+                <td>
+                    <a id="ModuleBtnDelete" class="easyui-linkbutton tdelete" plain="true"
+                       iconcls="font-size-13 fa fa-trash-o"
+                       data-url="@Url.Action("Delete")">删除</a>
+                </td>
+                <td>
+                    <div class="datagrid-btn-separator"></div>
+                </td>
+                <td>
+                    <a class="easyui-linkbutton trefresh" plain="true"
+                       iconcls="font-size-12 icon-refresh">刷新</a>
+                </td>
+                @*<td>
+                    <div class="datagrid-btn-separator"></div>
+                </td>
+                <td>
+                    <input class="form-control input-sm tfilter" type="text" style="height:20px" placeholder="请输入查询关键字">
+                </td>*@
+            </tr>
+        </table>
+    </div>
+
+    <table class="treegrid" data-url="@Url.Action("Tree")" 
+           data-details-url="@Url.Action("Details")"
+           data-parent-url="@Url.Action("SaveParent")"
+           data-sort-url="@Url.Action("SaveSort")">
+        <thead>
+            <tr>
+                <th data-options="field:'Name',title:'名称'" width="200"></th>
+                <th data-options="field:'Code',title:'编码'" width="150"></th>
+                <th data-options="field:'Url',title:'地址'" width="250"></th>
+                <th data-options="field:'IsEnabled',title:'有效',align: 'center', fixed: true,formatter: fx.boolColumnFormatter" width="50"></th>
+                <th data-options="field:'IsPublic',title:'公共',align: 'center', fixed: true,formatter: fx.boolColumnFormatter" width="50"></th>
+                <th data-options="field:'IsExpand',title:'展开',align: 'center', fixed: true,formatter: fx.boolColumnFormatter" width="50"></th>
+                <th data-options="field:'Note',title:'备注'" width="100"></th>
+            </tr>
+        </thead>
+    </table>
+
+    <!-- 右键菜单 -->
+    <div class="ttmenu">
+
+        <div class="ttmcreate" data-options="iconCls:'font-icon fa fa-plus'"
+             data-url="@Url.Action("Create")">新建</div>
+        <div class="menu-sep"></div>
+        <div class="ttmedit" data-options="iconCls:'font-icon fa fa-pencil-square-o'"
+             data-url="@Url.Action("Edit")">编辑</div>
+        <div class="menu-sep"></div>
+        <div class="ttmdelete" data-options="iconCls:'font-icon fa fa-trash-o'"
+             data-url="@Url.Action("Delete")">删除</div>
+        <div class="menu-sep"></div>
+        <div class="ttmrefresh" data-options="iconCls:'font-icon fa fa-refresh'">刷新</div>
+    </div>
+</div>

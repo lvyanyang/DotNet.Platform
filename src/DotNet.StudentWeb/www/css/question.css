@@ -1,0 +1,56 @@
+﻿.exercise_title {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+    line-height: 22px;
+}
+
+.exercise_answer {
+    line-height: 30px;
+    margin-top: 10px;
+}
+
+    .exercise_answer li label {
+        font-size: 14px;
+        line-height: 30px;
+        font-weight: normal;
+    }
+
+.exercise_btn {
+    font-size: 20px;
+    padding: 5px 12px 5px 12px;
+    margin-left: 15px;
+    width: 45px;
+    height: 45px;
+}
+
+.user_result {
+    font-size: 18px;font-weight: bold;color: #01257d;
+}
+
+.exam_question_num {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border: 1px solid #ccc;
+    text-align: center;
+    float: left;
+    margin: 2px 2px 0 0;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+    .exam_question_num:hover {
+        background: #337ab7;
+        color: white;
+    }
+
+    .exam_question_result_title {
+        font-size: 14px;font-weight: bold;color: #333;line-height: 41px;margin-left: 10px;
+    }
+    .exam_question_result_content {
+        color: #555;margin-left: 10px;
+    }
+    .exam_question_result_number {
+        color: #333;font-weight: bold;padding: 0 3px;
+    }

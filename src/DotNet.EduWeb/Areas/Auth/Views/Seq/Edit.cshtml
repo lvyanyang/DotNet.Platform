@@ -1,0 +1,72 @@
+﻿@model Seq
+<form class="form-horizontal uiform" method="post"
+      data-modal="true"
+      data-table=".uitable"
+      data-error-el=".alert-danger"
+      data-on-submit-success="fx.mtfSuccess"
+      action="@Url.Action("Save")">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">@Html.EditStatus("系统序列")</h4>
+    </div>
+    <div class="modal-body">
+        @Html.AntiForgeryToken()
+        @Html.MarkCreate()
+        @Html.HiddenFor(p => p.Id)
+        <div class="alert alert-danger fxhide"></div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                <span class="required"> * </span>
+                名称：
+            </label>
+            <div class="col-md-8">
+                <input class="form-control" name="@nameof(Model.Name)" value="@Model.Name"
+                       data-validate="required: true,maxlength: 20"
+                       data-validate-message="required:'请输入序列名称'"
+                       type="text" autocomplete="off" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                <span class="required"> * </span>
+                值：
+            </label>
+            <div class="col-md-8">
+                <input class="form-control" name="@nameof(Model.Value)" value="@Model.Value"
+                       data-validate="required: true,maxlength: 10,digits:true"
+                       data-validate-message="required:'请输入序列值'"
+                       type="text" autocomplete="off" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                <span class="required"> * </span>
+                步长：
+            </label>
+            <div class="col-md-8">
+                <input class="form-control" name="@nameof(Model.Step)" value="@Model.Step"
+                       data-validate="required: true,maxlength: 9,digits:true"
+                       data-validate-message="required:'请输入序列步长'"
+                       type="text" autocomplete="off" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                备注：
+            </label>
+            <div class="col-md-8">
+                <textarea class="form-control" name="@nameof(Model.Note)"rows="3">@Model.Note</textarea>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">
+            <i class="fa fa-save"></i> 保存
+        </button>
+        <button class="btn btn-default" type="button" data-dismiss="modal">
+            <i class="fa fa-sign-in"></i> 关闭
+        </button>
+    </div>
+</form>

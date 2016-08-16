@@ -94,7 +94,7 @@ namespace DotNet.Helper
         {
             if (string.IsNullOrEmpty(url))
             {
-                throw new ArgumentNullException("url", "无效的 URI: 此 URI 为空。");
+                throw new ArgumentNullException(nameof(url), "无效的 URI: 此 URI 为空。");
             }
             Uri uri = new Uri(url);
             bool isAdd = true;
@@ -138,7 +138,7 @@ namespace DotNet.Helper
         {
             if (string.IsNullOrEmpty(url))
             {
-                throw new ArgumentNullException("url", "无效的 URI: 此 URI 为空。");
+                throw new ArgumentNullException(nameof(url), "无效的 URI: 此 URI 为空。");
             }
 
             Dictionary<string, string> dic = new Dictionary<string, string>();
@@ -186,7 +186,7 @@ namespace DotNet.Helper
         /// <returns></returns>
         public static string GetClientInnerIP()
         {
-            string ip = System.Web.HttpContext.Current.Request.UserHostAddress;
+            string ip = HttpContext.Current.Request.UserHostAddress;
             //或 string ip = System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
             return ip;
         }
@@ -226,7 +226,7 @@ namespace DotNet.Helper
         public static string GetQueryString(string key, string defaultValue)
         {
             object obj = HttpContext.Current.Request.QueryString[key];
-            return obj != null ? obj.ToString() : defaultValue;
+            return obj?.ToString() ?? defaultValue;
         }
 
         /// <summary>
@@ -270,7 +270,7 @@ namespace DotNet.Helper
         public static string GetParamString(string key, string defaultValue)
         {
             object obj = HttpContext.Current.Request.Params[key];
-            return obj != null ? obj.ToString() : defaultValue;
+            return obj?.ToString() ?? defaultValue;
         }
 
         /// <summary>
@@ -577,56 +577,6 @@ namespace DotNet.Helper
             }
             return HttpContext.Current.Server.MapPath(url);
         }
-
-        /// <summary>
-        /// 上传文件
-        /// </summary>
-        /// <param name="files">上传文件对象集合</param>
-        /// <param name="defaultExtensionName">默认扩展名(如果上传文件没有扩展名,则使用默认扩展名)</param>
-        /// <param name="subFolder">子文件夹</param>
-        /// <returns>返回上传文件信息</returns>
-        public static List<UploadFileInfo> UploadFile(HttpFileCollectionBase files, string defaultExtensionName = ".rar",
-            string subFolder = null)
-        {
-            List<UploadFileInfo> result = new List<UploadFileInfo>();
-            if (files == null || files.Count <= 0) return result;
-            foreach (string key in files.AllKeys)
-            {
-                HttpPostedFileBase file = files[key];
-                result.Add(UploadFile(file, defaultExtensionName, subFolder));
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// 上传文件
-        /// </summary>
-        /// <param name="postFile">上传文件对象</param>
-        /// <param name="defaultExtensionName">默认扩展名(如果上传文件没有扩展名,则使用默认扩展名)</param>
-        /// <param name="subFolder">子文件夹</param>
-        /// <returns>返回上传文件信息</returns>
-        public static UploadFileInfo UploadFile(HttpPostedFileBase postFile, string defaultExtensionName = ".rar", string subFolder = null)
-        {
-            if (postFile == null || postFile.ContentLength == 0) return null;
-            var virtualFolder = UploadFileSetting.UploadFolder;
-            if (!string.IsNullOrEmpty(subFolder))
-            {
-                virtualFolder = Path.Combine(virtualFolder, subFolder);
-            }
-            string fileName = Path.GetFileNameWithoutExtension(postFile.FileName.Replace("&", "").Replace("?", "")).Replace("&", "").Replace("?", "");
-            string extName = Path.GetExtension(postFile.FileName);
-            string extensionName = string.IsNullOrEmpty(extName) ? defaultExtensionName : extName;
-            string targetFileName = $"{StringHelper.Guid()}{extensionName}";
-            string targetFileVirtualPath = Path.Combine(virtualFolder, targetFileName).Replace("\\", "/");
-            string targetFilePath = HttpContext.Current.Server.MapPath(targetFileVirtualPath);
-            FileHelper.CreateDirectoryByPath(targetFilePath);
-            postFile.SaveAs(targetFilePath);
-
-            var uploadFileInfo = new UploadFileInfo();
-            uploadFileInfo.Name = fileName;
-            uploadFileInfo.Url = targetFileVirtualPath;
-            uploadFileInfo.Size = postFile.ContentLength;
-            return uploadFileInfo;
-        }
+        
     }
 }

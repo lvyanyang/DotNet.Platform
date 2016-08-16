@@ -298,7 +298,7 @@ namespace DotNet.Mvc
         {
             return isSelected ? MvcHtmlString.Create("selected") : MvcHtmlString.Empty;
         }
-   
+
         public static MvcHtmlString IsPrimaryBtn(this HtmlHelper helper, bool condition)
         {
             return condition ? MvcHtmlString.Create("btn-primary") : MvcHtmlString.Empty;
@@ -448,6 +448,76 @@ namespace DotNet.Mvc
                 return MvcHtmlString.Create("新建" + joinStr);
             }
             return MvcHtmlString.Create("修改" + joinStr);
+        }
+
+        /// <summary>
+        /// 生成Cdn css样式标签
+        /// </summary>
+        /// <param name="helper"></param>
+        /// <param name="virtualPath">虚拟路径</param>
+        public static MvcHtmlString CdnCss(this HtmlHelper helper, string virtualPath)
+        {
+            return CdnHelper.CdnCss(virtualPath);
+        }
+
+        /// <summary>
+        /// 生成Local css样式标签
+        /// </summary>
+        /// <param name="helper"></param>
+        /// <param name="virtualPath">虚拟路径</param>
+        public static MvcHtmlString LocalCss(this HtmlHelper helper, string virtualPath)
+        {
+            return CdnHelper.LocalCss(virtualPath);
+        }
+
+        /// <summary>
+        /// 生成Cdn js脚本标签
+        /// </summary>
+        /// <param name="helper"></param>
+        /// <param name="virtualPath">虚拟路径</param>
+        public static MvcHtmlString CdnJavaScript(this HtmlHelper helper, string virtualPath)
+        {
+            return CdnHelper.CdnJavaScript(virtualPath);
+        }
+
+        /// <summary>
+        /// 生成Local js脚本标签
+        /// </summary>
+        /// <param name="helper"></param>
+        /// <param name="virtualPath">虚拟路径</param>
+        public static MvcHtmlString LocalJavaScript(this HtmlHelper helper, string virtualPath)
+        {
+            return CdnHelper.LocalJavaScript(virtualPath);
+        }
+
+        /// <summary>
+        /// 根据后缀名自动判断是css还是js的Cdn资源
+        /// </summary>
+        /// <param name="helper"></param>
+        /// <param name="virtualPath">虚拟路径</param>
+        public static MvcHtmlString CdnImport(this HtmlHelper helper, string virtualPath)
+        {
+            return CdnHelper.CdnImport(virtualPath);
+        }
+
+        /// <summary>
+        /// 根据后缀名自动判断是css还是js的Local资源
+        /// </summary>
+        /// <param name="helper"></param>
+        /// <param name="virtualPath">虚拟路径</param>
+        public static MvcHtmlString LocalImport(this HtmlHelper helper, string virtualPath)
+        {
+            return CdnHelper.LocalImport(virtualPath);
+        }
+
+        /// <summary>
+        /// 获取上传文件Url
+        /// </summary>
+        /// <param name="helper"></param>
+        /// <param name="virtualPath">虚拟路径</param>
+        public static MvcHtmlString GetUploadUrl(this HtmlHelper helper, string virtualPath)
+        {
+            return MvcHtmlString.Create(UploadHelper.GetUploadUrl(virtualPath));
         }
     }
 }

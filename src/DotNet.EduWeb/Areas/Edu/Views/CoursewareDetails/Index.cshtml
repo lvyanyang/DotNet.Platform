@@ -1,0 +1,104 @@
+﻿@model Courseware
+@{
+    string url = Model.CourseType == "1" ? Url.Action("_Image", new { coursewareId = Model.Id }) : Url.Action("_Video", new { coursewareId = Model.Id });
+}
+
+<div class="modal fade" id="courseware_details_modal" aria-hidden="true" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">课件资料 - @Model.Name - @Model.WorkTypeName</h4>
+            </div>
+            <div class="modal-body">
+                <div class="" id="courseware_details_container" data-url="@url">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <form enctype="multipart/form-data">
+                            <input id="course_upload" type="file" multiple>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    <i class="fa fa-sign-in"></i> 关闭
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#courseware_details_modal').on('show', function () {
+        var ops = {
+            language: 'zh',
+            uploadUrl: '@Url.Action("Save")',
+            theme: 'fa',
+            allowedPreviewTypes: ['image', 'video'],
+            fileActionSettings: {
+                showRemove: true,
+                showUpload: false,
+                showZoom: false,
+                showDrag: false
+            },
+            previewSettings: {
+                image: { width: '170px', height: '160px' },
+                video: { width: '160px', height: '160px' }
+            },
+            uploadExtraData: {
+                coursewareId: '@Model.Id'
+            }
+        };
+        $("#course_upload").fileinput(ops);
+    });
+
+    var reloadDetails = function () {
+        var url = $('#courseware_details_container').data('url');
+        $('#courseware_details_container').empty().load(url,function() {
+            layer.photos({
+                photos: '#courseware_details_container'
+            });
+
+            $('video,audio').mediaelementplayer(/* Options */);
+
+            $('.sortable').sortable();
+            $('.sortable').on('sortstop', function () {
+                var sortData = {};
+                $(this).children('li').each(function (i) {
+                    sortData[$(this).data('id')] = i;
+                });
+                fx.ajax({ url: '@Url.Action("SaveRowIndex")', data: sortData, delay: 200 });
+            });
+        });
+    };
+
+    var deleteDetails = function (ele, url) {
+        fx.ajax({
+            url: url,
+            confirm: '确定要删除当前课件吗?',
+            success: function (result) {
+                if (result.success) {
+                    $(ele).closest('li').animateCss('rollOut', function () {
+                        $(this).remove();
+                    });
+                }
+                if (result.message) {
+                    fx.alert(result.message);
+                }
+            }
+        });
+    };
+
+    $('#course_upload').on('filebatchuploadcomplete', function (event, data, previewId, index) {
+        $('#course_upload').fileinput('clear');
+        reloadDetails();
+    });
+
+    reloadDetails();
+
+
+</script>

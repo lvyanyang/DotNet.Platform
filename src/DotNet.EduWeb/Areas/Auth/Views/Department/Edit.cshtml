@@ -1,0 +1,108 @@
+﻿@model Department
+<form class="form-horizontal uiform" action="@Url.Action("Save")" method="post"
+      data-modal="true"
+      data-error-el=".alert-danger">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">@Html.EditStatus("系统部门")</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-body">
+            @Html.AntiForgeryToken()
+            @Html.MarkCreate()
+            @Html.HiddenFor(p => p.Id)
+            @Html.HiddenFor(p => p.ParentId)
+            @Html.HiddenFor(p => p.SortPath)
+            @Html.HiddenFor(p => p.CreateUserId)
+            @Html.HiddenFor(p => p.CreateUserName)
+            @Html.HiddenFor(p => p.CreateDateTime)
+            <div class="alert alert-danger fxhide"></div>
+            <div class="form-group">
+                <label class="control-label col-md-3">
+                    上级：
+                </label>
+                <div class="col-md-8">
+                    <p class="form-control-static">
+                        @ViewBag.ParentName
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3">
+                    <span class="required"> * </span>
+                    名称：
+                </label>
+                <div class="col-md-8">
+                    <input class="form-control"
+                           name="@nameof(Model.Name)"
+                           value="@Model.Name"
+                           data-validate="required: true,maxlength: 50"
+                           type="text" autocomplete="off" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3">
+                    主管领导：
+                </label>
+                <div class="col-md-8">
+                    <select class="form-control uiselect"
+                            id="@nameof(Model.MainLeaderId)"
+                            name="@nameof(Model.MainLeaderId)"
+                            data-allow-clear="true"
+                            data-text-field="MainLeaderName">
+                        <option></option>
+                        @Html.SystemUserOption(Model.MainLeaderId)
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3">
+                    分管领导：
+                </label>
+                <div class="col-md-8">
+                    <select class="form-control uiselect"
+                            id="@nameof(Model.ChargeLeaderId)"
+                            name="@nameof(Model.ChargeLeaderId)"
+                            data-allow-clear="true"
+                            data-text-field="ChargeLeaderName">
+                        <option></option>
+                        @Html.SystemUserOption(Model.ChargeLeaderId)
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3">
+                    部门领导：
+                </label>
+                <div class="col-md-8">
+                    <select class="form-control uiselect"
+                            id="@nameof(Model.DepartmentLeaderId)"
+                            name="@nameof(Model.DepartmentLeaderId)"
+                            data-allow-clear="true"
+                            data-text-field="DepartmentLeaderName">
+                        <option></option>
+                        @Html.SystemUserOption(Model.DepartmentLeaderId)
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3">
+                    备注：
+                </label>
+                <div class="col-md-8">
+                    <textarea class="form-control" name="@nameof(Model.Note)" rows="3">@Model.Note</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">
+            <i class="fa fa-save"></i> 保存
+        </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+            <i class="fa fa-sign-in"></i> 关闭
+        </button>
+    </div>
+</form>

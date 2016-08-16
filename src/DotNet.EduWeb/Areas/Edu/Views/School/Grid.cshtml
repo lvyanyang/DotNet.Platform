@@ -1,0 +1,53 @@
+﻿@model PageList<School>
+<table class="table table-striped table-bordered table-hover table-fix table-manage">
+    <thead>
+        <tr>
+            @*<th class="w25px">
+                <label><input class="checkbox-check" type="checkbox"><span></span></label>
+            </th>*@
+            <th class="w120px" data-order="@nameof(School.Code)">编号</th>
+            <th class="w150px" data-order="@nameof(School.Name)">名称</th>
+            <th class="w150px" data-order="@nameof(School.DepartmentName)">发证机构</th>
+            <th class="w120px">所属辖区</th>
+            <th class="w100px" data-order="@nameof(School.Xkzh)">许可证号</th>
+            <th class="w100px" data-order="@nameof(School.Telephone)">联系电话</th>
+            <th class="w50px" data-order="@nameof(School.HFDate)">状态</th>
+            <th class="text-center w50px">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in Model)
+        {
+            <tr>
+                @*<td>
+                    <label><input class="checkbox-check" type="checkbox" value="@record.Id"><span></span></label>
+                </td>*@
+                <td class="">
+                    <a class="uimodal" data-backdrop="true" data-url="@Url.Action("Details",new {id = record.Id})">
+                        @record.Code
+                    </a>
+                </td>
+                <td class="nowrap">@record.Name</td>
+                <td class="">@record.DepartmentId</td>
+                <td class="">@record.Region</td>
+                <td class="">@record.Xkzh</td>
+                <td class="">@record.Telephone</td>
+                <td class="">@Html.BoolLabel(record.IsEnabled)</td>
+                <td class="text-center">
+                    <a class="color-primary uimodal" data-toggle="tooltip"
+                       data-url="@Url.Action("Edit", new {id = record.Id})"
+                       title="编辑">
+                        <i class="fa fa-lg fa-edit"></i>
+                    </a>
+                    &nbsp;
+                    <a class="color-danger tsdelete" data-toggle="tooltip"
+                       data-url="@Url.Action("Delete", new {id = record.Id})"
+                       title="删除">
+                        <i class="fa fa-lg fa-trash-o"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.RenderPages(Model)

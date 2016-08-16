@@ -1,0 +1,37 @@
+﻿@model PageList<Audit>
+<table class="table table-striped table-bordered table-hover table-fix table-manage">
+    <thead>
+        <tr>
+            <th class="w120px" data-order="@nameof(Audit.UserName)">用户姓名</th>
+            <th class="w160px" data-order="@nameof(Audit.CreateDateTime)">日期</th>
+            <th class="w60px" data-order="@nameof(Audit.Category)">类型</th>
+            <th class="" data-order="@nameof(Audit.AreaAddress)">所在地</th>
+            <th class="w140px" data-order="@nameof(Audit.IPAddress)">IP地址</th>
+            <th class="" data-order="@nameof(Audit.Browser)">浏览器</th>
+            <th class="w120px" data-order="@nameof(Audit.Device)">设备</th>
+            <th class="" data-order="@nameof(Audit.OS)">操作系统</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in Model)
+        {
+            <tr>
+                <td>
+                    <a class="uimodal" data-backdrop="true"
+                       data-url="@Url.Action("Details", new {id = record.Id})"
+                       title="@record.UserName">
+                        @record.UserName
+                    </a>
+                </td>
+                <td>@DateTimeHelper.FormatDateHasSecond(record.CreateDateTime)</td>
+                <td>@Html.BoolLabel(record.Category == 1, record.CategoryName, record.CategoryName)</td>
+                <td>@record.AreaAddress</td>
+                <td>@record.IPAddress</td>
+                <td class="nowrap"><span title="@record.Browser">@record.Browser</span></td>
+                <td>@record.Device</td>
+                <td class="nowrap">@record.OS</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.RenderPages(Model)

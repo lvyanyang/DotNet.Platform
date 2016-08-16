@@ -1,0 +1,49 @@
+﻿@model StudentValidate
+@{
+    Layout = null;
+    string[] options = ViewBag.options;
+}
+<div class="modal fade" id="validate_window" aria-hidden="true" role="dialog" data-backdrop="static">
+    <div class="modal-dialog" style="width: 768px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">学习验证(剩余<span id="validate_vtitle" style="color:red;"></span>秒)</h4>
+            </div>
+            <div class="modal-body">
+                <input id="validateId" type="hidden" value="@Model.Id"/>
+                <div class="row" style="margin: 15px;">
+                    <div class="col-md-12 text-center">
+                        <img src="@Url.Action("ValidateImage", new {validateId = Model.Id})" />
+                    </div>
+                </div>
+                <div class="row" style="margin: 50px 15px 15px 15px;">
+                    <div class="col-md-12  text-center">
+                        @for (int index = 0; index < options.Length; index++)
+                        {
+                            var item = options[index];
+                            var style = string.Empty;
+                            if (index > 0)
+                            {
+                                style = "margin-left:20px;";
+                            }
+                            <a class="btn btn-primary btn-lg btn-answer" style="@style" data-value="@item">@item</a>
+                        }
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer" style="font-size: 14px; text-align: left;">
+                <div class="row">
+                    <div class="col-md-8" style="height:34px;line-height:34px;">
+                        <i class="icon-bulb"></i> 温馨提示：只有通过验证，系统才开始记录您的学时！
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <a class="btn btn-default validate_window_close">
+                            <i class="fa fa-sign-in"></i> 关闭
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,111 @@
+﻿@model Student
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">学员信息 - @Model.Name</h4>
+</div>
+<div class="modal-body">
+    <div class="tabbable-line">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#student_details_base" data-toggle="tab">
+                    基本信息
+                </a>
+            </li>
+            <li>
+                <a href="#student_details_log" data-toggle="tab">
+                    学员日志
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="student_details_base">
+                <table class="table table-bordered table-striped table-details">
+                    <tr>
+                        <th class="w150px">姓名</th>
+                        <td>@Model.Name</td>
+                        <th class="w150px">性别</th>
+                        <td>@Model.Sex</td>
+                    </tr>
+                    <tr>
+                        <th>身份证号码</th>
+                        <td>@Model.IDCardNo</td>
+                        <th>手机号码</th>
+                        <td>@Model.MobilePhone</td>
+                    </tr>
+
+                    <tr>
+                        <th>从业类型名称</th>
+                        <td>@Model.WorkCategoryName</td>
+                        <th>培训周期</th>
+                        <td>@Model.TrainCycle</td>
+                    </tr>
+                    <tr>
+                        <th>培训机构</th>
+                        <td>@Model.SchoolName</td>
+                        <th>所属班级</th>
+                        <td>@Model.TrainGroupName</td>
+                    </tr>
+
+                    <tr>
+                        <th>所属企业</th>
+                        <td>@Model.CompanyName</td>
+                        <th>企业电话</th>
+                        <td>@Model.CompanyTelPhone</td>
+                    </tr>
+
+                    <tr>
+                        <th>录入时间</th>
+                        <td>@DateTimeHelper.FormatDateHasSecond(Model.CreateDateTime)</td>
+                        <th>预约时间</th>
+                        <td>@DateTimeHelper.FormatDateHasSecond(Model.ReservationDateTime)</td>
+                    </tr>
+                    <tr>
+                        <th>状态</th>
+                        <td>@Html.StudentStatusLabel(Model)</td>
+                        <th>总学时</th>
+                        <td>@Model.TotalPeriodName</td>
+                    </tr>
+                    <tr>
+                        <th>培训原因</th>
+                        <td>@Model.TrainReason</td>
+                        <th>准驾车型</th>
+                        <td>@Model.DrivingModel</td>
+                    </tr>
+                    <tr>
+                        <th>从业资格证号</th>
+                        <td>@Model.Certificate</td>
+                        <th>获得资格证时间</th>
+                        <td>@DateTimeHelper.FormatDateHasSecond(Model.CertificateDate)</td>
+                    </tr>
+                    <tr>
+                        <th>证件有效开始日期</th>
+                        <td>@DateTimeHelper.FormatDateHasSecond(Model.StartDate)</td>
+
+                        <th>证件有效结束日期</th>
+                        <td>@DateTimeHelper.FormatDateHasSecond(Model.EndDate)</td>
+                    </tr>
+                    <tr>
+                        <th>住址</th>
+                        <td colspan="3">@Model.Address</td>
+                    </tr>
+                    <tr>
+                        <th>备注</th>
+                        <td colspan="3">@Model.Note</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="tab-pane" id="student_details_log">
+                <div class="uitable" data-url="@Url.Action("_LogGrid", new {studentId = Model.Id})">
+                    @Html.Action("_LogGrid", new { studentId = Model.Id })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">
+        <i class="fa fa-sign-in"></i> 关闭
+    </button>
+</div>

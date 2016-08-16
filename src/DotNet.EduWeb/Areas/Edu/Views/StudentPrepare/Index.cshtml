@@ -1,0 +1,124 @@
+﻿@{
+    var statusList = EduService.Student.GetStudentStatus();
+}
+<div class="module-container">
+    <div class="search-panel">
+        <form class="form-horizontal search-table" id="student_prepare_form">
+            <input type="hidden" name="Status" value="0" />
+            <div class="row">
+                <div class="col-md-3">
+                    <input class="form-control" name="Name" type="text" placeholder="请输入学员姓名" title="请输入学员姓名">
+                </div>
+                <div class="col-md-3">
+                    <input class="form-control" name="IDCardNo" type="text" placeholder="请输入身份证号" title="请输入身份证号">
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control uiselect uiselectsubmit" name="WorkCategoryId"
+                            data-has-text-field="false">
+                        @Html.EmptyOption("请选择从业类别")
+                        @Html.TrainCategoryOption()
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control uiselect uiselectsubmit" name="SchoolId"
+                            data-has-text-field="false">
+                        @Html.EmptyOption("请选择培训机构")
+                        @Html.SchoolOption()
+                    </select>
+                </div>
+            </div>
+            <div class="row search-row">
+                <div class="col-md-3">
+                    <div class="input-group date uidate">
+                        <input class="form-control" name="CreateStartDate" type="text" placeholder="请选择录入开始日期" title="请选择录入开始日期">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-th"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group date uidate">
+                        <input class="form-control" name="CreateEndDate" type="text" placeholder="请选择录入结束日期" title="请选择录入结束日期">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-th"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 text-right">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fa fa-search"></i> 查询
+                    </button>
+
+                    <a class="btn btn-success uimodal" data-size="lg" data-url="@Url.Action("Create", "Student")">
+                        <i class="fa fa-plus"></i> 新建
+                    </a>
+
+                    <a class="btn btn-danger" id="student_prepare_delete" data-url="@Url.Action("Delete")">
+                        <i class="fa fa-trash-o"></i> 删除
+                    </a>
+
+                    <a class="btn btn-success uiwindow" data-url="@Url.Action("Import", "Student")">
+                        <i class="fa fa-cloud-upload"></i> 导入
+                    </a>
+
+                    <a class="btn btn-default" id="student_prepare_export" data-url="@Url.Action("Export")">
+                        <i class="icon-share-alt"></i> 导出
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="tabbable-line">
+        <ul class="nav nav-tabs">
+            @foreach (var item in statusList)
+            {
+                string cls = string.Empty;
+                if (item.Value.Equals("0"))
+                {
+                    cls = "active";
+                }
+                <li class="@cls" data-value="@item.Value">
+                    <a href="#tableInfo" data-toggle="tab">
+                        @item.Name
+                    </a>
+                </li>
+            }
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tableInfo">
+                <div class="uitable" id="student_prepare_table" data-url="@Url.Action("_Grid")" data-params="{Status:0}">
+                    @Html.Action("_Grid", new { Status = 0 })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('.nav-tabs > li').on('click', function () {
+        $('.search-table').find('[name=Status]').val($(this).data('value'));
+        $('.search-table').find(':submit').click();
+    });
+
+    $('#student_prepare_export').on('click', function () {
+        var url = $(this).data('url') + '?' + $.param(fx.serializeForm($('#student_prepare_form')));
+        window.location.href = url;
+    });
+    $('#student_prepare_delete').on('click', function () {
+        var ids = $('#student_prepare_table').uitable().getSelectedIds();
+        if (ids.length == 0) {
+            fx.msg('请选择删除的学员');
+            return false;
+        }
+        var url = $(this).data('url');
+        fx.ajax({
+            url: url,
+            data: { studentIds: ids.join() },
+            confirm: '确定要对选中的 ' + ids.length + ' 个学员删除吗?',
+            success: function (result) {
+                $('.search-table').find(':submit').click();
+                fx.serverResult(result.items);
+            }
+        });
+    });
+</script>

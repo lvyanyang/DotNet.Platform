@@ -1,0 +1,91 @@
+﻿html{_background-image:url(about:blank);_background-attachment:fixed;}
+body {margin-left: 0px;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;font-size:12px; color: #333333; font-family:Arial, Helvetica, sans-serif; background:#ffffff url(../img/bg-img.jpg) repeat-x 0px 0px;font-family:"microsoft yahei";}
+form,p,h1,h2,h3,h4,input{ margin:0px; padding:0px;}
+ul { padding:0px; margin:0px;}
+li { padding:0px; margin:0px; line-height:180%;list-style-type:none;}
+.clear{clear:both; height:0px; font-size:0px; line-height:0px;}
+.link_bk a {color: #333;text-decoration: none;}
+.link_bk a:hover {text-decoration: underline;color: #009900;}
+.link_lan a{color: #0180CF;text-decoration: none;}
+.link_lan a:hover {text-decoration: underline;color: #0180CF;}
+input{font-family: "microsoft yahei";}
+table th{color:#666666;}
+img{border:0;}
+
+/* 3.7 头部 */
+a{text-decoration: none;}
+a.underline:hover{text-decoration: underline;}
+.container-index{width: 1200px;margin:0 auto;font-family: "Microsoft Yahei";}
+
+#header .header-main{height: 60px;}
+#header .header-main .logo-box{width: 300px;height: 70px;overflow: hidden;padding-top: 5px;margin-right: 22px;}
+
+/*会员中心主体-底部*/
+.foot{ width:100%; border-top:3px #E4E4E4 solid; background-color:#F2F2F2; margin-top:15px;}
+.foot .box{margin:0 auto; width:1000px; font-size:12px;color: #666666; padding-bottom:30px; padding-top:10px;position:relative}
+.foot .box .list{ width:230px; float:left; line-height:230%;}
+.foot .box .weixin{ position:absolute; right:0px; top:15px; width:100px; text-align:center}
+.foot .box .weixin img{ margin-top:15px;}
+.foot .copyright {width:100%; text-align:center; line-height:180%; color:#999999; padding-bottom:15px;}
+
+/*会员中心主体*/
+.usermain{margin:0 auto; width:1200px; font-size:14px; margin-top:15px;}
+.usermain .leftmenu{width:216px; float:left;background-color: #fff;}
+.usermain .leftmenu.com{ /*height: 955px;*height:930px;*/} 
+/*.usermain .leftmenu .meun1{ position:relative; height:100px;}
+.usermain .leftmenu .meun2{ position: absolute; left:0px; top:0px;}*/
+.usermain .leftmenu .meunbox{border:1px #CCCCCC solid; border-bottom:0px;width:215px;}
+.usermain .leftmenu .meunbox.last{border-bottom:1px #CCCCCC solid;}
+.usermain .leftmenu .meunbox .tit{ height:40px;}
+.usermain .leftmenu .meunbox .tit .t{font-family:"microsoft yahei","宋体"; font-weight:bold; padding-left:60px; padding-top:15px;}
+.usermain .leftmenu .meunbox .tit .t.i1{background:url(../img/menu-img.gif)  no-repeat 30px 17px;}
+.usermain .leftmenu .meunbox .tit .t.i2{background:url(../img/menu-img.gif)  no-repeat 30px -30px;}
+.usermain .leftmenu .meunbox .tit .t.i3{background:url(../img/menu-img.gif)  no-repeat 30px -80px;}
+.usermain .leftmenu .meunbox .tit .t.c1{background:url(../img/menu-img.gif)  no-repeat 30px 17px;}
+.usermain .leftmenu .meunbox .tit .t.c2{background:url(../img/menu-img.gif)  no-repeat 30px -30px;}
+.usermain .leftmenu .meunbox .tit .t.c3{background:url(../img/menu-img.gif)  no-repeat 30px -120px;}
+.usermain .leftmenu .meunbox .tit .t.c4{background:url(../img/menu-img.gif)  no-repeat 30px -80px;}
+.usermain .leftmenu .meunbox .tit .t.c5{background:url(../img/menu-img.gif)  no-repeat 30px -155px;}
+.usermain .leftmenu .meunbox .linktxt{ padding-bottom:10px;}
+.usermain .leftmenu .meunbox .linktxt ul{padding:0px; margin:0px;}
+.usermain .leftmenu .meunbox .linktxt ul li{font-size:0px;font-family:"microsoft yahei","宋体";/*padding-left:50px;*/ height:35px;line-height:35px;}
+.usermain .leftmenu .meunbox .linktxt ul li.h{ background-color:#0180CF;}
+.usermain .leftmenu .meunbox .linktxt ul li.h a{ color:#FFFFFF}
+
+/* 会员中心 左侧 顶部 中心首页和 预览*/
+.usermain .leftmenu .meunbox .menu_top{background-color: #eee;height: 43px;text-align: center;font-size: 14px;line-height: 43px;}
+.usermain .leftmenu .meunbox .menu_top a{text-decoration: none;}
+.usermain .leftmenu .meunbox .menu_top span{color: #999}
+
+.usermain .rightmain{width:984px; float:left;background-color: #fff;}
+.usermain .rightmain .bbox1{border:1px #CCCCCC solid;border-left-width: 0; padding-bottom:15px;  margin-bottom:0px;/*_width:788px;*/}
+.usermain .rightmain .bbox1 .h1-title{font-size:20px;font-family:"microsoft yahei","宋体";color:#666666}
+.usermain .rightmain .bbox1 .h1-title-num{line-height:26px;margin-right:20px;}
+.usermain .rightmain .bbox1 .h1-title-num span{color:#0180cf;}
+.usermain .rightmain .bbox1 .h2-title{font-size:14px;font-family:"microsoft yahei","宋体";color:#333333;}
+.usermain .rightmain .bbox1 .emptytip{background:url(../images/18.gif)  no-repeat center 40px; padding-top:140px; margin-top:0px; padding-bottom:50px;/*margin-left: 15px;margin-right: 15px; */border-bottom: 1px solid #ccc; text-align:center; font-size:14px; color: #999999}
+
+.usermain .leftmenu .meunbox .linktxt ul li a{display:block;padding-left: 60px;font-size: 14px;}
+
+/*会员右侧小导航*/
+.student_topnav{ border-bottom:1px #CCCCCC solid; position:relative; _width:818px;}
+.student_topnav .titleH1{ padding-left:20px; padding-top:17px; padding-bottom:10px;margin-top:0;}
+
+/*会员右侧下方小贴士*/
+.bottomtip{ margin-left:15px; margin-right:15px; padding:25px;padding-left:20px; color:#666666; line-height:180%;font-family: "SimSun";font-size: 12px;color:#999;}
+.bottomtip .tp{ padding-bottom:10px;background:url(../img/user-icon36.png) no-repeat 0px -306px; padding-left:22px;font-family: "SimSun" !important;}
+
+/*个人会员中心 我的简历列表*/
+.resumelist{ font-size:14px;}
+.resumelist .titleH1{ margin-top:15px; padding-left:20px;}
+.resumelist .relist{ border:1px #CCCCCC solid; }
+.resumelist .relist .toptitle{ border-bottom:1px #CCCCCC solid; height:40px; line-height:40px; background-color:#F5F5F5}
+.resumelist .relist .toptitle .t{ padding-left:30px; }
+.resumelist .relist .toptitle .t .date{ padding-left:15px;}
+.resumelist .relist .fbox{ float:left; padding-top:20px; line-height:250%;  font-size:14px; padding-left:35px; margin-right:40px;  color:#666666}
+.resumelist .relist .fbox a{text-decoration: none;color:#666666;}
+.resumelist .relist .fbox.last{ padding-top:15px; padding-bottom:5px; width:240px;float: right;}
+.resumelist .relist .fbox .buts{ float:left; padding-bottom:12px; width:120px;}
+.resumelist .addbut{ padding:15px;}
+
+

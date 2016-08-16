@@ -1,32 +1,38 @@
-﻿// ===============================================================================
-// DotNet.Platform 开发框架 2016 版权所有
-// ===============================================================================
+﻿using DotNet.Edu.Service;
+using DotNet.Edu.WebUtility;
+using DotNet.Extensions;
+using DotNet.Helper;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using DotNet.Auth.Controllers;
-using DotNet.Auth.Service;
-using DotNet.Auth.Utility;
-using DotNet.Configuration;
-using DotNet.Helper;
 using DotNet.Mvc;
 using DotNet.Utility;
 
-namespace DotNet.Web.Controllers
+namespace DotNet.Web.Areas.Students.Controllers
 {
-    public class DefaultController : AuthController
+    public class DefaultController : StudentWebController
     {
         public ActionResult Index()
         {
-            return View();
+            var session = EduWebHelper.GetStudentSession();
+            var list = EduService.StudentCoursewarePeriod.GetList(session.StudentId, session.Student.WorkCategoryId);
+            ViewBag.totalPeriod = EduService.Courseware.GetTotalPeriod(session.Student.WorkCategoryId);
+            ViewBag.learnPeriod = session.Student.TotalPeriod;
+            ViewBag.lastPeriodDetails = EduService.PeriodDetails.GetLast();
+            return View(list);
         }
 
-        public ActionResult Menu()
+        public ActionResult Learning(string coursewareId)
         {
-            return Json(CurrentSessionUser.MenuNodes);
+            CurrentStudent.Learning = null;
+            ViewBag.Courseware = EduService.Courseware.Get(coursewareId);
+            var detailsList = EduService.CoursewareDetails.GetList(coursewareId);
+            return View(detailsList);
         }
 
         [AllowAnonymous]
@@ -37,54 +43,93 @@ namespace DotNet.Web.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Login(string account, string password)
+        public ActionResult Login(string account, string password, string vcode)
         {
-            var userService = AuthService.User;
-            var result = userService.Login(account, password);
+            var validateCode = Session["validateCode"].ToStringOrEmpty();
+            if (!vcode.Equals(validateCode, StringComparison.OrdinalIgnoreCase))
+            {
+                return Json(new { success = false, message = "验证码错误" });
+            }
+            Session["validateCode"] = null;
+            var studentService = EduService.Student;
+            var result = studentService.Login(account, password);
             if (result.Success) //登陆成功
             {
                 FormsAuthentication.SetAuthCookie(account, false);
-                var entity = userService.GetByAccount(account);
+                var entity = studentService.GetByIDCardNoOrMobile(account);
 
-                var audit = AuthHelper.BuildAuditEntity(1, entity);
-                AuthService.Audit.Create(audit);
+                var audit = EduWebHelper.BuildStudentAuditEntity(entity);
+                new StudentAuditsService().Create(audit);
 
-                var suser = AuthHelper.BuildSessionUser(AuthService.User.GetByAccount(account));
-                AuthHelper.SetSessionUser(suser);
+                var suser = EduWebHelper.BuildStudentSession(entity);
+                EduWebHelper.SetStudentSession(suser);
 
-                return Json(new { success = true, message = "登陆成功", url = "/" });
+                return Json(new { success = true, message = "", url = "/" });
             }
             return Json(result);
         }
 
         public ActionResult Logout()
         {
-            //new OnlineUserService().Logout(CurrentUserId);
-            //OrganizeHelper.Logout();
             FormsAuthentication.SignOut();
-
-            var audit = AuthHelper.BuildAuditEntity(2, AuthHelper.GetSessionUser()?.User);
-            AuthService.Audit.Create(audit);
+            EduWebHelper.ClearStudentSession();
             return Redirect(FormsAuthentication.LoginUrl);
         }
 
-        [AllowAnonymous]
-        public ActionResult ServerDateTime()
-        {
-            //return Json(new BoolMessage(true, DateTimeHelper.FormatDateHasMinute(DateTime.Now)));
-
-            var list = new List<JsonMessage>();
-            list.Add(new JsonMessage(true, "测试成功"));
-            list.Add(new JsonMessage(false, "你的操作台扯淡了"));
-            return Json(new { success = true, items = list });
-            //System.Threading.Thread.Sleep(3000);
-            //return Json(new BoolMessage(true, DateTimeHelper.FormatDateHasMinute(DateTime.Now)));
-        }
-
-        [AllowAnonymous]
-        public ActionResult Test()
+        public ActionResult ModifyUserPassword()
         {
             return View();
         }
+
+        public ActionResult VideoPlay(string url)
+        {
+            ViewBag.url = url;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ModifyUserPassword(string currentPwd, string newPwd)
+        {
+            if (!EduService.Student.ValidUserPassword(CurrentStudent.StudentId, currentPwd))
+            {
+                return Json(false, "当前密码输入不正确,请重新输入");
+            }
+            var result = EduService.Student.UpdatePassword(CurrentStudent.StudentId, newPwd);
+            return Json(result);
+        }
+
+        [AllowAnonymous]
+        public ActionResult CaptchaImage()
+        {
+            var validateCode = RandomHelper.GenerateRandomString(4);
+            Session["validateCode"] = validateCode;
+            ValidateCodeDrawHelper v = new ValidateCodeDrawHelper();
+            v.FontSize = 28;
+            var bmp = v.CreateImage(validateCode);
+            return File(ImageHelper.ToArray(bmp), "image/png");
+        }
+
+        [AllowAnonymous]
+        public ActionResult VideoImage(string name)
+        {
+            ValidateCodeDrawHelper v = new ValidateCodeDrawHelper();
+            v.FontSize = 28;
+            var bmp = v.CreateImage(name);
+            return File(ImageHelper.ToArray(bmp), "image/png");
+        }
+
+        //[AllowAnonymous]
+        //public ActionResult UploadTest()
+        //{
+        //    return View();
+        //}
+
+        //[AllowAnonymous]
+        //public ActionResult UploadSave()
+        //{
+        //    var a = UploadHelper.Upload(Request.Files[0],"test/a");
+        //    var u = UploadHelper.GetWebUrl(a.Url);
+        //    return View();
+        //}
     }
 }

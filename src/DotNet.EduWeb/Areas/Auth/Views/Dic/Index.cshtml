@@ -1,0 +1,71 @@
+﻿<div class="module-container" style="width:100%; height: 100%; padding: 0;">
+    <div class="easyui-layout uitreetable" fit="true" border="false"
+         data-west-width-name="systemItemsWestWidth">
+        <div class="tree-container" region="west" split="true" title="数据字典" border="false"
+             data-options="headerCls:'layout-panel-right-border',
+            bodyCls:'layout-panel-right-border'" style="width: 280px;">
+            <div style="margin: 5px">
+                <input class="form-control input-sm tttree_filter" type="text" placeholder="请输入查询关键字">
+            </div>
+            <ul class="tttree" fit="true" dnd="true"
+                data-selected-message="请先选择数据字典"
+                data-expand-level="1"
+                data-convert="true"
+                data-load-mask-target=".tree-container"
+                data-url="@Url.Action("Tree")"
+                data-parent-url="@Url.Action("SaveParent")"
+                data-sort-url="@Url.Action("SaveSort")"></ul>
+        </div>
+        <div region="center" border="false" title="字典明细"
+             data-options="headerCls:'layout-panel-left-border',
+                bodyCls:'layout-panel-left-border'">
+            <div style="margin: 5px; overflow-x: hidden;">
+                <div class="search-panel">
+                    <form class="form-inline search-table">
+                        <div class="form-group">
+                            <input class="form-control w250px" name="name" type="text" 
+                                   placeholder="请输入名称/简拼查询">
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control w50px uiselect uiselectsubmit" name="enabled" 
+                                    data-has-text-field="false">
+                                @Html.EmptyOption("全部状态")
+                                <option value="true">启用</option>
+                                <option value="false">禁用</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa fa-search"></i> 查询
+                        </button>
+                        <a class="btn btn-success tttcreate uimodal" 
+                           data-url="@Url.Action("Create", "DicDetail")">
+                            <i class="fa fa-plus"></i> 新建
+                        </a>
+                        <a class="btn btn-danger tmdelete" data-table=".uitable"
+                           data-url="@Url.Action("Delete", "DicDetail")">
+                            <i class="fa fa-trash-o"></i> 删除
+                        </a>
+                    </form>
+                </div>
+                <div class="tttable uitable" data-auto-load="false" data-url="@Url.Action("Grid", "DicDetail")">
+                </div>
+            </div>
+        </div>
+
+        <!-- 右键菜单 -->
+        <div class="ttmenu">
+            <div class="ttmcreate uimodal" data-options="iconCls:'font-icon fa fa-plus'"
+                 data-url="@Url.Action("Create")">新建</div>
+            <div class="menu-sep"></div>
+            <div class="ttmedit uimodal" data-options="iconCls:'font-icon fa fa-pencil-square-o'"
+                 data-url="@Url.Action("Edit")">编辑</div>
+            <div class="menu-sep"></div>
+            <div class="ttmdelete treedelete" data-options="iconCls:'font-icon fa fa-trash-o'"
+                 data-tree=".tttree" data-table=".uitable"
+                 data-confirm="确定要删除选中的数据字典以及所有子数据字典(所有对应字典明细项)吗?"
+                 data-url="@Url.Action("Delete")">删除</div>
+            <div class="menu-sep"></div>
+            <div class="ttmrefresh" data-options="iconCls:'font-icon fa fa-refresh'">刷新</div>
+        </div>
+    </div>
+</div>

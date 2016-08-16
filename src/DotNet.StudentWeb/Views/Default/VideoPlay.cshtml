@@ -1,0 +1,33 @@
+﻿@{
+    Layout = null;
+    var url = Url.Content(ViewBag.url);
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Html.CdnImport("~/lib/mediaelement/mediaelementplayer.css")
+    @Html.CdnImport("~/lib/mediaelement/mejs-skins.css")
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <video controls autoplay width="100%" height="100%" src="@url"></video>
+    @Html.CdnImport("~/lib/jquery/jquery.js")
+    @Html.CdnImport("~/lib/mediaelement/mediaelement-and-player.js")
+    <script>
+        $(function () {
+            $('video,audio').mediaelementplayer();
+        });
+    </script>
+</body>
+</html>

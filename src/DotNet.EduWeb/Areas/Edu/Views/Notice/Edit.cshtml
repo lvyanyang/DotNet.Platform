@@ -1,0 +1,152 @@
+﻿@model Notice
+<form class="form-horizontal uiform" method="post"
+      data-modal="true"
+      data-table=".uitable"
+      data-error-el=".alert-danger"
+      data-on-submit-success="fx.mtfSuccess"
+      action="@Url.Action("Save")">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">@Html.EditStatus("通知公告")</h4>
+    </div>
+    <div class="modal-body">
+        @Html.AntiForgeryToken()
+        @Html.MarkCreate()
+        @Html.HiddenFor(p => p.Id)
+        @Html.HiddenFor(p => p.CreateDateTime)
+        <div class="alert alert-danger fxhide"></div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                <span class="required"> * </span>
+                标题：
+            </label>
+            <div class="col-md-9">
+                <input class="form-control" name="@nameof(Model.Title)" value="@Model.Title"
+                       data-validate="required: true,maxlength: 500"
+                       data-validate-message="required:'请输入标题'"
+                       type="text" autocomplete="off" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                <span class="required"> * </span>
+                内容：
+            </label>
+            <div class="col-md-9">
+                <textarea class="form-control" name="@nameof(Model.Message)" data-validate="required: true" data-validate-message="required:'请输入消息内容'" style="width:100%;height:400px">@Model.Message</textarea>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">
+            <i class="fa fa-save"></i> 保存
+        </button>
+        <button class="btn btn-default" type="button" data-dismiss="modal">
+            <i class="fa fa-sign-in"></i> 关闭
+        </button>
+    </div>
+</form>
+<script type="text/javascript">
+    var simpleTools =
+    [
+        'formatblock', 'fontname', 'fontsize', 'lineheight', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', '|',
+        'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist', 'insertunorderedlist', '|',
+        'plainpaste', 'wordpaste', 'removeformat', 'table', 'image',
+        'link', 'unlink', 'hr'
+    ];
+
+    var ifrbady;
+    function pastimg() {
+        $("iframe").each(function (i, v) {
+            otype = $(v).attr("type");
+            if ($(v).attr("class") == "ke-edit-iframe") {
+                 $(v)[0].style.border = 0;
+                ifrbady = $(v)[0].contentWindow.document.body;
+                $(v)[0].contentWindow.document.body.id = "txtcontent";
+            }
+        });
+        var imgReader = function (item) {
+            var blob = item.getAsFile(),
+            reader = new FileReader();
+
+
+            reader.onload = function (e) {
+                var img = new Image();
+
+
+                img.src = e.target.result;
+                document.body.appendChild(img);
+                ifrbady.appendChild(img);
+            };
+
+
+            reader.readAsDataURL(blob);
+        };
+
+
+        ifrbady.addEventListener('paste', function (e) {
+            var clipboardData = e.clipboardData,
+            i = 0,
+            items, item, types;
+            if (clipboardData) {
+                items = clipboardData.items;
+                if (!items) {
+                    return;
+                }
+                item = items[0];
+                types = clipboardData.types || [];
+                for (; i < types.length; i++) {
+                    if (types[i] === 'Files') {
+                        item = items[i];
+                        break;
+                    }
+                }
+                if (item && item.kind === 'file' && item.type.match(/^image\//i)) {
+                    imgReader(item);
+                }
+            }
+        });
+    }
+
+    $(function () {
+        var ops = {
+            cssPath: ['/www/lib/bootstrap/bootstrap.css'],
+            resizeType: 1,
+            allowPreviewEmoticons: true,
+            allowImageUpload: true,
+            uploadJson: '/www/lib/kindeditor/ashx/upload_json.ashx',
+            fileManagerJson: '/www/lib/kindeditor/ashx/file_manager_json.ashx',
+            allowFileManager: true,
+            bodyClass: 'article-content',
+            afterBlur: function () {
+                this.sync();
+                $(this).prev('.ke-container').removeClass('focus');
+            },
+            afterFocus: function () {
+                $(this).prev('.ke-container').addClass('focus');
+            },
+            afterChange: function () {
+                $(this).change().hide();
+            },
+            afterCreate: function () {
+                var self = this;
+                KindEditor.ctrl(document, 13, function () {
+                    self.sync();
+                    KindEditor('form[name=frm_f]')[0].submit();
+                });
+                KindEditor.ctrl(self.edit.doc, 13, function () {
+                    self.sync();
+                    KindEditor('form[name=frm_f]')[0].submit();
+                });
+                pastimg();
+            }, items: simpleTools
+        };
+
+        KindEditor.create('textarea[name="Message"]', ops);
+    });
+
+    
+
+</script>

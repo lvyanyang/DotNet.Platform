@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "课堂笔记";
+}
+<div class="bbox1">
+    <div class="student_topnav">
+        <div class="titleH1">
+            <div class="h1-title">@ViewBag.Title</div>
+        </div>
+    </div>
+
+    <div style="margin: 15px;">
+         <div class="uitable" style="margin:15px;" data-url="@Url.Action("LessonNoteGrid")">
+            @Html.Action("LessonNoteGrid")
+        </div>
+    </div>
+</div>

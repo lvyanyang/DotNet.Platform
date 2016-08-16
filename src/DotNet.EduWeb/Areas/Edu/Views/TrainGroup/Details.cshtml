@@ -1,0 +1,150 @@
+﻿@model TrainGroup
+<div class="modal fade" aria-hidden="true" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">预约信息 - @Model.Name</h4>
+            </div>
+            <div class="modal-body">
+                <div class="tabbable-line">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#details_base" data-toggle="tab">
+                                基本信息
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#details_reservation" data-toggle="tab">
+                                预约信息
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="details_base">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">
+                                        名称：
+                                    </label>
+                                    <div class="col-md-8">
+                                        <p class="form-control-static">
+                                            @Model.Name
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">
+                                        从业类别：
+                                    </label>
+                                    <div class="col-md-8">
+                                        <p class="form-control-static">
+                                            @Model.CategoryName
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">
+                                        培训机构：
+                                    </label>
+                                    <div class="col-md-8">
+                                        <p class="form-control-static">
+                                            @Model.SchoolName
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">
+                                        培训教师：
+                                    </label>
+                                    <div class="col-md-8">
+                                        <p class="form-control-static">
+                                            @Model.TeacherName
+                                        </p>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">
+                                        开始日期：
+                                    </label>
+                                    <div class="col-md-8">
+                                        <p class="form-control-static">
+                                            @DateTimeHelper.FormatDate(Model.StartDate)
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">
+                                        结束日期：
+                                    </label>
+                                    <div class="col-md-8">
+                                        <p class="form-control-static">
+                                            @DateTimeHelper.FormatDate(Model.EndDate)
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">
+                                        人数：
+                                    </label>
+                                    <div class="col-md-8">
+                                        <p class="form-control-static">
+                                            @Model.Num
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">
+                                        状态：
+                                    </label>
+                                    <div class="col-md-8">
+                                        <p class="form-control-static">
+                                            @(Model.Status == 0 ? Html.LabelWarning(Model.StatusName) : Html.LabelSuccess(Model.StatusName))
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">
+                                        创建时间：
+                                    </label>
+                                    <div class="col-md-8">
+                                        <p class="form-control-static">
+                                            @DateTimeHelper.FormatDateHasSecond(Model.CreateDateTime)
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">
+                                        备注：
+                                    </label>
+                                    <div class="col-md-8">
+                                        <p class="form-control-static">
+                                            @Model.Note
+                                        </p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="details_reservation">
+                            <div class="uitable" data-url="@Url.Action("_ReservationDetailsGrid", new {groupId = Model.Id})">
+                                @Html.Action("_ReservationDetailsGrid", new { groupId = Model.Id })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    <i class="fa fa-sign-in"></i> 关闭
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

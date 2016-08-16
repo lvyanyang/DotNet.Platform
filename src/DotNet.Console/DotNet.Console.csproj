@@ -72,6 +72,10 @@
       <Project>{ED4493C9-A51C-4A3E-8353-9EF1722DF2DE}</Project>
       <Name>DotNet.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DotNet.Framework\DotNet.Mvc\DotNet.Mvc.csproj">
+      <Project>{6A790C23-5638-4098-AA0D-EA9D4944749B}</Project>
+      <Name>DotNet.Mvc</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DotNet.Framework\DotNet.Utility\DotNet.Utility.csproj">
       <Project>{786CF068-24A5-46A9-8126-CDD89F558991}</Project>
       <Name>DotNet.Utility</Name>

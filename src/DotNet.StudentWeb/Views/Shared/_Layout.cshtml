@@ -1,0 +1,77 @@
+﻿@{
+    string title = "学员学习中心 - ";//道路运输从业人员继续教育学习平台
+    if (ViewBag.Title != null)
+    {
+        title = ViewBag.Title + " - " + title;
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@title</title>
+    @*<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />*@
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Html.CdnImport("~/lib.css")
+    @Html.CdnImport("~/fx.css")
+    @Html.LocalImport("~/www/css/default.css")
+    @RenderSection("css", false)
+</head>
+<body>
+    <div style="width: 1200px;margin: 0 auto;border-bottom: 1px #CCCCCC solid;height: 37px;line-height: 37px;">
+        <div class="row text-right">
+            您好 <a href="@Url.Action("Index","Default")">@EduWebHelper.GetStudentSession().StudentName</a> 欢迎来到网络教育学习平台！
+            <a class="uimodal" data-load-mask-target="body" data-container="body"
+               data-url="@Url.Action("ModifyUserPassword", "Default")">密码修改</a>&nbsp;|&nbsp;
+            <a href="@Url.Action("Logout","Default")">退出</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+    <div id="header">
+        @*<div class="top-nav-wrap">
+                <div class="top-nav clearfix">
+                    <ul class="f-left">
+                        <li><a href="http://192.168.10.102:8888/index.php" target="_self" class="nav-li ">首  页</a></li>
+                        <li><a href="http://192.168.10.102:8888/jobs/" target="_blank" class="nav-li ">招聘信息</a></li>
+                        <li><a href="http://192.168.10.102:8888/simple/simple-list.php" target="_self" class="nav-li ">微商圈</a></li>
+                    </ul>
+                    <div class="nav-right f-right">
+                        <span class="login-reg">
+                            <a href="#" class="underline">@DotNet.Edu.WebUtility.EduWebHelper.GetStudentSession().StudentName</a>&nbsp;&nbsp;&nbsp;
+                            <a href="@Url.Action("Logout","Default")" class="underline">[退出]</a>
+                        </span>
+                        <span class="nav-items"><a href="/plus/shortcut.php" class="underline">保存到桌面</a></span>
+                    </div>
+                </div>
+            </div>*@
+        <div class="container-index header-main">
+            <div class="logo-box f-left">
+                <img src="/www/img/logo.png" alt="道路运输从业人员继续教育学习平台" width="300" height="70" />
+            </div>
+        </div>
+    </div>
+
+    <div class="usermain">
+        <div class="leftmenu link_bk">
+            @Html.Partial("_Navbar")
+        </div>
+        <div class="rightmain">
+            @RenderBody()
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    @Html.Partial("_Bottom")
+    <div class="back_to_top" id="back_to_top" title="回到顶部">
+        <div class="back" style="display: none;">
+        </div>
+    </div>
+    
+    @Html.CdnImport("~/lib.js")
+    @Html.CdnImport("~/fx.js")
+    @Html.LocalImport("~/www/js/default.js");
+
+    @RenderSection("js", false)
+</body>
+</html>

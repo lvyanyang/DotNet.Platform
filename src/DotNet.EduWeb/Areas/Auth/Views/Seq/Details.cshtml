@@ -1,0 +1,38 @@
+﻿@model Seq
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">系统序列 - @Model.Name</h4>
+</div>
+<div class="modal-body">
+    <div class="form-body">
+        <table class="table table-bordered table-striped table-details">
+            <tr>
+                <th class="w-100px">主键</th>
+                <td>@Model.Id</td>
+            </tr>
+            <tr>
+                <th>名称</th>
+                <td>@Model.Name</td>
+            </tr>
+            <tr>
+                <th>值</th>
+                <td>@Model.Value</td>
+            </tr>
+            <tr>
+                <th>步长</th>
+                <td>@Model.Step</td>
+            </tr>
+            <tr>
+                <th>备注</th>
+                <td>@Model.Note</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">
+        <i class="fa fa-sign-in"></i> 关闭
+    </button>
+</div>

@@ -1,0 +1,50 @@
+﻿<div class="module-container">
+    <div class="search-panel">
+        <form class="form-horizontal search-table">
+            <div class="row">
+                <div class="col-md-3">
+                    <input class="form-control" name="name" type="text" placeholder="请输入课件名称/简拼"
+                           title="请输入课件名称/简拼">
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control uiselect uiselectsubmit" name="courseType"
+                            data-has-text-field="false">
+                        @Html.EmptyOption("请选择课件类型")
+                        @Html.CourseTypeOption()
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control uiselect uiselectsubmit" name="workType"
+                            data-has-text-field="false">
+                        @Html.EmptyOption("请选择从业类别")
+                        @Html.TrainCategoryOption()
+                    </select>
+                </div>
+
+                <div class="col-md-3 text-right">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fa fa-search"></i> 查询
+                    </button>
+
+                    <a class="btn btn-success uimodal" data-url="@Url.Action("Create")">
+                        <i class="fa fa-plus"></i> 新建
+                    </a>
+
+                    <a class="btn btn-default" id="table_export" data-url="@Url.Action("Export")">
+                        <i class="fa fa-share-square-o"></i> 导出
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="uitable" data-url="@Url.Action("Grid")">
+        @Html.Action("Grid")
+    </div>
+</div>
+<script>
+    fx.loadResource([
+        '/www/lib/mediaelement/mediaelement-and-player.min.js',
+        '/www/lib/mediaelement/mediaelementplayer.min.css',
+        '/www/lib/mediaelement/mejs-skins.css'
+    ]);
+</script>

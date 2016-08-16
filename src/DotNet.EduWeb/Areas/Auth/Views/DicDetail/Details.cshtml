@@ -1,0 +1,42 @@
+﻿@model DicDetail
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">系统字典项 - @Model.Name</h4>
+</div>
+<div class="modal-body">
+    <div class="form-body">
+        <table class="table table-details table-bordered table-striped">
+            <tr>
+                <th class="w100px">数据字典</th>
+                <td>@ViewBag.ItemName</td>
+            </tr>
+            <tr>
+                <th>项名称</th>
+                <td>@Model.Name</td>
+            </tr>
+            <tr>
+                <th>项值</th>
+                <td>@Model.Value</td>
+            </tr>
+            <tr>
+                <th>状态</th>
+                <td>@Html.BoolLabel(Model.IsEnabled)</td>
+            </tr>
+            <tr>
+                <th>序号</th>
+                <td>@Model.RowIndex</td>
+            </tr>
+            <tr>
+                <th>备注</th>
+                <td>@Model.Note</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">
+        <i class="fa fa-sign-in"></i> 关闭
+    </button>
+</div>

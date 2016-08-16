@@ -1,0 +1,1 @@
+﻿/// <reference path="http://localhost:6002/lib/jquery/jquery.js" />

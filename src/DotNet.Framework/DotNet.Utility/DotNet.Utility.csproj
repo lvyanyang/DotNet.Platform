@@ -87,6 +87,7 @@
     <Compile Include="Helper\ProcessHelper.cs" />
     <Compile Include="Helper\RandomHelper.cs" />
     <Compile Include="Helper\ReflectionHelper.cs" />
+    <Compile Include="Helper\RegionHelper.cs" />
     <Compile Include="Helper\RegistryHelper.cs" />
     <Compile Include="Helper\RmbHelper.cs" />
     <Compile Include="Helper\SpellHelper.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Helper\TimerHelper.cs" />
     <Compile Include="Helper\TreeHelper.cs" />
     <Compile Include="Helper\TypeHelper.cs" />
+    <Compile Include="Helper\UploadHelper.cs" />
     <Compile Include="Helper\ValidateCodeDrawHelper.cs" />
     <Compile Include="Helper\ValidateHelper.cs" />
     <Compile Include="Helper\WebHelper.cs" />
@@ -114,8 +116,8 @@
     <Compile Include="Utility\Singleton.cs" />
     <Compile Include="Utility\SystemMacro.cs" />
     <Compile Include="Utility\TreeNode.cs" />
-    <Compile Include="Utility\UploadFileInfo.cs" />
-    <Compile Include="Utility\UploadFileSetting.cs" />
+    <Compile Include="Utility\UploadInfo.cs" />
+    <Compile Include="Utility\UploadSetting.cs" />
     <Compile Include="Utility\WebClientx.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

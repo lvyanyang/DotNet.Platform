@@ -17,15 +17,24 @@ namespace DotNet.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Login",
+                name: "login",
                 url: "login",
-                defaults: new { controller = "Default", action = "Login" }
+                defaults: new { controller = "Default", action = "Login" },
+                namespaces: new[] { "DotNet.Web.Areas.Students.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Learning",
+                url: "Learning/{coursewareId}",
+                defaults: new { controller = "Default", action = "Learning" },
+                namespaces: new[] { "DotNet.Web.Areas.Students.Controllers" }
             );
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Default", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Default", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "DotNet.Web.Areas.Students.Controllers" }
             );
         }
     }

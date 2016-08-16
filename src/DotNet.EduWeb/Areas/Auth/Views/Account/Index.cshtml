@@ -1,0 +1,91 @@
+﻿@{
+    var user = AuthHelper.GetSessionUser();
+}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>@SystemSetting.SystemTitle</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/www/lib/lib.css" rel="stylesheet" />
+    <link href="/www/core/css/core.css" rel="stylesheet" />
+    <link href="/www/home/css/home.css" rel="stylesheet" />
+</head>
+<body class="easyui-layout">
+    <div class="home-north" region="north">
+        <div class="header">
+            <div class="logo">
+                <i class="fa fa-windows"></i>
+            </div>
+            <div class="title font-kai">
+                @SystemSetting.SystemTitle
+                <div class="subtitle">
+                    @SystemSetting.Version
+                </div>
+            </div>
+            <div class="nav">
+                <ul>
+                    @*<li class="list">
+                            <a data-url="">
+                                <i class="icon-bubble"></i><br>消息通知
+                            </a>
+                        </li>
+                        <li class="list">
+                            <a data-url="">
+                                <i class="icon-envelope"></i><br>用户反馈
+                            </a>
+                        </li>
+                        <li class="list">
+                            <a data-url="">
+                                <i class="icon-cloud-upload"></i><br>升级日志
+                            </a>
+                        </li>*@
+                    <li class="list">
+                        <a class="uimodal" data-load-mask-target="body" data-url="@Url.Action("ModifyUserPassword", "User", new { area = "Auth" })">
+                            <i class="icon-key"></i><br>修改密码
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a class="logout-action" data-url="@Url.Action("Logout")">
+                            <i class="icon-logout"></i><br>安全退出
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="home-west" region="west" split="true" title="导航菜单">
+        <ul class="home-tree" url="@Url.Action("Menu")"></ul>
+    </div>
+    <div class="home-main" region="center" title="工作桌面"
+         data-options="iconCls:'icon-home'">
+    </div>
+    <div class="home-south" region="south">
+        <div class="message">
+            <div class="user-info">
+                欢迎您：<span class="user">@user.Name</span>&nbsp;&nbsp;
+                <span class="time"></span>
+            </div>
+            <div class="status-info">
+                操作系统：<span class="status-system"></span>&nbsp;&nbsp;
+                浏览器：<span class="status-browser"></span>&nbsp;&nbsp;
+                分辨率：<span class="status-screen"></span>&nbsp;&nbsp;
+                西安交通信息版权所有 &copy; 2016
+            </div>
+        </div>
+    </div>
+    <script src="/www/lib/lib.js"></script>
+    <script src="/www/core/js/core.js"></script>
+    <script src="/www/core/js/extend.js"></script>
+    <script src="/www/core/js/plugin.js"></script>
+    <script src="/www/core/js/tree.js"></script>
+    <script src="/www/core/js/table.js"></script>
+    <script src="/www/core/js/modal.js"></script>
+    <script src="/www/core/js/form.js"></script>
+    <script src="/www/core/js/action.js"></script>
+    <script src="/www/core/js/treetable.js"></script>
+    <script src="/www/core/js/treegrid.js"></script>
+    <script src="/www/home/js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+﻿@model PageList<Notice>
+@{
+    Layout = null;
+}
+<table class="table table-bordered table-hover table-manage">
+    <thead>
+        <tr>
+            <th class="">标题</th>
+            <th class="w160px" data-order="@nameof(Notice.CreateDateTime)">发布时间</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var record in Model)
+    {
+        <tr>
+            <td>
+                <a class="uimodal" data-container="body" data-size="lg" data-url="@Url.Action("NoticeDetails", new {id = record.Id})">
+                    @record.Title
+                </a>
+            </td>
+            <td class="text-center">@DateTimeHelper.FormatDateHasSecond(record.CreateDateTime)</td>
+        </tr>
+    }
+    </tbody>
+</table>
+@Html.RenderPages(Model)

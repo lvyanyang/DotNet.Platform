@@ -1,0 +1,39 @@
+﻿@model PageList<Student>
+@{
+    string trainGroupId = ViewBag.trainGroupId;
+}
+<table class="table table-striped table-bordered table-hover table-fix table-manage">
+    <thead>
+        <tr>
+            <th class="w35px">
+                <label><input class="checkbox-check" type="checkbox"><span></span></label>
+            </th>
+            <th class="w80px" data-order="@nameof(Student.Name)">姓名</th>
+            <th class="w200px" data-order="@nameof(Student.IDCardNo)">身份证号</th>
+            <th class="w130px" data-order="@nameof(Student.MobilePhone)">手机号码</th>
+            <th class="" data-order="@nameof(Student.CompanyName)">服务公司</th>
+            <th class="text-center w120px" data-order="@nameof(Student.CreateDateTime)">报名日期</th>
+            <th class="text-center w50px">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in Model)
+        {
+            <tr>
+                <td>
+                    <label><input class="checkbox-check" type="checkbox" value="@record.Id"><span></span></label>
+                </td>
+                <td>@record.Name</td>
+                <td>@record.IDCardNo</td>
+                <td>@record.MobilePhone</td>
+                <td class="nowrap">@record.CompanyName</td>
+                <td class="text-center">@DateTimeHelper.FormatDate(record.CreateDateTime)</td>
+                <td class="text-center">
+                    <a class="reservation-table-student"
+                       data-url="@Url.Action("Reservation",new {trainGroupId=trainGroupId,studentIds=record.Id})">预约</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.RenderPages(Model)

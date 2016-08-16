@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "错题记录";
+}
+<div class="bbox1">
+    <div class="student_topnav">
+        <div class="titleH1">
+            <div class="h1-title">@ViewBag.Title</div>
+        </div>
+    </div>
+
+    <div id="questArea" data-url="@Url.Action("_Question")"></div>
+
+</div>
+
+@section css{
+    @Html.LocalImport("~/www/css/question.css")
+}
+@section js{
+    <script>
+
+        function init(url) {
+            fx.ajax({
+                maskTarget: '.bbox1',
+                delay: 200,
+                url: url,
+                dataType: 'html',
+                success: function (result) {
+                    $('#questArea').empty().html(result);
+
+                    $('#questArea').find('.navQuestion').click(function () {
+                        var url = $(this).data('url');
+                        init(url);
+                    });
+
+                    $('#questArea').find('.deleteQuestion').click(function () {
+                        var url = $(this).data('url');
+                        fx.ajax({
+                            delay: 200,
+                            confirm:'确定要删除当前错题吗?',
+                            url: url,
+                            success: function (result) {
+                                if (result.success) {
+                                    init($('#questArea').data('url'));
+                                } else {
+                                    fx.alert(result.message);
+                                }
+                            }
+                        });
+                    });
+
+                    $('#questArea').find('.clearQuestion').click(function () {
+                        var url = $(this).data('url');
+                        fx.ajax({
+                            delay: 200,
+                            confirm:'确定要清除所有的错题吗?',
+                            url: url,
+                            success: function (result) {
+                                if (result.success) {
+                                    init($('#questArea').data('url'));
+                                } else {
+                                    fx.alert(result.message);
+                                }
+                            }
+                        });
+                    });
+
+                    $('#questArea').find('.favoriteQuestion').click(function () {
+                        var url = $(this).data('url');
+                        var isFavorite = !$(this).data('favorite');
+                        var self = this;
+                        fx.ajax({
+                            maskTarget: '.bbox1',
+                            delay: 200,
+                            url: url,
+                            data: { isFavorite: isFavorite },
+                            success: function (result) {
+                                if (result.success) {
+                                    $(self).data('favorite', isFavorite);
+                                    $(self).find('span:eq(1)').html(isFavorite ? '已收藏' : '收藏');
+                                    if (isFavorite) {
+                                        $(self).addClass('btn-primary');
+                                    } else {
+                                        $(self).removeClass('btn-primary');
+                                    }
+                                } else {
+                                    fx.alert(result.message);
+                                }
+                            }
+                        });
+                    });
+                }
+            });
+        }
+
+        $(function () {
+            var url = $('#questArea').data('url');
+            init(url);
+        });
+    </script>
+}

@@ -14,29 +14,29 @@ namespace DotNet.Mvc
     /// </summary>
     public class CdnSetting
     {
-        private static CdnSetting _instance;
+        /// <summary>
+        /// Cdn服务器
+        /// </summary>
+        public string CdnServer { get; set; }
 
         /// <summary>
-        /// 实例对象
+        /// Cdn是否调试
         /// </summary>
-        public static CdnSetting Instance
-        {
-            get { return _instance ?? (_instance = ConfigManager.GetSetting("CdnSetting", () => new CdnSetting())); }
-        }
+        public bool CdnDebug { get; set; }
 
         /// <summary>
-        /// 服务器
+        /// Cdn版本
         /// </summary>
-        public string Server { get; set; }
+        public string CdnVersion { get; set; }
 
         /// <summary>
-        /// 是否调试
+        /// Local是否调试
         /// </summary>
-        public bool Debug { get; set; }
+        public bool LocalDebug { get; set; } = true;
 
         /// <summary>
-        /// 版本
+        /// Local版本
         /// </summary>
-        public string Version { get; set; }
+        public string LocalVersion { get; set; }
     }
 }

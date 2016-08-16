@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "通知公告";
+}
+@section css{
+    <style>
+        body {
+            font-size:14px;
+        }
+    </style>
+}
+<div class="bbox1">
+    <div class="student_topnav">
+        <div class="titleH1">
+            <div class="h1-title">@ViewBag.Title</div>
+        </div>
+    </div>
+
+    <div style="margin: 15px;">
+         <div class="uitable" style="margin:15px;" data-url="@Url.Action("NoticeGrid")">
+            @Html.Action("NoticeGrid")
+        </div>
+    </div>
+</div>

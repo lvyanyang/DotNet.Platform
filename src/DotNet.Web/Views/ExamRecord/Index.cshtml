@@ -1,0 +1,48 @@
+﻿@model List<ExamRecord>
+@{
+    ViewBag.Title = "考试成绩查询";
+}
+<div class="bbox1">
+    <div class="student_topnav">
+        <div class="titleH1">
+            <div class="h1-title">@ViewBag.Title</div>
+        </div>
+    </div>
+
+    <div style="margin:15px;">
+        @if (Model.Count == 0)
+        {
+            @*<div class="bs-callout bs-callout-warning" style="margin-right: 15px; margin-left: 15px;">
+                <h4>暂无考试成绩</h4>
+            </div>*@
+            <div class="alert alert-warning alert-dismissible"><strong><i class="fa-lg fa fa-warning"></i> 没有查询到数据！</strong></div>
+        }
+        else
+        {
+            <table class="table table-bordered table-hover table-manage">
+                <thead>
+                    <tr>
+                        <th class="w100px">考试时间</th>
+                        <th class="">考试科目</th>
+                        <th class="">试卷名称</th>
+                        <th class="w50px">成绩</th>
+                        <th class="w50px">结果</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var record in Model)
+                    {
+                        <tr>
+                            <td class="">@DateTimeHelper.FormatDate(record.UserStartDateTime)</td>
+                            <td class="">@record.UserCategoryName</td>
+                            <td class="">@record.PaperName</td>
+                            <td class="">@record.UserScore</td>
+                            <td class="">@Html.BoolLabel(record.UserIsCommit == 1 && (record.UserResult.HasValue && record.UserResult.Value == 1), "合格", "不合格")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+

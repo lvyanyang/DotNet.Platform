@@ -1,0 +1,173 @@
+body {
+    margin: 0 auto;
+    display: none;
+}
+
+/* =============================North=============================== */
+
+.home-north {
+    width: 100%;
+    height: 72px;
+    position: relative;
+    z-index: 0;
+    margin-top: 0;
+    overflow: hidden;
+    border-top-width: 0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .4), 0 0 30px rgba(0, 0, 0, .075);
+    background: #194C7E; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #194C7E, #2164A6); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #194C7E, #2164A6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.home-north:after {
+    background: transparent url("../img/header_bg.png") repeat center center;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: .4;
+    display: block;
+    position: absolute;
+    content: '';
+}
+
+.home-north .header {
+    position: relative;
+    z-index: 2;
+}
+
+.home-north .header .logo {
+    margin-top: 18px;
+    margin-left: 5px;
+    float: left;
+}
+
+.home-north .header .logo i {
+    color: white;
+    font-size: 2.5em;
+}
+
+.home-north .header .title {
+    display: inline-block;
+    position: relative;
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 1.2em;
+    letter-spacing: -2px;
+    margin-top: 15px;
+    margin-left: 5px;
+    color: #fff;
+}
+
+.home-north .header .title .subtitle {
+    position: absolute;
+    top: -8px;
+    right: -50px;
+    letter-spacing: 1px;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+}
+
+.home-north .header .nav {
+    float: right;
+    margin-top: 2px;
+    margin-right: 0;
+    font-size: 12px;
+}
+
+.home-north .header .nav ul {
+    position: relative;
+    margin: 0;
+    z-index: 6;
+}
+
+.home-north .header .nav li.list {
+    float: left;
+    display: inline;
+    margin: 3px 12px 0 0;
+}
+
+.home-north .header .nav li a {
+    cursor: pointer;
+    display: inline;
+    float: left;
+    text-align: center;
+    padding: 5px 7px;
+    text-decoration: none;
+    color: #fff;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.home-north .header .nav li a:hover {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.home-north .header .nav li a span {
+    display: block;
+    margin: 0 auto 3px;
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+}
+
+.home-north .header .nav li i {
+    font-size: 28px;
+    margin-top: 10px;
+}
+
+/* =============================West=============================== */
+
+.home-west {
+    width: 250px;
+    padding: 1px;
+}
+
+.easyui-layout .panel-title {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* =============================Center=============================== */
+
+/*.home-main {*/
+    /*padding: 5px;*/
+    /*overflow-x: hidden;*/
+/*}*/
+
+.module-container {
+    padding: 5px;
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+/* =============================South=============================== */
+
+.home-south {
+    background: #e6eef8;
+    height: 30px;
+    line-height: 28px;
+    border-bottom-width: 0;
+}
+
+.home-south .message {
+    font-size: 12px;
+}
+
+.home-south .message .user-info {
+    float: left;
+    padding-left: 5px;
+}
+
+.home-south .message .user-info .user {
+    color: red;
+    font-weight:700;
+}
+
+.home-south .message .status-info {
+    float: right;
+    padding-right: 5px;
+}

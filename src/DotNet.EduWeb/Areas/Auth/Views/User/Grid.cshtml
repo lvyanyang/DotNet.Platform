@@ -1,0 +1,59 @@
+﻿@model PageList<User>
+ <table class="table table-striped table-bordered table-hover table-manage">
+        <thead>
+            <tr>
+                <th class="w20px">
+                    <label><input class="checkbox-check" type="checkbox"><span></span></label>
+                </th>
+                <th class="w100px" data-order="@nameof(DotNet.Auth.Entity.User.Account)">账号</th>
+                <th class="w100px" data-order="@nameof(DotNet.Auth.Entity.User.Name)">姓名</th>
+                <th class="w120px" data-order="@nameof(DotNet.Auth.Entity.User.DepartmentName)">部门</th>
+                @*<th class="w120px">邮件</th>*@
+                @*<th class="w160px" data-order="@nameof(DotNet.Auth.Entity.User.LastVisitDateTime)">最后登陆时间</th>*@
+                <th class="w100px text-center" data-order="@nameof(DotNet.Auth.Entity.User.LoginCount)">登陆次数</th>
+                @*<th class="w60px text-center" data-order="@nameof(DotNet.Auth.Entity.User.IsAdmin)">管理员</th>*@
+                <th class="w70px text-center" data-order="@nameof(DotNet.Auth.Entity.User.IsAudit)">审核</th>
+                <th class="w70px text-center" data-order="@nameof(DotNet.Auth.Entity.User.IsEnabled)">状态</th>
+                <th class="w70px text-center">过期</th>
+                <th class="w70px text-center">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var record in Model)
+            {
+                <tr>
+                    <td>
+                        <label><input class="checkbox-check" type="checkbox" value="@record.Id"><span></span></label>
+                    </td>
+                    <td>
+                        <a class="uimodal" data-url="@Url.Action("Details", "User", new {id = record.Id})">
+                            @record.Account
+                        </a>
+                    </td>
+                    <td>@record.Name</td>
+                    <td>@record.DepartmentName</td>
+                    @*<td>@record.Email</td>*@
+                    @*<td>
+                        @DateTimeHelper.FormatDateHasSecond(record.LastVisitDateTime)
+                    </td>*@
+                    <td class="text-center">@record.LoginCount</td>
+                    @*<td class="text-center">@Html.BoolLabel(record.IsAdmin,"管理员",null)</td>*@
+                    <td class="text-center">@Html.BoolLabel(record.IsAudit, "已审", "未审")</td>
+                    <td class="text-center">
+                        @Html.BoolLabel(record.IsEnabled)
+                    </td>
+                    <td class="text-center">@Html.BoolLabel(!AuthService.User.IsUserExpire(record), null, "过期")</td>
+                    <td class="text-center">
+                        <a class="color-primary uimodal" title="编辑" data-toggle="tooltip" data-url="@Url.Action("Edit", "User", new {id = record.Id})">
+                            <i class="fa fa-lg fa-edit"></i>
+                        </a>
+                        &nbsp;
+                        <a class="color-danger tsdelete" title="删除" data-toggle="tooltip" data-url="@Url.Action("Delete", "User", new {id = record.Id})">
+                            <i class="fa fa-lg fa-trash-o"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+@Html.RenderPages(Model)

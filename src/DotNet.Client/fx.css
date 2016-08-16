@@ -1,0 +1,681 @@
+body, input, label, select, option, textarea, button, fieldset, legend {
+    font-family: "Helvetica Neue", Ubuntu, "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+    /*font-family: 'Microsoft YaHei','simsun','PingHei', 'PingFang SC', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', sans-serif;*/
+    font-size: 14px;
+}
+
+.font-hei {
+    font-family: -apple-system, "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Source Han Sans CN", "Source Han Sans SC", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+}
+
+.font-kai {
+    font-family: Baskerville, Georgia, "Liberation Serif", "Kaiti SC", STKaiti, "AR PL UKai CN", "AR PL UKai HK", "AR PL UKai TW", "AR PL UKai TW MBE", "AR PL KaitiM GB", KaiTi, KaiTi_GB2312, "TW\-Kai", serif;
+}
+
+.font-song {
+    font-family: Georgia, "Nimbus Roman No9 L", "Songti SC", STSong, "AR PL New Sung", "AR PL SungtiL GB", NSimSun, SimSun, "TW\-Sung", "WenQuanYi Bitmap Song", "AR PL UMing CN", "AR PL UMing HK", "AR PL UMing TW", "AR PL UMing TW MBE", PMingLiU, MingLiU, serif;
+}
+
+.font-fang-song {
+    font-family: Baskerville, "Times New Roman", "Liberation Serif", STFangsong, FangSong, FangSong_GB2312, "CWTEX\-F", serif;
+}
+
+a:hover {
+    cursor: pointer;
+    color: #cd0200;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.fxhide {
+    display: none;
+}
+
+.clickable-item {
+    cursor: pointer;
+}
+
+.search-row {
+    margin-top: 5px;
+}
+
+form .form-section {
+    margin: 30px 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e7ecf1;
+}
+
+.checkok {
+    background: url('img/checkok.gif');
+    margin: 0 auto;
+    width: 17px;
+    height: 14px;
+}
+
+.checkno {
+    background: url('img/checkno.gif');
+    margin: 0 auto;
+    width: 17px;
+    height: 14px;
+}
+
+/* =============================modal======================================= */
+
+.right-modal > .modal-dialog {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 60%;
+    margin: 0 auto;
+}
+
+    .right-modal > .modal-dialog .modal-content {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        overflow: auto;
+    }
+
+@media (max-width: 991px) {
+    /* 991px */
+    .right-modal > .modal-dialog {
+        width: 95%;
+    }
+}
+
+/* Full width modal */
+
+.modal-full.modal-dialog {
+    width: 99%;
+}
+
+.modal-big.modal-dialog {
+    width: 80%;
+}
+
+@media (max-width: 768px) {
+
+    .modal-full.modal-dialog {
+        width: auto;
+    }
+
+    .modal-big.modal-dialog {
+        width: auto;
+    }
+}
+
+/* =============================bs-callout=============================== */
+
+
+.bs-callout {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+}
+
+    .bs-callout h4 {
+        margin-top: 0;
+        margin-bottom: 5px;
+    }
+
+    .bs-callout p:last-child {
+        margin-bottom: 0;
+    }
+
+    .bs-callout code {
+        border-radius: 3px;
+    }
+
+    .bs-callout + .bs-callout {
+        margin-top: -5px;
+    }
+
+.bs-callout-danger {
+    border-left-color: #ce4844;
+}
+
+    .bs-callout-danger h4 {
+        color: #ce4844;
+    }
+
+.bs-callout-warning {
+    border-left-color: #aa6708;
+}
+
+    .bs-callout-warning h4 {
+        color: #aa6708;
+    }
+
+.bs-callout-info {
+    border-left-color: #1b809e;
+}
+
+    .bs-callout-info h4 {
+        color: #1b809e;
+    }
+
+/* =============================table-manage=============================== */
+
+.table-manage > thead > tr > th {
+    border-bottom-width: 1px;
+    border-color: #d6e1ea;
+    background-color: #f1f5fa;
+}
+
+.table-manage > tbody > tr:hover {
+    background-color: #edf3fe;
+}
+
+.table-manage > thead > tr > th > label,
+.table-manage > tbody > tr > td > label,
+.table-details > thead > tr > th > label,
+.table-details > tbody > tr > td > label {
+    margin-bottom: 0;
+}
+
+.table-manage .label, .table-details .label {
+    font-weight: 500;
+}
+
+.table-details {
+    margin-bottom: 0;
+}
+
+.search-panel {
+    border: 1px solid #e5e5e5;
+    background: #f8fafe;
+    padding: 10px 10px 10px 5px;
+    margin-bottom: 5px;
+}
+
+/* =============================分页=============================== */
+
+div.table-info {
+    padding-top: 8px;
+}
+
+div.table-info-paginate {
+    float: right;
+    margin: 0;
+}
+
+    div.table-info-paginate ul.pagination {
+        margin: 2px 0;
+        white-space: nowrap;
+    }
+
+/* =============================鼠标光标=============================== */
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* =============================Table_Checkbox=============================== */
+
+.table-fix {
+    table-layout: fixed;
+}
+
+table td.nowrap {
+    white-space: nowrap;
+    overflow: hidden;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+}
+
+.table-manage input[type="checkbox"] {
+    display: none;
+}
+
+    .table-manage input[type="checkbox"] + span:before {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #C8C8C8;
+        border-radius: 4px;
+        content: "";
+        display: inline-block;
+        height: 18px;
+        margin-top: -3px;
+        vertical-align: middle;
+        width: 18px;
+    }
+
+    .table-manage input[type="checkbox"]:checked + span:before {
+        background: url("img/checkmark.png") no-repeat scroll center center #007AFF;
+        border-color: #007AFF;
+    }
+
+@media (min--moz-device-pixel-ratio: 1.3), not all, not all, not all, (min-resolution: 1.3dppx) {
+    .table-manage input[type="checkbox"]:checked + span:before {
+        background-image: url("img/checkmark@2x.png");
+        background-size: 14px 14px;
+    }
+}
+
+
+/* =============================Scrollable Tables=============================== */
+
+.table-scrollable {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: auto;
+  border: 1px solid #e7ecf1;
+  margin: 10px 0 !important; }
+  .DTS .table-scrollable {
+    border: 0; }
+  .table-scrollable.table-scrollable-borderless {
+    border: 0; }
+  .table-scrollable > .table {
+    width: 100% !important;
+    margin: 0 !important;
+    margin-bottom: 0;
+    background-color: #fff; }
+    .table-scrollable > .table > thead > tr > th,
+    .table-scrollable > .table > tbody > tr > th,
+    .table-scrollable > .table > tfoot > tr > th,
+    .table-scrollable > .table > tfoot > tr > th,
+    .table-scrollable > .table > tfoot > tr > td {
+      white-space: nowrap; }
+  .table-scrollable > .table-bordered {
+    border: 0; }
+    .table-scrollable > .table-bordered > thead > tr > th:first-child,
+    .table-scrollable > .table-bordered > tbody > tr > th:first-child,
+    .table-scrollable > .table-bordered > tfoot > tr > th:first-child,
+    .table-scrollable > .table-bordered > thead > tr > td:first-child,
+    .table-scrollable > .table-bordered > tbody > tr > td:first-child,
+    .table-scrollable > .table-bordered > tfoot > tr > td:first-child {
+      border-left: 0; }
+    .table-scrollable > .table-bordered > thead > tr > th:last-child,
+    .table-scrollable > .table-bordered > tbody > tr > th:last-child,
+    .table-scrollable > .table-bordered > tfoot > tr > th:last-child,
+    .table-scrollable > .table-bordered > thead > tr > td:last-child,
+    .table-scrollable > .table-bordered > tbody > tr > td:last-child,
+    .table-scrollable > .table-bordered > tfoot > tr > td:last-child {
+      border-right: 0; }
+    .table-scrollable > .table-bordered > thead > tr:last-child > th,
+    .table-scrollable > .table-bordered > tbody > tr:last-child > th,
+    .table-scrollable > .table-bordered > tfoot > tr:last-child > th,
+    .table-scrollable > .table-bordered > thead > tr:last-child > td,
+    .table-scrollable > .table-bordered > tbody > tr:last-child > td,
+    .table-scrollable > .table-bordered > tfoot > tr:last-child > td {
+      border-bottom: 0; }
+
+
+/* =============================font-icon-size=============================== */
+.font-size-1 {
+    font-size: 1em;
+}
+
+.font-size-12 {
+    font-size: 1.2em;
+}
+
+.font-size-13 {
+    font-size: 1.3em;
+}
+
+.font-size-15 {
+    font-size: 1.5em;
+}
+
+.font-size-2 {
+    font-size: 2em;
+}
+
+/* =============================Width=============================== */
+
+.wauto {
+    width: auto !important;
+}
+
+.w20px {
+    width: 20px !important;
+}
+
+.w25px {
+    width: 25px !important;
+}
+
+.w30px {
+    width: 30px !important;
+}
+
+.w35px {
+    width: 35px !important;
+}
+
+.w40px {
+    width: 40px !important;
+}
+
+.w45px {
+    width: 45px !important;
+}
+
+.w50px {
+    width: 50px !important;
+}
+
+.w60px {
+    width: 60px !important;
+}
+
+.w70px {
+    width: 70px !important;
+}
+
+.w80px {
+    width: 80px !important;
+}
+
+.w90px {
+    width: 90px !important;
+}
+
+.w100px {
+    width: 100px !important;
+}
+
+.w110px {
+    width: 110px !important;
+}
+
+.w120px {
+    width: 120px !important;
+}
+
+.w130px {
+    width: 130px !important;
+}
+
+.w140px {
+    width: 140px !important;
+}
+
+.w150px {
+    width: 150px !important;
+}
+
+.w160px {
+    width: 160px !important;
+}
+
+.w165px {
+    width: 165px !important;
+}
+
+.w180px {
+    width: 180px !important;
+}
+
+.w200px {
+    width: 200px !important;
+}
+
+.w250px {
+    width: 250px !important;
+}
+
+.w300px {
+    width: 300px !important;
+}
+
+.w350px {
+    width: 350px !important;
+}
+
+.w400px {
+    width: 400px !important;
+}
+
+.w500px {
+    width: 500px !important;
+}
+
+.w600px {
+    width: 600px !important;
+}
+
+.w700px {
+    width: 700px !important;
+}
+
+.w800px {
+    width: 800px !important;
+}
+
+.w900px {
+    width: 900px !important;
+}
+
+.w20p {
+    width: 20% !important;
+}
+
+.w25p {
+    width: 25% !important;
+}
+
+.w30p {
+    width: 30% !important;
+}
+
+.w35p {
+    width: 35% !important;
+}
+
+.w40p {
+    width: 40% !important;
+}
+
+.w45p {
+    width: 45% !important;
+}
+
+.w50p {
+    width: 50% !important;
+}
+
+.w60p {
+    width: 60% !important;
+}
+
+.w70p {
+    width: 70% !important;
+}
+
+.w80p {
+    width: 80% !important;
+}
+
+.w90p {
+    width: 90% !important;
+}
+
+.w100p {
+    width: 100% !important;
+}
+
+/* =============================Color=============================== */
+
+.color-primary {
+    color: #337ab7;
+}
+
+.color-success {
+    color: #449d44;
+}
+
+.color-info {
+    color: #5bc0de;
+}
+
+.color-warning {
+    color: #ec971f;
+}
+
+.color-danger {
+    color: #c9302c;
+}
+
+/* =============================BGColor=============================== */
+.bgcolor-primary {
+    background-color:#337ab7;
+    color: #FFFFFF;
+}
+
+.bgcolor-success {
+    background-color:#449d44;
+    color: #FFFFFF;
+}
+
+.bgcolor-info {
+    background-color:#5bc0de;
+    color: #FFFFFF;
+}
+
+.bgcolor-warning {
+    background-color:#ec971f;
+    color: #FFFFFF;
+}
+
+.bgcolor-danger {
+    background-color:#c9302c;
+    color: #FFFFFF;
+}
+/* =============================Form=============================== */
+
+.form-group .required {
+    color: #d2322d;
+    font-weight: bold;
+    font-family: arial;
+    font-size: 12px;
+    padding-left: 2px;
+}
+
+form label {
+  font-weight: 500;
+}
+
+/* =============================Custom Tabs=============================== */
+
+.tabbable:before, .tabbable:after {
+    content: " ";
+    display: table;
+}
+
+.tabbable:after {
+    clear: both;
+}
+
+.tabbable-line > .nav-tabs {
+    border: none;
+    margin: 0px;
+}
+
+    .tabbable-line > .nav-tabs > li {
+        margin-right: 2px;
+    }
+
+        .tabbable-line > .nav-tabs > li > a {
+            border: 0;
+            margin-right: 0;
+            color: #737373;
+        }
+
+            .tabbable-line > .nav-tabs > li > a > i {
+                color: #a6a6a6;
+            }
+
+        .tabbable-line > .nav-tabs > li.open, .tabbable-line > .nav-tabs > li:hover {
+            border-bottom: 4px solid #fbcdcf;
+        }
+
+            .tabbable-line > .nav-tabs > li.open > a, .tabbable-line > .nav-tabs > li:hover > a {
+                border: 0;
+                background: none !important;
+                color: #333;
+            }
+
+                .tabbable-line > .nav-tabs > li.open > a > i, .tabbable-line > .nav-tabs > li:hover > a > i {
+                    color: #a6a6a6;
+                }
+
+            .tabbable-line > .nav-tabs > li.open .dropdown-menu, .tabbable-line > .nav-tabs > li:hover .dropdown-menu {
+                margin-top: 0px;
+            }
+
+        .tabbable-line > .nav-tabs > li.active {
+            border-bottom: 4px solid #F3565D;
+            position: relative;
+        }
+
+            .tabbable-line > .nav-tabs > li.active > a {
+                border: 0;
+                color: #333;
+            }
+
+                .tabbable-line > .nav-tabs > li.active > a > i {
+                    color: #404040;
+                }
+
+.tabbable-line > .tab-content {
+    margin-top: -3px;
+    background-color: #fff;
+    border: 0;
+    border-top: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.portlet .tabbable-line > .tab-content {
+    padding-bottom: 0;
+}
+
+.tabbable-line.tabs-below > .nav-tabs > li {
+    border-top: 4px solid transparent;
+}
+
+    .tabbable-line.tabs-below > .nav-tabs > li > a {
+        margin-top: 0;
+    }
+
+    .tabbable-line.tabs-below > .nav-tabs > li:hover {
+        border-bottom: 0;
+        border-top: 4px solid #fbcdcf;
+    }
+
+    .tabbable-line.tabs-below > .nav-tabs > li.active {
+        margin-bottom: -2px;
+        border-bottom: 0;
+        border-top: 4px solid #F3565D;
+    }
+
+.tabbable-line.tabs-below > .tab-content {
+    margin-top: -10px;
+    border-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+
+/* =============================EasyUI=============================== */
+.l-btn-text, .datagrid-header .datagrid-cell span {
+    font-size: 14px;
+}
+
+.datagrid-header-row,
+.datagrid-row {
+    height: 30px;
+}
+
+.menu-text,
+.menu-text span {
+    font-family: "Microsoft Yahei";
+    font-size: 14px;
+}

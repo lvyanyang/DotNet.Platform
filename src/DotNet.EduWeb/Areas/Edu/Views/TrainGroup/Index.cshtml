@@ -1,0 +1,81 @@
+﻿<div class="module-container">
+    <div class="search-panel">
+        <form class="horizontal-form search-table" id="train_group_form">
+            <div class="row">
+                <div class="col-md-3">
+                    <input class="form-control" name="name" type="text" placeholder="请输入名称/简拼" title="请输入名称/简拼">
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control uiselect uiselectsubmit" name="categoryId"
+                            data-has-text-field="false">
+                        @Html.EmptyOption("请选择从业类型")
+                        @Html.TrainCategoryOption()
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control uiselect uiselectsubmit" name="status"
+                            data-has-text-field="false">
+                        @Html.EmptyOption("请选择状态")
+                        <option value="0">未开班</option>
+                        <option value="1">已开班</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control uiselect uiselectsubmit" name="schoolId"
+                            data-has-text-field="false">
+                        @Html.EmptyOption("请选择培训机构")
+                        @Html.SchoolOption()
+                    </select>
+                </div>
+            </div>
+
+            <div class="row search-row">
+                <div class="col-md-3">
+                    <div class="input-group date uidate">
+                        <input class="form-control" name="startDate" type="text" placeholder="请选择开始日期" title="请选择开始日期">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-th"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group date uidate">
+                        <input class="form-control" name="endDate" type="text" placeholder="请选择结束日期" title="请选择结束日期">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-th"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 text-right">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fa fa-search"></i> 查询
+                    </button>
+
+                    <a class="btn btn-success uimodal" data-url="@Url.Action("Create")">
+                        <i class="fa fa-plus"></i> 新建
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="uitable" data-url="@Url.Action("_Grid")">
+        @Html.Action("_Grid")
+    </div>
+</div>
+@*<script>
+    fx.onReady(function () {
+        $('.search-table').find('.clickable-item').click(function () {
+            var rows = $('.search-table').find('.advancedFilters');
+            var displayStatus = $(this).data('displayStatus') || false;
+            if (displayStatus === true) {
+                $(this).data('displayStatus', false);
+                $(this).html('<i class="fa fa-angle-down"></i> 显示高级过滤');
+                rows.hide('500');
+            } else {
+                $(this).data('displayStatus', true);
+                $(this).html('<i class="fa fa-angle-up"></i> 隐藏高级过滤');
+                rows.show('500');
+            }
+        });
+    });
+</script>*@

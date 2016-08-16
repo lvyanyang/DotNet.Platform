@@ -1,0 +1,52 @@
+﻿@model PageList<Company>
+<table class="table table-striped table-bordered table-hover table-fix table-manage">
+    <thead>
+        <tr>
+            <th class="w35px">
+                <label><input class="checkbox-check" type="checkbox"><span></span></label>
+            </th>
+            <th class="" data-order="@nameof(Company.Name)">名称</th>
+            <th class="w100px" data-order="@nameof(Company.LinkMan)">联系人</th>
+            <th class="w100px" data-order="@nameof(Company.MobilePhone)">手机号码</th>
+            <th class="w200px" data-order="@nameof(Company.Address)">地址</th>
+            <th class="text-center w70px" data-order="@nameof(Company.IsEnabled)">启用</th>
+            <th class="w160px" data-order="@nameof(Company.CreateDateTime)">创建时间</th>
+            <th class="text-center w70px">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in Model)
+        {
+            <tr class="cursor-pointer" data-url="@Url.Action("Details",new {id = record.Id})">
+                <td>
+                    <label><input class="checkbox-check" type="checkbox" value="@record.Id"><span></span></label>
+                </td>
+                <td class="nowrap">
+                    <a class="uimodal" data-backdrop="true" title="@record.Name"
+                       data-url="@Url.Action("Details",new {id = record.Id})">
+                        @record.Name
+                    </a>
+                </td>
+                <td class="">@record.LinkMan</td>
+                <td class="">@record.MobilePhone</td>
+                <td class="nowrap" title="@record.Address">@record.Address</td>
+                <td class="text-center">@Html.BoolLabel(record.IsEnabled)</td>
+                <td class="text-center">@DateTimeHelper.FormatDateHasSecond(record.CreateDateTime)</td>
+                <td class="text-center">
+                    <a class="color-primary uimodal" data-toggle="tooltip"
+                       data-url="@Url.Action("Edit", new {id = record.Id})"
+                       title="编辑">
+                        <i class="fa fa-lg fa-edit"></i>
+                    </a>
+                    &nbsp;
+                    <a class="color-danger tsdelete" data-toggle="tooltip"
+                       data-url="@Url.Action("Delete", new {id = record.Id})"
+                       title="删除">
+                        <i class="fa fa-lg fa-trash-o"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.RenderPages(Model)

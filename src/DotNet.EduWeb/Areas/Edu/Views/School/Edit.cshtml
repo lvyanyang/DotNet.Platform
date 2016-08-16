@@ -1,0 +1,322 @@
+﻿@using DotNet.Auth.WebUtility
+@model School
+<form class="edit-form uiform" method="post"
+      data-modal="true"
+      data-table=".uitable"
+      data-error-el=".alert-danger"
+      data-on-submit-success="fx.mtfSuccess"
+      action="@Url.Action("Save")">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">@Html.EditStatus("培训机构")</h4>
+    </div>
+    <div class="modal-body">
+        @Html.AntiForgeryToken()
+        @Html.MarkCreate()
+        @Html.HiddenFor(p => p.Id)
+        @Html.HiddenFor(p => p.CreateDateTime)
+        <div class="alert alert-danger fxhide"></div>
+
+        @*<h4 class="form-section" style="margin-top: 5px;">基础信息</h4>*@
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">机构编号</label>
+                    <input class="form-control" name="@nameof(Model.Code)" value="@Model.Code"
+                           data-validate="required: true,maxlength: 100"
+                           data-validate-message="required:'请输入培训机构编号'"
+                           type="text" autocomplete="off" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">机构名称</label>
+                    <input class="form-control" name="@nameof(Model.Name)" value="@Model.Name"
+                           data-validate="required: true,maxlength: 100"
+                           data-validate-message="required:'请输入培训机构名称'"
+                           type="text" autocomplete="off" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">发证机构</label>
+                    <select class="form-control uiselect"
+                            id="@nameof(Model.DepartmentId)" name="@nameof(Model.DepartmentId)"
+                            data-allow-clear="true"
+                            data-text-field="@nameof(Model.DepartmentName)">
+                        <option></option>
+                        @Html.SystemDeptOption(Model.DepartmentId)
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">核发日期</label>
+                    <div class="input-group date uidate">
+                        <input class="form-control" name="@nameof(Model.HFDate)" value="@DateTimeHelper.FormatDate(Model.HFDate)"
+                               type="text" autocomplete="off">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-th"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">生效日期</label>
+                    <div class="input-group date uidate">
+                        <input class="form-control" name="@nameof(Model.StartDate)" value="@DateTimeHelper.FormatDate(Model.StartDate)"
+                               type="text" autocomplete="off">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-th"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">失效日期</label>
+                    <div class="input-group date uidate">
+                        <input class="form-control" name="@nameof(Model.EndDate)" value="@DateTimeHelper.FormatDate(Model.EndDate)"
+                               type="text" autocomplete="off">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-th"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label">所属辖区</label>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <select class="form-control uiselect"
+                                    id="@nameof(Model.ProvinceId)"
+                                    name="@nameof(Model.ProvinceId)"
+                                    data-text-field="@nameof(Model.ProvinceName)"
+                                    data-placeholder="省">
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <select class="form-control uiselect"
+                                    id="@nameof(Model.CityId)"
+                                    name="@nameof(Model.CityId)"
+                                    data-text-field="@nameof(Model.CityName)"
+                                    data-placeholder="市"></select>
+                        </div>
+                        <div class="col-md-4">
+                            <select class="form-control uiselect"
+                                    id="@nameof(Model.AreaId)"
+                                    name="@nameof(Model.AreaId)"
+                                    data-text-field="@nameof(Model.AreaName)"
+                                    data-placeholder="区"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">状态</label>
+                    <div>
+                        <input class="col-md-12 uiswitch" name="@nameof(Model.IsEnabled)"
+                               data-on-text="启用" data-off-text="禁用" data-size="small"
+                               type="checkbox" @Html.IsChecked(Model.IsEnabled)>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label"></label>
+
+                </div>
+            </div>
+        </div>
+
+        <h4 class="form-section clickable-item text-muted"><i class="fa fa-angle-down"></i> 扩展信息</h4>
+        <div class="extend-info fxhide">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">法人代表</label>
+                        <input class="form-control" name="@nameof(Model.Frdb)" value="@Model.Frdb"
+                               type="text" autocomplete="off" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">联系电话</label>
+                        <input class="form-control" name="@nameof(Model.Telephone)" value="@Model.Telephone"
+                               type="text" autocomplete="off" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">许可证号</label>
+                        <input class="form-control" name="@nameof(Model.Xkzh)" value="@Model.Xkzh"
+                               type="text" autocomplete="off" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">工商注册号</label>
+                        <input class="form-control" name="@nameof(Model.GSCode)" value="@Model.GSCode"
+                               type="text" autocomplete="off" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">批准文号</label>
+                        <input class="form-control" name="@nameof(Model.PZCode)" value="@Model.PZCode"
+                               type="text" autocomplete="off" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">档案号</label>
+                        <input class="form-control" name="@nameof(Model.DACode)" value="@Model.DACode"
+                               type="text" autocomplete="off" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">工商注册地址</label>
+                        <input class="form-control" name="@nameof(Model.Gsaddress)" value="@Model.Gsaddress"
+                               type="text" autocomplete="off" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">实际地址</label>
+                        <input class="form-control" name="@nameof(Model.Address)" value="@Model.Address"
+                               type="text" autocomplete="off" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">经营范围</label>
+                        <input class="form-control" name="@nameof(Model.Jyfw)" value="@Model.Jyfw"
+                               type="text" autocomplete="off" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">备注</label>
+                        <textarea class="form-control" name="@nameof(Model.Note)" rows="3">@Model.Note</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">
+            <i class="fa fa-save"></i> 保存
+        </button>
+        <button class="btn btn-default" type="button" data-dismiss="modal">
+            <i class="fa fa-sign-in"></i> 关闭
+        </button>
+    </div>
+</form>
+
+<script>
+    $('.edit-form').getFormModal().uimodal({
+        onAfterShow: function () {
+
+            var provinceValue = '@Model.ProvinceId';
+            var cityValue = '@Model.CityId';
+            var areaValue = '@Model.AreaId';
+
+            var $province = $('.edit-form').find('#@nameof(Model.ProvinceId)');
+            var $city = $('.edit-form').find('#@nameof(Model.CityId)');
+            var $area = $('.edit-form').find('#@nameof(Model.AreaId)');
+
+            var loadProvince = function () {
+                $.get('@Url.Action("Province", "Util",new { area = "" })', function (result) {
+                    $province.append(result);
+                    if (provinceValue) {
+                        $province.val(provinceValue).trigger("select2:select");
+                        provinceValue = null;
+                    }
+                });
+            };
+
+            var loadCity = function () {
+                $.get('@Url.Action("City", "Util",new { area = "" })', { provinceCode: $province.val() }, function (result) {
+                    $area.empty();
+                    $city.empty();
+                    $city.append('<option></option>');
+                    $city.append(result);
+                    if (cityValue) {
+                        $city.val(cityValue).trigger("select2:select");
+                        cityValue = null;
+                    }
+                });
+            };
+
+            var loadArea = function () {
+                $.get('@Url.Action("District", "Util",new { area = "" })', { cityCode: $city.val() }, function (result) {
+                    $area.empty();
+                    $area.append('<option></option>');
+                    $area.append(result);
+                    if (areaValue) {
+                        $area.val(areaValue).trigger("select2:select");
+                        areaValue = null;
+                    }
+                });
+            };
+
+            $province.on('select2:select', function () {
+                loadCity();
+            });
+
+            $city.on('select2:select', function () {
+                loadArea();
+            });
+
+            loadProvince();
+
+
+            $('.edit-form').find('.clickable-item').click(function () {
+                var rows = $('.edit-form').find('.extend-info');
+                var displayStatus = $(this).data('displayStatus') || false;
+                if (displayStatus === true) {
+                    $(this).data('displayStatus', false);
+                    $(this).html('<i class="fa fa-angle-down"></i> 显示扩展信息');
+                    rows.hide('500');
+                } else {
+                    $(this).data('displayStatus', true);
+                    $(this).html('<i class="fa fa-angle-up"></i> 隐藏扩展信息');
+                    rows.show('500');
+                }
+            });
+        }
+    });
+</script>

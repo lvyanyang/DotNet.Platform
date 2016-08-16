@@ -1,0 +1,54 @@
+﻿@model DotNet.Auth.Entity.Version
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">系统数据版本 - @Model.TableName - @Model.KeyValue</h4>
+</div>
+<div class="modal-body">
+    <div class="form-body">
+        <table class="table table-bordered table-striped table-details">
+				 <tr>
+					<th class="w-100px">名称</th>
+					<td>@Model.TableName</td>
+				</tr>
+				 <tr>
+					<th>主键名</th>
+					<td>@Model.KeyName</td>
+				</tr>
+				 <tr>
+					<th>主键值</th>
+					<td>@Model.KeyValue</td>
+				</tr>
+				 <tr>
+					<th>操作类型</th>
+					<td>@Model.CategoryName</td>
+				</tr>
+				 <tr>
+					<th>操作前数据</th>
+					<td>@Model.Before</td>
+				</tr>
+				 <tr>
+					<th>操作后数据</th>
+					<td>@Model.After</td>
+				</tr>
+				 <tr>
+					<th>创建用户主键</th>
+					<td>@Model.CreateUserId</td>
+				</tr>
+				 <tr>
+					<th>创建用户姓名</th>
+					<td>@Model.CreateUserName</td>
+				</tr>
+				 <tr>
+					<th>创建时间</th>
+					<td>@DateTimeHelper.FormatDateHasSecond(Model.CreateDateTime)</td>
+				</tr>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">
+        <i class="fa fa-sign-in"></i> 关闭
+    </button>
+</div>

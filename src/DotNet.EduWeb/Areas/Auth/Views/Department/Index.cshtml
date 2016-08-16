@@ -1,0 +1,98 @@
+﻿<div class="module-container" style="width: 100%; height: 100%; padding: 0;">
+    <div class="easyui-layout uitreetable" fit="true" border="false"
+         data-west-width-name="systemUserWestWidth">
+        <div class="tree-container" region="west" split="true" title="系统部门" border="false"
+             data-options="headerCls:'layout-panel-right-border',
+            bodyCls:'layout-panel-right-border'" style="width: 280px;">
+
+            <div style="margin: 5px">
+                <input class="form-control input-sm tttree_filter" type="text" placeholder="请输入查询关键字">
+
+                @*<a class="btn btn-xs btn-success"><i class="fa fa-plus"></i> 新建</a>
+                &nbsp;
+                <a class="btn btn-xs btn-info"><i class="fa fa fa-pencil-square-o"></i> 编辑</a>
+                &nbsp;
+                <a class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i> 删除</a>
+                &nbsp;
+                <a class="btn btn-xs btn-default"><i class="fa fa-refresh"></i> 刷新</a>*@
+            </div>
+
+            <ul class="tttree" fit="true" dnd="true"
+                data-selected-message="请先选择部门"
+                data-expand-level="2"
+                data-load-mask-target=".tree-container"
+                data-url="@Url.Action("Tree")"
+                data-parent-url="@Url.Action("SaveParent")"
+                data-sort-url="@Url.Action("SaveSort")"></ul>
+        </div>
+        <div region="center" border="false" title="系统用户"
+             data-options="headerCls:'layout-panel-left-border',
+            bodyCls:'layout-panel-left-border'">
+            <div style="margin: 5px; overflow-x: hidden;">
+                <div class="search-panel">
+                    <form class="form-inline search-table">
+                        <div class="form-group">
+                            <input class="form-control w250px" name="name" type="text"
+                                   placeholder="请输入账号/姓名/简拼查询">
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control w50px uiselect uiselectsubmit"
+                                    name="enabled"
+                                    data-has-text-field="false">
+                                @Html.EmptyOption("全部状态")
+                                <option value="true">启用</option>
+                                <option value="false">禁用</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa fa-search"></i> 查询
+                        </button>
+                        <a class="btn btn-success tttcreate uimodal"
+                           data-url="@Url.Action("Create", "User")">
+                            <i class="fa fa-plus"></i> 新建
+                        </a>
+                        <a class="btn btn-danger tmdelete" data-table=".uitable"
+                           data-url="@Url.Action("Delete", "User")">
+                            <i class="fa fa-trash-o"></i> 删除
+                        </a>
+                        <a id="ResetUserPassword" class="btn btn-info uimodal"
+                           data-url="@Url.Action("ResetUserPassword", "User")">
+                            <i class="fa fa-key"></i> 重置密码
+                        </a>
+                    </form>
+                </div>
+                <div class="tttable uitable" data-auto-load="false" data-url="@Url.Action("Grid", "User")">
+                </div>
+            </div>
+        </div>
+
+        <!-- 右键菜单 -->
+        <div class="ttmenu">
+            <div class="ttmcreate uimodal" data-options="iconCls:'font-icon fa fa-plus'"
+                 data-url="@Url.Action("Create")">新建</div>
+            <div class="menu-sep"></div>
+            <div class="ttmedit uimodal" data-options="iconCls:'font-icon fa fa-pencil-square-o'"
+                 data-url="@Url.Action("Edit")">编辑</div>
+            <div class="menu-sep"></div>
+            <div class="ttmdelete treedelete" data-options="iconCls:'font-icon fa fa-trash-o'"
+                 data-tree=".tttree" data-table=".uitable"
+                 data-confirm="确定要删除选中的部门以及所有子部门吗?"
+                 data-url="@Url.Action("Delete")">删除</div>
+            <div class="menu-sep"></div>
+            <div class="ttmrefresh" data-options="iconCls:'font-icon fa fa-refresh'">刷新</div>
+        </div>
+    </div>
+</div>
+<script>
+    fx.onReady(function() {
+        $('#ResetUserPassword').data('onBeforeShow', function (options) {
+            var ids = $('.uitable').uitable().getSelectedIds();
+            if (ids.length == 0) {
+                fx.msg('请选择要重置密码的用户');
+                return false;
+            }
+
+            options.data.ids = ids.join();
+        });
+    });
+</script>

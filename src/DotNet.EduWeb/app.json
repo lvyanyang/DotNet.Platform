@@ -1,0 +1,27 @@
+﻿{
+  "Database": [
+    {
+      "Name": "dotnet.auth",
+      "ConnectionString": "server=.;uid=sa;pwd=1;database=DotNetAuth"
+    },
+    {
+      "Name": "dotnet.edu",
+      "ConnectionString": "server=.;uid=sa;pwd=1;database=DotNetEdu"
+    },
+    {
+      "Name": "dotnet.exam",
+      "ConnectionString": "server=.;uid=sa;pwd=1;database=DotNetExam"
+    }
+  ],
+  "Upload": {
+    "IsAbsolute": true,
+    "UploadServer": "http://localhost:6001"
+  },
+  "Cdn": {
+    "CdnDebug": true,
+    "CdnVersion": "201607_0001",
+    "CdnServer": "http://localhost:6002",
+    "LocalDebug": true,
+    "LocalVersion":"201607_0001"
+  } 
+}

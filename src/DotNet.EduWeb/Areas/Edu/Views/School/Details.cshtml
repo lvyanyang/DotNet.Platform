@@ -1,0 +1,198 @@
+﻿@model School
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">培训机构 - @Model.Name</h4>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal">
+
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                机构编号：
+            </label>
+            <div class="col-md-8">
+                <p class="form-control-static">
+                    @Model.Code
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                机构名称：
+            </label>
+            <div class="col-md-8">
+                <p class="form-control-static">
+                    @Model.Name
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                发证机构：
+            </label>
+            <div class="col-md-8">
+                <p class="form-control-static">
+                    @Model.DepartmentName
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                核发日期：
+            </label>
+            <div class="col-md-8">
+                <p class="form-control-static">
+                    @DateTimeHelper.FormatDate(Model.HFDate)
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                生效日期：
+            </label>
+            <div class="col-md-8">
+                <p class="form-control-static">
+                    @DateTimeHelper.FormatDate(Model.StartDate)
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                失效日期：
+            </label>
+            <div class="col-md-8">
+                <p class="form-control-static">
+                    @DateTimeHelper.FormatDate(Model.EndDate)
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                所属辖区：
+            </label>
+            <div class="col-md-8">
+                <p class="form-control-static">
+                    @Model.Region
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                法人代表：
+            </label>
+            <div class="col-md-8">
+                <p class="form-control-static">
+                    @Model.Frdb
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                联系电话：
+            </label>
+            <div class="col-md-8">
+                <p class="form-control-static">
+                    @Model.Telephone
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                许可证号：
+            </label>
+            <div class="col-md-8">
+                <p class="form-control-static">
+                    @Model.Xkzh
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                工商注册号：
+            </label>
+            <div class="col-md-8">
+                <p class="form-control-static">
+                    @Model.GSCode
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                批准文号：
+            </label>
+            <div class="col-md-8">
+                <p class="form-control-static">
+                    @Model.PZCode
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                档案号：
+            </label>
+            <div class="col-md-8">
+                <p class="form-control-static">
+                    @Model.DACode
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                工商注册地址：
+            </label>
+            <div class="col-md-8">
+                <p class="form-control-static">
+                    @Model.Gsaddress
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                实际地址：
+            </label>
+            <div class="col-md-8">
+                <p class="form-control-static">
+                    @Model.Address
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                经营范围：
+            </label>
+            <div class="col-md-8">
+                <p class="form-control-static">
+                    @Model.Jyfw
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                创建时间：
+            </label>
+            <div class="col-md-8">
+                <p class="form-control-static">
+                    @DateTimeHelper.FormatDateHasSecond(Model.CreateDateTime)
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                备注：
+            </label>
+            <div class="col-md-8">
+                <p class="form-control-static">
+                    @Model.Note
+                </p>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">
+        <i class="fa fa-sign-in"></i> 关闭
+    </button>
+</div>
