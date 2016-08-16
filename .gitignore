@@ -189,8 +189,8 @@ ClientBin/
 *.dbmdl
 *.dbproj.schemaview
 *.pfx
+*.mp4
 *.publishsettings
-node_modules/
 orleans.codegen.cs
 
 # RIA/Silverlight projects
@@ -246,3 +246,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 upload
+node_modules
