@@ -5,7 +5,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Web.Mvc;
 using DevExpress.Spreadsheet;
 using DotNet.Collections;
@@ -16,7 +15,7 @@ using DotNet.Extensions;
 using DotNet.Helper;
 using DotNet.Utility;
 
-namespace DotNet.Web.Areas.Edu.Controllers
+namespace DotNet.EduWeb.Areas.Edu.Controllers
 {
     public class TrainGroupController : EduController
     {

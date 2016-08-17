@@ -7,10 +7,10 @@
     <title>@SystemSetting.SystemTitle</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link href="/www/lib/lib.css" rel="stylesheet" />
-    <link href="/www/core/css/core.css" rel="stylesheet" />
-    <link href="/www/home/css/home.css" rel="stylesheet" />
+    @*<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />*@
+    @Html.CdnImport("~/lib.css")
+    @Html.CdnImport("~/fx.css")
+    @Html.LocalImport("~/www/css/home.css");
 </head>
 <body class="easyui-layout">
     <div class="home-north" region="north">
@@ -75,17 +75,8 @@
             </div>
         </div>
     </div>
-    <script src="/www/lib/lib.js"></script>
-    <script src="/www/core/js/core.js"></script>
-    <script src="/www/core/js/extend.js"></script>
-    <script src="/www/core/js/plugin.js"></script>
-    <script src="/www/core/js/tree.js"></script>
-    <script src="/www/core/js/table.js"></script>
-    <script src="/www/core/js/modal.js"></script>
-    <script src="/www/core/js/form.js"></script>
-    <script src="/www/core/js/action.js"></script>
-    <script src="/www/core/js/treetable.js"></script>
-    <script src="/www/core/js/treegrid.js"></script>
-    <script src="/www/home/js/home.js"></script>
+    @Html.CdnImport("~/lib.js")
+    @Html.CdnImport("~/fx.js")
+    @Html.LocalImport("~/www/js/home.js");
 </body>
 </html>

@@ -241,7 +241,6 @@ KindEditor.plugin('multiimage', function(K) {
 			}
 		}),
 		div = dialog.div;
-
 		var swfupload = K.swfupload({
 			container : K('.swfupload', div),
 			buttonImageUrl : imgPath + (self.langType == 'zh_CN' ? 'select-files-zh_CN.png' : 'select-files-en.png'),
@@ -250,7 +249,8 @@ KindEditor.plugin('multiimage', function(K) {
 			fileIconUrl : imgPath + 'image.png',
 			uploadDesc : uploadDesc,
 			startButtonValue : lang.startUpload,
-			uploadUrl : K.addParam(uploadJson, 'dir=image'),
+			//uploadUrl : K.addParam(uploadJson, 'dir=image'),
+			uploadUrl : window.location.protocol + '//' + window.location.host + (window.location.port ? ":" + window.location.port : "") + K.addParam(uploadJson, 'dir=image'),
 			flashUrl : imgPath + 'swfupload.swf',
 			filePostName : filePostName,
 			fileTypes : '*.jpg;*.jpeg;*.gif;*.png;*.bmp',

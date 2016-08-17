@@ -43,6 +43,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Data.v14.2">
+      <HintPath>..\..\lib\DevExpress.Data.v14.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Spreadsheet.v14.2.Core">
+      <HintPath>..\..\lib\DevExpress.Spreadsheet.v14.2.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -91,52 +97,52 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
-    <Content Include="Areas\Auth\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Auth\Views\Account\Index.cshtml" />
-    <Content Include="Areas\Auth\Views\Account\Login.cshtml" />
-    <Content Include="Areas\Auth\Views\Audit\Details.cshtml" />
-    <Content Include="Areas\Auth\Views\Audit\Grid.cshtml" />
-    <Content Include="Areas\Auth\Views\Audit\Index.cshtml" />
-    <Content Include="Areas\Auth\Views\Department\Edit.cshtml" />
-    <Content Include="Areas\Auth\Views\Department\Index.cshtml" />
-    <Content Include="Areas\Auth\Views\Dic\Edit.cshtml" />
-    <Content Include="Areas\Auth\Views\Dic\Index.cshtml" />
-    <Content Include="Areas\Auth\Views\DicDetail\Details.cshtml" />
-    <Content Include="Areas\Auth\Views\DicDetail\Edit.cshtml" />
-    <Content Include="Areas\Auth\Views\DicDetail\Grid.cshtml" />
-    <Content Include="Areas\Auth\Views\Excep\Details.cshtml" />
-    <Content Include="Areas\Auth\Views\Excep\Grid.cshtml" />
-    <Content Include="Areas\Auth\Views\Excep\Index.cshtml" />
-    <Content Include="Areas\Auth\Views\Log\Details.cshtml" />
-    <Content Include="Areas\Auth\Views\Log\Grid.cshtml" />
-    <Content Include="Areas\Auth\Views\Log\Index.cshtml" />
-    <Content Include="Areas\Auth\Views\Menu\Details.cshtml" />
-    <Content Include="Areas\Auth\Views\Menu\Edit.cshtml" />
-    <Content Include="Areas\Auth\Views\Menu\Grid.cshtml" />
-    <Content Include="Areas\Auth\Views\Menu\Index.cshtml" />
-    <Content Include="Areas\Auth\Views\Param\Details.cshtml" />
-    <Content Include="Areas\Auth\Views\Param\Edit.cshtml" />
-    <Content Include="Areas\Auth\Views\Param\Grid.cshtml" />
-    <Content Include="Areas\Auth\Views\Param\Index.cshtml" />
-    <Content Include="Areas\Auth\Views\Role\Details.cshtml" />
-    <Content Include="Areas\Auth\Views\Role\Edit.cshtml" />
-    <Content Include="Areas\Auth\Views\Role\Grid.cshtml" />
-    <Content Include="Areas\Auth\Views\Role\Index.cshtml" />
-    <Content Include="Areas\Auth\Views\Role\Permission.cshtml" />
-    <Content Include="Areas\Auth\Views\Seq\Details.cshtml" />
-    <Content Include="Areas\Auth\Views\Seq\Edit.cshtml" />
-    <Content Include="Areas\Auth\Views\Seq\Grid.cshtml" />
-    <Content Include="Areas\Auth\Views\Seq\Index.cshtml" />
-    <Content Include="Areas\Auth\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Auth\Views\User\Details.cshtml" />
-    <Content Include="Areas\Auth\Views\User\Edit.cshtml" />
-    <Content Include="Areas\Auth\Views\User\Grid.cshtml" />
-    <Content Include="Areas\Auth\Views\User\ModifyUserPassword.cshtml" />
-    <Content Include="Areas\Auth\Views\User\ResetUser.cshtml" />
-    <Content Include="Areas\Auth\Views\User\ResetUserPassword.cshtml" />
-    <Content Include="Areas\Auth\Views\Version\Details.cshtml" />
-    <Content Include="Areas\Auth\Views\Version\Grid.cshtml" />
-    <Content Include="Areas\Auth\Views\web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Audit\Details.cshtml" />
+    <Content Include="Views\Audit\Grid.cshtml" />
+    <Content Include="Views\Audit\Index.cshtml" />
+    <Content Include="Views\Department\Edit.cshtml" />
+    <Content Include="Views\Department\Index.cshtml" />
+    <Content Include="Views\Dic\Edit.cshtml" />
+    <Content Include="Views\Dic\Index.cshtml" />
+    <Content Include="Views\DicDetail\Details.cshtml" />
+    <Content Include="Views\DicDetail\Edit.cshtml" />
+    <Content Include="Views\DicDetail\Grid.cshtml" />
+    <Content Include="Views\Excep\Details.cshtml" />
+    <Content Include="Views\Excep\Grid.cshtml" />
+    <Content Include="Views\Excep\Index.cshtml" />
+    <Content Include="Views\Log\Details.cshtml" />
+    <Content Include="Views\Log\Grid.cshtml" />
+    <Content Include="Views\Log\Index.cshtml" />
+    <Content Include="Views\Menu\Details.cshtml" />
+    <Content Include="Views\Menu\Edit.cshtml" />
+    <Content Include="Views\Menu\Grid.cshtml" />
+    <Content Include="Views\Menu\Index.cshtml" />
+    <Content Include="Views\Param\Details.cshtml" />
+    <Content Include="Views\Param\Edit.cshtml" />
+    <Content Include="Views\Param\Grid.cshtml" />
+    <Content Include="Views\Param\Index.cshtml" />
+    <Content Include="Views\Role\Details.cshtml" />
+    <Content Include="Views\Role\Edit.cshtml" />
+    <Content Include="Views\Role\Grid.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Role\Permission.cshtml" />
+    <Content Include="Views\Seq\Details.cshtml" />
+    <Content Include="Views\Seq\Edit.cshtml" />
+    <Content Include="Views\Seq\Grid.cshtml" />
+    <Content Include="Views\Seq\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Grid.cshtml" />
+    <Content Include="Views\User\ModifyUserPassword.cshtml" />
+    <Content Include="Views\User\ResetUser.cshtml" />
+    <Content Include="Views\User\ResetUserPassword.cshtml" />
+    <Content Include="Views\Version\Details.cshtml" />
+    <Content Include="Views\Version\Grid.cshtml" />
+    <Content Include="Views\web.config" />
     <Content Include="www\css\home.css" />
     <Content Include="www\css\login.css" />
     <Content Include="www\img\header_bg.png" />
@@ -209,21 +215,20 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Areas\Auth\AuthAreaRegistration.cs" />
-    <Compile Include="Areas\Auth\Controllers\AccountController.cs" />
-    <Compile Include="Areas\Auth\Controllers\AuditController.cs" />
-    <Compile Include="Areas\Auth\Controllers\AuthController.cs" />
-    <Compile Include="Areas\Auth\Controllers\DepartmentController.cs" />
-    <Compile Include="Areas\Auth\Controllers\DicController.cs" />
-    <Compile Include="Areas\Auth\Controllers\DicDetailController.cs" />
-    <Compile Include="Areas\Auth\Controllers\ExcepController.cs" />
-    <Compile Include="Areas\Auth\Controllers\LogController.cs" />
-    <Compile Include="Areas\Auth\Controllers\MenuController.cs" />
-    <Compile Include="Areas\Auth\Controllers\ParamController.cs" />
-    <Compile Include="Areas\Auth\Controllers\RoleController.cs" />
-    <Compile Include="Areas\Auth\Controllers\SeqController.cs" />
-    <Compile Include="Areas\Auth\Controllers\UserController.cs" />
-    <Compile Include="Areas\Auth\Controllers\VersionController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AuditController.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\DicController.cs" />
+    <Compile Include="Controllers\DicDetailController.cs" />
+    <Compile Include="Controllers\ExcepController.cs" />
+    <Compile Include="Controllers\LogController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\ParamController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\SeqController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\VersionController.cs" />
     <Compile Include="Areas\Edu\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Edu\Controllers\CoursewareController.cs" />
     <Compile Include="Areas\Edu\Controllers\CoursewareDetailsController.cs" />
@@ -258,10 +263,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DotNet.Auth\DotNet.Auth.Entity\DotNet.Auth.Entity.csproj">
       <Project>{b4777dbd-8963-4153-895e-011f7ce355b5}</Project>
@@ -294,6 +296,10 @@
     <ProjectReference Include="..\DotNet.Edu\DotNet.Edu.WebUtility\DotNet.Edu.WebUtility.csproj">
       <Project>{b3990cd4-d71a-4c6b-8c56-e10929f7958f}</Project>
       <Name>DotNet.Edu.WebUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNet.Framework\DotNet.Doc\DotNet.Doc.csproj">
+      <Project>{2bb61e1c-2d36-426c-87d3-57298b207509}</Project>
+      <Name>DotNet.Doc</Name>
     </ProjectReference>
     <ProjectReference Include="..\DotNet.Framework\DotNet.Mvc\DotNet.Mvc.csproj">
       <Project>{6a790c23-5638-4098-aa0d-ea9d4944749b}</Project>

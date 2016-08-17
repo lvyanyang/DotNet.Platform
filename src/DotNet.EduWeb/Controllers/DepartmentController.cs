@@ -11,7 +11,7 @@ using DotNet.Helper;
 using DotNet.Mvc;
 using DotNet.Utility;
 
-namespace DotNet.Web.Areas.Auth.Controllers
+namespace DotNet.EduWeb.Controllers
 {
     public class DepartmentController : AuthController
     {

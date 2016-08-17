@@ -5,13 +5,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using DotNet.Configuration;
 using DotNet.Data;
 using DotNet.Extensions;
 using DotNet.Helper;
 using DotNet.Mvc;
+using Newtonsoft.Json;
 
 namespace DotNet
 {
@@ -28,10 +31,19 @@ namespace DotNet
 
             //Console.WriteLine(RandomHelper.GenerateRandomArray(50).Join());
 
-            Console.WriteLine(CdnHelper.Url("~/lib/abc/jquery.js"));
-            Console.WriteLine(CdnHelper.Url("~/lib/jquery.css"));
+            //Console.WriteLine(CdnHelper.Url("~/lib/abc/jquery.js"));
+            //Console.WriteLine(CdnHelper.Url("~/lib/jquery.css"));
+            using (HttpClient client = new HttpClient())
+            {
+                var url = "http://ip.taobao.com/service/getIpInfo.php?ip=124.115.168.58";
+                 
+                var json = client.GetStringAsync(url).Result;
+                var obj = JsonHelper.Deserialize<IPInfo>(json);
+                Console.WriteLine(obj.Data);
+            }
 
             Console.ReadLine();
         }
     }
+
 }

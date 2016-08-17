@@ -2,9 +2,9 @@
 // DotNet.Platform 开发框架 2016 版权所有
 // ===============================================================================
 
-using DotNet.Web.Areas.Auth.Controllers;
+using DotNet.EduWeb.Controllers;
 
-namespace DotNet.Web.Areas.Edu.Controllers
+namespace DotNet.EduWeb.Areas.Edu.Controllers
 {
     public class EduController: AuthController
     {

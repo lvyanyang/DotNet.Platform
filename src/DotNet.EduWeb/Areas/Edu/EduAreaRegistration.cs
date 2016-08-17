@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace DotNet.Web.Areas.Edu
+namespace DotNet.EduWeb.Areas.Edu
 {
     public class EduAreaRegistration : AreaRegistration 
     {
@@ -11,8 +11,7 @@ namespace DotNet.Web.Areas.Edu
             context.MapRoute(
                 "Edu_default",
                 "Edu/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional },
-                new[] { "DotNet.Web.Areas.Edu.Controllers" }
+                new { action = "Index", id = UrlParameter.Optional }
             );
         }
     }

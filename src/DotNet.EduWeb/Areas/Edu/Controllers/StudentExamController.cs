@@ -8,7 +8,7 @@ using DotNet.Edu.Service;
 using DotNet.Utility;
 using DotNet.Extensions;
 
-namespace DotNet.Web.Areas.Edu.Controllers
+namespace DotNet.EduWeb.Areas.Edu.Controllers
 {
     public class StudentExamController : EduController
     {

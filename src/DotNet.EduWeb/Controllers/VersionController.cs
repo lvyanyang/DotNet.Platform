@@ -5,7 +5,7 @@
 using System.Web.Mvc;
 using DotNet.Auth.Service;
 
-namespace DotNet.Web.Areas.Auth.Controllers
+namespace DotNet.EduWeb.Controllers
 {
     public class VersionController : AuthController
     {

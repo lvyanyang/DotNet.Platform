@@ -8,7 +8,7 @@ using DotNet.Auth.Utility;
 using DotNet.Extensions;
 using DotNet.Helper;
 
-namespace DotNet.Web.Areas.Auth.Controllers
+namespace DotNet.EduWeb.Controllers
 {
     public class DicDetailController : AuthController
     {

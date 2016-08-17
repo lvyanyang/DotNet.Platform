@@ -69,7 +69,7 @@ namespace DotNet.Helper
             if (uploadSetting.IsAbsolute)
             {
                 var vp = VirtualPathUtility.Combine(VirtualPathUtility.ToAbsolute(virtualFolder), targetFileName);
-                vp = vp.Replace("/","\\");
+                vp = vp.Replace("/", "\\");
                 targetFilePath = uploadSetting.AbsoluteFolder + vp;
             }
             else
@@ -90,18 +90,39 @@ namespace DotNet.Helper
         /// <summary>
         /// 获取Web浏览地址
         /// </summary>
+        /// <param name="subFolder">子文件夹</param>
+        public static string GetUploadFolderUrl(string subFolder = null)
+        {
+            string url;
+            var uploadSetting = GetUploadSetting();
+            if (uploadSetting.IsAbsolute)
+            {
+                url = uploadSetting.UploadServer;
+            }
+            else
+            {
+                var ourl = HttpContext.Current.Request.Url.OriginalString;
+                var pq = HttpContext.Current.Request.Url.PathAndQuery;
+                url = ourl.Replace(pq, string.Empty);
+            }
+            if (!string.IsNullOrEmpty(subFolder))
+            {
+                url = VirtualPathUtility.RemoveTrailingSlash(url);
+                url += VirtualPathUtility.ToAbsolute(subFolder);
+            }
+            url = VirtualPathUtility.RemoveTrailingSlash(url);
+            return url;
+        }
+
+        /// <summary>
+        /// 获取Web浏览地址
+        /// </summary>
         /// <param name="virtualPath">虚拟路径</param>
         public static string GetUploadUrl(string virtualPath)
         {
-            var uploadSetting = GetUploadSetting();
+            var folderUrl = GetUploadFolderUrl();
             var absolutePath = VirtualPathUtility.ToAbsolute(virtualPath);
-            if (uploadSetting.IsAbsolute)
-            {
-                return uploadSetting.UploadServer + absolutePath;
-            }
-            var ourl = HttpContext.Current.Request.Url.OriginalString;
-            var pq = HttpContext.Current.Request.Url.PathAndQuery;
-            return ourl.Replace(pq,string.Empty) + absolutePath;
+            return folderUrl + absolutePath;
         }
     }
 }

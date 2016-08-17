@@ -6,7 +6,7 @@ using System;
 using System.Web.Mvc;
 using DotNet.Edu.Service;
 
-namespace DotNet.Web.Areas.Edu.Controllers
+namespace DotNet.EduWeb.Areas.Edu.Controllers
 {
     public class ExamRecordController : EduController
     {

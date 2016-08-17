@@ -10,7 +10,7 @@ using DotNet.Utility;
 using DotNet.Extensions;
 using System.Collections.Generic;
 
-namespace DotNet.Web.Areas.Edu.Controllers
+namespace DotNet.EduWeb.Areas.Edu.Controllers
 {
     public class StudentStockInController : EduController
     {

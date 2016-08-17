@@ -5,13 +5,12 @@
 using System.Web.Mvc;
 using DotNet.Auth.Entity;
 using DotNet.Auth.Utility;
-using DotNet.Configuration;
 using DotNet.Extensions;
 using DotNet.Helper;
 using DotNet.Mvc;
 using DotNet.Utility;
 
-namespace DotNet.Web.Areas.Auth.Controllers
+namespace DotNet.EduWeb.Controllers
 {
     [Authorize]
     public class AuthController : JsonController

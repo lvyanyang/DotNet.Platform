@@ -21,7 +21,7 @@
          */
         var setBackground = function () {
             var num = 1;//getRandomNumber(50);
-            $('body').css('background', 'url(www/home/img/bg/' + num + '.jpg)');
+            $('body').css('background', 'url(/www/img/bg/' + num + '.jpg)');
         };
 
         /**
@@ -78,7 +78,7 @@
                     $password.removeAttr('disabled');
                     msg(result.message);
                 }
-            }).fail(function (request, status) {
+            }).fail(function (request) {
                 $submit.val('登录').removeAttr('disabled');
                 $account.removeAttr('disabled');
                 $password.removeAttr('disabled');

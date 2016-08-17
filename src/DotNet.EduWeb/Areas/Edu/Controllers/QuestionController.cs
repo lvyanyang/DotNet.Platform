@@ -5,7 +5,6 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using DevExpress.Spreadsheet;
 using DotNet.Doc;
 using DotNet.Edu.Entity;
 using DotNet.Edu.Service;
@@ -13,7 +12,7 @@ using DotNet.Extensions;
 using DotNet.Helper;
 using DotNet.Utility;
 
-namespace DotNet.Web.Areas.Edu.Controllers
+namespace DotNet.EduWeb.Areas.Edu.Controllers
 {
     public class QuestionController : EduController
     {

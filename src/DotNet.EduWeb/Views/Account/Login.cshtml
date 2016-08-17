@@ -1,14 +1,13 @@
-﻿@using DotNet.Auth.Service
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-cn">
 <head>
     <title>@SystemSetting.SystemTitle - 系统登录</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link href="/www/lib/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="/www/lib/font-awesome/font-awesome.min.css" rel="stylesheet" />
-    <link href="/www/home/css/login.css" rel="stylesheet" />
+    @*<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />*@
+    @Html.CdnImport("~/lib/bootstrap/bootstrap.css")
+    @Html.CdnImport("~/lib/font-awesome/font-awesome.css")
+    @Html.LocalImport("~/www/css/login.css");
 </head>
 <body class="container">
     <div class="col-md-6 col-md-offset-3 text-center">
@@ -28,7 +27,7 @@
                 </div>
                 <div class="input-margin">
                     <input class="btn btn-default btn-block btn-lg"
-                           data-url="default/login"
+                           data-url="@Url.Action("Login")"
                            value="登 录" type="submit" />
                 </div>
             </div>
@@ -37,13 +36,13 @@
             @SystemSetting.Copyright © @DateTime.Now.Year
         </div>
     </div>
-    <script src="/www/lib/jquery/jquery.min.js"></script>
-    <script src="/www/lib/bootstrap/bootstrap.min.js"></script>
-    <script src="/www/lib/useragent/useragent_base.js"></script>
-<script src="/www/lib/useragent/useragent.js"></script>
-    <script src="~/www/lib/jquery-storageapi/jquery-storageapi.js"></script>
-    <script src="/www/core/js/core.js"></script>
-    <script src="/www/home/js/login.js"></script>
+    @Html.CdnImport("~/lib/jquery/jquery.js")
+    @Html.CdnImport("~/lib/bootstrap/bootstrap.js")
+    @Html.CdnImport("~/lib/useragent/useragent_base.js")
+    @Html.CdnImport("~/lib/useragent/useragent.js")
+    @Html.CdnImport("~/lib/jquery-storageapi/jquery-storageapi.js")
+    @Html.CdnImport("~/lib/fx/core.js")
+    @Html.LocalImport("~/www/js/login.js");
 </body>
 </html>
 

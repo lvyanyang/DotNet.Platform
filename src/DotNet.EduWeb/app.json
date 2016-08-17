@@ -15,6 +15,8 @@
   ],
   "Upload": {
     "IsAbsolute": true,
+    "UploadFolder": "~/upload",
+    "AbsoluteFolder": "D:\\Project\\DotNet.Platform\\src\\DotNet.Resources",
     "UploadServer": "http://localhost:6001"
   },
   "Cdn": {

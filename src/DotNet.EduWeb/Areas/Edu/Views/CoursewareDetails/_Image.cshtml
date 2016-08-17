@@ -5,7 +5,7 @@
     {
         <li class="col-md-3" style="border: 0; margin: 4px 0 0 0;" data-id="@item.Id">
             <div class="thumbnail">
-                <img src="@UploadHelper.GetWebUrl(item.Url)" class="cursor-pointer" style="height: 200px">
+                <img src="@UploadHelper.GetUploadUrl(item.Url)" class="cursor-pointer" style="height: 200px">
                 <div class="caption text-center">
                     <a class="btn btn-danger" title="删除" onclick="deleteDetails(this,'@Url.Action("Delete", new {id = item.Id})')">
                         <i class="fa fa-lg fa-trash-o"></i>

@@ -41,6 +41,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -79,6 +80,7 @@
     <Compile Include="Helper\FileHelper.cs" />
     <Compile Include="Helper\ImageHelper.cs" />
     <Compile Include="Helper\IniFileHelper.cs" />
+    <Compile Include="Helper\IPHelper.cs" />
     <Compile Include="Helper\MacroHelper.cs" />
     <Compile Include="Helper\NativeMethods.cs" />
     <Compile Include="Helper\NetWorkHelper.cs" />

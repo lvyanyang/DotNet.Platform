@@ -11,7 +11,7 @@ using DotNet.Extensions;
 using DotNet.Helper;
 using DotNet.Utility;
 
-namespace DotNet.Web.Areas.Edu.Controllers
+namespace DotNet.EduWeb.Areas.Edu.Controllers
 {
     public class NoticeController : EduController
     {

@@ -7,7 +7,7 @@ using System.Web.Security;
 using DotNet.Auth.Service;
 using DotNet.Auth.Utility;
 
-namespace DotNet.Web.Areas.Auth.Controllers
+namespace DotNet.EduWeb.Controllers
 {
     public class AccountController : AuthController
     {

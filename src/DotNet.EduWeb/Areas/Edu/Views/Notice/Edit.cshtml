@@ -112,12 +112,11 @@
 
     $(function () {
         var ops = {
-            cssPath: ['/www/lib/bootstrap/bootstrap.css'],
             resizeType: 1,
             allowPreviewEmoticons: true,
             allowImageUpload: true,
-            uploadJson: '/www/lib/kindeditor/ashx/upload_json.ashx',
-            fileManagerJson: '/www/lib/kindeditor/ashx/file_manager_json.ashx',
+            uploadJson: '/KindEditor/Upload',
+            fileManagerJson: '/KindEditor/Manager',
             allowFileManager: true,
             bodyClass: 'article-content',
             afterBlur: function () {
@@ -141,7 +140,7 @@
                     KindEditor('form[name=frm_f]')[0].submit();
                 });
                 pastimg();
-            }, items: simpleTools
+            }
         };
 
         KindEditor.create('textarea[name="Message"]', ops);
