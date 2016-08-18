@@ -210,11 +210,16 @@
     <Content Include="Areas\Edu\Views\TrainGroup\ReservationImport.cshtml" />
     <Content Include="Areas\Edu\Views\TrainGroup\UnReservationImport.cshtml" />
     <Content Include="Areas\Edu\Views\web.config" />
+    <Content Include="Areas\Edu\Views\PeriodDetails\Index.cshtml" />
+    <Content Include="Areas\Edu\Views\PeriodDetails\StudentPeriodGrid.cshtml" />
+    <Content Include="Areas\Edu\Views\PeriodDetails\Details.cshtml" />
+    <Content Include="Areas\Edu\Views\PeriodDetails\Grid.cshtml" />
     <None Include="_references.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Edu\Controllers\PeriodDetailsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AuditController.cs" />
     <Compile Include="Controllers\AuthController.cs" />

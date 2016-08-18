@@ -18,6 +18,11 @@
                     学员日志
                 </a>
             </li>
+            <li>
+                <a href="#student_periodDetails" data-toggle="tab">
+                    学时明细
+                </a>
+            </li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="student_details_base">
@@ -99,6 +104,11 @@
             <div class="tab-pane" id="student_details_log">
                 <div class="uitable" data-url="@Url.Action("_LogGrid", new {studentId = Model.Id})">
                     @Html.Action("_LogGrid", new { studentId = Model.Id })
+                </div>
+            </div>
+            <div class="tab-pane" id="student_periodDetails">
+                <div class="uitable" data-url="@Url.Action("StudentPeriodGrid","PeriodDetails", new {studentId = Model.Id})">
+                    @Html.Action("StudentPeriodGrid", "PeriodDetails", new { studentId = Model.Id })
                 </div>
             </div>
         </div>

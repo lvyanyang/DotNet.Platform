@@ -18,14 +18,17 @@ namespace DotNet.Edu.WebUtility
         public static StudentAudits BuildStudentAuditEntity(Student student)
         {
             var request = HttpContext.Current.Request;
+            var ipData = IPHelper.GetInternetIP(request);
             return new StudentAudits
             {
                 Id = StringHelper.Guid(),
                 StudentId = student?.Id,
                 StudentName = student?.Name,
                 LoginDateTime = DateTime.Now,
-                AreaAddress = WebHelper.GetFormString("area"),
-                IPAddress = WebHelper.GetFormString("ip", request.UserHostAddress),
+                 
+                AreaAddress = $"{ipData.Region}{ipData.City} {ipData.Isp}",
+                IPAddress = ipData.Ip,
+
                 Browser = WebHelper.GetFormString("browser"),
                 Device = WebHelper.GetFormString("device"),
                 OS = WebHelper.GetFormString("os"),

@@ -5,7 +5,6 @@ using DotNet.Helper;
 using System;
 using System.Web.Mvc;
 using System.Web.Security;
-using DotNet.Mvc;
 
 namespace DotNet.StudentWeb.Controllers
 {
@@ -17,7 +16,7 @@ namespace DotNet.StudentWeb.Controllers
             var list = EduService.StudentCoursewarePeriod.GetList(session.StudentId, session.Student.WorkCategoryId);
             ViewBag.totalPeriod = EduService.Courseware.GetTotalPeriod(session.Student.WorkCategoryId);
             ViewBag.learnPeriod = session.Student.TotalPeriod;
-            ViewBag.lastPeriodDetails = EduService.PeriodDetails.GetLast();
+            ViewBag.lastPeriodDetails = EduService.PeriodDetails.GetStudentLast(session.StudentId);
             return View(list);
         }
 

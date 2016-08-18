@@ -67,6 +67,7 @@ namespace DotNet.Auth.Utility
         public static Audit BuildAuditEntity(int category, User user)
         {
             var request = HttpContext.Current.Request;
+            var ipData = IPHelper.GetInternetIP(request);
             return new Audit
             {
                 Id = StringHelper.Guid(),
@@ -74,8 +75,10 @@ namespace DotNet.Auth.Utility
                 UserName = user?.Name,
                 CreateDateTime = DateTime.Now,
                 Category = category,
-                AreaAddress = WebHelper.GetFormString("area"),
-                IPAddress = WebHelper.GetFormString("ip", request.UserHostAddress),
+
+                AreaAddress = $"{ipData.Region}{ipData.City} {ipData.Isp}",
+                IPAddress = ipData.Ip,
+
                 Browser = WebHelper.GetFormString("browser"),
                 Device = WebHelper.GetFormString("device"),
                 OS = WebHelper.GetFormString("os"),

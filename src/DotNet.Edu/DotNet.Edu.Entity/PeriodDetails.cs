@@ -14,6 +14,13 @@ namespace DotNet.Edu.Entity
     public class PeriodDetails
     {
         /// <summary>
+        /// 主键
+        /// </summary>
+        [PrimaryKey]
+        [Column("主键", false)]
+        public string Id { get; set; }
+
+        /// <summary>
         /// 课件主键
         /// </summary>
         [Column("课件主键")]

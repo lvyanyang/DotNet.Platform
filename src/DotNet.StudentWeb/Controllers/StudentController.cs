@@ -36,7 +36,7 @@ namespace DotNet.StudentWeb.Controllers
 
         public ActionResult PeriodDetailsGrid(string startDate, string endDate)
         {
-            var list = EduService.PeriodDetails.GetPageList(PageInfo(), CurrentStudent.StudentId, 
+            var list = EduService.PeriodDetails.GetStudentPageList(PageInfo(), CurrentStudent.StudentId, 
                 startDate.ToDateTimeOrNull(),endDate.ToDateTimeOrNull());
             return View(list);
         }

@@ -1,0 +1,46 @@
+﻿@model PeriodDetails
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">学时明细 - @Model.StudentName</h4>
+</div>
+<div class="modal-body">
+    <div class="form-body">
+        <table class="table table-bordered table-striped table-details">
+            <tr>
+                <th>学员姓名</th>
+                <td>@Model.StudentName</td>
+            </tr>
+            <tr>
+                <th>学习方式</th>
+                <td>@Model.StudyCategory</td>
+            </tr>
+            <tr>
+                <th>学校名称</th>
+                <td>@Model.SchoolName</td>
+            </tr>
+            <tr>
+                <th>IP地址</th>
+                <td>@Model.IPAddress</td>
+            </tr>
+            <tr>
+                <th>签到时间</th>
+                <td>@DateTimeHelper.FormatDateHasSecond(Model.SignInDateTime)</td>
+            </tr>
+            <tr>
+                <th>签退时间</th>
+                <td>@DateTimeHelper.FormatDateHasSecond(Model.SignOutDateTime)</td>
+            </tr>
+            <tr>
+                <th>时长</th>
+                <td>@DateTimeHelper.GetTimeStringHMS(Model.Period)</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">
+        <i class="fa fa-sign-in"></i> 关闭
+    </button>
+</div>

@@ -60,8 +60,6 @@
                 data: {
                     account: $account.val(),
                     password: $password.val(),
-                    area: '',
-                    ip: '',
                     browser: fx.getBrowser(),
                     device: fx.getDevice(),
                     os: fx.getOS()

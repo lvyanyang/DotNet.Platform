@@ -3998,6 +3998,8 @@ $.extend(Date.prototype, {
                 autoclose: true,
                 todayHighlight: true
             });
+            $.fn.datepicker.defaults.language = 'zh-CN';
+            $.fn.datepicker.defaults.format = 'yyyy-mm-dd';
         }
 
         /*-------timepicker-------*/

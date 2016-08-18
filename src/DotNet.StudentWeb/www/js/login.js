@@ -66,19 +66,11 @@
             //else {
             //    var expire = "";
             //}
-            var ipObj = $('#ip').text().trim().toObject();
-            var ip = '';
-            var address = '';
-            if(ipObj){
-                ip = ipObj.ip;
-                address = ipObj.address;
-            }
+            
             $.post('/default/login',
                 {
                     account: $('#username').val(),
                     password: $('#password').val(),
-                    area: address,
-                    ip: ip,
                     vcode: $('#postcaptcha').val(),
                     //expire: expire,
                     browser: fx.getBrowser(),

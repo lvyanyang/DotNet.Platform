@@ -77,11 +77,7 @@
     <div id="footer">
         @Html.Partial("_Copyright")
     </div>
-    <span id="ip" style="display: none">
-        @Request.ServerVariables["REMOTE_ADDR"]
-        @*http://ip.taobao.com/service/getIpInfo.php?ip=123.139.87.196*@
-        @*<script language="javascript" src="http://ip.chinaz.com/getip.aspx?v=@StringHelper.Guid()"></script>*@
-    </span>
+     
 
     @Html.CdnImport("~/lib/jquery/jquery.js")
     @Html.CdnImport("~/lib/useragent/useragent_base.js")

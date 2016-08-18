@@ -1,0 +1,34 @@
+﻿<div class="module-container">
+    <div class="search-panel">
+        <form class="form-inline search-table">
+            <div class="form-group">
+                <input class="form-control w250px" name="name" type="text"
+                       placeholder="请输入学员姓名查询">
+            </div>
+            
+            <div class="form-group">
+                <div class="input-group date w165px uidate">
+                    <input class="form-control" name="startDate" type="text" placeholder="请选择开始日期">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-th"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group date w165px uidate">
+                    <input class="form-control" name="endDate" type="text" placeholder="请选择结束日期">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-th"></i>
+                    </span>
+                </div>
+            </div>
+            
+            <button class="btn btn-primary" type="submit">
+                <i class="fa fa-search"></i> 查询
+            </button>
+        </form>
+    </div>
+    <div class="uitable" data-url="@Url.Action("Grid")">
+        @Html.Action("Grid")
+    </div>
+</div>
